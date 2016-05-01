@@ -27,26 +27,18 @@ namespace MiniCraft.Levels.Tiles
             var toolItem = item as ToolItem;
             if (toolItem == null) return false;
             ToolItem tool = toolItem;
-            if (tool.Type == ToolType.Shovel)
+            if (tool.Type == ToolType.Shovel && player.PayStamina(4 - tool.Level))
             {
-                if (player.PayStamina(4 - tool.Level))
-                {
-                    level.SetTile(xt, yt, Hole, 0);
-                    level.Add(new ItemEntity(new ResourceItem(Resource.Dirt), xt * 16 + Random.NextInt(10) + 3, yt * 16 + Random.NextInt(10) + 3));
-                    Sound.MonsterHurt.Play();
-                    return true;
-                }
+                level.SetTile(xt, yt, Hole, 0);
+                level.Add(new ItemEntity(new ResourceItem(Resource.Dirt), xt*16 + Random.NextInt(10) + 3,
+                    yt*16 + Random.NextInt(10) + 3));
+                Sound.MonsterHurt.Play();
+                return true;
             }
-            if (tool.Type == ToolType.Hoe)
-            {
-                if (player.PayStamina(4 - tool.Level))
-                {
-                    level.SetTile(xt, yt, Farmland, 0);
-                    Sound.MonsterHurt.Play();
-                    return true;
-                }
-            }
-            return false;
+            if (tool.Type != ToolType.Hoe || !player.PayStamina(4 - tool.Level)) return false;
+            level.SetTile(xt, yt, Farmland, 0);
+            Sound.MonsterHurt.Play();
+            return true;
         }
     }
 }

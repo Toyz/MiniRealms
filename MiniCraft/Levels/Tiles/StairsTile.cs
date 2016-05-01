@@ -9,7 +9,7 @@ namespace MiniCraft.Levels.Tiles
         public StairsTile(TileId id, bool leadsUp)
             : base(id)
         {
-            this._leadsUp = leadsUp;
+            _leadsUp = leadsUp;
         }
 
         public override void Render(Screen screen, Level level, int x, int y)

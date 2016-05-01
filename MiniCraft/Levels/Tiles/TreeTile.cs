@@ -120,7 +120,7 @@ namespace MiniCraft.Levels.Tiles
                 {
                     level.Add(new ItemEntity(new ResourceItem(Resource.Acorn), x * 16 + Random.NextInt(10) + 3, y * 16 + Random.NextInt(10) + 3));
                 }
-                level.SetTile(x, y, Tile.Grass, 0);
+                level.SetTile(x, y, Grass, 0);
             }
             else
             {

@@ -39,9 +39,6 @@ namespace MiniCraft.Levels.Tiles
             }
         }
 
-        public override void Hurt(Level level, int x, int y, Mob source, int dmg, int attackDir)
-        {
-            level.SetTile(x, y, _onType, 0);
-        }
+        public override void Hurt(Level level, int x, int y, Mob source, int dmg, int attackDir) => level.SetTile(x, y, _onType, 0);
     }
 }

@@ -62,10 +62,7 @@ namespace MiniCraft.Levels.Tiles
                 screen.Render(x * 16 + 8, y * 16 + 8, (r ? 16 : 15) + (d ? 2 : 1) * 32, (sd || sr) ? transitionColor2 : transitionColor1, 0);
         }
 
-        public override bool MayPass(Level level, int x, int y, Entity e)
-        {
-            return e.CanSwim();
-        }
+        public override bool MayPass(Level level, int x, int y, Entity e) => e.CanSwim();
 
         public override void Tick(Level level, int xt, int yt)
         {
@@ -83,9 +80,6 @@ namespace MiniCraft.Levels.Tiles
             }
         }
 
-        public override int GetLightRadius(Level level, int x, int y)
-        {
-            return 6;
-        }
+        public override int GetLightRadius(Level level, int x, int y) => 6;
     }
 }

@@ -68,31 +68,22 @@ namespace MiniCraft.Levels.Tiles
                 screen.Render(x * 16 + 8, y * 16 + 8, (r ? 4 : 5) + (d ? 0 : 1) * 32, transitionColor, 3);
         }
 
-        public override bool MayPass(Level level, int x, int y, Entity e)
-        {
-            return true;
-        }
+        public override bool MayPass(Level level, int x, int y, Entity e) => true;
 
         public override bool Interact(Level level, int xt, int yt, Player player, Item item, int attackDir)
         {
-            if (item is ToolItem)
+            var toolItem = item as ToolItem;
+            if (toolItem == null) return false;
+            ToolItem tool = toolItem;
+            if (tool.Type != ToolType.Shovel || !player.PayStamina(5)) return false;
+            // level.setTile(xt, yt, Tile.infiniteFall, 0);
+            int count = Random.NextInt(2) + 1;
+            for (int i = 0; i < count; i++)
             {
-                ToolItem tool = (ToolItem)item;
-                if (tool.Type == ToolType.Shovel)
-                {
-                    if (player.PayStamina(5))
-                    {
-                        // level.setTile(xt, yt, Tile.infiniteFall, 0);
-                        int count = Random.NextInt(2) + 1;
-                        for (int i = 0; i < count; i++)
-                        {
-                            level.Add(new ItemEntity(new ResourceItem(Resource.Cloud), xt * 16 + Random.NextInt(10) + 3, yt * 16 + Random.NextInt(10) + 3));
-                        }
-                        return true;
-                    }
-                }
+                level.Add(new ItemEntity(new ResourceItem(Resource.Cloud), xt*16 + Random.NextInt(10) + 3,
+                    yt*16 + Random.NextInt(10) + 3));
             }
-            return false;
+            return true;
         }
 
         /*

@@ -65,11 +65,7 @@ namespace MiniCraft.Levels.Tiles
             Harvest(level, xt, yt);
         }
 
-        public override void Hurt(Level level, int x, int y, Mob source, int dmg, int attackDir)
-        {
-
-            Harvest(level, x, y);
-        }
+        public override void Hurt(Level level, int x, int y, Mob source, int dmg, int attackDir) => Harvest(level, x, y);
 
         private void Harvest(Level level, int x, int y)
         {

@@ -76,7 +76,7 @@ namespace MiniCraft.Levels.Tiles
 
         public override void Hurt(Level level, int x, int y, Mob source, int dmg, int attackDir)
         {
-            hurt(level, x, y, 0);
+            Hurt(level, x, y, 0);
         }
 
         public override bool Interact(Level level, int xt, int yt, Player player, Item item, int attackDir) {
@@ -84,7 +84,7 @@ namespace MiniCraft.Levels.Tiles
 			ToolItem tool = (ToolItem) item;
 			if (tool.Type == ToolType.Pickaxe && tool.Level == 4) {
 				if (player.PayStamina(4 - tool.Level)) {
-					hurt(level, xt, yt, Random.NextInt(10) + (tool.Level) * 5 + 10);
+					Hurt(level, xt, yt, Random.NextInt(10) + (tool.Level) * 5 + 10);
 					return true;
 				}
 			}
@@ -92,7 +92,7 @@ namespace MiniCraft.Levels.Tiles
 		return false;
 	}
 
-        public void hurt(Level level, int x, int y, int dmg)
+        public void Hurt(Level level, int x, int y, int dmg)
         {
             int damage = level.GetData(x, y) + dmg;
             level.Add(new SmashParticle(x * 16 + 8, y * 16 + 8));
@@ -109,7 +109,7 @@ namespace MiniCraft.Levels.Tiles
                 {
                     level.Add(new ItemEntity(new ResourceItem(Resource.Coal), x * 16 + Random.NextInt(10) + 3, y * 16 + Random.NextInt(10) + 3));
                 }
-                level.SetTile(x, y, Tile.Dirt, 0);
+                level.SetTile(x, y, Dirt, 0);
             }
             else
             {

@@ -64,7 +64,7 @@ namespace MiniCraft.Levels.Tiles
             else
                 yn += Random.NextInt(2) * 2 - 1;
 
-            if (level.GetTile(xn, yn) == Tile.Dirt)
+            if (level.GetTile(xn, yn) == Dirt)
             {
                 level.SetTile(xn, yn, this, 0);
             }
@@ -72,39 +72,30 @@ namespace MiniCraft.Levels.Tiles
 
         public override bool Interact(Level level, int xt, int yt, Player player, Item item, int attackDir)
         {
-            if (item is ToolItem)
+            var toolItem = item as ToolItem;
+            if (toolItem == null) return false;
+            ToolItem tool = toolItem;
+            if (tool.Type == ToolType.Shovel && player.PayStamina(4 - tool.Level))
             {
-                ToolItem tool = (ToolItem)item;
-                if (tool.Type == ToolType.Shovel)
+                level.SetTile(xt, yt, Dirt, 0);
+                Sound.MonsterHurt.Play();
+                if (Random.NextInt(5) == 0)
                 {
-                    if (player.PayStamina(4 - tool.Level))
-                    {
-                        level.SetTile(xt, yt, Tile.Dirt, 0);
-                        Sound.MonsterHurt.Play();
-                        if (Random.NextInt(5) == 0)
-                        {
-                            level.Add(new ItemEntity(new ResourceItem(Resource.Seeds), xt * 16 + Random.NextInt(10) + 3, yt * 16 + Random.NextInt(10) + 3));
-                            return true;
-                        }
-                    }
-                }
-                if (tool.Type == ToolType.Hoe)
-                {
-                    if (player.PayStamina(4 - tool.Level))
-                    {
-                        Sound.MonsterHurt.Play();
-                        if (Random.NextInt(5) == 0)
-                        {
-                            level.Add(new ItemEntity(new ResourceItem(Resource.Seeds), xt * 16 + Random.NextInt(10) + 3, yt * 16 + Random.NextInt(10) + 3));
-                            return true;
-                        }
-                        level.SetTile(xt, yt, Tile.Farmland, 0);
-                        return true;
-                    }
+                    level.Add(new ItemEntity(new ResourceItem(Resource.Seeds), xt*16 + Random.NextInt(10) + 3,
+                        yt*16 + Random.NextInt(10) + 3));
+                    return true;
                 }
             }
-            return false;
-
+            if (tool.Type != ToolType.Hoe) return false;
+            if (!player.PayStamina(4 - tool.Level)) return false;
+            Sound.MonsterHurt.Play();
+            if (Random.NextInt(5) == 0)
+            {
+                level.Add(new ItemEntity(new ResourceItem(Resource.Seeds), xt * 16 + Random.NextInt(10) + 3, yt * 16 + Random.NextInt(10) + 3));
+                return true;
+            }
+            level.SetTile(xt, yt, Farmland, 0);
+            return true;
         }
     }
 

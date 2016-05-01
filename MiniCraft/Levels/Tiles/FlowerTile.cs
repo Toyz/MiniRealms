@@ -30,21 +30,15 @@ namespace MiniCraft.Levels.Tiles
 
         public override bool Interact(Level level, int x, int y, Player player, Item item, int attackDir)
         {
-            if (item is ToolItem)
-            {
-                ToolItem tool = (ToolItem)item;
-                if (tool.Type == ToolType.Shovel)
-                {
-                    if (player.PayStamina(4 - tool.Level))
-                    {
-                        level.Add(new ItemEntity(new ResourceItem(Resource.Flower), x * 16 + Random.NextInt(10) + 3, y * 16 + Random.NextInt(10) + 3));
-                        level.Add(new ItemEntity(new ResourceItem(Resource.Flower), x * 16 + Random.NextInt(10) + 3, y * 16 + Random.NextInt(10) + 3));
-                        level.SetTile(x, y, Tile.Grass, 0);
-                        return true;
-                    }
-                }
-            }
-            return false;
+            var toolItem = item as ToolItem;
+            if (toolItem == null) return false;
+            ToolItem tool = toolItem;
+            if (tool.Type != ToolType.Shovel) return false;
+            if (!player.PayStamina(4 - tool.Level)) return false;
+            level.Add(new ItemEntity(new ResourceItem(Resource.Flower), x * 16 + Random.NextInt(10) + 3, y * 16 + Random.NextInt(10) + 3));
+            level.Add(new ItemEntity(new ResourceItem(Resource.Flower), x * 16 + Random.NextInt(10) + 3, y * 16 + Random.NextInt(10) + 3));
+            level.SetTile(x, y, Grass, 0);
+            return true;
         }
 
         public override void Hurt(Level level, int x, int y, Mob source, int dmg, int attackDir)
@@ -54,7 +48,7 @@ namespace MiniCraft.Levels.Tiles
             {
                 level.Add(new ItemEntity(new ResourceItem(Resource.Flower), x * 16 + Random.NextInt(10) + 3, y * 16 + Random.NextInt(10) + 3));
             }
-            level.SetTile(x, y, Tile.Grass, 0);
+            level.SetTile(x, y, Grass, 0);
         }
     }
 }

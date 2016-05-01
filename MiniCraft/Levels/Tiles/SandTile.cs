@@ -77,20 +77,14 @@ namespace MiniCraft.Levels.Tiles
 
         public override bool Interact(Level level, int xt, int yt, Player player, Item item, int attackDir)
         {
-            if (item is ToolItem)
-            {
-                ToolItem tool = (ToolItem)item;
-                if (tool.Type == ToolType.Shovel)
-                {
-                    if (player.PayStamina(4 - tool.Level))
-                    {
-                        level.SetTile(xt, yt, Dirt, 0);
-                        level.Add(new ItemEntity(new ResourceItem(Resource.Sand), xt * 16 + Random.NextInt(10) + 3, yt * 16 + Random.NextInt(10) + 3));
-                        return true;
-                    }
-                }
-            }
-            return false;
+            var toolItem = item as ToolItem;
+            if (toolItem == null) return false;
+            ToolItem tool = toolItem;
+            if (tool.Type != ToolType.Shovel || !player.PayStamina(4 - tool.Level)) return false;
+            level.SetTile(xt, yt, Dirt, 0);
+            level.Add(new ItemEntity(new ResourceItem(Resource.Sand), xt*16 + Random.NextInt(10) + 3,
+                yt*16 + Random.NextInt(10) + 3));
+            return true;
         }
     }
 }

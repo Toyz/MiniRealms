@@ -18,9 +18,6 @@ namespace MiniCraft.Levels.Tiles
         {
         }
 
-        public override bool MayPass(Level level, int x, int y, Entity e)
-        {
-            return e is AirWizard;
-        }
+        public override bool MayPass(Level level, int x, int y, Entity e) => e is AirWizard;
     }
 }
