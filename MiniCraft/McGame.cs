@@ -58,6 +58,8 @@ namespace MiniCraft
             };
 
             Content.RootDirectory = "Content";
+
+            Window.Title = Name;
         }
 
         public bool HasFocus() => IsActive;
@@ -232,14 +234,8 @@ namespace MiniCraft
                 _screen.Render(xx + w*8, yy + y*8, 2 + 13*32, ColorHelper.Get(-1, 1, 5, 445), 1);
             }
 
-            if (_tickCount/20%2 == 0)
-            {
-                Font.Draw(msg, _screen, xx, yy, ColorHelper.Get(5, 333, 333, 333));
-            }
-            else
-            {
-                Font.Draw(msg, _screen, xx, yy, ColorHelper.Get(5, 555, 555, 555));
-            }
+            Font.Draw(msg, _screen, xx, yy,
+                _tickCount/20%2 == 0 ? ColorHelper.Get(5, 333, 333, 333) : ColorHelper.Get(5, 555, 555, 555));
         }
 
         /// <summary>
