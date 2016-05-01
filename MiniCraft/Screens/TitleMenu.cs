@@ -7,7 +7,7 @@ namespace MiniCraft.Screens
     {
         private int _selected;
 
-        private static readonly string[] Options = { "Start game", "How to play", "About" };
+        private static readonly string[] Options = { "Start game", "How to play", "Options" };
 
         public override void Tick()
         {
@@ -19,18 +19,27 @@ namespace MiniCraft.Screens
             if (_selected >= len) _selected -= len;
 
             if (!Input.Attack.Clicked && !Input.Menu.Clicked) return;
+
+            if (_selected < 0)
+            {
+                _selected = len - 1;
+            }
+
+            if (_selected > len - 1)
+            {
+                _selected = 0;
+            }
+
             if (_selected == 0)
             {
                 Sound.Test.Play();
                 Game.ResetGame();
                 Game.SetMenu(null);
 
-                //if (Resource.allResources != null)
-                //    foreach (var resource in Resource.allResources)
-                //        game.player.inventory.add(new ResourceItem(Resource.wood, 999));
+
             }
             if (_selected == 1) Game.SetMenu(new InstructionsMenu(this));
-            if (_selected == 2) Game.SetMenu(new AboutMenu(this));
+
         }
 
         public override void Render(Screen screen)
@@ -50,7 +59,7 @@ namespace MiniCraft.Screens
                 }
             }
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < Options.Length; i++)
             {
                 string msg = Options[i];
                 int col = ColorHelper.Get(0, 222, 222, 222);

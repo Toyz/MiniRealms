@@ -57,6 +57,7 @@ namespace MiniCraft
                 PreferredBackBufferWidth = Width*Scale
             };
 
+            IsMouseVisible = true;
             Content.RootDirectory = "Content";
 
             Window.Title = Name;

@@ -17,7 +17,7 @@ namespace MiniCraft
 
             public void Toggle(bool pressed)
             {
-                if (pressed != Down)
+                if (!Equals(pressed, Down))
                 {
                     Down = pressed;
                 }
@@ -90,6 +90,7 @@ namespace MiniCraft
 
         private void Toggle(Keys ke, bool pressed)
         {
+            //Movement
             if (ke == Keys.NumPad8) Up.Toggle(pressed);
             if (ke == Keys.NumPad2) Down.Toggle(pressed);
             if (ke == Keys.NumPad4) Left.Toggle(pressed);
@@ -103,6 +104,7 @@ namespace MiniCraft
             if (ke == Keys.Left) Left.Toggle(pressed);
             if (ke == Keys.Right) Right.Toggle(pressed);
 
+            //Toggles
             if (ke == Keys.Tab) Menu.Toggle(pressed);
             if (ke == Keys.LeftAlt) Menu.Toggle(pressed);
             if (ke == Keys.RightAlt) Menu.Toggle(pressed);
@@ -112,6 +114,7 @@ namespace MiniCraft
             if (ke == Keys.Insert) Attack.Toggle(pressed);
             if (ke == Keys.Enter) Menu.Toggle(pressed);
 
+            //Actions
             if (ke == Keys.X) Menu.Toggle(pressed);
             if (ke == Keys.C) Attack.Toggle(pressed);
         }
