@@ -32,12 +32,14 @@ namespace MiniCraft
         private int _currentLevel = 3;
         public int GameTime;
 
+        public bool IsLoadingWorld { get; set; }
+        public string LoadingText { get; set; }
 
         public bool HasWon;
         private InputHandler _input;
 
-        private Level _level;
-        private Level[] _levels = new Level[5];
+        public Level Level;
+        public Level[] Levels = new Level[5];
         private Screen _lightScreen;
 
         public Menu Menu;
@@ -84,14 +86,17 @@ namespace MiniCraft
             GameTime = 0;
             HasWon = false;
 
-            _levels = new Level[5];
             _currentLevel = 3;
 
-            _levels[4] = new Level(128, 128, 1, null);
-            _levels[3] = new Level(128, 128, 0, _levels[4]);
-            _levels[2] = new Level(128, 128, -1, _levels[3]);
-            _levels[1] = new Level(128, 128, -2, _levels[2]);
-            _levels[0] = new Level(128, 128, -3, _levels[1]);
+            //128x128 is default
+            /*const int lw = 128;
+            const int lh = 128;
+
+            _levels[4] = new Level(lw, lh, 1, null);
+            _levels[3] = new Level(lw, lh, 0, _levels[4]);
+            _levels[2] = new Level(lw, lh, -1, _levels[3]);
+            _levels[1] = new Level(lw, lh, -2, _levels[2]);
+            _levels[0] = new Level(lw, lh, -3, _levels[1]);
 
             _level = _levels[_currentLevel];
             Player = new Player(this, _input);
@@ -102,7 +107,7 @@ namespace MiniCraft
             for (var i = 0; i < 5; i++)
             {
                 _levels[i].TrySpawn(5000);
-            }
+            }*/
         }
 
         protected override void LoadContent()
@@ -174,7 +179,7 @@ namespace MiniCraft
             }
             else
             {
-                if (!Player.Removed && !HasWon) GameTime++;
+                if (Player != null && (!Player.Removed && !HasWon)) GameTime++;
 
                 _input.Tick();
                 if (Menu != null)
@@ -183,7 +188,7 @@ namespace MiniCraft
                 }
                 else
                 {
-                    if (Player.Removed)
+                    if (Player != null && Player.Removed)
                     {
                         _playerDeadTime++;
                         if (_playerDeadTime > 60)
@@ -206,15 +211,14 @@ namespace MiniCraft
                             SetMenu(new WonMenu());
                         }
                     }
-                    _level.Tick();
+                    Level.Tick();
                     Tile.TickCount++;
                 }
             }
         }
 
-        private void RenderFocusNagger()
+        private void RenderAlertWindow(string msg)
         {
-            var msg = "Click to focus!";
             var xx = (Width - msg.Length*8)/2;
             var yy = (Height - 8)/2;
             var w = msg.Length;
@@ -245,35 +249,40 @@ namespace MiniCraft
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            var xScroll = Player.X - _screen.W/2;
-            var yScroll = Player.Y - (_screen.H - 8)/2;
-            if (xScroll < 16) xScroll = 16;
-            if (yScroll < 16) yScroll = 16;
-            if (xScroll > _level.W*16 - _screen.W - 16) xScroll = _level.W*16 - _screen.W - 16;
-            if (yScroll > _level.H*16 - _screen.H - 16) yScroll = _level.H*16 - _screen.H - 16;
-            if (_currentLevel > 3)
+            if (Player != null)
             {
-                var col = ColorHelper.Get(20, 20, 121, 121);
-                for (var y = 0; y < 14; y++)
-                    for (var x = 0; x < 24; x++)
-                    {
-                        _screen.Render(x*8 - ((xScroll/4) & 7), y*8 - ((yScroll/4) & 7), 0, col, 0);
-                    }
-            }
+                var xScroll = Player.X - _screen.W/2;
+                var yScroll = Player.Y - (_screen.H - 8)/2;
+                if (xScroll < 16) xScroll = 16;
+                if (yScroll < 16) yScroll = 16;
+                if (xScroll > Level.W*16 - _screen.W - 16) xScroll = Level.W*16 - _screen.W - 16;
+                if (yScroll > Level.H*16 - _screen.H - 16) yScroll = Level.H*16 - _screen.H - 16;
+                if (_currentLevel > 3)
+                {
+                    var col = ColorHelper.Get(20, 20, 121, 121);
+                    for (var y = 0; y < 14; y++)
+                        for (var x = 0; x < 24; x++)
+                        {
+                            _screen.Render(x*8 - ((xScroll/4) & 7), y*8 - ((yScroll/4) & 7), 0, col, 0);
+                        }
+                }
 
-            _level.RenderBackground(_screen, xScroll, yScroll);
-            _level.RenderSprites(_screen, xScroll, yScroll);
 
-            if (_currentLevel < 3)
-            {
-                _lightScreen.Clear(0);
-                _level.RenderLight(_lightScreen, xScroll, yScroll);
-                _screen.Overlay(_lightScreen, xScroll, yScroll);
+                Level.RenderBackground(_screen, xScroll, yScroll);
+                Level.RenderSprites(_screen, xScroll, yScroll);
+
+                if (_currentLevel < 3)
+                {
+                    _lightScreen.Clear(0);
+                    Level.RenderLight(_lightScreen, xScroll, yScroll);
+                    _screen.Overlay(_lightScreen, xScroll, yScroll);
+                }
             }
 
             RenderGui();
 
-            if (!HasFocus()) RenderFocusNagger();
+            if (!HasFocus() && !IsLoadingWorld) RenderAlertWindow("Click to Focus");
+            if (IsLoadingWorld) RenderAlertWindow(LoadingText);
 
             for (var y = 0; y < _screen.H; y++)
             {
@@ -292,6 +301,8 @@ namespace MiniCraft
             base.Draw(gameTime);
         }
 
+
+
         private void RenderGui()
         {
             for (var y = 0; y < 2; y++)
@@ -302,38 +313,44 @@ namespace MiniCraft
                 }
             }
 
-            for (var i = 0; i < 10; i++)
+            if (Player != null)
             {
-                _screen.Render(i*8, _screen.H - 16, 0 + 12*32,
-                    i < Player.Health ? ColorHelper.Get(000, 200, 500, 533) : ColorHelper.Get(000, 100, 000, 000), 0);
+                for (var i = 0; i < 10; i++)
+                {
 
-                if (Player.StaminaRechargeDelay > 0)
-                {
-                    _screen.Render(i*8, _screen.H - 8, 1 + 12*32,
-                        Player.StaminaRechargeDelay/4%2 == 0
-                            ? ColorHelper.Get(000, 555, 000, 000)
-                            : ColorHelper.Get(000, 110, 000, 000), 0);
+                    _screen.Render(i*8, _screen.H - 16, 0 + 12*32,
+                        i < Player.Health ? ColorHelper.Get(000, 200, 500, 533) : ColorHelper.Get(000, 100, 000, 000), 0);
+
+                    if (Player.StaminaRechargeDelay > 0)
+                    {
+                        _screen.Render(i*8, _screen.H - 8, 1 + 12*32,
+                            Player.StaminaRechargeDelay/4%2 == 0
+                                ? ColorHelper.Get(000, 555, 000, 000)
+                                : ColorHelper.Get(000, 110, 000, 000), 0);
+                    }
+                    else
+                    {
+                        _screen.Render(i*8, _screen.H - 8, 1 + 12*32,
+                            i < Player.Stamina
+                                ? ColorHelper.Get(000, 220, 550, 553)
+                                : ColorHelper.Get(000, 110, 000, 000),
+                            0);
+                    }
+
                 }
-                else
-                {
-                    _screen.Render(i*8, _screen.H - 8, 1 + 12*32,
-                        i < Player.Stamina ? ColorHelper.Get(000, 220, 550, 553) : ColorHelper.Get(000, 110, 000, 000),
-                        0);
-                }
+                Player.ActiveItem?.RenderInventory(_screen, 10*8, _screen.H - 16);
             }
-            Player.ActiveItem?.RenderInventory(_screen, 10*8, _screen.H - 16);
-
             Menu?.Render(_screen);
         }
 
         public void ChangeLevel(int dir)
         {
-            _level.Remove(Player);
+            Level.Remove(Player);
             _currentLevel += dir;
-            _level = _levels[_currentLevel];
+            Level = Levels[_currentLevel];
             Player.X = (Player.X >> 4)*16 + 8;
             Player.Y = (Player.Y >> 4)*16 + 8;
-            _level.Add(Player);
+            Level.Add(Player);
         }
 
         public void ScheduleLevelChange(int dir)
@@ -345,6 +362,39 @@ namespace MiniCraft
         {
             _wonTimer = 60*3;
             HasWon = true;
+        }
+
+        public void SetupLevel(int lw = 128, int lh = 128)
+        {
+            Levels = new Level[5];
+            LoadingText = "Creating Level 1";
+            Levels[4] = new Level(lw, lh, 1, null);
+
+            LoadingText = "Creating Level 2";
+            Levels[3] = new Level(lw, lh, 0, Levels[4]);
+
+            LoadingText = "Creating Level 3";
+            Levels[2] = new Level(lw, lh, -1, Levels[3]);
+
+            LoadingText = "Creating Level 4";
+            Levels[1] = new Level(lw, lh, -2, Levels[2]);
+
+            LoadingText = "Creating Level 5";
+            Levels[0] = new Level(lw, lh, -3, Levels[1]);
+
+            Level = Levels[_currentLevel];
+
+            LoadingText = "Spawning You!";
+            Player = new Player(this, _input);
+            Player.FindStartPos(Level);
+
+            Level.Add(Player);
+
+            for (var i = 0; i < 5; i++)
+            {
+                Levels[i].TrySpawn(5000);
+            }
+            LoadingText = "Finished";
         }
     }
 }

@@ -113,7 +113,8 @@ namespace MiniCraft.Levels.LevelGens
                 if (count[Tile.Rock.Id & 0xff] < 100) continue;
                 if (count[Tile.Dirt.Id & 0xff] < 100) continue;
                 if (count[(Tile.IronOre.Id & 0xff) + depth - 1] < 20) continue;
-                if (depth < 3) if (count[Tile.StairsDown.Id & 0xff] < 2) continue;
+                if (depth >= 3) return result;
+                if (count[Tile.StairsDown.Id & 0xff] < 2) continue;
 
                 return result;
 
@@ -170,18 +171,7 @@ namespace MiniCraft.Levels.LevelGens
                     dist = dist * dist * dist * dist;
                     val = val + 1 - dist * 20;
 
-                    if (val < -0.5)
-                    {
-                        map[i] = Tile.Water.Id;
-                    }
-                    else if (val > 0.5 && mval < -1.5)
-                    {
-                        map[i] = Tile.Rock.Id;
-                    }
-                    else
-                    {
-                        map[i] = Tile.Grass.Id;
-                    }
+                    map[i] = val < -0.5 ? Tile.Water.Id : (val > 0.5 && mval < -1.5 ? Tile.Rock.Id : Tile.Grass.Id);
                 }
             }
 
@@ -198,14 +188,13 @@ namespace MiniCraft.Levels.LevelGens
                         int xo = x + Random.NextInt(5) - Random.NextInt(5);
                         int yo = y + Random.NextInt(5) - Random.NextInt(5);
                         for (int yy = yo - 1; yy <= yo + 1; yy++)
+                        {
                             for (int xx = xo - 1; xx <= xo + 1; xx++)
-                                if (xx >= 0 && yy >= 0 && xx < w && yy < h)
-                                {
-                                    if (map[xx + yy * w] == Tile.Grass.Id)
-                                    {
-                                        map[xx + yy * w] = Tile.Sand.Id;
-                                    }
-                                }
+                            {
+                                if (xx < 0 || yy < 0 || xx >= w || yy >= h || map[xx + yy*w] != Tile.Grass.Id) continue;
+                                map[xx + yy*w] = Tile.Sand.Id;
+                            }
+                        }
                     }
                 }
             }
@@ -222,13 +211,8 @@ namespace MiniCraft.Levels.LevelGens
                 {
                     int xx = x + Random.NextInt(15) - Random.NextInt(15);
                     int yy = y + Random.NextInt(15) - Random.NextInt(15);
-                    if (xx >= 0 && yy >= 0 && xx < w && yy < h)
-                    {
-                        if (map[xx + yy * w] == Tile.Grass.Id)
-                        {
-                            map[xx + yy * w] = Tile.Tree.Id;
-                        }
-                    }
+                    if (xx < 0 || yy < 0 || xx >= w || yy >= h || map[xx + yy*w] != Tile.Grass.Id) continue;
+                    map[xx + yy*w] = Tile.Tree.Id;
                 }
             }
 
@@ -241,14 +225,9 @@ namespace MiniCraft.Levels.LevelGens
                 {
                     int xx = x + Random.NextInt(5) - Random.NextInt(5);
                     int yy = y + Random.NextInt(5) - Random.NextInt(5);
-                    if (xx >= 0 && yy >= 0 && xx < w && yy < h)
-                    {
-                        if (map[xx + yy * w] == Tile.Grass.Id)
-                        {
-                            map[xx + yy * w] = Tile.Flower.Id;
-                            data[xx + yy * w] = (byte)(col + Random.NextInt(4) * 16);
-                        }
-                    }
+                    if (xx < 0 || yy < 0 || xx >= w || yy >= h || map[xx + yy*w] != Tile.Grass.Id) continue;
+                    map[xx + yy*w] = Tile.Flower.Id;
+                    data[xx + yy*w] = (byte) (col + Random.NextInt(4)*16);
                 }
             }
 
@@ -256,13 +235,8 @@ namespace MiniCraft.Levels.LevelGens
             {
                 int xx = Random.NextInt(w);
                 int yy = Random.NextInt(h);
-                if (xx >= 0 && yy >= 0 && xx < w && yy < h)
-                {
-                    if (map[xx + yy * w] == Tile.Sand.Id)
-                    {
-                        map[xx + yy * w] = Tile.Cactus.Id;
-                    }
-                }
+                if (xx < 0 || yy < 0 || xx >= w || yy >= h || map[xx + yy*w] != Tile.Sand.Id) continue;
+                map[xx + yy*w] = Tile.Cactus.Id;
             }
 
             int count = 0;
@@ -276,11 +250,9 @@ namespace MiniCraft.Levels.LevelGens
                 {
                     for (int xx = x - 1; xx <= x + 1; xx++)
                     {
-                        if (map[xx + yy * w] != Tile.Rock.Id)
-                        {
-                            stop = true;
-                            break;
-                        }
+                        if (map[xx + yy*w] == Tile.Rock.Id) continue;
+                        stop = true;
+                        break;
                     }
                     if (stop) break;
                 }
@@ -339,21 +311,9 @@ namespace MiniCraft.Levels.LevelGens
                     dist = dist * dist * dist * dist;
                     val = val + 1 - dist * 20;
 
-                    if (val > -2 && wval < -2.0 + (depth) / 2 * 3)
-                    {
-                        if (depth > 2)
-                            map[i] = Tile.Lava.Id;
-                        else
-                            map[i] = Tile.Water.Id;
-                    }
-                    else if (val > -2 && (mval < -1.7 || nval < -1.4))
-                    {
-                        map[i] = Tile.Dirt.Id;
-                    }
-                    else
-                    {
-                        map[i] = Tile.Rock.Id;
-                    }
+                    map[i] = val > -2 && wval < -2.0 + (depth)/2*3
+                        ? (depth > 2 ? Tile.Lava.Id : Tile.Water.Id)
+                        : (val > -2 && (mval < -1.7 || nval < -1.4) ? Tile.Dirt.Id : Tile.Rock.Id);
                 }
             }
 
@@ -367,13 +327,8 @@ namespace MiniCraft.Levels.LevelGens
                     {
                         int xx = x + Random.NextInt(5) - Random.NextInt(5);
                         int yy = y + Random.NextInt(5) - Random.NextInt(5);
-                        if (xx >= r && yy >= r && xx < w - r && yy < h - r)
-                        {
-                            if (map[xx + yy * w] == Tile.Rock.Id)
-                            {
-                                map[xx + yy * w] = (byte)((Tile.IronOre.Id & 0xff) + depth - 1);
-                            }
-                        }
+                        if (xx < r || yy < r || xx >= w - r || yy >= h - r || map[xx + yy*w] != Tile.Rock.Id) continue;
+                        map[xx + yy*w] = (byte) ((Tile.IronOre.Id & 0xff) + depth - 1);
                     }
                 }
             }
@@ -391,11 +346,9 @@ namespace MiniCraft.Levels.LevelGens
                     {
                         for (int xx = x - 1; xx <= x + 1; xx++)
                         {
-                            if (map[xx + yy * w] != Tile.Rock.Id)
-                            {
-                                stop = true;
-                                break; //continue stairsLoop;
-                            }
+                            if (map[xx + yy*w] == Tile.Rock.Id) continue;
+                            stop = true;
+                            break; //continue stairsLoop;
                         }
                         if (stop) break;
                     }
@@ -457,11 +410,8 @@ namespace MiniCraft.Levels.LevelGens
                 {
                     for (int xx = x - 1; xx <= x + 1; xx++)
                     {
-                        if (map[xx + yy * w] != Tile.Cloud.Id)
-                        {
-                            stop = true; break;
-
-                        }
+                        if (map[xx + yy*w] == Tile.Cloud.Id) continue;
+                        stop = true; break;
                     }
                     if (stop) break;
                 }
@@ -482,11 +432,9 @@ namespace MiniCraft.Levels.LevelGens
                 {
                     for (int xx = x - 1; xx <= x + 1; xx++)
                     {
-                        if (map[xx + yy * w] != Tile.Cloud.Id)
-                        {
-                            stop = true;
-                            break;
-                        }
+                        if (map[xx + yy*w] == Tile.Cloud.Id) continue;
+                        stop = true;
+                        break;
                     }
                     if (stop) break;
                 }

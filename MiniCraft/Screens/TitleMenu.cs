@@ -1,4 +1,5 @@
-﻿using MiniCraft.Gfx;
+﻿using System.Threading.Tasks;
+using MiniCraft.Gfx;
 using MiniCraft.Sounds;
 
 namespace MiniCraft.Screens
@@ -33,10 +34,18 @@ namespace MiniCraft.Screens
             if (_selected == 0)
             {
                 Sound.Test.Play();
-                Game.ResetGame();
-                Game.SetMenu(null);
-
-
+                Game.LoadingText = "World Setup";
+                Game.IsLoadingWorld = true;
+                Task.Run(() =>
+                {
+                    Game.SetupLevel(1024, 1024);
+                }).ContinueWith((e) =>
+                {
+                    Game.IsLoadingWorld = false;
+                    Game.LoadingText = string.Empty;
+                    Game.ResetGame();
+                    Game.SetMenu(null);
+                });
             }
             if (_selected == 1) Game.SetMenu(new InstructionsMenu(this));
 
