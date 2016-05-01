@@ -20,8 +20,8 @@ namespace MiniCraft.Entities
         public ItemEntity(Item item, int x, int y)
         {
             Item = item;
-            Xx = this.X = x;
-            Yy = this.Y = y;
+            Xx = X = x;
+            Yy = Y = y;
             Xr = 3;
             Yr = 3;
 

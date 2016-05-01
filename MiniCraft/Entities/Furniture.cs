@@ -46,10 +46,7 @@ namespace MiniCraft.Entities
             screen.Render(X - 0, Y - 0 - 4, Sprite * 2 + 8 * 32 + 33, Col, 0);
         }
 
-        public override bool Blocks(Entity e)
-        {
-            return true;
-        }
+        public override bool Blocks(Entity e) => true;
 
         public override void TouchedBy(Entity entity)
         {

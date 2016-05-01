@@ -170,10 +170,9 @@ namespace MiniCraft.Entities
 
         public override void TouchedBy(Entity entity)
         {
-            if (entity is Player)
-            {
-                entity.Hurt(this, 3, Dir);
-            }
+            var player = entity as Player;
+            if (player == null) return;
+            entity.Hurt(this, 3, Dir);
         }
 
         protected override void Die()

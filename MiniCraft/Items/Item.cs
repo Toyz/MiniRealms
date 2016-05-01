@@ -1,5 +1,4 @@
-﻿using System;
-using MiniCraft.Entities;
+﻿using MiniCraft.Entities;
 using MiniCraft.Gfx;
 using MiniCraft.Levels;
 using MiniCraft.Levels.Tiles;

@@ -21,7 +21,7 @@ namespace MiniCraft.Screens
         //}
 
         private readonly Player _player;
-        private int _selected = 0;
+        private int _selected;
 
         private readonly List<Recipe> _recipes;
 
@@ -89,9 +89,10 @@ namespace MiniCraft.Screens
                     int yo = (5 + i) * 8;
                     screen.Render(xo, yo, item.GetSprite(), item.GetColor(), 0);
                     int requiredAmt = 1;
-                    if (item is ResourceItem)
+                    var resourceItem = item as ResourceItem;
+                    if (resourceItem != null)
                     {
-                        requiredAmt = ((ResourceItem)item).Count;
+                        requiredAmt = resourceItem.Count;
                     }
                     int has = _player.Inventory.Count(item);
                     int color = ColorHelper.Get(-1, 555, 555, 555);

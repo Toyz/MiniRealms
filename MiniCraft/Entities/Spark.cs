@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using MiniCraft.Gfx;
+﻿using MiniCraft.Gfx;
 
 namespace MiniCraft.Entities
 {
@@ -37,10 +36,10 @@ namespace MiniCraft.Entities
             Yy += Ya;
             X = (int) Xx;
             Y = (int) Yy;
-            List<Entity> toHit = Level.GetEntities(X, Y, X, Y);
+            var toHit = Level.GetEntities(X, Y, X, Y);
             for (int i = 0; i < toHit.Size(); i++)
             {
-                Entity e = toHit.Get(i);
+                var e = toHit.Get(i);
                 var mob = e as Mob;
                 if (mob != null && !(e is AirWizard))
                 {

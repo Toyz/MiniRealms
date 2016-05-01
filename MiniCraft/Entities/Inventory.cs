@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using MiniCraft.Items;
 using MiniCraft.Items.Resources;
 
@@ -37,14 +38,7 @@ namespace MiniCraft.Entities
 
         private ResourceItem FindResource(Resource resource)
         {
-            foreach (Item t in Items)
-            {
-                var item = t as ResourceItem;
-                if (item == null) continue;
-                ResourceItem has = item;
-                if (has.Resource == resource) return has;
-            }
-            return null;
+            return Items.OfType<ResourceItem>().FirstOrDefault(has => has.Resource == resource);
         }
 
         public bool HasResources(Resource r, int count)
@@ -73,12 +67,7 @@ namespace MiniCraft.Entities
             }
             else
             {
-                int count = 0;
-                foreach (Item t in Items)
-                {
-                    if (t.Matches(item)) count++;
-                }
-                return count;
+                return Items.Count(t => t.Matches(item));
             }
             return 0;
         }

@@ -91,11 +91,12 @@ namespace MiniCraft.Entities
             screen.Render(xo + 8 - 8 * flip2, yo + 8, xt + 1 + (yt + 1) * 32, col, flip2);
         }
 
-        public override void TouchedBy(Entity entity) {
-		if (entity is Player) {
-			entity.Hurt(this, _lvl + 1, Dir);
-		}
-	}
+        public override void TouchedBy(Entity entity)
+        {
+            var player = entity as Player;
+            if (player == null) return;
+            entity.Hurt(this, _lvl + 1, Dir);
+        }
 
         protected override void Die()
         {

@@ -152,8 +152,8 @@ namespace MiniCraft.Entities
 
             if (level.GetTile(x, y).MayPass(level, x, y, this))
             {
-                this.X = xx;
-                this.Y = yy;
+                X = xx;
+                Y = yy;
                 return true;
             }
 

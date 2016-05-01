@@ -71,10 +71,9 @@ namespace MiniCraft.Items
         {
             var toolItem = item as ToolItem;
             if (toolItem == null) return false;
-            ToolItem other = toolItem;
+            var other = toolItem;
             if (other.Type != Type) return false;
-            if (other.Level != Level) return false;
-            return true;
+            return other.Level == Level;
         }
     }
 }

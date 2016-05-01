@@ -11,7 +11,7 @@ namespace MiniCraft.Crafts
         public ResourceRecipe(Resource resource)
             : base(new ResourceItem(resource, 1))
         {
-            this._resource = resource;
+            _resource = resource;
         }
 
         public override void Craft(Player player)

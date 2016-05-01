@@ -88,9 +88,8 @@ namespace MiniCraft.Entities
                 }
             List<Entity> wasInside = Level.GetEntities(X - Xr, Y - Yr, X + Xr, Y + Yr);
             List<Entity> isInside = Level.GetEntities(X + xa - Xr, Y + ya - Yr, X + xa + Xr, Y + ya + Yr);
-            for (int i = 0; i < isInside.Count; i++)
+            foreach (var e in isInside)
             {
-                Entity e = isInside[i];
                 if (e == this) continue;
 
                 e.TouchedBy(this);
@@ -98,7 +97,7 @@ namespace MiniCraft.Entities
             isInside.RemoveAll(wasInside);
             for (int i = 0; i < isInside.Count; i++)
             {
-                Entity e = isInside.Get(i);
+                var e = isInside.Get(i);
                 if (e == this) continue;
 
                 if (e.Blocks(this))

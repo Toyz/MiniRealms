@@ -29,15 +29,9 @@ namespace MiniCraft.Screens
             minutes %= 60;
             seconds %= 60;
 
-            string timeString = "";
-            if (hours > 0)
-            {
-                timeString = hours + "h" + (minutes < 10 ? "0" : "") + minutes + "m";
-            }
-            else
-            {
-                timeString = minutes + "m " + (seconds < 10 ? "0" : "") + seconds + "s";
-            }
+            var timeString = hours > 0
+                ? hours + "h" + (minutes < 10 ? "0" : "") + minutes + "m"
+                : minutes + "m " + (seconds < 10 ? "0" : "") + seconds + "s";
             Font.Draw("Time:", screen, 2 * 8, 5 * 8, ColorHelper.Get(-1, 555, 555, 555));
             Font.Draw(timeString, screen, (2 + 5) * 8, 5 * 8, ColorHelper.Get(-1, 550, 550, 550));
             Font.Draw("Score:", screen, 2 * 8, 6 * 8, ColorHelper.Get(-1, 555, 555, 555));

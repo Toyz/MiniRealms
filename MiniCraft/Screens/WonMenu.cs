@@ -12,8 +12,9 @@ namespace MiniCraft.Screens
         {
             if (_inputDelay > 0)
                 _inputDelay--;
-            else if (Input.Attack.Clicked || Input.Menu.Clicked)
+            else
             {
+                if (!Input.Attack.Clicked && !Input.Menu.Clicked) return;
                 Game.SetMenu(new TitleMenu());
             }
         }

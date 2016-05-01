@@ -51,9 +51,6 @@ namespace MiniCraft.Items.Resources
             Extensions.Add(AllResources, this);
         }
 
-        public virtual bool InteractOn(Tile tile, Level level, int xt, int yt, Player player, int attackDir)
-        {
-            return false;
-        }
+        public virtual bool InteractOn(Tile tile, Level level, int xt, int yt, Player player, int attackDir) => false;
     }
 }

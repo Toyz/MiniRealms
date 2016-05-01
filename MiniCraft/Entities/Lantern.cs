@@ -13,9 +13,6 @@ namespace MiniCraft.Entities
             Yr = 2;
         }
 
-        public override int GetLightRadius()
-        {
-            return 8;
-        }
+        public override int GetLightRadius() => 8;
     }
 }

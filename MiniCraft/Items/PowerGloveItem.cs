@@ -5,15 +5,9 @@ namespace MiniCraft.Items
 {
     public class PowerGloveItem : Item
     {
-        public override int GetColor()
-        {
-            return ColorHelper.Get(-1, 100, 320, 430);
-        }
+        public override int GetColor() => ColorHelper.Get(-1, 100, 320, 430);
 
-        public override int GetSprite()
-        {
-            return 7 + 4 * 32;
-        }
+        public override int GetSprite() => 7 + 4 * 32;
 
         public override void RenderIcon(Screen screen, int x, int y, int bits = 0)
         {
@@ -26,20 +20,15 @@ namespace MiniCraft.Items
             Font.Draw(GetName(), screen, x + 8, y, ColorHelper.Get(-1, 555, 555, 555));
         }
 
-        public override string GetName()
-        {
-            return "Pow glove";
-        }
+        public override string GetName() => "Pow glove";
 
         public override bool Interact(Player player, Entity entity, int attackDir)
         {
-            if (entity is Furniture)
-            {
-                Furniture f = (Furniture)entity;
-                f.Take(player);
-                return true;
-            }
-            return false;
+            var furniture = entity as Furniture;
+            if (furniture == null) return false;
+            Furniture f = furniture;
+            f.Take(player);
+            return true;
         }
     }
 }

@@ -5,7 +5,7 @@ namespace MiniCraft.Entities.Particles
 {
     public class SmashParticle : Entity
     {
-        private int _time = 0;
+        private int _time;
 
         public SmashParticle(int x, int y)
         {

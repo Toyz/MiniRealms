@@ -12,9 +12,6 @@ namespace MiniCraft.Crafts
         {
         }
 
-        public override void Craft(Player player)
-        {
-            player.Inventory.Add(0, new FurnitureItem(new T()));
-        }
+        public override void Craft(Player player) => player.Inventory.Add(0, new FurnitureItem(new T()));
     }
 }

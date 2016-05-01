@@ -53,9 +53,6 @@ namespace MiniCraft.Items
             return true;
         }
 
-        public override bool IsDepleted()
-        {
-            return Count <= 0;
-        }
+        public override bool IsDepleted() => Count <= 0;
     }
 }

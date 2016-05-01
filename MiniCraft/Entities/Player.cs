@@ -353,7 +353,7 @@ namespace MiniCraft.Entities
             var item = ActiveItem as FurnitureItem;
             if (item != null)
             {
-                Furniture furniture = item.furniture;
+                Furniture furniture = item.Furniture;
                 furniture.X = X;
                 furniture.Y = yo;
                 furniture.Render(screen);
@@ -404,7 +404,7 @@ namespace MiniCraft.Entities
             int r = 2;
             var item = ActiveItem as FurnitureItem;
             if (item == null) return r;
-            int rr = item.furniture.GetLightRadius();
+            int rr = item.Furniture.GetLightRadius();
             if (rr > r) r = rr;
             return r;
         }

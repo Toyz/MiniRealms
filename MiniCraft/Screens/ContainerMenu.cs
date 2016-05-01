@@ -52,11 +52,9 @@ namespace MiniCraft.Screens
             if (_selected < 0) _selected += len;
             if (_selected >= len) _selected -= len;
 
-            if (Input.Attack.Clicked && len > 0)
-            {
-                i2.Add(_oSelected, i.Items.Remove(_selected));
-                if (_selected >= i.Items.Size()) _selected = i.Items.Size() - 1;
-            }
+            if (!Input.Attack.Clicked || len <= 0) return;
+            i2.Add(_oSelected, i.Items.Remove(_selected));
+            if (_selected >= i.Items.Size()) _selected = i.Items.Size() - 1;
         }
 
         public override void Render(Screen screen)
