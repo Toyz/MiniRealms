@@ -87,27 +87,6 @@ namespace MiniCraft
             HasWon = false;
 
             _currentLevel = 3;
-
-            //128x128 is default
-            /*const int lw = 128;
-            const int lh = 128;
-
-            _levels[4] = new Level(lw, lh, 1, null);
-            _levels[3] = new Level(lw, lh, 0, _levels[4]);
-            _levels[2] = new Level(lw, lh, -1, _levels[3]);
-            _levels[1] = new Level(lw, lh, -2, _levels[2]);
-            _levels[0] = new Level(lw, lh, -3, _levels[1]);
-
-            _level = _levels[_currentLevel];
-            Player = new Player(this, _input);
-            Player.FindStartPos(_level);
-
-            _level.Add(Player);
-
-            for (var i = 0; i < 5; i++)
-            {
-                _levels[i].TrySpawn(5000);
-            }*/
         }
 
         protected override void LoadContent()
