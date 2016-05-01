@@ -24,7 +24,7 @@ namespace MiniCraft.Levels
         public int MonsterDensity = 8;
 
         public List<Entity> Entities = new List<Entity>();
-        private static readonly SpriteSorter spriteSorter = new SpriteSorter();
+        private static readonly SpriteSorter _spriteSorter = new SpriteSorter();
         private class SpriteSorter : IComparer<Entity>
         {
             public int Compare(Entity e0, Entity e1)
@@ -203,9 +203,9 @@ namespace MiniCraft.Levels
         // screen.renderLight(x, y, r);
         // }
 
-        private void SortAndRender(Screen screen, List<Entity> list)
+        private static void SortAndRender(Screen screen, List<Entity> list)
         {
-            list.Sort(spriteSorter);
+            list.Sort(_spriteSorter);
             for (int i = 0; i < list.Size(); i++)
             {
                 list.Get(i).Render(screen);
@@ -227,8 +227,7 @@ namespace MiniCraft.Levels
 
         public int GetData(int x, int y)
         {
-            if (x < 0 || y < 0 || x >= W || y >= H) return 0;
-            return Data[x + y * W] & 0xff;
+            return x < 0 || y < 0 || x >= W || y >= H ? 0 : Data[x + y*W] & 0xff;
         }
 
         public void SetData(int x, int y, int val)
@@ -350,7 +349,7 @@ namespace MiniCraft.Levels
                 for (int x = xt0; x <= xt1; x++)
                 {
                     if (x < 0 || y < 0 || x >= W || y >= H) continue;
-                    List<Entity> entities = EntitiesInTiles[x + y * this.W];
+                    List<Entity> entities = EntitiesInTiles[x + y * W];
                     for (int i = 0; i < entities.Size(); i++)
                     {
                         Entity e = entities.Get(i);

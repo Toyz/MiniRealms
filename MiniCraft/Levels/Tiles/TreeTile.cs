@@ -70,10 +70,7 @@ namespace MiniCraft.Levels.Tiles
             if (damage > 0) level.SetData(xt, yt, damage - 1);
         }
 
-        public override bool MayPass(Level level, int x, int y, Entity e)
-        {
-            return false;
-        }
+        public override bool MayPass(Level level, int x, int y, Entity e) => false;
 
         public override void Hurt(Level level, int x, int y, Mob source, int dmg, int attackDir)
         {
@@ -98,27 +95,29 @@ namespace MiniCraft.Levels.Tiles
 
         private void Hurt(Level level, int x, int y, int dmg)
         {
+            int count = Random.NextInt(10) == 0 ? 1 : 0;
+            for (int i = 0; i < count; i++)
             {
-                int count = Random.NextInt(10) == 0 ? 1 : 0;
-                for (int i = 0; i < count; i++)
-                {
-                    level.Add(new ItemEntity(new ResourceItem(Resource.Apple), x * 16 + Random.NextInt(10) + 3, y * 16 + Random.NextInt(10) + 3));
-                }
+                level.Add(new ItemEntity(new ResourceItem(Resource.Apple), x*16 + Random.NextInt(10) + 3,
+                    y*16 + Random.NextInt(10) + 3));
             }
+
             int damage = level.GetData(x, y) + dmg;
-            level.Add(new SmashParticle(x * 16 + 8, y * 16 + 8));
-            level.Add(new TextParticle("" + dmg, x * 16 + 8, y * 16 + 8, ColorHelper.Get(-1, 500, 500, 500)));
+            level.Add(new SmashParticle(x*16 + 8, y*16 + 8));
+            level.Add(new TextParticle("" + dmg, x*16 + 8, y*16 + 8, ColorHelper.Get(-1, 500, 500, 500)));
             if (damage >= 20)
             {
-                int count = Random.NextInt(2) + 1;
+                count = Random.NextInt(2) + 1;
                 for (int i = 0; i < count; i++)
                 {
-                    level.Add(new ItemEntity(new ResourceItem(Resource.Wood), x * 16 + Random.NextInt(10) + 3, y * 16 + Random.NextInt(10) + 3));
+                    level.Add(new ItemEntity(new ResourceItem(Resource.Wood), x*16 + Random.NextInt(10) + 3,
+                        y*16 + Random.NextInt(10) + 3));
                 }
                 count = Random.NextInt(Random.NextInt(4) + 1);
                 for (int i = 0; i < count; i++)
                 {
-                    level.Add(new ItemEntity(new ResourceItem(Resource.Acorn), x * 16 + Random.NextInt(10) + 3, y * 16 + Random.NextInt(10) + 3));
+                    level.Add(new ItemEntity(new ResourceItem(Resource.Acorn), x*16 + Random.NextInt(10) + 3,
+                        y*16 + Random.NextInt(10) + 3));
                 }
                 level.SetTile(x, y, Grass, 0);
             }
