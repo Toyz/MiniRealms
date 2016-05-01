@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using MiniCraft.Gfx;
 using MiniCraft.Sounds;
 
@@ -12,8 +13,19 @@ namespace MiniCraft.Screens
 
         public override void Tick()
         {
-            if (Input.Up.Clicked) _selected--;
-            if (Input.Down.Clicked) _selected++;
+            if (Input.CloseKey.Clicked) ShowErrorAlert = false;
+
+
+            if (Input.Up.Clicked)
+            {
+                _selected--;
+                ShowErrorAlert = false;
+            }
+            if (Input.Down.Clicked)
+            {
+                _selected++;
+                ShowErrorAlert = false;
+            }
 
             int len = Options.Length;
             if (_selected < 0) _selected += len;
@@ -48,8 +60,13 @@ namespace MiniCraft.Screens
                 });
             }
             if (_selected == 1) Game.SetMenu(new InstructionsMenu(this));
-
+            if (_selected == 2)
+            {
+                ShowErrorAlert = true;
+            }
         }
+
+        public bool ShowErrorAlert { get; set; }
 
         public override void Render(Screen screen)
         {
@@ -81,6 +98,11 @@ namespace MiniCraft.Screens
             }
 
             Font.Draw("(Arrow keys,X and C)", screen, 0, screen.H - 8, ColorHelper.Get(0, 111, 111, 111));
+
+            if (ShowErrorAlert && !Game.IsLoadingWorld)
+            {
+                Game.RenderAlertWindow("Not here!");
+            }
         }
     }
 }

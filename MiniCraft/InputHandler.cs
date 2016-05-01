@@ -43,6 +43,7 @@ namespace MiniCraft
 
         private readonly List<Key> _keys = new List<Key>();
 
+        public Key CloseKey;
         public Key Up;
         public Key Down;
         public Key Left;
@@ -58,7 +59,9 @@ namespace MiniCraft
             Right = new Key(this);
             Attack = new Key(this);
             Menu = new Key(this);
+            CloseKey = new Key(this);
         }
+
 
         public void ReleaseAll()
         {
@@ -117,6 +120,7 @@ namespace MiniCraft
             //Actions
             if (ke == Keys.X) Menu.Toggle(pressed);
             if (ke == Keys.C) Attack.Toggle(pressed);
+            if (ke == Keys.Escape) CloseKey.Toggle(pressed);
         }
     }
 }

@@ -217,7 +217,7 @@ namespace MiniCraft
             }
         }
 
-        private void RenderAlertWindow(string msg)
+        public void RenderAlertWindow(string msg)
         {
             var xx = (Width - msg.Length*8)/2;
             var yy = (Height - 8)/2;
