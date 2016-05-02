@@ -16,8 +16,8 @@ namespace MiniCraft.Levels.Tiles
 
         public override void Render(Screen screen, Level level, int x, int y)
         {
-            int col = ColorHelper.Get(334, 334, 223, 223);
-            int transitionColor = ColorHelper.Get(001, 334, 445, level.DirtColor);
+            int col = Color.Get(334, 334, 223, 223);
+            int transitionColor = Color.Get(001, 334, 445, level.DirtColor);
 
             bool u = level.GetTile(x, y - 1) != this;
             bool d = level.GetTile(x, y + 1) != this;
@@ -96,7 +96,7 @@ namespace MiniCraft.Levels.Tiles
         {
             int damage = level.GetData(x, y) + dmg;
             level.Add(new SmashParticle(x * 16 + 8, y * 16 + 8));
-            level.Add(new TextParticle("" + dmg, x * 16 + 8, y * 16 + 8, ColorHelper.Get(-1, 500, 500, 500)));
+            level.Add(new TextParticle("" + dmg, x * 16 + 8, y * 16 + 8, Color.Get(-1, 500, 500, 500)));
             if (damage >= 200)
             {
                 int count = Random.NextInt(4) + 1;

@@ -75,7 +75,7 @@ namespace MiniCraft.Entities
             {
                 if (_time / 6 % 2 == 0) return;
             }
-            screen.Render(X - 4, Y - 4, Item.GetSprite(), ColorHelper.Get(-1, 0, 0, 0), 0);
+            screen.Render(X - 4, Y - 4, Item.GetSprite(), Color.Get(-1, 0, 0, 0), 0);
             screen.Render(X - 4, Y - 4 - (int)(Zz), Item.GetSprite(), Item.GetColor(), 0);
         }
 

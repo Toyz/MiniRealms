@@ -15,11 +15,11 @@ namespace MiniCraft.Items
 	    };
 
         public static readonly int[] LevelColors = {//
-	        ColorHelper.Get(-1, 100, 321, 431),//
-			ColorHelper.Get(-1, 100, 321, 111),//
-			ColorHelper.Get(-1, 100, 321, 555),//
-			ColorHelper.Get(-1, 100, 321, 550),//
-			ColorHelper.Get(-1, 100, 321, 055),//
+	        Color.Get(-1, 100, 321, 431),//
+			Color.Get(-1, 100, 321, 111),//
+			Color.Get(-1, 100, 321, 555),//
+			Color.Get(-1, 100, 321, 550),//
+			Color.Get(-1, 100, 321, 055),//
 	    };
 
         public ToolType Type;
@@ -43,7 +43,7 @@ namespace MiniCraft.Items
         public override void RenderInventory(Screen screen, int x, int y)
         {
             screen.Render(x, y, GetSprite(), GetColor(), 0);
-            Font.Draw(GetName(), screen, x + 8, y, ColorHelper.Get(-1, 555, 555, 555));
+            Font.Draw(GetName(), screen, x + 8, y, Color.Get(-1, 555, 555, 555));
         }
 
         public override string GetName() => LevelNames[Level] + " " + Type.Name;

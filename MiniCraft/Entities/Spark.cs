@@ -60,8 +60,8 @@ namespace MiniCraft.Entities
             int xt = 8;
             int yt = 13;
 
-            screen.Render(X - 4, Y - 4 - 2, xt + yt*32, ColorHelper.Get(-1, 555, 555, 555), Random.NextInt(4));
-            screen.Render(X - 4, Y - 4 + 2, xt + yt*32, ColorHelper.Get(-1, 000, 000, 000), Random.NextInt(4));
+            screen.Render(X - 4, Y - 4 - 2, xt + yt*32, Color.Get(-1, 555, 555, 555), Random.NextInt(4));
+            screen.Render(X - 4, Y - 4 + 2, xt + yt*32, Color.Get(-1, 000, 000, 000), Random.NextInt(4));
         }
     }
 }

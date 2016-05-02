@@ -52,8 +52,8 @@ namespace MiniCraft.Entities.Particles
 
         public override void Render(Screen screen)
         {
-            //		Font.draw(msg, screen, x - msg.length() * 4, y, ColorHelper.get(-1, 0, 0, 0));
-            Font.Draw(_msg, screen, X - _msg.Length() * 4 + 1, Y - (int)(Zz) + 1, ColorHelper.Get(-1, 0, 0, 0));
+            //		Font.draw(msg, screen, x - msg.length() * 4, y, Color.get(-1, 0, 0, 0));
+            Font.Draw(_msg, screen, X - _msg.Length() * 4 + 1, Y - (int)(Zz) + 1, Color.Get(-1, 0, 0, 0));
             Font.Draw(_msg, screen, X - _msg.Length() * 4, Y - (int)(Zz), _col);
         }
 

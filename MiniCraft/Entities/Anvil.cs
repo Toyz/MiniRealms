@@ -9,7 +9,7 @@ namespace MiniCraft.Entities
         public Anvil()
             : base("Anvil")
         {
-            Col = ColorHelper.Get(-1, 000, 111, 222);
+            Col = Color.Get(-1, 000, 111, 222);
             Sprite = 0;
             Xr = 3;
             Yr = 2;

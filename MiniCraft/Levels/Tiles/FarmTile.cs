@@ -13,7 +13,7 @@ namespace MiniCraft.Levels.Tiles
 
         public override void Render(Screen screen, Level level, int x, int y)
         {
-            int col = ColorHelper.Get(level.DirtColor - 121, level.DirtColor - 11, level.DirtColor, level.DirtColor + 111);
+            int col = Color.Get(level.DirtColor - 121, level.DirtColor - 11, level.DirtColor, level.DirtColor + 111);
             screen.Render(x * 16 + 0, y * 16 + 0, 2 + 32, col, 1);
             screen.Render(x * 16 + 8, y * 16 + 0, 2 + 32, col, 0);
             screen.Render(x * 16 + 0, y * 16 + 8, 2 + 32, col, 0);

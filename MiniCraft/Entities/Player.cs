@@ -293,10 +293,10 @@ namespace MiniCraft.Entities
             if (IsSwimming())
             {
                 yo += 4;
-                int waterColor = ColorHelper.Get(-1, -1, 115, 335);
+                int waterColor = Color.Get(-1, -1, 115, 335);
                 if (TickTime/8%2 == 0)
                 {
-                    waterColor = ColorHelper.Get(-1, 335, 5, 115);
+                    waterColor = Color.Get(-1, 335, 5, 115);
                 }
                 screen.Render(xo + 0, yo + 3, 5 + 13*32, waterColor, 0);
                 screen.Render(xo + 8, yo + 3, 5 + 13*32, waterColor, 1);
@@ -304,14 +304,14 @@ namespace MiniCraft.Entities
 
             if (_attackTime > 0 && _attackDir == 1)
             {
-                screen.Render(xo + 0, yo - 4, 6 + 13*32, ColorHelper.Get(-1, 555, 555, 555), 0);
-                screen.Render(xo + 8, yo - 4, 6 + 13*32, ColorHelper.Get(-1, 555, 555, 555), 1);
+                screen.Render(xo + 0, yo - 4, 6 + 13*32, Color.Get(-1, 555, 555, 555), 0);
+                screen.Render(xo + 8, yo - 4, 6 + 13*32, Color.Get(-1, 555, 555, 555), 1);
                 AttackItem?.RenderIcon(screen, xo + 4, yo - 4);
             }
-            int col = ColorHelper.Get(-1, 100, 220, 532);
+            int col = Color.Get(-1, 100, 220, 532);
             if (HurtTime > 0)
             {
-                col = ColorHelper.Get(-1, 555, 555, 555);
+                col = Color.Get(-1, 555, 555, 555);
             }
 
             if (ActiveItem is FurnitureItem)
@@ -328,20 +328,20 @@ namespace MiniCraft.Entities
 
             if (_attackTime > 0 && _attackDir == 2)
             {
-                screen.Render(xo - 4, yo, 7 + 13*32, ColorHelper.Get(-1, 555, 555, 555), 1);
-                screen.Render(xo - 4, yo + 8, 7 + 13*32, ColorHelper.Get(-1, 555, 555, 555), 3);
+                screen.Render(xo - 4, yo, 7 + 13*32, Color.Get(-1, 555, 555, 555), 1);
+                screen.Render(xo - 4, yo + 8, 7 + 13*32, Color.Get(-1, 555, 555, 555), 3);
                 AttackItem?.RenderIcon(screen, xo - 4, yo + 4, Screen.BitMirrorX);
             }
             if (_attackTime > 0 && _attackDir == 3)
             {
-                screen.Render(xo + 8 + 4, yo, 7 + 13*32, ColorHelper.Get(-1, 555, 555, 555), 0);
-                screen.Render(xo + 8 + 4, yo + 8, 7 + 13*32, ColorHelper.Get(-1, 555, 555, 555), 2);
+                screen.Render(xo + 8 + 4, yo, 7 + 13*32, Color.Get(-1, 555, 555, 555), 0);
+                screen.Render(xo + 8 + 4, yo + 8, 7 + 13*32, Color.Get(-1, 555, 555, 555), 2);
                 AttackItem?.RenderIcon(screen, xo + 8 + 4, yo + 4);
             }
             if (_attackTime > 0 && _attackDir == 0)
             {
-                screen.Render(xo + 0, yo + 8 + 4, 6 + 13*32, ColorHelper.Get(-1, 555, 555, 555), 2);
-                screen.Render(xo + 8, yo + 8 + 4, 6 + 13*32, ColorHelper.Get(-1, 555, 555, 555), 3);
+                screen.Render(xo + 0, yo + 8 + 4, 6 + 13*32, Color.Get(-1, 555, 555, 555), 2);
+                screen.Render(xo + 8, yo + 8 + 4, 6 + 13*32, Color.Get(-1, 555, 555, 555), 3);
                 AttackItem?.RenderIcon(screen, xo + 4, yo + 8 + 4, Screen.BitMirrorX | Screen.BitMirrorY);
             }
 
@@ -419,7 +419,7 @@ namespace MiniCraft.Entities
             if (HurtTime > 0 || InvulnerableTime > 0) return;
 
             Sound.PlayerHurt.Play();
-            Level.Add(new TextParticle("" + damage, X, Y, ColorHelper.Get(-1, 504, 504, 504)));
+            Level.Add(new TextParticle("" + damage, X, Y, Color.Get(-1, 504, 504, 504)));
             Health -= damage;
             if (attackDir == 0) YKnockback = +6;
             if (attackDir == 1) YKnockback = -6;

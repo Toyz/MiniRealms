@@ -22,7 +22,7 @@ namespace MiniCraft.Levels.Tiles
         public override void Render(Screen screen, Level level, int x, int y)
         {
             _onType.Render(screen, level, x, y);
-            int col = ColorHelper.Get(10, 40, 50, -1);
+            int col = Color.Get(10, 40, 50, -1);
             screen.Render(x * 16 + 4, y * 16 + 4, 11 + 3 * 32, col, 0);
         }
 

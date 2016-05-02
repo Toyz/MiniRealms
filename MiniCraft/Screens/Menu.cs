@@ -49,8 +49,8 @@ namespace MiniCraft.Screens
 
             if (!renderCursor) return;
             int yy = selected + 1 - io + yo;
-            Font.Draw(">", screen, (xo + 0) * 8, yy * 8, ColorHelper.Get(5, 555, 555, 555));
-            Font.Draw("<", screen, (xo + w) * 8, yy * 8, ColorHelper.Get(5, 555, 555, 555));
+            Font.Draw(">", screen, (xo + 0) * 8, yy * 8, Color.Get(5, 555, 555, 555));
+            Font.Draw("<", screen, (xo + w) * 8, yy * 8, Color.Get(5, 555, 555, 555));
         }
     }
 }

@@ -14,7 +14,7 @@ namespace MiniCraft.Gfx
             Width = image.Width;
             Height = image.Height;
 
-            var colors = new Color[Width * Height];
+            var colors = new Microsoft.Xna.Framework.Color[Width * Height];
             image.GetData(colors);
 
             Pixels = new int[Width * Height];

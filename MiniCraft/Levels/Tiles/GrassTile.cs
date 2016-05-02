@@ -16,8 +16,8 @@ namespace MiniCraft.Levels.Tiles
 
         public override void Render(Screen screen, Level level, int x, int y)
         {
-            int col = ColorHelper.Get(level.GrassColor, level.GrassColor, level.GrassColor + 111, level.GrassColor + 111);
-            int transitionColor = ColorHelper.Get(level.GrassColor - 111, level.GrassColor, level.GrassColor + 111, level.DirtColor);
+            int col = Color.Get(level.GrassColor, level.GrassColor, level.GrassColor + 111, level.GrassColor + 111);
+            int transitionColor = Color.Get(level.GrassColor - 111, level.GrassColor, level.GrassColor + 111, level.DirtColor);
 
             bool u = !level.GetTile(x, y - 1).ConnectsToGrass;
             bool d = !level.GetTile(x, y + 1).ConnectsToGrass;

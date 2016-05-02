@@ -82,7 +82,7 @@ namespace MiniCraft.Screens
                 int hasResultItems = _player.Inventory.Count(recipe.ResultTemplate);
                 int xo = 13 * 8;
                 screen.Render(xo, 2 * 8, recipe.ResultTemplate.GetSprite(), recipe.ResultTemplate.GetColor(), 0);
-                Font.Draw("" + hasResultItems, screen, xo + 8, 2 * 8, ColorHelper.Get(-1, 555, 555, 555));
+                Font.Draw("" + hasResultItems, screen, xo + 8, 2 * 8, Color.Get(-1, 555, 555, 555));
 
                 List<Item> costs = recipe.Costs;
                 for (int i = 0; i < costs.Size(); i++)
@@ -97,10 +97,10 @@ namespace MiniCraft.Screens
                         requiredAmt = resourceItem.Count;
                     }
                     int has = _player.Inventory.Count(item);
-                    int color = ColorHelper.Get(-1, 555, 555, 555);
+                    int color = Color.Get(-1, 555, 555, 555);
                     if (has < requiredAmt)
                     {
-                        color = ColorHelper.Get(-1, 222, 222, 222);
+                        color = Color.Get(-1, 222, 222, 222);
                     }
                     if (has > 99) has = 99;
                     Font.Draw("" + has + "/" + requiredAmt, screen, xo + 8, yo, color);

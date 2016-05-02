@@ -22,7 +22,7 @@ namespace MiniCraft.Levels.Tiles
         public override void Render(Screen screen, Level level, int x, int y)
         {
             //TODO: check is casting to int is ok
-            _color = (int)(_toDrop.Color & 0xffffff00) + ColorHelper.Get(level.DirtColor);
+            _color = (int)(_toDrop.Color & 0xffffff00) + Color.Get(level.DirtColor);
             screen.Render(x * 16 + 0, y * 16 + 0, 17 + 1 * 32, _color, 0);
             screen.Render(x * 16 + 8, y * 16 + 0, 18 + 1 * 32, _color, 0);
             screen.Render(x * 16 + 0, y * 16 + 8, 17 + 2 * 32, _color, 0);
@@ -58,7 +58,7 @@ namespace MiniCraft.Levels.Tiles
         {
             int damage = level.GetData(x, y) + 1;
             level.Add(new SmashParticle(x * 16 + 8, y * 16 + 8));
-            level.Add(new TextParticle("" + dmg, x * 16 + 8, y * 16 + 8, ColorHelper.Get(-1, 500, 500, 500)));
+            level.Add(new TextParticle("" + dmg, x * 16 + 8, y * 16 + 8, Color.Get(-1, 500, 500, 500)));
             if (dmg > 0)
             {
                 int count = Random.NextInt(2);

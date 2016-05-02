@@ -27,7 +27,7 @@ namespace MiniCraft.Items
         public override void RenderInventory(Screen screen, int x, int y)
         {
             screen.Render(x, y, GetSprite(), GetColor(), 0);
-            Font.Draw(Furniture.Name, screen, x + 8, y, ColorHelper.Get(-1, 555, 555, 555));
+            Font.Draw(Furniture.Name, screen, x + 8, y, Color.Get(-1, 555, 555, 555));
         }
 
         public override void OnTake(ItemEntity itemEntity)

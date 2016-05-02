@@ -19,9 +19,9 @@ namespace MiniCraft.Levels.Tiles
         {
             _wRandom = new Random((int)((TickCount + (x / 2 - y) * 4311) / 10 * 54687121L + x * 3271612L + y * 3412987161L));
             //TODO: wRandom.setSeed((tickCount + (x / 2 - y) * 4311) / 10 * 54687121L + x * 3271612L + y * 3412987161L);
-            int col = ColorHelper.Get(005, 005, 115, 115);
-            int transitionColor1 = ColorHelper.Get(3, 005, level.DirtColor - 111, level.DirtColor);
-            int transitionColor2 = ColorHelper.Get(3, 005, level.SandColor - 110, level.SandColor);
+            int col = Color.Get(005, 005, 115, 115);
+            int transitionColor1 = Color.Get(3, 005, level.DirtColor - 111, level.DirtColor);
+            int transitionColor2 = Color.Get(3, 005, level.SandColor - 110, level.SandColor);
 
             bool u = !level.GetTile(x, y - 1).ConnectsToWater;
             bool d = !level.GetTile(x, y + 1).ConnectsToWater;

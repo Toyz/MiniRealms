@@ -7,6 +7,7 @@ using MiniCraft.Levels;
 using MiniCraft.Levels.Tiles;
 using MiniCraft.Screens;
 using MiniCraft.Sounds;
+using Color = MiniCraft.Gfx.Color;
 
 namespace MiniCraft
 {
@@ -25,10 +26,10 @@ namespace MiniCraft
         public const int Scale = 4;
 
         private Texture2D _image;
-        private Color[] _pixels;
+        private Microsoft.Xna.Framework.Color[] _pixels;
         private bool _running;
 
-        private Color[] _colors;
+        private Microsoft.Xna.Framework.Color[] _colors;
         private int _currentLevel = 3;
         public int GameTime;
 
@@ -94,7 +95,7 @@ namespace MiniCraft
             _running = true;
 
             var pp = 0;
-            _colors = new Color[256];
+            _colors = new Microsoft.Xna.Framework.Color[256];
 
             for (var r = 0; r < 6; r++)
             {
@@ -110,7 +111,7 @@ namespace MiniCraft
                         var r1 = (rr + mid*1)/2*230/255 + 10;
                         var g1 = (gg + mid*1)/2*230/255 + 10;
                         var b1 = (bb + mid*1)/2*230/255 + 10;
-                        _colors[pp++] = new Color(r1, g1, b1);
+                        _colors[pp++] = new Microsoft.Xna.Framework.Color(r1, g1, b1);
                     }
                 }
             }
@@ -127,7 +128,7 @@ namespace MiniCraft
             Sound.Initialize(Content);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _pixels = new Color[Width*Height];
+            _pixels = new Microsoft.Xna.Framework.Color[Width*Height];
             _image = new Texture2D(GraphicsDevice, Width, Height);
             _input = new InputHandler();
 
@@ -203,23 +204,23 @@ namespace MiniCraft
             var w = msg.Length;
             var h = 1;
 
-            _screen.Render(xx - 8, yy - 8, 0 + 13*32, ColorHelper.Get(-1, 1, 5, 445), 0);
-            _screen.Render(xx + w*8, yy - 8, 0 + 13*32, ColorHelper.Get(-1, 1, 5, 445), 1);
-            _screen.Render(xx - 8, yy + 8, 0 + 13*32, ColorHelper.Get(-1, 1, 5, 445), 2);
-            _screen.Render(xx + w*8, yy + 8, 0 + 13*32, ColorHelper.Get(-1, 1, 5, 445), 3);
+            _screen.Render(xx - 8, yy - 8, 0 + 13*32, Color.Get(-1, 1, 5, 445), 0);
+            _screen.Render(xx + w*8, yy - 8, 0 + 13*32, Color.Get(-1, 1, 5, 445), 1);
+            _screen.Render(xx - 8, yy + 8, 0 + 13*32, Color.Get(-1, 1, 5, 445), 2);
+            _screen.Render(xx + w*8, yy + 8, 0 + 13*32, Color.Get(-1, 1, 5, 445), 3);
             for (var x = 0; x < w; x++)
             {
-                _screen.Render(xx + x*8, yy - 8, 1 + 13*32, ColorHelper.Get(-1, 1, 5, 445), 0);
-                _screen.Render(xx + x*8, yy + 8, 1 + 13*32, ColorHelper.Get(-1, 1, 5, 445), 2);
+                _screen.Render(xx + x*8, yy - 8, 1 + 13*32, Color.Get(-1, 1, 5, 445), 0);
+                _screen.Render(xx + x*8, yy + 8, 1 + 13*32, Color.Get(-1, 1, 5, 445), 2);
             }
             for (var y = 0; y < h; y++)
             {
-                _screen.Render(xx - 8, yy + y*8, 2 + 13*32, ColorHelper.Get(-1, 1, 5, 445), 0);
-                _screen.Render(xx + w*8, yy + y*8, 2 + 13*32, ColorHelper.Get(-1, 1, 5, 445), 1);
+                _screen.Render(xx - 8, yy + y*8, 2 + 13*32, Color.Get(-1, 1, 5, 445), 0);
+                _screen.Render(xx + w*8, yy + y*8, 2 + 13*32, Color.Get(-1, 1, 5, 445), 1);
             }
 
             Font.Draw(msg, _screen, xx, yy,
-                _tickCount/20%2 == 0 ? ColorHelper.Get(5, 333, 333, 333) : ColorHelper.Get(5, 555, 555, 555));
+                _tickCount/20%2 == 0 ? Color.Get(5, 333, 333, 333) : Color.Get(5, 555, 555, 555));
         }
 
         /// <summary>
@@ -238,7 +239,7 @@ namespace MiniCraft
                 if (yScroll > Level.H*16 - _screen.H - 16) yScroll = Level.H*16 - _screen.H - 16;
                 if (_currentLevel > 3)
                 {
-                    var col = ColorHelper.Get(20, 20, 121, 121);
+                    var col = Color.Get(20, 20, 121, 121);
                     for (var y = 0; y < 14; y++)
                         for (var x = 0; x < 24; x++)
                         {
@@ -274,7 +275,7 @@ namespace MiniCraft
             _image.SetData(_pixels);
 
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-            _spriteBatch.Draw(_image, new Rectangle(0, 0, Width*Scale, Height*Scale), Color.White);
+            _spriteBatch.Draw(_image, new Rectangle(0, 0, Width*Scale, Height*Scale), Microsoft.Xna.Framework.Color.White);
             _spriteBatch.End();
 
             base.Draw(gameTime);
@@ -293,7 +294,7 @@ namespace MiniCraft
                         for (var x = 0; x < 10; x++)
                         {
                             _screen.Render(x*8 + 60, _screen.H - 16 + y*8, 0 + 12*32,
-                                ColorHelper.Get(000, 000, 000, 000), 0);
+                                Color.Get(000, 000, 000, 000), 0);
                         }
                     }
                 }
@@ -302,21 +303,21 @@ namespace MiniCraft
                 {
 
                     _screen.Render(i*8  + 20, _screen.H - 8, 0 + 12*32,
-                        i < Player.Health ? ColorHelper.Get(000, 200, 500, 533) : ColorHelper.Get(000, 100, 000, 000), 0);
+                        i < Player.Health ? Color.Get(-1, 200, 500, 533) : Color.Get(-1, 100, 000, 000), 0);
 
                     if (Player.StaminaRechargeDelay > 0)
                     {
                         _screen.Render(i*8 + 80 + 20, _screen.H - 8, 1 + 12*32,
                             Player.StaminaRechargeDelay/4%2 == 0
-                                ? ColorHelper.Get(000, 555, 000, 100)
-                                : ColorHelper.Get(000, 110, 000, 100), 0);
+                                ? Color.Get(-1, 555, 000, 100)
+                                : Color.Get(-1, 110, 000, 100), 0);
                     }
                     else
                     {
                         _screen.Render(i*8 + 80 + 20, _screen.H - 8, 1 + 12*32,
                             i < Player.Stamina
-                                ? ColorHelper.Get(000, 220, 550, 553)
-                                : ColorHelper.Get(000, 110, 000, 000),
+                                ? Color.Get(-1, 220, 550, 553)
+                                : Color.Get(-1, 110, 000, 000),
                             0);
                     }
 
@@ -337,7 +338,7 @@ namespace MiniCraft
 
                     var xx = (Width - timeString.Length*8) + 1;
 
-                    Font.Draw(timeString, _screen, xx, 1, ColorHelper.Get(-1, 555, 555, 555));
+                    Font.Draw(timeString, _screen, xx, 1, Color.White);
                 }
 
             }

@@ -76,13 +76,13 @@ namespace MiniCraft.Entities
             int xo = X - 8;
             int yo = Y - 11;
 
-            int col = ColorHelper.Get(-1, 10, 252, 050);
-            if (_lvl == 2) col = ColorHelper.Get(-1, 100, 522, 050);
-            if (_lvl == 3) col = ColorHelper.Get(-1, 111, 444, 050);
-            if (_lvl == 4) col = ColorHelper.Get(-1, 000, 111, 020);
+            int col = Color.Get(-1, 10, 252, 050);
+            if (_lvl == 2) col = Color.Get(-1, 100, 522, 050);
+            if (_lvl == 3) col = Color.Get(-1, 111, 444, 050);
+            if (_lvl == 4) col = Color.Get(-1, 000, 111, 020);
             if (HurtTime > 0)
             {
-                col = ColorHelper.Get(-1, 555, 555, 555);
+                col = Color.Get(-1, 555, 555, 555);
             }
 
             screen.Render(xo + 8 * flip1, yo + 0, xt + yt * 32, col, flip1);

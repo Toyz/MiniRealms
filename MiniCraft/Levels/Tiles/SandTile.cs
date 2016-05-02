@@ -16,8 +16,8 @@ namespace MiniCraft.Levels.Tiles
 
         public override void Render(Screen screen, Level level, int x, int y)
         {
-            int col = ColorHelper.Get(level.SandColor + 2, level.SandColor, level.SandColor - 110, level.SandColor - 110);
-            int transitionColor = ColorHelper.Get(level.SandColor - 110, level.SandColor, level.SandColor - 110, level.DirtColor);
+            int col = Color.Get(level.SandColor + 2, level.SandColor, level.SandColor - 110, level.SandColor - 110);
+            int transitionColor = Color.Get(level.SandColor - 110, level.SandColor, level.SandColor - 110, level.DirtColor);
 
             bool u = !level.GetTile(x, y - 1).ConnectsToSand;
             bool d = !level.GetTile(x, y + 1).ConnectsToSand;

@@ -20,7 +20,7 @@ namespace MiniCraft.Levels.Tiles
 
             int data = level.GetData(x, y);
             int shape = (data / 16) % 2;
-            int flowerCol = ColorHelper.Get(10, level.GrassColor, 555, 440);
+            int flowerCol = Color.Get(10, level.GrassColor, 555, 440);
 
             if (shape == 0) screen.Render(x * 16 + 0, y * 16 + 0, 1 + 1 * 32, flowerCol, 0);
             if (shape == 1) screen.Render(x * 16 + 8, y * 16 + 0, 1 + 1 * 32, flowerCol, 0);

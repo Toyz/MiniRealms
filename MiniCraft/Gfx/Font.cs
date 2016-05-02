@@ -27,27 +27,27 @@
                 for (int x = x0; x <= x1; x++)
                 {
                     if (x == x0 && y == y0)
-                        screen.Render(x * 8, y * 8, 0 + 13 * 32, ColorHelper.Get(-1, 1, 5, 445), 0);
+                        screen.Render(x * 8, y * 8, 0 + 13 * 32, Color.Get(-1, 1, 5, 445), 0);
                     else if (x == x1 && y == y0)
-                        screen.Render(x * 8, y * 8, 0 + 13 * 32, ColorHelper.Get(-1, 1, 5, 445), 1);
+                        screen.Render(x * 8, y * 8, 0 + 13 * 32, Color.Get(-1, 1, 5, 445), 1);
                     else if (x == x0 && y == y1)
-                        screen.Render(x * 8, y * 8, 0 + 13 * 32, ColorHelper.Get(-1, 1, 5, 445), 2);
+                        screen.Render(x * 8, y * 8, 0 + 13 * 32, Color.Get(-1, 1, 5, 445), 2);
                     else if (x == x1 && y == y1)
-                        screen.Render(x * 8, y * 8, 0 + 13 * 32, ColorHelper.Get(-1, 1, 5, 445), 3);
+                        screen.Render(x * 8, y * 8, 0 + 13 * 32, Color.Get(-1, 1, 5, 445), 3);
                     else if (y == y0)
-                        screen.Render(x * 8, y * 8, 1 + 13 * 32, ColorHelper.Get(-1, 1, 5, 445), 0);
+                        screen.Render(x * 8, y * 8, 1 + 13 * 32, Color.Get(-1, 1, 5, 445), 0);
                     else if (y == y1)
-                        screen.Render(x * 8, y * 8, 1 + 13 * 32, ColorHelper.Get(-1, 1, 5, 445), 2);
+                        screen.Render(x * 8, y * 8, 1 + 13 * 32, Color.Get(-1, 1, 5, 445), 2);
                     else if (x == x0)
-                        screen.Render(x * 8, y * 8, 2 + 13 * 32, ColorHelper.Get(-1, 1, 5, 445), 0);
+                        screen.Render(x * 8, y * 8, 2 + 13 * 32, Color.Get(-1, 1, 5, 445), 0);
                     else if (x == x1)
-                        screen.Render(x * 8, y * 8, 2 + 13 * 32, ColorHelper.Get(-1, 1, 5, 445), 1);
+                        screen.Render(x * 8, y * 8, 2 + 13 * 32, Color.Get(-1, 1, 5, 445), 1);
                     else
-                        screen.Render(x * 8, y * 8, 2 + 13 * 32, ColorHelper.Get(5, 5, 5, 5), 1);
+                        screen.Render(x * 8, y * 8, 2 + 13 * 32, Color.Get(5, 5, 5, 5), 1);
                 }
             }
 
-            Draw(title, screen, x0 * 8 + 8, y0 * 8, ColorHelper.Get(5, 5, 5, 550));
+            Draw(title, screen, x0 * 8 + 8, y0 * 8, Color.Get(5, 5, 5, 550));
 
         }
     }

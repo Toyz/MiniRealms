@@ -9,7 +9,7 @@ namespace MiniCraft.Entities
         public Oven()
             : base("Oven")
         {
-            Col = ColorHelper.Get(-1, 000, 332, 442);
+            Col = Color.Get(-1, 000, 332, 442);
             Sprite = 2;
             Xr = 3;
             Yr = 2;

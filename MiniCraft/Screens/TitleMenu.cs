@@ -75,7 +75,7 @@ namespace MiniCraft.Screens
 
             int h = 2;
             int w = 13;
-            int titleColor = ColorHelper.Get(0, 010, 131, 551);
+            int titleColor = Color.Get(0, 010, 131, 551);
             int xo = (screen.W - w * 8) / 2;
             int yo = 24;
             for (int y = 0; y < h; y++)
@@ -89,11 +89,11 @@ namespace MiniCraft.Screens
             for (int i = 0; i < Options.Length; i++)
             {
                 string msg = Options[i];
-                int col = ColorHelper.Get(0, 222, 222, 222);
+                int col = Color.Get(0, 222, 222, 222);
                 if (i == _selected)
                 {
                     msg = "> " + msg + " <";
-                    col = ColorHelper.Get(0, 555, 555, 555);
+                    col = Color.Get(0, 555, 555, 555);
                 }
                 Font.Draw(msg, screen, (screen.W - msg.Length * 8) / 2, (8 + i) * 8, col);
             }
@@ -101,7 +101,7 @@ namespace MiniCraft.Screens
 
             var xx = (Game.Width - "(Arrow keys,X and C)".Length * 8) / 2;
 
-            Font.Draw("(Arrow keys,X and C)", screen, xx, screen.H - 8, ColorHelper.Get(0, 111, 111, 111));
+            Font.Draw("(Arrow keys,X and C)", screen, xx, screen.H - 8, Color.Get(0, 111, 111, 111));
 
             if (ShowErrorAlert && !Game.IsLoadingWorld)
             {

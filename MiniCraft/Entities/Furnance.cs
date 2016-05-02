@@ -9,7 +9,7 @@ namespace MiniCraft.Entities
         public Furnace()
             : base("Furnace")
         {
-            Col = ColorHelper.Get(-1, 000, 222, 333);
+            Col = Color.Get(-1, 000, 222, 333);
             Sprite = 3;
             Xr = 3;
             Yr = 2;

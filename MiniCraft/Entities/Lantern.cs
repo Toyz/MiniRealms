@@ -7,7 +7,7 @@ namespace MiniCraft.Entities
         public Lantern()
             : base("Lantern")
         {
-            Col = ColorHelper.Get(-1, 000, 111, 555);
+            Col = Color.Get(-1, 000, 111, 555);
             Sprite = 5;
             Xr = 3;
             Yr = 2;

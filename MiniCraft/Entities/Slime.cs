@@ -86,14 +86,14 @@ namespace MiniCraft.Entities
                 yo -= 4;
             }
 
-            int col = ColorHelper.Get(-1, 10, 252, 555);
-            if (_lvl == 2) col = ColorHelper.Get(-1, 100, 522, 555);
-            if (_lvl == 3) col = ColorHelper.Get(-1, 111, 444, 555);
-            if (_lvl == 4) col = ColorHelper.Get(-1, 000, 111, 224);
+            int col = Color.Get(-1, 10, 252, 555);
+            if (_lvl == 2) col = Color.Get(-1, 100, 522, 555);
+            if (_lvl == 3) col = Color.Get(-1, 111, 444, 555);
+            if (_lvl == 4) col = Color.Get(-1, 000, 111, 224);
 
             if (HurtTime > 0)
             {
-                col = ColorHelper.Get(-1, 555, 555, 555);
+                col = Color.Get(-1, 555, 555, 555);
             }
 
             screen.Render(xo + 0, yo + 0, xt + yt * 32, col, 0);

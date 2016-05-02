@@ -25,7 +25,7 @@ namespace MiniCraft.Entities.Particles
 
         public override void Render(Screen screen)
         {
-            int col = ColorHelper.Get(-1, 555, 555, 555);
+            int col = Color.Get(-1, 555, 555, 555);
             screen.Render(X - 8, Y - 8, 5 + 12 * 32, col, 2);
             screen.Render(X - 0, Y - 8, 5 + 12 * 32, col, 3);
             screen.Render(X - 8, Y - 0, 5 + 12 * 32, col, 0);

@@ -9,7 +9,7 @@ namespace MiniCraft.Entities
         public Workbench()
             : base("Workbench")
         {
-            Col = ColorHelper.Get(-1, 100, 321, 431);
+            Col = Color.Get(-1, 100, 321, 431);
             Sprite = 4;
             Xr = 3;
             Yr = 2;

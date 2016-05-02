@@ -5,7 +5,7 @@ namespace MiniCraft.Items
 {
     public class PowerGloveItem : Item
     {
-        public override int GetColor() => ColorHelper.Get(-1, 100, 320, 430);
+        public override int GetColor() => Color.Get(-1, 100, 320, 430);
 
         public override int GetSprite() => 7 + 4 * 32;
 
@@ -17,7 +17,7 @@ namespace MiniCraft.Items
         public override void RenderInventory(Screen screen, int x, int y)
         {
             screen.Render(x, y, GetSprite(), GetColor(), 0);
-            Font.Draw(GetName(), screen, x + 8, y, ColorHelper.Get(-1, 555, 555, 555));
+            Font.Draw(GetName(), screen, x + 8, y, Color.Get(-1, 555, 555, 555));
         }
 
         public override string GetName() => "Pow glove";

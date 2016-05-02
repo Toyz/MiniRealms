@@ -16,14 +16,14 @@ namespace MiniCraft.Levels.Tiles
         public override void Render(Screen screen, Level level, int x, int y)
         {
             int age = level.GetData(x, y);
-            int col = ColorHelper.Get(level.DirtColor - 121, level.DirtColor - 11, level.DirtColor, 50);
+            int col = Color.Get(level.DirtColor - 121, level.DirtColor - 11, level.DirtColor, 50);
             int icon = age / 10;
             if (icon >= 3)
             {
-                col = ColorHelper.Get(level.DirtColor - 121, level.DirtColor - 11, 50 + (icon) * 100, 40 + (icon - 3) * 2 * 100);
+                col = Color.Get(level.DirtColor - 121, level.DirtColor - 11, 50 + (icon) * 100, 40 + (icon - 3) * 2 * 100);
                 if (age == 50)
                 {
-                    col = ColorHelper.Get(0, 0, 50 + (icon) * 100, 40 + (icon - 3) * 2 * 100);
+                    col = Color.Get(0, 0, 50 + (icon) * 100, 40 + (icon - 3) * 2 * 100);
                 }
                 icon = 3;
             }

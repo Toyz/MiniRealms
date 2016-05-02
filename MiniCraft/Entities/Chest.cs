@@ -10,7 +10,7 @@ namespace MiniCraft.Entities
         public Chest()
             : base("Chest")
         {
-            Col = ColorHelper.Get(-1, 110, 331, 552);
+            Col = Color.Get(-1, 110, 331, 552);
             Sprite = 1;
         }
 

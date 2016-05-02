@@ -15,8 +15,8 @@ namespace MiniCraft.Levels.Tiles
 
         public override void Render(Screen screen, Level level, int x, int y)
         {
-            int col = ColorHelper.Get(444, 444, 555, 555);
-            int transitionColor = ColorHelper.Get(333, 444, 555, -1);
+            int col = Color.Get(444, 444, 555, 555);
+            int transitionColor = Color.Get(333, 444, 555, -1);
 
             bool u = level.GetTile(x, y - 1) == InfiniteFall;
             bool d = level.GetTile(x, y + 1) == InfiniteFall;

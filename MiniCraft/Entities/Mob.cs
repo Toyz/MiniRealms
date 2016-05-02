@@ -104,7 +104,7 @@ namespace MiniCraft.Entities
         {
             if (HurtTime > 0) return;
 
-            Level.Add(new TextParticle("" + heal, X, Y, ColorHelper.Get(-1, 50, 50, 50)));
+            Level.Add(new TextParticle("" + heal, X, Y, Color.Get(-1, 50, 50, 50)));
             Health += heal;
             if (Health > MaxHealth) Health = MaxHealth;
         }
@@ -122,7 +122,7 @@ namespace MiniCraft.Entities
                     Sound.MonsterHurt.Play();
                 }
             }
-            Level.Add(new TextParticle("" + damage, X, Y, ColorHelper.Get(-1, 500, 500, 500)));
+            Level.Add(new TextParticle("" + damage, X, Y, Color.Get(-1, 500, 500, 500)));
             Health -= damage;
             if (attackDir == 0) YKnockback = +6;
             if (attackDir == 1) YKnockback = -6;

@@ -42,7 +42,7 @@ namespace MiniCraft.Crafts
         public virtual void RenderInventory(Screen screen, int x, int y)
         {
             screen.Render(x, y, ResultTemplate.GetSprite(), ResultTemplate.GetColor(), 0);
-            int textColor = CanCraft ? ColorHelper.Get(-1, 555, 555, 555) : ColorHelper.Get(-1, 222, 222, 222);
+            int textColor = CanCraft ? Color.Get(-1, 555, 555, 555) : Color.Get(-1, 222, 222, 222);
             Font.Draw(ResultTemplate.GetName(), screen, x + 8, y, textColor);
         }
 

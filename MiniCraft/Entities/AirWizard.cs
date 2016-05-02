@@ -138,28 +138,28 @@ namespace MiniCraft.Entities
             int xo = X - 8;
             int yo = Y - 11;
 
-            int col1 = ColorHelper.Get(-1, 100, 500, 555);
-            int col2 = ColorHelper.Get(-1, 100, 500, 532);
+            int col1 = Color.Get(-1, 100, 500, 555);
+            int col2 = Color.Get(-1, 100, 500, 532);
             if (Health < 200)
             {
                 if (TickTime / 3 % 2 == 0)
                 {
-                    col1 = ColorHelper.Get(-1, 500, 100, 555);
-                    col2 = ColorHelper.Get(-1, 500, 100, 532);
+                    col1 = Color.Get(-1, 500, 100, 555);
+                    col2 = Color.Get(-1, 500, 100, 532);
                 }
             }
             else if (Health < 1000)
             {
                 if (TickTime / 5 % 4 == 0)
                 {
-                    col1 = ColorHelper.Get(-1, 500, 100, 555);
-                    col2 = ColorHelper.Get(-1, 500, 100, 532);
+                    col1 = Color.Get(-1, 500, 100, 555);
+                    col2 = Color.Get(-1, 500, 100, 532);
                 }
             }
             if (HurtTime > 0)
             {
-                col1 = ColorHelper.Get(-1, 555, 555, 555);
-                col2 = ColorHelper.Get(-1, 555, 555, 555);
+                col1 = Color.Get(-1, 555, 555, 555);
+                col2 = Color.Get(-1, 555, 555, 555);
             }
 
             screen.Render(xo + 8 * flip1, yo + 0, xt + yt * 32, col1, flip1);

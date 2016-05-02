@@ -17,9 +17,9 @@ namespace MiniCraft.Levels.Tiles
 
         public override void Render(Screen screen, Level level, int x, int y)
         {
-            int col = ColorHelper.Get(10, 30, 151, level.GrassColor);
-            int barkCol1 = ColorHelper.Get(10, 30, 430, level.GrassColor);
-            int barkCol2 = ColorHelper.Get(10, 30, 320, level.GrassColor);
+            int col = Color.Get(10, 30, 151, level.GrassColor);
+            int barkCol1 = Color.Get(10, 30, 430, level.GrassColor);
+            int barkCol2 = Color.Get(10, 30, 320, level.GrassColor);
 
             bool u = level.GetTile(x, y - 1) == this;
             bool l = level.GetTile(x - 1, y) == this;
@@ -104,7 +104,7 @@ namespace MiniCraft.Levels.Tiles
 
             int damage = level.GetData(x, y) + dmg;
             level.Add(new SmashParticle(x*16 + 8, y*16 + 8));
-            level.Add(new TextParticle("" + dmg, x*16 + 8, y*16 + 8, ColorHelper.Get(-1, 500, 500, 500)));
+            level.Add(new TextParticle("" + dmg, x*16 + 8, y*16 + 8, Color.Get(-1, 500, 500, 500)));
             if (damage >= 20)
             {
                 count = Random.NextInt(2) + 1;
