@@ -33,6 +33,7 @@ namespace MiniRealms
         private int _currentLevel = 3;
         public int GameTime;
 
+        public bool IsGamePaused { get; set; }
         public bool IsLoadingWorld { get; set; }
         public string LoadingText { get; set; }
 
@@ -49,7 +50,7 @@ namespace MiniRealms
         private int _playerDeadTime;
         private Screen _screen;
         private SpriteBatch _spriteBatch;
-        private int _tickCount;
+        public int TickCount;
         private int _wonTimer;
 
         public McGame()
@@ -152,16 +153,27 @@ namespace MiniRealms
 
         protected new virtual void Tick()
         {
-            _tickCount++;
-            if (!HasFocus() && !IsLoadingWorld)
+            TickCount++;
+            if ((!HasFocus()) && !IsLoadingWorld)
             {
                 _input.ReleaseAll();
             }
             else
             {
-                if (Player != null && (!Player.Removed && !HasWon)) GameTime++;
+                if (!IsGamePaused)
+                {
+                    if (Player != null && !Player.Removed && !HasWon) GameTime++;
+                }
 
                 _input.Tick();
+
+                if (_input.CloseKey.Clicked)
+                {
+                    IsGamePaused = !IsGamePaused;                 
+                }
+
+                if (IsGamePaused) return;
+
                 if (Menu != null)
                 {
                     Menu.Tick();
@@ -220,7 +232,7 @@ namespace MiniRealms
             }
 
             Font.Draw(msg, _screen, xx, yy,
-                _tickCount/20%2 == 0 ? Color.Get(5, 333, 333, 333) : Color.Get(5, 555, 555, 555));
+                TickCount/20%2 == 0 ? Color.Get(5, 333, 333, 333) : Color.Get(5, 555, 555, 555));
         }
 
         /// <summary>
@@ -262,6 +274,7 @@ namespace MiniRealms
             RenderGui();
 
             if (!HasFocus() && !IsLoadingWorld) RenderAlertWindow("Click to Focus");
+            if (IsGamePaused) RenderAlertWindow("Game is Paused");
             if (IsLoadingWorld) RenderAlertWindow(LoadingText);
 
             for (var y = 0; y < _screen.H; y++)
@@ -293,7 +306,7 @@ namespace MiniRealms
                     {
                         for (var x = 0; x < 10; x++)
                         {
-                            _screen.Render(x*8 + 60, _screen.H - 16 + y*8, 0 + 12*32,
+                            _screen.Render(x*8 + 60, _screen.H - 18 + y*8, 0 + 12*32,
                                 Color.Get(000, 000, 000, 000), 0);
                         }
                     }
@@ -302,19 +315,19 @@ namespace MiniRealms
                 for (var i = 0; i < 10; i++)
                 {
 
-                    _screen.Render(i*8  + 20, _screen.H - 8, 0 + 12*32,
+                    _screen.Render(i*8  + 20, _screen.H - 9, 0 + 12*32,
                         i < Player.Health ? Color.Get(-1, 200, 500, 533) : Color.Get(-1, 100, 000, 000), 0);
 
                     if (Player.StaminaRechargeDelay > 0)
                     {
-                        _screen.Render(i*8 + 80 + 20, _screen.H - 8, 1 + 12*32,
+                        _screen.Render(i*8 + 80 + 20, _screen.H - 9, 1 + 12*32,
                             Player.StaminaRechargeDelay/4%2 == 0
                                 ? Color.Get(-1, 555, 000, 100)
                                 : Color.Get(-1, 110, 000, 100), 0);
                     }
                     else
                     {
-                        _screen.Render(i*8 + 80 + 20, _screen.H - 8, 1 + 12*32,
+                        _screen.Render(i*8 + 80 + 20, _screen.H - 9, 1 + 12*32,
                             i < Player.Stamina
                                 ? Color.Get(-1, 220, 550, 553)
                                 : Color.Get(-1, 110, 000, 000),
@@ -322,7 +335,7 @@ namespace MiniRealms
                     }
 
                 }
-                Player.ActiveItem?.RenderInventory(_screen, 10*6, _screen.H - 16);
+                Player.ActiveItem?.RenderInventory(_screen, 10*6, _screen.H - 18);
 
                 if (_playerDeadTime < 60)
                 {

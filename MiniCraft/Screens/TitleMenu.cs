@@ -6,9 +6,12 @@ namespace MiniRealms.Screens
 {
     public class TitleMenu : Menu
     {
+        public bool ShowErrorAlert { get; set; }
+        public string ErrorAlertBody { get; set; }
+
         private int _selected;
 
-        private static readonly string[] Options = { "Start game", "How to play", "Options" };
+        private static readonly string[] Options = { "Start game", "How to play", "Mods & Addons", "Options" };
 
         public override void Tick()
         {
@@ -51,7 +54,7 @@ namespace MiniRealms.Screens
                 Game.IsLoadingWorld = true;
                 Task.Run(() =>
                 {
-                    Game.SetupLevel(256, 256);
+                    Game.SetupLevel(512, 512);
                 }).ContinueWith((e) =>
                 {
                     Game.IsLoadingWorld = false;
@@ -61,13 +64,13 @@ namespace MiniRealms.Screens
                 });
             }
             if (_selected == 1) Game.SetMenu(new InstructionsMenu(this));
-            if (_selected == 2)
+            if (_selected == 2 || _selected == 3)
             {
                 ShowErrorAlert = true;
+                ErrorAlertBody = "Coming Soon";
             }
         }
 
-        public bool ShowErrorAlert { get; set; }
 
         public override void Render(Screen screen)
         {
@@ -88,7 +91,9 @@ namespace MiniRealms.Screens
 
             string mg = "MiniRealms";
 
-            Font.Draw(mg, screen, (screen.W - mg.Length * 8) / 2, 20, Color.Yellow);
+            Font.Draw(mg, screen, (screen.W - mg.Length * 8) / 2, 20,
+                 Game.TickCount / 20 % 2 == 0 ? Color.White : Color.Yellow);
+
             for (int i = 0; i < Options.Length; i++)
             {
                 string msg = Options[i];
@@ -108,7 +113,7 @@ namespace MiniRealms.Screens
 
             if (ShowErrorAlert && !Game.IsLoadingWorld)
             {
-                Game.RenderAlertWindow("Not here yet!");
+                Game.RenderAlertWindow(ErrorAlertBody);
             }
         }
     }

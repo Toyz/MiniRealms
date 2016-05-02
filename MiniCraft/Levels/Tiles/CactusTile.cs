@@ -31,9 +31,29 @@ namespace MiniRealms.Levels.Tiles
 
         public override void Hurt(Level level, int x, int y, Mob source, int dmg, int attackDir)
         {
+           Hurt(x, y, dmg, level);
+
+            var p = source as Player;
+            p?.Hurt(this, x, y, 1);
+        }
+
+        public override bool Interact(Level level, int xt, int yt, Player player, Item item, int attackDir)
+        {
+            var toolItem = item as ToolItem;
+            if (toolItem == null) return false;
+            ToolItem tool = toolItem;
+            if (tool.Type != ToolType.Sword || !player.PayStamina(4 - tool.Level)) return false;
+            Hurt(xt, yt, Random.NextInt(10) + (tool.Level)*5 + 10, level);
+            return true;
+        }
+
+        public void Hurt(int x, int y, int dmg, Level level)
+        {
             int damage = level.GetData(x, y) + dmg;
             level.Add(new SmashParticle(x * 16 + 8, y * 16 + 8));
             level.Add(new TextParticle("" + dmg, x * 16 + 8, y * 16 + 8, Color.Get(-1, 500, 500, 500)));
+
+
             if (damage >= 10)
             {
                 int count = Random.NextInt(2) + 1;
