@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using MiniCraft.Gfx;
 using MiniCraft.Sounds;
 
@@ -13,6 +12,8 @@ namespace MiniCraft.Screens
 
         public override void Tick()
         {
+            if (Game.IsLoadingWorld) return;
+
             if (Input.CloseKey.Clicked) ShowErrorAlert = false;
 
 

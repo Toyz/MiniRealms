@@ -152,7 +152,7 @@ namespace MiniCraft
         protected new virtual void Tick()
         {
             _tickCount++;
-            if (!HasFocus())
+            if (!HasFocus() && !IsLoadingWorld)
             {
                 _input.ReleaseAll();
             }
