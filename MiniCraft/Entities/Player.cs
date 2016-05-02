@@ -2,6 +2,7 @@
 using MiniCraft.Entities.Particles;
 using MiniCraft.Gfx;
 using MiniCraft.Items;
+using MiniCraft.Items.Resources;
 using MiniCraft.Levels;
 using MiniCraft.Levels.Tiles;
 using MiniCraft.Screens;
@@ -36,6 +37,9 @@ namespace MiniCraft.Entities
 
             Inventory.Add(new FurnitureItem(new Workbench()));
             Inventory.Add(new PowerGloveItem());
+#if DEBUG
+            Inventory.Add(new ResourceItem(Resource.Wood, 1000));
+#endif
         }
 
         public override void Tick()
