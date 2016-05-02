@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using MiniCraft.Crafts;
 using MiniCraft.Entities;
@@ -10,15 +11,15 @@ namespace MiniCraft.Screens
 {
     public class CraftingMenu : Menu
     {
-        //private class RecipeSorter : IComparer<Recipe>
-        //{
-        //    public int Compare(Recipe r1, Recipe r2)
-        //    {
-        //        if (r1.canCraft && !r2.canCraft) return -1;
-        //        if (!r1.canCraft && r2.canCraft) return 1;
-        //        return r1.resultTemplate.getName().CompareTo(r2.resultTemplate.getName());
-        //    }
-        //}
+        private class RecipeSorter : IComparer<Recipe>
+        {
+            public int Compare(Recipe r1, Recipe r2)
+            {
+                if (r1.CanCraft && !r2.CanCraft) return -1;
+                if (!r1.CanCraft && r2.CanCraft) return 1;
+                return string.Compare(r1.ResultTemplate.GetName(), r2.ResultTemplate.GetName(), StringComparison.Ordinal);
+            }
+        }
 
         private readonly Player _player;
         private int _selected;
@@ -35,7 +36,7 @@ namespace MiniCraft.Screens
             }
 
             _recipes = new List<Recipe>(recipes.OrderByDescending(x=>x.CanCraft));
-            //this.recipes.Sort(new RecipeSorter());
+            _recipes.Sort(new RecipeSorter());
         }
 
         public override void Tick()
@@ -46,6 +47,7 @@ namespace MiniCraft.Screens
             if (Input.Down.Clicked) _selected++;
 
             int len = _recipes.Size();
+
             if (len == 0) _selected = 0;
             if (_selected < 0) _selected += len;
             if (_selected >= len) _selected -= len;
@@ -101,7 +103,7 @@ namespace MiniCraft.Screens
                         color = ColorHelper.Get(-1, 222, 222, 222);
                     }
                     if (has > 99) has = 99;
-                    Font.Draw("" + requiredAmt + "/" + has, screen, xo + 8, yo, color);
+                    Font.Draw("" + has + "/" + requiredAmt, screen, xo + 8, yo, color);
                 }
             }
             // renderItemList(screen, 12, 4, 19, 11, recipes.get(selected).costs, -1);
