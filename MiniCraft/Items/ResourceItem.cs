@@ -36,8 +36,8 @@ namespace MiniCraft.Items
             screen.Render(x, y, Resource.Sprite, Resource.Color, 0);
             Font.Draw(Resource.Name, screen, x + 32, y, ColorHelper.Get(-1, 555, 555, 555));
             int cc = Count;
-            if (cc > 999) cc = 999;
-            Font.Draw("" + cc, screen, x + 8, y, ColorHelper.Get(-1, 444, 444, 444));
+            if (cc > 99) cc = 99;
+            Font.Draw("" + cc, screen, x + 9, y, ColorHelper.Get(-1, 444, 444, 444));
         }
 
         public override string GetName() => Resource.Name;

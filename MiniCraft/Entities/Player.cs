@@ -38,7 +38,11 @@ namespace MiniCraft.Entities
             Inventory.Add(new FurnitureItem(new Workbench()));
             Inventory.Add(new PowerGloveItem());
 #if DEBUG
-            Inventory.Add(new ResourceItem(Resource.Wood, 1000));
+            foreach (var item in Resource.AllResources)
+            {
+                Inventory.Add(new ResourceItem(item, 1000));
+            }
+            //Inventory.Add(new ResourceItem(Resource.Wood, 1000));
 #endif
         }
 
