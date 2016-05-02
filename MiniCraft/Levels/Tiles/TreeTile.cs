@@ -96,7 +96,7 @@ namespace MiniCraft.Levels.Tiles
         private void Hurt(Level level, int x, int y, int dmg)
         {
             int count = Random.NextInt(10) == 0 ? 1 : 0;
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 level.Add(new ItemEntity(new ResourceItem(Resource.Apple), x*16 + Random.NextInt(10) + 3,
                     y*16 + Random.NextInt(10) + 3));

@@ -47,11 +47,11 @@ namespace MiniCraft.Screens
             if (_selected == 0)
             {
                 Sound.Test.Play();
-                Game.LoadingText = "World Setup";
+                Game.LoadingText = "World Creation";
                 Game.IsLoadingWorld = true;
                 Task.Run(() =>
                 {
-                    Game.SetupLevel(1024, 1024);
+                    Game.SetupLevel(256, 256);
                 }).ContinueWith((e) =>
                 {
                     Game.IsLoadingWorld = false;
