@@ -1,5 +1,4 @@
-﻿using System;
-using MiniCraft.Gfx;
+﻿using MiniCraft.Gfx;
 
 namespace MiniCraft.Screens
 {
