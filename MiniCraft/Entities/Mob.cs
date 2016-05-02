@@ -72,14 +72,12 @@ namespace MiniCraft.Entities
                 YKnockback--;
             }
             if (HurtTime > 0) return true;
-            if (xa != 0 || ya != 0)
-            {
-                WalkDist++;
-                if (xa < 0) Dir = 2;
-                if (xa > 0) Dir = 3;
-                if (ya < 0) Dir = 1;
-                if (ya > 0) Dir = 0;
-            }
+            if (xa == 0 && ya == 0) return base.Move(xa, ya);
+            WalkDist++;
+            if (xa < 0) Dir = 2;
+            if (xa > 0) Dir = 3;
+            if (ya < 0) Dir = 1;
+            if (ya > 0) Dir = 0;
             return base.Move(xa, ya);
         }
 
@@ -150,14 +148,10 @@ namespace MiniCraft.Entities
             int r = level.MonsterDensity * 16;
             if (level.GetEntities(xx - r, yy - r, xx + r, yy + r).Size() > 0) return false;
 
-            if (level.GetTile(x, y).MayPass(level, x, y, this))
-            {
-                X = xx;
-                Y = yy;
-                return true;
-            }
-
-            return false;
+            if (!level.GetTile(x, y).MayPass(level, x, y, this)) return false;
+            X = xx;
+            Y = yy;
+            return true;
         }
     }
 

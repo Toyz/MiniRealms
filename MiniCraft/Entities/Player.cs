@@ -89,7 +89,7 @@ namespace MiniCraft.Entities
             if (_input.Down.Down) ya++;
             if (_input.Left.Down) xa--;
             if (_input.Right.Down) xa++;
-            if (IsSwimming() && TickTime % 60 == 0)
+            if (IsSwimming() && TickTime%60 == 0)
             {
                 if (Stamina > 0)
                 {
@@ -101,31 +101,22 @@ namespace MiniCraft.Entities
                 }
             }
 
-            if (StaminaRechargeDelay % 2 == 0)
+            if (StaminaRechargeDelay%2 == 0)
             {
                 Move(xa, ya);
             }
 
             if (_input.Attack.Clicked)
             {
-                if (Stamina == 0)
-                {
-
-                }
-                else
+                if (Stamina != 0)
                 {
                     Stamina--;
                     StaminaRecharge = 0;
                     Attack();
                 }
             }
-            if (_input.Menu.Clicked)
-            {
-                if (!Use())
-                {
-                    Game.SetMenu(new InventoryMenu(this));
-                }
-            }
+            if (_input.Menu.Clicked && !Use())
+                Game.SetMenu(new InventoryMenu(this));
             if (_attackTime > 0) _attackTime--;
 
         }
@@ -146,12 +137,8 @@ namespace MiniCraft.Entities
             if (_attackDir == 2) xt = (X - r) >> 4;
             if (_attackDir == 3) xt = (X + r) >> 4;
 
-            if (xt >= 0 && yt >= 0 && xt < Level.W && yt < Level.H)
-            {
-                if (Level.GetTile(xt, yt).Use(Level, xt, yt, this, _attackDir)) return true;
-            }
-
-            return false;
+            if (xt < 0 || yt < 0 || xt >= Level.W || yt >= Level.H) return false;
+            return Level.GetTile(xt, yt).Use(Level, xt, yt, this, _attackDir);
         }
 
         private void Attack()
@@ -164,8 +151,8 @@ namespace MiniCraft.Entities
             if (ActiveItem != null)
             {
                 _attackTime = 10;
-                int yo = -2;
-                int range = 12;
+                const int yo = -2;
+                const int range = 12;
                 if (Dir == 0 && Interact(X - 8, Y + 4 + yo, X + 8, Y + range + yo)) done = true;
                 if (Dir == 1 && Interact(X - 8, Y - range + yo, X + 8, Y - 4 + yo)) done = true;
                 if (Dir == 3 && Interact(X + 4, Y - 8 + yo, X + range, Y + 8 + yo)) done = true;
@@ -234,7 +221,8 @@ namespace MiniCraft.Entities
             for (int i = 0; i < entities.Size(); i++)
             {
                 Entity e = entities.Get(i);
-                if (e != this) if (e.Use(this, _attackDir)) return true;
+                if (e == this) continue;
+                if (e.Use(this, _attackDir)) return true;
             }
             return false;
         }
@@ -245,7 +233,8 @@ namespace MiniCraft.Entities
             for (int i = 0; i < entities.Size(); i++)
             {
                 Entity e = entities.Get(i);
-                if (e != this) if (e.Interact(this, ActiveItem, _attackDir)) return true;
+                if (e == this) continue;
+                if (e.Interact(this, ActiveItem, _attackDir)) return true;
             }
             return false;
         }
@@ -263,10 +252,8 @@ namespace MiniCraft.Entities
         private int GetAttackDamage(Entity e)
         {
             int dmg = Random.NextInt(3) + 1;
-            if (AttackItem != null)
-            {
-                dmg += AttackItem.GetAttackDamageBonus(e);
-            }
+            if (AttackItem == null) return dmg;
+            dmg += AttackItem.GetAttackDamageBonus(e);
             return dmg;
         }
 
@@ -290,7 +277,7 @@ namespace MiniCraft.Entities
                 {
                     flip1 = 1;
                 }
-                xt += 4 + ((WalkDist >> 3) & 1) * 2;
+                xt += 4 + ((WalkDist >> 3) & 1)*2;
             }
 
             int xo = X - 8;
@@ -299,18 +286,18 @@ namespace MiniCraft.Entities
             {
                 yo += 4;
                 int waterColor = ColorHelper.Get(-1, -1, 115, 335);
-                if (TickTime / 8 % 2 == 0)
+                if (TickTime/8%2 == 0)
                 {
                     waterColor = ColorHelper.Get(-1, 335, 5, 115);
                 }
-                screen.Render(xo + 0, yo + 3, 5 + 13 * 32, waterColor, 0);
-                screen.Render(xo + 8, yo + 3, 5 + 13 * 32, waterColor, 1);
+                screen.Render(xo + 0, yo + 3, 5 + 13*32, waterColor, 0);
+                screen.Render(xo + 8, yo + 3, 5 + 13*32, waterColor, 1);
             }
 
             if (_attackTime > 0 && _attackDir == 1)
             {
-                screen.Render(xo + 0, yo - 4, 6 + 13 * 32, ColorHelper.Get(-1, 555, 555, 555), 0);
-                screen.Render(xo + 8, yo - 4, 6 + 13 * 32, ColorHelper.Get(-1, 555, 555, 555), 1);
+                screen.Render(xo + 0, yo - 4, 6 + 13*32, ColorHelper.Get(-1, 555, 555, 555), 0);
+                screen.Render(xo + 8, yo - 4, 6 + 13*32, ColorHelper.Get(-1, 555, 555, 555), 1);
                 AttackItem?.RenderIcon(screen, xo + 4, yo - 4);
             }
             int col = ColorHelper.Get(-1, 100, 220, 532);
@@ -323,30 +310,30 @@ namespace MiniCraft.Entities
             {
                 yt += 2;
             }
-            screen.Render(xo + 8 * flip1, yo + 0, xt + yt * 32, col, flip1);
-            screen.Render(xo + 8 - 8 * flip1, yo + 0, xt + 1 + yt * 32, col, flip1);
+            screen.Render(xo + 8*flip1, yo + 0, xt + yt*32, col, flip1);
+            screen.Render(xo + 8 - 8*flip1, yo + 0, xt + 1 + yt*32, col, flip1);
             if (!IsSwimming())
             {
-                screen.Render(xo + 8 * flip2, yo + 8, xt + (yt + 1) * 32, col, flip2);
-                screen.Render(xo + 8 - 8 * flip2, yo + 8, xt + 1 + (yt + 1) * 32, col, flip2);
+                screen.Render(xo + 8*flip2, yo + 8, xt + (yt + 1)*32, col, flip2);
+                screen.Render(xo + 8 - 8*flip2, yo + 8, xt + 1 + (yt + 1)*32, col, flip2);
             }
 
             if (_attackTime > 0 && _attackDir == 2)
             {
-                screen.Render(xo - 4, yo, 7 + 13 * 32, ColorHelper.Get(-1, 555, 555, 555), 1);
-                screen.Render(xo - 4, yo + 8, 7 + 13 * 32, ColorHelper.Get(-1, 555, 555, 555), 3);
+                screen.Render(xo - 4, yo, 7 + 13*32, ColorHelper.Get(-1, 555, 555, 555), 1);
+                screen.Render(xo - 4, yo + 8, 7 + 13*32, ColorHelper.Get(-1, 555, 555, 555), 3);
                 AttackItem?.RenderIcon(screen, xo - 4, yo + 4, Screen.BitMirrorX);
             }
             if (_attackTime > 0 && _attackDir == 3)
             {
-                screen.Render(xo + 8 + 4, yo, 7 + 13 * 32, ColorHelper.Get(-1, 555, 555, 555), 0);
-                screen.Render(xo + 8 + 4, yo + 8, 7 + 13 * 32, ColorHelper.Get(-1, 555, 555, 555), 2);
+                screen.Render(xo + 8 + 4, yo, 7 + 13*32, ColorHelper.Get(-1, 555, 555, 555), 0);
+                screen.Render(xo + 8 + 4, yo + 8, 7 + 13*32, ColorHelper.Get(-1, 555, 555, 555), 2);
                 AttackItem?.RenderIcon(screen, xo + 8 + 4, yo + 4);
             }
             if (_attackTime > 0 && _attackDir == 0)
             {
-                screen.Render(xo + 0, yo + 8 + 4, 6 + 13 * 32, ColorHelper.Get(-1, 555, 555, 555), 2);
-                screen.Render(xo + 8, yo + 8 + 4, 6 + 13 * 32, ColorHelper.Get(-1, 555, 555, 555), 3);
+                screen.Render(xo + 0, yo + 8 + 4, 6 + 13*32, ColorHelper.Get(-1, 555, 555, 555), 2);
+                screen.Render(xo + 8, yo + 8 + 4, 6 + 13*32, ColorHelper.Get(-1, 555, 555, 555), 3);
                 AttackItem?.RenderIcon(screen, xo + 4, yo + 8 + 4, Screen.BitMirrorX | Screen.BitMirrorY);
             }
 
@@ -367,10 +354,7 @@ namespace MiniCraft.Entities
             Inventory.Add(itemEntity.Item);
         }
 
-        public override bool CanSwim()
-        {
-            return true;
-        }
+        public override bool CanSwim() => true;
 
         public override bool FindStartPos(Level level)
         {
@@ -378,12 +362,10 @@ namespace MiniCraft.Entities
             {
                 int x = Random.NextInt(level.W);
                 int y = Random.NextInt(level.H);
-                if (level.GetTile(x, y) == Tile.Grass)
-                {
-                    X = x * 16 + 8;
-                    Y = y * 16 + 8;
-                    return true;
-                }
+                if (level.GetTile(x, y) != Tile.Grass) continue;
+                X = x*16 + 8;
+                Y = y*16 + 8;
+                return true;
             }
         }
 
@@ -441,7 +423,7 @@ namespace MiniCraft.Entities
 
         public void GameWon()
         {
-            Level.Player.InvulnerableTime = 60 * 5;
+            Level.Player.InvulnerableTime = 60*5;
             Game.Won();
         }
     }

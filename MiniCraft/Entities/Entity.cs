@@ -48,18 +48,13 @@ namespace MiniCraft.Entities
 
         public virtual bool Move(int xa, int ya)
         {
-            if (xa != 0 || ya != 0)
-            {
-                bool stopped = !(xa != 0 && Move2(xa, 0));
-                if (ya != 0 && Move2(0, ya)) stopped = false;
-                if (!stopped)
-                {
-                    int xt = X >> 4;
-                    int yt = Y >> 4;
-                    Level.GetTile(xt, yt).SteppedOn(Level, xt, yt, this);
-                }
-                return !stopped;
-            }
+            if (xa == 0 && ya == 0) return true;
+            var stopped = !(xa != 0 && Move2(xa, 0));
+            if (ya != 0 && Move2(0, ya)) stopped = false;
+            if (stopped) return false;
+            int xt = X >> 4;
+            int yt = Y >> 4;
+            Level.GetTile(xt, yt).SteppedOn(Level, xt, yt, this);
             return true;
         }
 
@@ -67,32 +62,29 @@ namespace MiniCraft.Entities
         {
             if (xa != 0 && ya != 0) throw new InvalidOperationException("Move2 can only move along one axis at a time!");
 
-            int xto0 = ((X) - Xr) >> 4;
-            int yto0 = ((Y) - Yr) >> 4;
-            int xto1 = ((X) + Xr) >> 4;
-            int yto1 = ((Y) + Yr) >> 4;
+            int xto0 = (X - Xr) >> 4;
+            int yto0 = (Y - Yr) >> 4;
+            int xto1 = (X + Xr) >> 4;
+            int yto1 = (Y + Yr) >> 4;
 
-            int xt0 = ((X + xa) - Xr) >> 4;
-            int yt0 = ((Y + ya) - Yr) >> 4;
-            int xt1 = ((X + xa) + Xr) >> 4;
-            int yt1 = ((Y + ya) + Yr) >> 4;
+            int xt0 = (X + xa - Xr) >> 4;
+            int yt0 = (Y + ya - Yr) >> 4;
+            int xt1 = (X + xa + Xr) >> 4;
+            int yt1 = (Y + ya + Yr) >> 4;
             for (int yt = yt0; yt <= yt1; yt++)
                 for (int xt = xt0; xt <= xt1; xt++)
                 {
                     if (xt >= xto0 && xt <= xto1 && yt >= yto0 && yt <= yto1) continue;
                     Level.GetTile(xt, yt).BumpedInto(Level, xt, yt, this);
-                    if (!Level.GetTile(xt, yt).MayPass(Level, xt, yt, this))
-                    {
-                        return false;
-                    }
+                    if (Level.GetTile(xt, yt).MayPass(Level, xt, yt, this)) continue;
+                    return false;
                 }
             List<Entity> wasInside = Level.GetEntities(X - Xr, Y - Yr, X + Xr, Y + Yr);
             List<Entity> isInside = Level.GetEntities(X + xa - Xr, Y + ya - Yr, X + xa + Xr, Y + ya + Yr);
             foreach (var e in isInside)
             {
-                if (e == this) continue;
-
-                e.TouchedBy(this);
+                if (e != this)
+                    e.TouchedBy(this);
             }
             isInside.RemoveAll(wasInside);
             for (int i = 0; i < isInside.Count; i++)
@@ -100,10 +92,8 @@ namespace MiniCraft.Entities
                 var e = isInside.Get(i);
                 if (e == this) continue;
 
-                if (e.Blocks(this))
-                {
-                    return false;
-                }
+                if (!e.Blocks(this)) continue;
+                return false;
             }
 
             X += xa;
