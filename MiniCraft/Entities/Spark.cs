@@ -1,6 +1,6 @@
-﻿using MiniCraft.Gfx;
+﻿using MiniRealms.Gfx;
 
-namespace MiniCraft.Entities
+namespace MiniRealms.Entities
 {
     public class Spark : Entity
     {

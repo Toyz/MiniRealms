@@ -1,4 +1,4 @@
-﻿namespace MiniCraft.Entities.Particles
+﻿namespace MiniRealms.Entities.Particles
 {
     public class Particle : Entity
     {

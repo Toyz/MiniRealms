@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using MiniCraft.Entities;
-using MiniCraft.Gfx;
-using MiniCraft.Levels.LevelGens;
-using MiniCraft.Levels.Tiles;
+using MiniRealms.Entities;
+using MiniRealms.Gfx;
+using MiniRealms.Levels.LevelGens;
+using MiniRealms.Levels.Tiles;
 
-namespace MiniCraft.Levels
+namespace MiniRealms.Levels
 {
     public class Level
     {

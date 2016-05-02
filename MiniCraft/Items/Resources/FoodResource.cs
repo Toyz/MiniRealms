@@ -1,8 +1,8 @@
-﻿using MiniCraft.Entities;
-using MiniCraft.Levels;
-using MiniCraft.Levels.Tiles;
+﻿using MiniRealms.Entities;
+using MiniRealms.Levels;
+using MiniRealms.Levels.Tiles;
 
-namespace MiniCraft.Items.Resources
+namespace MiniRealms.Items.Resources
 {
     public class FoodResource : Resource
     {

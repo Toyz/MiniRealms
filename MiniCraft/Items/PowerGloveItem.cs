@@ -1,7 +1,7 @@
-﻿using MiniCraft.Entities;
-using MiniCraft.Gfx;
+﻿using MiniRealms.Entities;
+using MiniRealms.Gfx;
 
-namespace MiniCraft.Items
+namespace MiniRealms.Items
 {
     public class PowerGloveItem : Item
     {

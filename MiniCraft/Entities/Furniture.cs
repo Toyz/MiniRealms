@@ -1,7 +1,7 @@
-﻿using MiniCraft.Gfx;
-using MiniCraft.Items;
+﻿using MiniRealms.Gfx;
+using MiniRealms.Items;
 
-namespace MiniCraft.Entities
+namespace MiniRealms.Entities
 {
     public class Furniture : Entity
     {

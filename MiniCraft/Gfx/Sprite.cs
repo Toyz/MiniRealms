@@ -1,4 +1,4 @@
-﻿namespace MiniCraft.Gfx
+﻿namespace MiniRealms.Gfx
 {
     public class Sprite
     {

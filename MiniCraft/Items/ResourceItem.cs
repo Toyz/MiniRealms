@@ -1,10 +1,10 @@
-﻿using MiniCraft.Entities;
-using MiniCraft.Gfx;
-using MiniCraft.Items.Resources;
-using MiniCraft.Levels;
-using MiniCraft.Levels.Tiles;
+﻿using MiniRealms.Entities;
+using MiniRealms.Gfx;
+using MiniRealms.Items.Resources;
+using MiniRealms.Levels;
+using MiniRealms.Levels.Tiles;
 
-namespace MiniCraft.Items
+namespace MiniRealms.Items
 {
     public class ResourceItem : Item
     {

@@ -1,6 +1,6 @@
-﻿using MiniCraft.Gfx;
+﻿using MiniRealms.Gfx;
 
-namespace MiniCraft.Levels.Tiles
+namespace MiniRealms.Levels.Tiles
 {
     public class StairsTile : Tile
     {

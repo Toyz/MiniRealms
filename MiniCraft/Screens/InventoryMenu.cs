@@ -1,8 +1,8 @@
-﻿using MiniCraft.Entities;
-using MiniCraft.Gfx;
-using MiniCraft.Items;
+﻿using MiniRealms.Entities;
+using MiniRealms.Gfx;
+using MiniRealms.Items;
 
-namespace MiniCraft.Screens
+namespace MiniRealms.Screens
 {
     public class InventoryMenu : Menu
     {

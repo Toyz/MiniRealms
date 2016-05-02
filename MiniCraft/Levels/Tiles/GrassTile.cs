@@ -1,10 +1,10 @@
-﻿using MiniCraft.Entities;
-using MiniCraft.Gfx;
-using MiniCraft.Items;
-using MiniCraft.Items.Resources;
-using MiniCraft.Sounds;
+﻿using MiniRealms.Entities;
+using MiniRealms.Gfx;
+using MiniRealms.Items;
+using MiniRealms.Items.Resources;
+using MiniRealms.Sounds;
 
-namespace MiniCraft.Levels.Tiles
+namespace MiniRealms.Levels.Tiles
 {
     public class GrassTile : Tile
     {

@@ -9,8 +9,8 @@
     <ProjectGuid>{3AFB3ADA-21CF-4A38-BA14-501F8B774875}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MiniCraft</RootNamespace>
-    <AssemblyName>MiniCraft</AssemblyName>
+    <RootNamespace>MiniRealms</RootNamespace>
+    <AssemblyName>MiniRealms</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>Windows</MonoGamePlatform>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>

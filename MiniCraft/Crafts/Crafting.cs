@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using MiniCraft.Entities;
-using MiniCraft.Items;
-using MiniCraft.Items.Resources;
+using MiniRealms.Entities;
+using MiniRealms.Items;
+using MiniRealms.Items.Resources;
 
-namespace MiniCraft.Crafts
+namespace MiniRealms.Crafts
 {
 
     public class Crafting

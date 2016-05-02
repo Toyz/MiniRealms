@@ -1,8 +1,8 @@
-﻿using MiniCraft.Gfx;
-using MiniCraft.Items;
-using MiniCraft.Items.Resources;
+﻿using MiniRealms.Gfx;
+using MiniRealms.Items;
+using MiniRealms.Items.Resources;
 
-namespace MiniCraft.Entities
+namespace MiniRealms.Entities
 {
     public class Slime : Mob
     {

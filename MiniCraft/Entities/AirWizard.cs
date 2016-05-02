@@ -1,8 +1,8 @@
 ﻿using System;
-using MiniCraft.Gfx;
-using MiniCraft.Sounds;
+using MiniRealms.Gfx;
+using MiniRealms.Sounds;
 
-namespace MiniCraft.Entities
+namespace MiniRealms.Entities
 {
 
     public class AirWizard : Mob

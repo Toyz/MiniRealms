@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Input;
 
-namespace MiniCraft
+namespace MiniRealms
 {
     public class KeyListener
     {

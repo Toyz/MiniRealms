@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using MiniCraft.Gfx;
+using MiniRealms.Gfx;
 
-namespace MiniCraft.Screens
+namespace MiniRealms.Screens
 {
     public class Menu
     {

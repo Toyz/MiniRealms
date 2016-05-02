@@ -1,7 +1,6 @@
-﻿using System;
-using MiniCraft.Gfx;
+﻿using MiniRealms.Gfx;
 
-namespace MiniCraft.Screens
+namespace MiniRealms.Screens
 {
 
     public class WonMenu : Menu

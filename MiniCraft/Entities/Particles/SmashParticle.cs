@@ -1,7 +1,7 @@
-﻿using MiniCraft.Gfx;
-using MiniCraft.Sounds;
+﻿using MiniRealms.Gfx;
+using MiniRealms.Sounds;
 
-namespace MiniCraft.Entities.Particles
+namespace MiniRealms.Entities.Particles
 {
     public class SmashParticle : Entity
     {

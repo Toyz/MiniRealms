@@ -1,7 +1,7 @@
-﻿using MiniCraft.Gfx;
-using MiniCraft.Screens;
+﻿using MiniRealms.Gfx;
+using MiniRealms.Screens;
 
-namespace MiniCraft.Entities
+namespace MiniRealms.Entities
 {
     public class Chest : Furniture
     {

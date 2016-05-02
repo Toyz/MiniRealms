@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MiniCraft
+namespace MiniRealms
 {
 #if WINDOWS || LINUX
     /// <summary>

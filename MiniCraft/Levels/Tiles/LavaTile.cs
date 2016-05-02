@@ -1,8 +1,8 @@
 ﻿using System;
-using MiniCraft.Entities;
-using MiniCraft.Gfx;
+using MiniRealms.Entities;
+using MiniRealms.Gfx;
 
-namespace MiniCraft.Levels.Tiles
+namespace MiniRealms.Levels.Tiles
 {
 
     public class LavaTile : Tile

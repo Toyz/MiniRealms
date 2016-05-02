@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using MiniCraft.Gfx;
-using MiniCraft.Sounds;
+using MiniRealms.Gfx;
+using MiniRealms.Sounds;
 
-namespace MiniCraft.Screens
+namespace MiniRealms.Screens
 {
     public class TitleMenu : Menu
     {

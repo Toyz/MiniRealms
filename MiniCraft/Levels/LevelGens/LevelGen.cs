@@ -1,7 +1,7 @@
 ﻿using System;
-using MiniCraft.Levels.Tiles;
+using MiniRealms.Levels.Tiles;
 
-namespace MiniCraft.Levels.LevelGens
+namespace MiniRealms.Levels.LevelGens
 {
 
     public class LevelGen

@@ -1,9 +1,9 @@
-﻿using MiniCraft.Entities;
-using MiniCraft.Entities.Particles;
-using MiniCraft.Gfx;
-using MiniCraft.Items;
+﻿using MiniRealms.Entities;
+using MiniRealms.Entities.Particles;
+using MiniRealms.Gfx;
+using MiniRealms.Items;
 
-namespace MiniCraft.Levels.Tiles
+namespace MiniRealms.Levels.Tiles
 {
     public class CloudCactusTile : Tile
     {

@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
-using MiniCraft.Entities.Particles;
-using MiniCraft.Gfx;
-using MiniCraft.Items;
-using MiniCraft.Items.Resources;
-using MiniCraft.Levels;
-using MiniCraft.Levels.Tiles;
-using MiniCraft.Screens;
-using MiniCraft.Sounds;
+using MiniRealms.Entities.Particles;
+using MiniRealms.Gfx;
+using MiniRealms.Items;
+using MiniRealms.Items.Resources;
+using MiniRealms.Levels;
+using MiniRealms.Levels.Tiles;
+using MiniRealms.Screens;
+using MiniRealms.Sounds;
 
-namespace MiniCraft.Entities
+namespace MiniRealms.Entities
 {
     public class Player : Mob
     {

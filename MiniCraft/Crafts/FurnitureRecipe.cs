@@ -1,7 +1,7 @@
-﻿using MiniCraft.Entities;
-using MiniCraft.Items;
+﻿using MiniRealms.Entities;
+using MiniRealms.Items;
 
-namespace MiniCraft.Crafts
+namespace MiniRealms.Crafts
 {
     public class FurnitureRecipe<T> : Recipe
         where T : Furniture, new()

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using MiniCraft.Items;
-using MiniCraft.Items.Resources;
+using MiniRealms.Items;
+using MiniRealms.Items.Resources;
 
-namespace MiniCraft.Entities
+namespace MiniRealms.Entities
 {
     public class Inventory
     {

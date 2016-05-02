@@ -1,6 +1,6 @@
-﻿using MiniCraft.Gfx;
+﻿using MiniRealms.Gfx;
 
-namespace MiniCraft.Screens
+namespace MiniRealms.Screens
 {
     public interface IListItem
     {

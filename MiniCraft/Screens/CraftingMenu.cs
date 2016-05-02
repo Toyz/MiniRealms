@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using MiniCraft.Crafts;
-using MiniCraft.Entities;
-using MiniCraft.Gfx;
-using MiniCraft.Items;
-using MiniCraft.Sounds;
+using MiniRealms.Crafts;
+using MiniRealms.Entities;
+using MiniRealms.Gfx;
+using MiniRealms.Items;
+using MiniRealms.Sounds;
 
-namespace MiniCraft.Screens
+namespace MiniRealms.Screens
 {
     public class CraftingMenu : Menu
     {

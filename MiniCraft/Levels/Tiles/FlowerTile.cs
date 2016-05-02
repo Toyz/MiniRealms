@@ -1,9 +1,9 @@
-﻿using MiniCraft.Entities;
-using MiniCraft.Gfx;
-using MiniCraft.Items;
-using MiniCraft.Items.Resources;
+﻿using MiniRealms.Entities;
+using MiniRealms.Gfx;
+using MiniRealms.Items;
+using MiniRealms.Items.Resources;
 
-namespace MiniCraft.Levels.Tiles
+namespace MiniRealms.Levels.Tiles
 {
     public class FlowerTile : GrassTile
     {

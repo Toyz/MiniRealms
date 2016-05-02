@@ -1,4 +1,4 @@
-﻿namespace MiniCraft.Items
+﻿namespace MiniRealms.Items
 {
     public class ToolType
     {

@@ -1,10 +1,10 @@
-﻿using MiniCraft.Entities.Particles;
-using MiniCraft.Gfx;
-using MiniCraft.Levels;
-using MiniCraft.Levels.Tiles;
-using MiniCraft.Sounds;
+﻿using MiniRealms.Entities.Particles;
+using MiniRealms.Gfx;
+using MiniRealms.Levels;
+using MiniRealms.Levels.Tiles;
+using MiniRealms.Sounds;
 
-namespace MiniCraft.Entities
+namespace MiniRealms.Entities
 {
     public class Mob : Entity
     {

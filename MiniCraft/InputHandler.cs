@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework.Input;
 
-namespace MiniCraft
+namespace MiniRealms
 {
     public class InputHandler : KeyListener
     {

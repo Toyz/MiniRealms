@@ -1,6 +1,6 @@
-﻿using MiniCraft.Gfx;
+﻿using MiniRealms.Gfx;
 
-namespace MiniCraft.Entities.Particles
+namespace MiniRealms.Entities.Particles
 {
     public class TextParticle : Entity
     {

@@ -1,7 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 
-namespace MiniCraft.Gfx
+namespace MiniRealms.Gfx
 {
     public class SpriteSheet
     {

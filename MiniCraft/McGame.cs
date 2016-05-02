@@ -1,15 +1,15 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MiniCraft.Entities;
-using MiniCraft.Gfx;
-using MiniCraft.Levels;
-using MiniCraft.Levels.Tiles;
-using MiniCraft.Screens;
-using MiniCraft.Sounds;
-using Color = MiniCraft.Gfx.Color;
+using MiniRealms.Entities;
+using MiniRealms.Gfx;
+using MiniRealms.Levels;
+using MiniRealms.Levels.Tiles;
+using MiniRealms.Screens;
+using MiniRealms.Sounds;
+using Color = MiniRealms.Gfx.Color;
 
-namespace MiniCraft
+namespace MiniRealms
 {
     //https://github.com/Kivutar/tethical
     //http://ffhacktics.com/smf/index.php?topic=6809.0
@@ -20,7 +20,7 @@ namespace MiniCraft
     /// </summary>
     public class McGame : Game
     {
-        public const string Name = "Minicraft";
+        public const string Name = "MiniRealms";
         public int Height = 160;
         public int Width = 200;
         public const int Scale = 4;

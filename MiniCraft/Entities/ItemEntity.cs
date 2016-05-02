@@ -1,8 +1,8 @@
-﻿using MiniCraft.Gfx;
-using MiniCraft.Items;
-using MiniCraft.Sounds;
+﻿using MiniRealms.Gfx;
+using MiniRealms.Items;
+using MiniRealms.Sounds;
 
-namespace MiniCraft.Entities
+namespace MiniRealms.Entities
 {
 
     public class ItemEntity : Entity

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 
-namespace MiniCraft.Sounds
+namespace MiniRealms.Sounds
 {
     public class Sound
     {

@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using MiniCraft.Entities;
-using MiniCraft.Gfx;
-using MiniCraft.Items;
-using MiniCraft.Items.Resources;
-using MiniCraft.Screens;
+using MiniRealms.Entities;
+using MiniRealms.Gfx;
+using MiniRealms.Items;
+using MiniRealms.Items.Resources;
+using MiniRealms.Screens;
 
-namespace MiniCraft.Crafts
+namespace MiniRealms.Crafts
 {
     public abstract class Recipe : IListItem
     {

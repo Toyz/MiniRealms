@@ -1,7 +1,7 @@
-﻿using MiniCraft.Entities;
-using MiniCraft.Gfx;
+﻿using MiniRealms.Entities;
+using MiniRealms.Gfx;
 
-namespace MiniCraft.Screens
+namespace MiniRealms.Screens
 {
     public class ContainerMenu : Menu
     {

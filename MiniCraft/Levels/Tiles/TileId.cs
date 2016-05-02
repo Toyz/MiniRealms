@@ -1,4 +1,4 @@
-namespace MiniCraft.Levels.Tiles
+namespace MiniRealms.Levels.Tiles
 {
     public enum TileId
     {

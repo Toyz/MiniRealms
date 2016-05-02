@@ -1,8 +1,8 @@
-﻿using MiniCraft.Crafts;
-using MiniCraft.Gfx;
-using MiniCraft.Screens;
+﻿using MiniRealms.Crafts;
+using MiniRealms.Gfx;
+using MiniRealms.Screens;
 
-namespace MiniCraft.Entities
+namespace MiniRealms.Entities
 {
     public class Anvil : Furniture
     {
