@@ -284,32 +284,35 @@ namespace MiniCraft
 
         private void RenderGui()
         {
-            for (var y = 0; y < 2; y++)
+            if (Player != null)
             {
-                for (var x = 0; x < 20; x++)
+                            if (Player.ActiveItem != null)
+            {
+                for (var y = 0; y < 1; y++)
                 {
-                    _screen.Render(x*8, _screen.H - 16 + y*8, 0 + 12*32, ColorHelper.Get(000, 000, 000, 000), 0);
+                    for (var x = 0; x < 10; x++)
+                    {
+                        _screen.Render(x*8 + 80, _screen.H - 16 + y*8, 0 + 12*32, ColorHelper.Get(000, 000, 000, 000), 0);
+                    }
                 }
             }
 
-            if (Player != null)
-            {
                 for (var i = 0; i < 10; i++)
                 {
 
-                    _screen.Render(i*8, _screen.H - 16, 0 + 12*32,
+                    _screen.Render(i*8, _screen.H - 8, 0 + 12*32,
                         i < Player.Health ? ColorHelper.Get(000, 200, 500, 533) : ColorHelper.Get(000, 100, 000, 000), 0);
 
                     if (Player.StaminaRechargeDelay > 0)
                     {
-                        _screen.Render(i*8, _screen.H - 8, 1 + 12*32,
+                        _screen.Render(i*8 + 80, _screen.H - 8, 1 + 12*32,
                             Player.StaminaRechargeDelay/4%2 == 0
-                                ? ColorHelper.Get(000, 555, 000, 000)
-                                : ColorHelper.Get(000, 110, 000, 000), 0);
+                                ? ColorHelper.Get(000, 555, 000, 100)
+                                : ColorHelper.Get(000, 110, 000, 100), 0);
                     }
                     else
                     {
-                        _screen.Render(i*8, _screen.H - 8, 1 + 12*32,
+                        _screen.Render(i*8 + 80, _screen.H - 8, 1 + 12*32,
                             i < Player.Stamina
                                 ? ColorHelper.Get(000, 220, 550, 553)
                                 : ColorHelper.Get(000, 110, 000, 000),
@@ -369,9 +372,9 @@ namespace MiniCraft
 
             Level.Add(Player);
 
-            for (var i = 0; i < 5; i++)
+            foreach (Level t in Levels)
             {
-                Levels[i].TrySpawn(5000);
+                t.TrySpawn(5000);
             }
             LoadingText = "Finished";
         }
