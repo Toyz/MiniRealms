@@ -98,7 +98,11 @@ namespace MiniCraft.Screens
                 Font.Draw(msg, screen, (screen.W - msg.Length * 8) / 2, (8 + i) * 8, col);
             }
 
-            Font.Draw("(Arrow keys,X and C)", screen, 0, screen.H - 8, ColorHelper.Get(0, 111, 111, 111));
+            string mg = "(Arrow keys,X and C)";
+
+            var xx = (Game.Width - mg.Length * 8) / 2;
+
+            Font.Draw(mg, screen, xx, screen.H - 8, ColorHelper.Get(0, 111, 111, 111));
 
             if (ShowErrorAlert && !Game.IsLoadingWorld)
             {

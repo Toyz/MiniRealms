@@ -20,8 +20,8 @@ namespace MiniCraft
     public class McGame : Game
     {
         public const string Name = "Minicraft";
-        public const int Height = 120;
-        public const int Width = 160;
+        public int Height = 160;
+        public int Width = 200;
         public const int Scale = 4;
 
         private Texture2D _image;
@@ -286,33 +286,34 @@ namespace MiniCraft
         {
             if (Player != null)
             {
-                            if (Player.ActiveItem != null)
-            {
-                for (var y = 0; y < 1; y++)
+                if (Player.ActiveItem != null)
                 {
-                    for (var x = 0; x < 10; x++)
+                    for (var y = 0; y < 1; y++)
                     {
-                        _screen.Render(x*8 + 80, _screen.H - 16 + y*8, 0 + 12*32, ColorHelper.Get(000, 000, 000, 000), 0);
+                        for (var x = 0; x < 10; x++)
+                        {
+                            _screen.Render(x*8 + 60, _screen.H - 16 + y*8, 0 + 12*32,
+                                ColorHelper.Get(000, 000, 000, 000), 0);
+                        }
                     }
                 }
-            }
 
                 for (var i = 0; i < 10; i++)
                 {
 
-                    _screen.Render(i*8, _screen.H - 8, 0 + 12*32,
+                    _screen.Render(i*8  + 20, _screen.H - 8, 0 + 12*32,
                         i < Player.Health ? ColorHelper.Get(000, 200, 500, 533) : ColorHelper.Get(000, 100, 000, 000), 0);
 
                     if (Player.StaminaRechargeDelay > 0)
                     {
-                        _screen.Render(i*8 + 80, _screen.H - 8, 1 + 12*32,
+                        _screen.Render(i*8 + 80 + 20, _screen.H - 8, 1 + 12*32,
                             Player.StaminaRechargeDelay/4%2 == 0
                                 ? ColorHelper.Get(000, 555, 000, 100)
                                 : ColorHelper.Get(000, 110, 000, 100), 0);
                     }
                     else
                     {
-                        _screen.Render(i*8 + 80, _screen.H - 8, 1 + 12*32,
+                        _screen.Render(i*8 + 80 + 20, _screen.H - 8, 1 + 12*32,
                             i < Player.Stamina
                                 ? ColorHelper.Get(000, 220, 550, 553)
                                 : ColorHelper.Get(000, 110, 000, 000),
@@ -320,7 +321,25 @@ namespace MiniCraft
                     }
 
                 }
-                Player.ActiveItem?.RenderInventory(_screen, 10*8, _screen.H - 16);
+                Player.ActiveItem?.RenderInventory(_screen, 10*6, _screen.H - 16);
+
+                if (_playerDeadTime < 60)
+                {
+                    int seconds = GameTime/60;
+                    int minutes = seconds/60;
+                    int hours = minutes/60;
+                    minutes %= 60;
+                    seconds %= 60;
+
+                    var timeString = hours > 0
+                        ? hours + "h" + (minutes < 10 ? "0" : "") + minutes + "m"
+                        : minutes + "m " + (seconds < 10 ? "0" : "") + seconds + "s";
+
+                    var xx = (Width - timeString.Length*8) + 1;
+
+                    Font.Draw(timeString, _screen, xx, 1, ColorHelper.Get(-1, 555, 555, 555));
+                }
+
             }
             Menu?.Render(_screen);
         }

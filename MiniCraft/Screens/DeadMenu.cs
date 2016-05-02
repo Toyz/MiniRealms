@@ -23,8 +23,8 @@ namespace MiniCraft.Screens
 
         public override void Render(Screen screen)
         {
-            Font.RenderFrame(screen, "", 1, 3, 18, 9);
-            Font.Draw("You died! Aww!", screen, 2 * 8, 4 * 8, ColorHelper.Get(-1, 555, 555, 555));
+            Font.RenderFrame(screen, "", 3, 4, 21, 10);
+            Font.Draw("You died! Aww!", screen, 5 * 8, 5 * 8, ColorHelper.Get(-1, 555, 555, 555));
 
             int seconds = Game.GameTime / 60;
             int minutes = seconds / 60;
@@ -35,11 +35,11 @@ namespace MiniCraft.Screens
             var timeString = hours > 0
                 ? hours + "h" + (minutes < 10 ? "0" : "") + minutes + "m"
                 : minutes + "m " + (seconds < 10 ? "0" : "") + seconds + "s";
-            Font.Draw("Time:", screen, 2 * 8, 5 * 8, ColorHelper.Get(-1, 555, 555, 555));
-            Font.Draw(timeString, screen, (2 + 5) * 8, 5 * 8, ColorHelper.Get(-1, 550, 550, 550));
-            Font.Draw("Score:", screen, 2 * 8, 6 * 8, ColorHelper.Get(-1, 555, 555, 555));
-            Font.Draw("" + Game.Player.Score, screen, (2 + 6) * 8, 6 * 8, ColorHelper.Get(-1, 550, 550, 550));
-            Font.Draw("Press C to lose", screen, 2 * 8, 8 * 8, ColorHelper.Get(-1, 333, 333, 333));
+            Font.Draw("Time:", screen, 5 * 8, 6 * 8, ColorHelper.Get(-1, 555, 555, 555));
+            Font.Draw(timeString, screen, (5 + 5) * 8, 6 * 8, ColorHelper.Get(-1, 550, 550, 550));
+            Font.Draw("Score:", screen, 5 * 8, 7 * 8, ColorHelper.Get(-1, 555, 555, 555));
+            Font.Draw("" + Game.Player.Score, screen, (5 + 6) * 8, 7 * 8, ColorHelper.Get(-1, 550, 550, 550));
+            Font.Draw("Press C to lose", screen, 5 * 8, 9 * 8, ColorHelper.Get(-1, 333, 333, 333));
         }
     }
 }
