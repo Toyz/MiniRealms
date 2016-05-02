@@ -4,7 +4,7 @@
     {
         public static int White => Get(-1, 555, 555, 555);
         public static int Black => Get(-1, 000, 000, 000);
-        public static int Yello => Get(-1, 5, 5, 550);
+        public static int Yellow => Get(-1, 5, 5, 550);
         public static int DarkGrey => Get(-1, 222, 222, 222);
         public static int Grey => Get(-1, 333, 333, 333);
 
