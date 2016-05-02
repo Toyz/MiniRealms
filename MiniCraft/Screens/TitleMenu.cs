@@ -89,11 +89,11 @@ namespace MiniCraft.Screens
             for (int i = 0; i < Options.Length; i++)
             {
                 string msg = Options[i];
-                int col = Color.Get(0, 222, 222, 222);
+                int col = Color.DarkGrey;
                 if (i == _selected)
                 {
                     msg = "> " + msg + " <";
-                    col = Color.Get(0, 555, 555, 555);
+                    col = Color.White;
                 }
                 Font.Draw(msg, screen, (screen.W - msg.Length * 8) / 2, (8 + i) * 8, col);
             }
@@ -101,7 +101,7 @@ namespace MiniCraft.Screens
 
             var xx = (Game.Width - "(Arrow keys,X and C)".Length * 8) / 2;
 
-            Font.Draw("(Arrow keys,X and C)", screen, xx, screen.H - 8, Color.Get(0, 111, 111, 111));
+            Font.Draw("(Arrow keys,X and C)", screen, xx, screen.H - 8, Color.DarkGrey);
 
             if (ShowErrorAlert && !Game.IsLoadingWorld)
             {
