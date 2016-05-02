@@ -47,15 +47,9 @@ namespace MiniCraft.Levels.Tiles
             ToolItem toolItem = item as ToolItem;
             if (toolItem == null) return false;
             ToolItem tool = toolItem;
-            if (tool.Type == ToolType.Shovel)
-            {
-                if (player.PayStamina(4 - tool.Level))
-                {
-                    level.SetTile(xt, yt, Dirt, 0);
-                    return true;
-                }
-            }
-            return false;
+            if (tool.Type != ToolType.Shovel || !player.PayStamina(4 - tool.Level)) return false;
+            level.SetTile(xt, yt, Dirt, 0);
+            return true;
         }
 
         public override void SteppedOn(Level level, int xt, int yt, Entity entity)

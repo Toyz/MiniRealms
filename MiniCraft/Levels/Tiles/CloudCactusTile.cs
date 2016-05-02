@@ -23,8 +23,7 @@ namespace MiniCraft.Levels.Tiles
 
         public override bool MayPass(Level level, int x, int y, Entity e)
         {
-            if (e is AirWizard) return true;
-            return false;
+            return e is AirWizard;
         }
 
         public override void Hurt(Level level, int x, int y, Mob source, int dmg, int attackDir)
@@ -37,15 +36,9 @@ namespace MiniCraft.Levels.Tiles
             var toolItem = item as ToolItem;
             if (toolItem == null) return false;
             ToolItem tool = toolItem;
-            if (tool.Type == ToolType.Pickaxe)
-            {
-                if (player.PayStamina(6 - tool.Level))
-                {
-                    Hurt(level, xt, yt, 1);
-                    return true;
-                }
-            }
-            return false;
+            if (tool.Type != ToolType.Pickaxe || !player.PayStamina(6 - tool.Level)) return false;
+            Hurt(level, xt, yt, 1);
+            return true;
         }
 
         public static void Hurt(Level level, int x, int y, int dmg)
@@ -53,16 +46,14 @@ namespace MiniCraft.Levels.Tiles
             int damage = level.GetData(x, y) + 1;
             level.Add(new SmashParticle(x * 16 + 8, y * 16 + 8));
             level.Add(new TextParticle("" + dmg, x * 16 + 8, y * 16 + 8, ColorHelper.Get(-1, 500, 500, 500)));
-            if (dmg > 0)
+            if (dmg <= 0) return;
+            if (damage >= 10)
             {
-                if (damage >= 10)
-                {
-                    level.SetTile(x, y, Cloud, 0);
-                }
-                else
-                {
-                    level.SetData(x, y, damage);
-                }
+                level.SetTile(x, y, Cloud, 0);
+            }
+            else
+            {
+                level.SetData(x, y, damage);
             }
         }
 
