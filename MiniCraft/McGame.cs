@@ -13,10 +13,6 @@ using Color = MiniRealms.Engine.Gfx.Color;
 
 namespace MiniRealms
 {
-    //https://github.com/Kivutar/tethical
-    //http://ffhacktics.com/smf/index.php?topic=6809.0
-    //https://github.com/rmcn/PythonEmbrace
-
     /// <summary>
     ///     This is the main type for your game.
     /// </summary>
@@ -32,7 +28,7 @@ namespace MiniRealms
         private bool _running;
 
         private Microsoft.Xna.Framework.Color[] _colors;
-        public int _currentLevel = 3;
+        public int CurrentLevel = 3;
         public int GameTime;
 
         public bool IsGamePaused { get; set; }
@@ -50,13 +46,13 @@ namespace MiniRealms
         private int _pendingLevelChange;
         public Player Player;
         private int _playerDeadTime;
-        private Screen _screen;
+        public Screen Screen;
         private SpriteBatch _spriteBatch;
         public int TickCount;
         private int _wonTimer;
 
         public ConsoleComponent Console;
-        public ConsoleCommands cc;
+        public ConsoleCommands Cc;
 
         public McGame()
         {
@@ -66,9 +62,9 @@ namespace MiniRealms
                 PreferredBackBufferWidth = Width*Scale
             };
 
-            cc = new ConsoleCommands(this);
+            Cc = new ConsoleCommands(this);
 
-            Console = new ConsoleComponent(this) {Interpreter = cc.ManualInterpreter};
+            Console = new ConsoleComponent(this) {Interpreter = Cc.ManualInterpreter};
 
             Components.Add(Console);
 
@@ -99,7 +95,7 @@ namespace MiniRealms
             GameTime = 0;
             HasWon = false;
 
-            _currentLevel = 3;
+            CurrentLevel = 3;
         }
 
         protected override void LoadContent()
@@ -134,7 +130,7 @@ namespace MiniRealms
             //}
 
             var spriteSheet = Content.Load<Texture2D>("Textures/icons");
-            _screen = new Screen(Width, Height, new SpriteSheet(spriteSheet));
+            Screen = new Screen(Width, Height, new SpriteSheet(spriteSheet));
             _lightScreen = new Screen(Width, Height, new SpriteSheet(spriteSheet));
 
             Sound.Initialize(Content);
@@ -238,22 +234,22 @@ namespace MiniRealms
             var w = msg.Length;
             var h = 1;
 
-            _screen.Render(xx - 8, yy - 8, 0 + 13*32, Color.Get(-1, 1, 5, 445), 0);
-            _screen.Render(xx + w*8, yy - 8, 0 + 13*32, Color.Get(-1, 1, 5, 445), 1);
-            _screen.Render(xx - 8, yy + 8, 0 + 13*32, Color.Get(-1, 1, 5, 445), 2);
-            _screen.Render(xx + w*8, yy + 8, 0 + 13*32, Color.Get(-1, 1, 5, 445), 3);
+            Screen.Render(xx - 8, yy - 8, 0 + 13*32, Color.Get(-1, 1, 5, 445), 0);
+            Screen.Render(xx + w*8, yy - 8, 0 + 13*32, Color.Get(-1, 1, 5, 445), 1);
+            Screen.Render(xx - 8, yy + 8, 0 + 13*32, Color.Get(-1, 1, 5, 445), 2);
+            Screen.Render(xx + w*8, yy + 8, 0 + 13*32, Color.Get(-1, 1, 5, 445), 3);
             for (var x = 0; x < w; x++)
             {
-                _screen.Render(xx + x*8, yy - 8, 1 + 13*32, Color.Get(-1, 1, 5, 445), 0);
-                _screen.Render(xx + x*8, yy + 8, 1 + 13*32, Color.Get(-1, 1, 5, 445), 2);
+                Screen.Render(xx + x*8, yy - 8, 1 + 13*32, Color.Get(-1, 1, 5, 445), 0);
+                Screen.Render(xx + x*8, yy + 8, 1 + 13*32, Color.Get(-1, 1, 5, 445), 2);
             }
             for (var y = 0; y < h; y++)
             {
-                _screen.Render(xx - 8, yy + y*8, 2 + 13*32, Color.Get(-1, 1, 5, 445), 0);
-                _screen.Render(xx + w*8, yy + y*8, 2 + 13*32, Color.Get(-1, 1, 5, 445), 1);
+                Screen.Render(xx - 8, yy + y*8, 2 + 13*32, Color.Get(-1, 1, 5, 445), 0);
+                Screen.Render(xx + w*8, yy + y*8, 2 + 13*32, Color.Get(-1, 1, 5, 445), 1);
             }
 
-            Font.Draw(msg, _screen, xx, yy,
+            Font.Draw(msg, Screen, xx, yy,
                 TickCount/20%2 == 0 ? Color.Get(5, 333, 333, 333) : Color.Get(5, 555, 555, 555));
         }
 
@@ -265,31 +261,31 @@ namespace MiniRealms
         {
             if (Player != null)
             {
-                var xScroll = Player.X - _screen.W/2;
-                var yScroll = Player.Y - (_screen.H - 8)/2;
+                var xScroll = Player.X - Screen.W/2;
+                var yScroll = Player.Y - (Screen.H - 8)/2;
                 if (xScroll < 16) xScroll = 16;
                 if (yScroll < 16) yScroll = 16;
-                if (xScroll > Level.W*16 - _screen.W - 16) xScroll = Level.W*16 - _screen.W - 16;
-                if (yScroll > Level.H*16 - _screen.H - 16) yScroll = Level.H*16 - _screen.H - 16;
-                if (_currentLevel > 3)
+                if (xScroll > Level.W*16 - Screen.W - 16) xScroll = Level.W*16 - Screen.W - 16;
+                if (yScroll > Level.H*16 - Screen.H - 16) yScroll = Level.H*16 - Screen.H - 16;
+                if (CurrentLevel > 3)
                 {
                     var col = Color.Get(20, 20, 121, 121);
                     for (var y = 0; y < 14; y++)
                         for (var x = 0; x < 24; x++)
                         {
-                            _screen.Render(x*8 - ((xScroll/4) & 7), y*8 - ((yScroll/4) & 7), 0, col, 0);
+                            Screen.Render(x*8 - ((xScroll/4) & 7), y*8 - ((yScroll/4) & 7), 0, col, 0);
                         }
                 }
 
 
-                Level.RenderBackground(_screen, xScroll, yScroll);
-                Level.RenderSprites(_screen, xScroll, yScroll);
+                Level.RenderBackground(Screen, xScroll, yScroll);
+                Level.RenderSprites(Screen, xScroll, yScroll);
 
-                if (_currentLevel < 3)
+                if (CurrentLevel < 3)
                 {
                     _lightScreen.Clear(0);
                     Level.RenderLight(_lightScreen, xScroll, yScroll);
-                    _screen.Overlay(_lightScreen, xScroll, yScroll);
+                    Screen.Overlay(_lightScreen, xScroll, yScroll);
                 }
             }
 
@@ -299,11 +295,11 @@ namespace MiniRealms
             if (IsGamePaused) RenderAlertWindow("Game is Paused");
             if (IsLoadingWorld) RenderAlertWindow(LoadingText);
 
-            for (var y = 0; y < _screen.H; y++)
+            for (var y = 0; y < Screen.H; y++)
             {
-                for (var x = 0; x < _screen.W; x++)
+                for (var x = 0; x < Screen.W; x++)
                 {
-                    var cc = _screen.Pixels[x + y*_screen.W];
+                    var cc = Screen.Pixels[x + y*Screen.W];
                     if (cc < 255) _pixels[x + y*Width] = _colors[cc];
                 }
             }
@@ -328,7 +324,7 @@ namespace MiniRealms
                     {
                         for (var x = 0; x < 10; x++)
                         {
-                            _screen.Render(x*8 + 60, _screen.H - 18 + y*8, 0 + 12*32,
+                            Screen.Render(x*8 + 60, Screen.H - 18 + y*8, 0 + 12*32,
                                 Color.Get(000, 000, 000, 000), 0);
                         }
                     }
@@ -337,19 +333,19 @@ namespace MiniRealms
                 for (var i = 0; i < 10; i++)
                 {
 
-                    _screen.Render(i*8  + 20, _screen.H - 9, 0 + 12*32,
+                    Screen.Render(i*8  + 20, Screen.H - 9, 0 + 12*32,
                         i < Player.Health ? Color.Get(-1, 200, 500, 533) : Color.Get(-1, 100, 000, 000), 0);
 
                     if (Player.StaminaRechargeDelay > 0)
                     {
-                        _screen.Render(i*8 + 80 + 20, _screen.H - 9, 1 + 12*32,
+                        Screen.Render(i*8 + 80 + 20, Screen.H - 9, 1 + 12*32,
                             Player.StaminaRechargeDelay/4%2 == 0
                                 ? Color.Get(-1, 555, 000, 100)
                                 : Color.Get(-1, 110, 000, 100), 0);
                     }
                     else
                     {
-                        _screen.Render(i*8 + 80 + 20, _screen.H - 9, 1 + 12*32,
+                        Screen.Render(i*8 + 80 + 20, Screen.H - 9, 1 + 12*32,
                             i < Player.Stamina
                                 ? Color.Get(-1, 220, 550, 553)
                                 : Color.Get(-1, 110, 000, 000),
@@ -357,7 +353,7 @@ namespace MiniRealms
                     }
 
                 }
-                Player.ActiveItem?.RenderInventory(_screen, 10*6, _screen.H - 18);
+                Player.ActiveItem?.RenderInventory(Screen, 10*6, Screen.H - 18);
 
                 if (_playerDeadTime < 60)
                 {
@@ -373,18 +369,18 @@ namespace MiniRealms
 
                     var xx = (Width - timeString.Length*8) + 1;
 
-                    Font.Draw(timeString, _screen, xx, 1, Color.White);
+                    Font.Draw(timeString, Screen, xx, 1, Color.White);
                 }
 
             }
-            Menu?.Render(_screen);
+            Menu?.Render(Screen);
         }
 
         public void ChangeLevel(int dir)
         {
             Level.Remove(Player);
-            _currentLevel += dir;
-            Level = Levels[_currentLevel];
+            CurrentLevel += dir;
+            Level = Levels[CurrentLevel];
             Player.X = (Player.X >> 4)*16 + 8;
             Player.Y = (Player.Y >> 4)*16 + 8;
             Level.Add(Player);
@@ -419,7 +415,7 @@ namespace MiniRealms
             LoadingText = "Creating Level 5";
             Levels[0] = new Level(lw, lh, -3, Levels[1]);
 
-            Level = Levels[_currentLevel];
+            Level = Levels[CurrentLevel];
 
             LoadingText = "Spawning You!";
             Player = new Player(this, _input);

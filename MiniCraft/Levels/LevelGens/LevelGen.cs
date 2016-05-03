@@ -6,8 +6,23 @@ namespace MiniRealms.Levels.LevelGens
 
     public class LevelGen
     {
-        private static readonly Random Random = new Random();
+        private static Random r;
+        private static Random Random
+        {
+            get
+            {
+                if (r == null)
+                {
+                    Seed = DateTime.Now.Millisecond;
+
+                    r = new Random(Seed);
+                }
+
+                return r;
+            }
+        }
         public double[] Values;
+        public static int Seed;
         private readonly int _w;
         private readonly int _h;
 

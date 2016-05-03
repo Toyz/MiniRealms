@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using GameConsole.ManualInterpreter;
 using MiniRealms.Entities;
 using MiniRealms.Items;
 using MiniRealms.Items.Resources;
+using MiniRealms.Levels.LevelGens;
+using MiniRealms.Levels.Tiles;
 
 namespace MiniRealms.Engine
 {
@@ -18,12 +23,55 @@ namespace MiniRealms.Engine
             ManualInterpreter.RegisterCommand("give-item", GiveItemCommand);
             ManualInterpreter.RegisterCommand("spawn-mob", SpawnMobCommand);
             ManualInterpreter.RegisterCommand("kill-me", KillMeCommand);
+            ManualInterpreter.RegisterCommand("save-image", SaveWorldImageCommand);
+            ManualInterpreter.RegisterCommand("seed", _ => $"Game Seed is {LevelGen.Seed}");
 
             //Normal commands XD
             ManualInterpreter.RegisterCommand("clear", _ =>
             { 
                 game.Console.Clear();
             });
+        }
+
+        private string SaveWorldImageCommand(string[] arg)
+        {
+            var sp = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Output.png");
+
+            if (_game.Levels?[_game.CurrentLevel] == null)
+            {
+                return "World is null, or doesn't exist!";
+            }
+
+
+            byte[] map = _game.Levels[_game.CurrentLevel].Tiles;
+
+            var bmp = new Bitmap(512, 512, PixelFormat.Format32bppRgb);
+            int[] pixels = new int[512*512];
+            for (int y = 0; y < 512; y++)
+            {
+                for (int x = 0; x < 512; x++)
+                {
+                    int i = x + y*512;
+
+                    if (map[i] == Tile.Water.Id) pixels[i] = 0x000080;
+                    if (map[i] == Tile.Grass.Id) pixels[i] = 0x208020;
+                    if (map[i] == Tile.Rock.Id) pixels[i] = 0xa0a0a0;
+                    if (map[i] == Tile.Dirt.Id) pixels[i] = 0x604040;
+                    if (map[i] == Tile.Sand.Id) pixels[i] = 0xa0a040;
+                    if (map[i] == Tile.Tree.Id) pixels[i] = 0x003000;
+                    if (map[i] == Tile.Lava.Id) pixels[i] = 0xff2020;
+                    if (map[i] == Tile.Cloud.Id) pixels[i] = 0xa0a0a0;
+                    if (map[i] == Tile.StairsDown.Id) pixels[i] = 0xffffff;
+                    if (map[i] == Tile.StairsUp.Id) pixels[i] = 0xffffff;
+                    if (map[i] == Tile.CloudCactus.Id) pixels[i] = 0xff00ff;
+
+                    bmp.SetPixel(x, y, Color.FromArgb(pixels[i]));
+                }
+            }
+
+            bmp.Save(sp, ImageFormat.Png);
+
+            return $"Saved world image to {sp}";
         }
 
         private string KillMeCommand(string[] arg)
@@ -39,7 +87,7 @@ namespace MiniRealms.Engine
 
         private string SpawnMobCommand(string[] strings)
         {
-            if (_game.Levels?[_game._currentLevel] == null)
+            if (_game.Levels?[_game.CurrentLevel] == null)
             {
                 return "World is null, or doesn't exist!";
             }
@@ -52,14 +100,14 @@ namespace MiniRealms.Engine
             switch (strings[0].ToLower())
             {
                 case "zombie":
-                    _game.Levels?[_game._currentLevel].Add(new Zombie(1)
+                    _game.Levels?[_game.CurrentLevel].Add(new Zombie(1)
                     {
                         X = _game.Player.X + 5,
                         Y = _game.Player.Y + 5
                     });
                     return "Summoned a zombie";
                 case "slime":
-                    _game.Levels?[_game._currentLevel].Add(new Slime(1)
+                    _game.Levels?[_game.CurrentLevel].Add(new Slime(1)
                     {
                         X = _game.Player.X + 5,
                         Y = _game.Player.Y + 5
