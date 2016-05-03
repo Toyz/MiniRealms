@@ -1,28 +1,26 @@
 ﻿using System;
 using MiniRealms.Levels.Tiles;
 
-namespace MiniRealms.Levels.LevelGens
+namespace MiniRealms.Engine.LevelGens
 {
 
     public class LevelGen
     {
-        private static Random r;
+        public static Random R;
         private static Random Random
         {
             get
             {
-                if (r == null)
-                {
-                    Seed = DateTime.Now.Millisecond;
+                if (R != null) return R;
+                Seed = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
 
-                    r = new Random(Seed);
-                }
+                R = new Random((int)Seed);
 
-                return r;
+                return R;
             }
         }
         public double[] Values;
-        public static int Seed;
+        public static long Seed;
         private readonly int _w;
         private readonly int _h;
 

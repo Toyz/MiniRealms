@@ -47,6 +47,7 @@
     <Compile Include="Entities\AirWizard.cs" />
     <Compile Include="Entities\Anvil.cs" />
     <Compile Include="Entities\Chest.cs" />
+    <Compile Include="Entities\Creeper.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Furnance.cs" />
     <Compile Include="Entities\Furniture.cs" />
@@ -81,7 +82,7 @@
     <Compile Include="Items\ToolType.cs" />
     <Compile Include="KeyListener.cs" />
     <Compile Include="Levels\Level.cs" />
-    <Compile Include="Levels\LevelGens\LevelGen.cs" />
+    <Compile Include="Engine\LevelGens\LevelGen.cs" />
     <Compile Include="Levels\Tiles\CactusTile.cs" />
     <Compile Include="Levels\Tiles\CloudCactusTile.cs" />
     <Compile Include="Levels\Tiles\CloudTile.cs" />
@@ -129,9 +130,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\qc_background.fx" />
+    <Content Include="Content\Sounds\boom.wav" />
     <Content Include="Content\Sounds\bossdeath.wav" />
     <Content Include="Content\Sounds\craft.wav" />
     <Content Include="Content\Sounds\death.wav" />
+    <Content Include="Content\Sounds\fuse.wav" />
     <Content Include="Content\Sounds\monsterhurt.wav" />
     <Content Include="Content\Sounds\pickup.wav" />
     <Content Include="Content\Sounds\playerhurt.wav" />

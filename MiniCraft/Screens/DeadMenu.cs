@@ -1,4 +1,5 @@
 ﻿using MiniRealms.Engine.Gfx;
+using MiniRealms.Engine.LevelGens;
 
 namespace MiniRealms.Screens
 {
@@ -16,7 +17,7 @@ namespace MiniRealms.Screens
                 Game.Level = null;
                 Game.Player = null;
                 Game.Levels = null;
-
+                LevelGen.R = null;
                 Game.SetMenu(new TitleMenu());
             }
         }

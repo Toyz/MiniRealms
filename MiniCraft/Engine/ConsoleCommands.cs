@@ -4,10 +4,10 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using GameConsole.ManualInterpreter;
+using MiniRealms.Engine.LevelGens;
 using MiniRealms.Entities;
 using MiniRealms.Items;
 using MiniRealms.Items.Resources;
-using MiniRealms.Levels.LevelGens;
 using MiniRealms.Levels.Tiles;
 
 namespace MiniRealms.Engine
@@ -20,17 +20,23 @@ namespace MiniRealms.Engine
         public ConsoleCommands(McGame game)
         {
             _game = game;
+            ManualInterpreter.RegisterCommand("game-seed", GameSeedCommand);
             ManualInterpreter.RegisterCommand("give-item", GiveItemCommand);
             ManualInterpreter.RegisterCommand("spawn-mob", SpawnMobCommand);
             ManualInterpreter.RegisterCommand("kill-me", KillMeCommand);
             ManualInterpreter.RegisterCommand("save-image", SaveWorldImageCommand);
-            ManualInterpreter.RegisterCommand("seed", _ => $"Game Seed is {LevelGen.Seed}");
+
 
             //Normal commands XD
             ManualInterpreter.RegisterCommand("clear", _ =>
             { 
                 game.Console.Clear();
             });
+        }
+
+        private string GameSeedCommand(string[] arg)
+        {
+            return $"Current game seed is: {LevelGen.Seed}";
         }
 
         private string SaveWorldImageCommand(string[] arg)
@@ -113,6 +119,14 @@ namespace MiniRealms.Engine
                         Y = _game.Player.Y + 5
                     });
                     return "Summoned a slime";
+
+                case "creeper":
+                    _game.Levels?[_game.CurrentLevel].Add(new Creeper(1)
+                    {
+                        X = _game.Player.X + 5,
+                        Y = _game.Player.Y + 5
+                    });
+                    return "Summoned a Creeper";
             }
             return "Invalid mod type";
         }

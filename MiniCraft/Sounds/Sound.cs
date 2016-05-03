@@ -12,6 +12,8 @@ namespace MiniRealms.Sounds
         public static Sound Pickup { get; private set; }
         public static Sound Bossdeath { get; private set; }
         public static Sound Craft { get; private set; }
+        public static Sound Fuse { get; private set; }
+        public static Sound Boom { get; private set; }
 
         public static void Initialize(ContentManager content)
         {
@@ -22,7 +24,10 @@ namespace MiniRealms.Sounds
             Pickup = new Sound(content, "pickup");
             Bossdeath = new Sound(content, "bossdeath");
             Craft = new Sound(content, "craft");
+            Fuse = new Sound(content, "fuse");
+            Boom = new Sound(content, "boom");
         }
+
 
         private readonly SoundEffect _soundEffect;
 

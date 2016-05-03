@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using MiniRealms.Engine.Gfx;
+using MiniRealms.Engine.LevelGens;
 using MiniRealms.Entities;
-using MiniRealms.Levels.LevelGens;
 using MiniRealms.Levels.Tiles;
 
 namespace MiniRealms.Levels
@@ -288,10 +288,20 @@ namespace MiniRealms.Levels
                 }
 
                 int lvl = _random.NextInt(maxLevel - minLevel + 1) + minLevel;
-                if (_random.NextInt(2) == 0)
+                int spawner = _random.NextInt(5);
+
+                if (spawner <= 1)
+                {
                     mob = new Slime(lvl);
-                else
+                }
+                else if (spawner <= 3)
+                {
                     mob = new Zombie(lvl);
+                }
+                else
+                {
+                    mob = new Creeper(lvl);
+                }
 
                 if (mob.FindStartPos(this))
                 {

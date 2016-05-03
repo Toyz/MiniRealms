@@ -91,3 +91,15 @@
 /processorParam:TextureFormat=Compressed
 /build:qc_console.spritefont
 
+#begin Sounds/fuse.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/fuse.wav
+
+#begin Sounds/boom.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/boom.wav
+
