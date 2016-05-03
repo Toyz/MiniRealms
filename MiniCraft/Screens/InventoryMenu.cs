@@ -42,7 +42,9 @@ namespace MiniRealms.Screens
 
             Font.RenderFrame(screen, "inventory", 1, 1, 12, 11);
             Font.RenderFrame(screen, i.GetName(), 13, 1, 23, 5);
+            Font.RenderFrame(screen, "Amount", 13, 6, 23, 8);
 
+            Font.Draw(_player.Inventory.Count(i).ToString("N0"), screen, 14 * 8, 7 * 8 + 2, Color.DarkGrey);
             Font.Draw(i.GetName(), screen, 14 * 8, 2 * 8, Color.White);
 
             RenderItemList(screen, 1, 1, 12, 11, _player.Inventory.Items, _selected);
