@@ -1,4 +1,4 @@
-﻿using MiniRealms.Gfx;
+﻿using MiniRealms.Engine.Gfx;
 
 namespace MiniRealms.Entities.Particles
 {

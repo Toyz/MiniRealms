@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
-using MiniRealms.Gfx;
 using MiniRealms.Levels.LevelGens;
 using MiniRealms.Levels.Tiles;
 

@@ -50,6 +50,7 @@ namespace MiniRealms
         public Key Right;
         public Key Attack;
         public Key Menu;
+        public Key ConsoleKey;
 
         public InputHandler()
         {
@@ -60,7 +61,9 @@ namespace MiniRealms
             Attack = new Key(this);
             Menu = new Key(this);
             CloseKey = new Key(this);
+            ConsoleKey = new Key(this);
         }
+
 
 
         public void ReleaseAll()
@@ -121,6 +124,7 @@ namespace MiniRealms
             if (ke == Keys.X) Menu.Toggle(pressed);
             if (ke == Keys.C) Attack.Toggle(pressed);
             if (ke == Keys.Escape) CloseKey.Toggle(pressed);
+            if (ke == Keys.OemTilde) ConsoleKey.Toggle(pressed);
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using MiniRealms.Entities;
-using MiniRealms.Gfx;
+﻿using MiniRealms.Engine.Gfx;
+using MiniRealms.Entities;
 using MiniRealms.Levels;
 using MiniRealms.Levels.Tiles;
 

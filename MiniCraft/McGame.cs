@@ -1,13 +1,15 @@
 ﻿using System;
+using GameConsole;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MiniRealms.Engine;
+using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
-using MiniRealms.Gfx;
 using MiniRealms.Levels;
 using MiniRealms.Levels.Tiles;
 using MiniRealms.Screens;
 using MiniRealms.Sounds;
-using Color = MiniRealms.Gfx.Color;
+using Color = MiniRealms.Engine.Gfx.Color;
 
 namespace MiniRealms
 {
@@ -30,7 +32,7 @@ namespace MiniRealms
         private bool _running;
 
         private Microsoft.Xna.Framework.Color[] _colors;
-        private int _currentLevel = 3;
+        public int _currentLevel = 3;
         public int GameTime;
 
         public bool IsGamePaused { get; set; }
@@ -53,6 +55,9 @@ namespace MiniRealms
         public int TickCount;
         private int _wonTimer;
 
+        public ConsoleComponent Console;
+        public ConsoleCommands cc;
+
         public McGame()
         {
             var deviceManager = new GraphicsDeviceManager(this)
@@ -60,6 +65,12 @@ namespace MiniRealms
                 PreferredBackBufferHeight = Height*Scale,
                 PreferredBackBufferWidth = Width*Scale
             };
+
+            cc = new ConsoleCommands(this);
+
+            Console = new ConsoleComponent(this) {Interpreter = cc.ManualInterpreter};
+
+            Components.Add(Console);
 
             IsMouseVisible = true;
             Content.RootDirectory = "Content";
@@ -160,6 +171,11 @@ namespace MiniRealms
             }
             else
             {
+                if (_input.ConsoleKey.Clicked)
+                {
+                    Console.ToggleOpenClose();
+                }
+
                 if (Player != null && !Player.Removed && !HasWon)
                 {
                     if (!IsGamePaused)
@@ -178,7 +194,7 @@ namespace MiniRealms
                     }
                 }
 
-                if (IsGamePaused) return;
+                if (IsGamePaused || Console.IsVisible) return;
 
                 if (Menu != null)
                 {

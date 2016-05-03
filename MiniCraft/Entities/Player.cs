@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities.Particles;
-using MiniRealms.Gfx;
 using MiniRealms.Items;
 using MiniRealms.Items.Resources;
 using MiniRealms.Levels;

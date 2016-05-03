@@ -1,5 +1,5 @@
 ﻿using MiniRealms.Crafts;
-using MiniRealms.Gfx;
+using MiniRealms.Engine.Gfx;
 using MiniRealms.Screens;
 
 namespace MiniRealms.Entities

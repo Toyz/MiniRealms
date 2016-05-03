@@ -1,5 +1,5 @@
 ﻿using System;
-using MiniRealms.Gfx;
+using MiniRealms.Engine.Gfx;
 using MiniRealms.Sounds;
 
 namespace MiniRealms.Entities

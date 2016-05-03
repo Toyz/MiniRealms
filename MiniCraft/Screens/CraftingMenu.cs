@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using MiniRealms.Crafts;
+using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
-using MiniRealms.Gfx;
 using MiniRealms.Items;
 using MiniRealms.Sounds;
 

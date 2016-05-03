@@ -1,5 +1,5 @@
-﻿using MiniRealms.Entities.Particles;
-using MiniRealms.Gfx;
+﻿using MiniRealms.Engine.Gfx;
+using MiniRealms.Entities.Particles;
 using MiniRealms.Levels;
 using MiniRealms.Levels.Tiles;
 using MiniRealms.Sounds;

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using MiniRealms.Gfx;
+using MiniRealms.Engine.Gfx;
 
 namespace MiniRealms.Screens
 {

@@ -1,6 +1,6 @@
-﻿using MiniRealms.Entities;
+﻿using MiniRealms.Engine.Gfx;
+using MiniRealms.Entities;
 using MiniRealms.Entities.Particles;
-using MiniRealms.Gfx;
 using MiniRealms.Items;
 
 namespace MiniRealms.Levels.Tiles

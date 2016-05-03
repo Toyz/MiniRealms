@@ -21,6 +21,7 @@
 /processorParam:GenerateMipmaps=False
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Textures/icons.png
 
@@ -32,6 +33,7 @@
 /processorParam:GenerateMipmaps=False
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Textures/icons2.png
 
@@ -76,4 +78,16 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sounds/test.wav
+
+#begin qc_background.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:qc_background.fx
+
+#begin qc_console.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:qc_console.spritefont
 

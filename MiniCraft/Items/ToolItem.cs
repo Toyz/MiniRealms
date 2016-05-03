@@ -1,6 +1,6 @@
 ﻿using System;
+using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
-using MiniRealms.Gfx;
 
 namespace MiniRealms.Items
 {
