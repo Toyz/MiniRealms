@@ -11,7 +11,7 @@ namespace MiniRealms.Screens
 
         private int _selected;
 
-        private static readonly string[] Options = { "Start game", "How to play", "Mods & Addons", "Options" };
+        private static readonly string[] Options = { "Start game", "How to play", "Mods and Addons", "Options" };
 
         public override void Tick()
         {

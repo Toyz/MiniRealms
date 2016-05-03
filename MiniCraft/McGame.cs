@@ -160,16 +160,22 @@ namespace MiniRealms
             }
             else
             {
-                if (!IsGamePaused)
+                if (Player != null && !Player.Removed && !HasWon)
                 {
-                    if (Player != null && !Player.Removed && !HasWon) GameTime++;
+                    if (!IsGamePaused)
+                    {
+                        GameTime++;
+                    }
                 }
 
                 _input.Tick();
 
-                if (_input.CloseKey.Clicked)
+                if (Player != null && !Player.Removed && !HasWon)
                 {
-                    IsGamePaused = !IsGamePaused;                 
+                    if (_input.CloseKey.Clicked)
+                    {
+                        IsGamePaused = !IsGamePaused;
+                    }
                 }
 
                 if (IsGamePaused) return;
