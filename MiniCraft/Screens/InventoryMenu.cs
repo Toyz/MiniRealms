@@ -38,7 +38,13 @@ namespace MiniRealms.Screens
 
         public override void Render(Screen screen)
         {
+            Item i = _player.Inventory.Items[_selected];
+
             Font.RenderFrame(screen, "inventory", 1, 1, 12, 11);
+            Font.RenderFrame(screen, i.GetName(), 13, 1, 23, 5);
+
+            Font.Draw(i.GetName(), screen, 14 * 8, 2 * 8, Color.White);
+
             RenderItemList(screen, 1, 1, 12, 11, _player.Inventory.Items, _selected);
         }
     }
