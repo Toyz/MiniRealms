@@ -43,6 +43,7 @@
     <Compile Include="Crafts\Recipe.cs" />
     <Compile Include="Crafts\ResourceRecipe.cs" />
     <Compile Include="Crafts\ToolRecipe.cs" />
+    <Compile Include="Engine\Compents\FpsCounterComponent.cs" />
     <Compile Include="Engine\ConsoleCommands.cs" />
     <Compile Include="Entities\AirWizard.cs" />
     <Compile Include="Entities\Anvil.cs" />

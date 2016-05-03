@@ -3,6 +3,7 @@ using GameConsole;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MiniRealms.Engine;
+using MiniRealms.Engine.Compents;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
 using MiniRealms.Levels;
@@ -53,6 +54,7 @@ namespace MiniRealms
 
         public ConsoleComponent Console;
         public ConsoleCommands Cc;
+        public FpsCounterComponent FpsCounterComponent;
 
         public McGame()
         {
@@ -65,8 +67,10 @@ namespace MiniRealms
             Cc = new ConsoleCommands(this);
 
             Console = new ConsoleComponent(this) {Interpreter = Cc.ManualInterpreter};
+            FpsCounterComponent = new FpsCounterComponent(this);
 
             Components.Add(Console);
+            Components.Add(FpsCounterComponent);
 
             IsMouseVisible = true;
             Content.RootDirectory = "Content";

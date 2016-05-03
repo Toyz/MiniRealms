@@ -9,6 +9,7 @@ using MiniRealms.Entities;
 using MiniRealms.Items;
 using MiniRealms.Items.Resources;
 using MiniRealms.Levels.Tiles;
+using MiniRealms.Sounds;
 
 namespace MiniRealms.Engine
 {
@@ -25,6 +26,8 @@ namespace MiniRealms.Engine
             ManualInterpreter.RegisterCommand("spawn-mob", SpawnMobCommand);
             ManualInterpreter.RegisterCommand("kill-me", KillMeCommand);
             ManualInterpreter.RegisterCommand("save-image", SaveWorldImageCommand);
+            ManualInterpreter.RegisterCommand("play-sound", PlaySoundCommand);
+            ManualInterpreter.RegisterCommand("fps", _ => $"Current FPS: {game.FpsCounterComponent.FrameRate}");
 
 
             //Normal commands XD
@@ -32,6 +35,24 @@ namespace MiniRealms.Engine
             { 
                 game.Console.Clear();
             });
+        }
+
+        private string PlaySoundCommand(string[] strings)
+        {
+            if (strings.Length < 1 || strings[0] == "list-sounds")
+            {
+                return $"All Sounds: {string.Join(", ", Sound.AllSounds.Keys)}";
+            }
+
+            strings[0] = strings[0].ToLower();
+
+            if (Sound.AllSounds.ContainsKey(strings[0]))
+            {
+                Sound.AllSounds[strings[0]].Play();
+                return $"Playing sound {strings[0]}";
+            }
+
+            return "Sound does not exist";
         }
 
         private string GameSeedCommand(string[] arg)

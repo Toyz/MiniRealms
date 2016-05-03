@@ -1,10 +1,13 @@
-﻿using Microsoft.Xna.Framework.Audio;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 
 namespace MiniRealms.Sounds
 {
     public class Sound
     {
+        public static Dictionary<string, Sound> AllSounds = new Dictionary<string, Sound>();
+
         public static Sound PlayerHurt { get; private set; }
         public static Sound PlayerDeath { get; private set; }
         public static Sound MonsterHurt { get; private set; }
@@ -26,8 +29,17 @@ namespace MiniRealms.Sounds
             Craft = new Sound(content, "craft");
             Fuse = new Sound(content, "fuse");
             Boom = new Sound(content, "boom");
-        }
 
+            AllSounds.Add(nameof(PlayerHurt).ToLower(), PlayerHurt);
+            AllSounds.Add(nameof(PlayerDeath).ToLower(), PlayerDeath);
+            AllSounds.Add(nameof(MonsterHurt).ToLower(), MonsterHurt);
+            AllSounds.Add(nameof(Test).ToLower(), Test);
+            AllSounds.Add(nameof(Pickup).ToLower(), Pickup);
+            AllSounds.Add(nameof(Bossdeath).ToLower(), Bossdeath);
+            AllSounds.Add(nameof(Craft).ToLower(), Craft);
+            AllSounds.Add(nameof(Fuse).ToLower(), Fuse);
+            AllSounds.Add(nameof(Boom).ToLower(), Boom);
+        }
 
         private readonly SoundEffect _soundEffect;
 
