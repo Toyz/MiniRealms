@@ -76,19 +76,6 @@ namespace MiniRealms.Screens
         {
             screen.Clear(0);
 
-            /*int h = 2;
-            int w = 13;
-            int titleColor = Color.Get(0, 010, 131, 551);
-            int xo = (screen.W - w * 8) / 2;
-            int yo = 24;
-            for (int y = 0; y < h; y++)
-            {
-                for (int x = 0; x < w; x++)
-                {
-                    screen.Render(xo + x * 8, yo + y * 8, x + (y + 6) * 32, titleColor, 0);
-                }
-            }*/
-
             string mg = "MiniRealms";
 
             Font.Draw(mg, screen, (screen.W - mg.Length * 8) / 2, 20,
