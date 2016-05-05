@@ -27,6 +27,7 @@ namespace MiniRealms.Engine
             ManualInterpreter.RegisterCommand("kill-me", KillMeCommand);
             ManualInterpreter.RegisterCommand("save-image", SaveWorldImageCommand);
             ManualInterpreter.RegisterCommand("play-sound", PlaySoundCommand);
+            ManualInterpreter.RegisterCommand("exit", _ => game.Exit());
             ManualInterpreter.RegisterCommand("fps", _ => $"Current FPS: {game.FpsCounterComponent.FrameRate}");
 
 
@@ -72,13 +73,13 @@ namespace MiniRealms.Engine
 
             byte[] map = _game.Levels[_game.CurrentLevel].Tiles;
 
-            var bmp = new Bitmap(512, 512, PixelFormat.Format32bppRgb);
-            int[] pixels = new int[512*512];
-            for (int y = 0; y < 512; y++)
+            var bmp = new Bitmap(256, 256, PixelFormat.Format32bppRgb);
+            int[] pixels = new int[256 * 256];
+            for (int y = 0; y < 256; y++)
             {
-                for (int x = 0; x < 512; x++)
+                for (int x = 0; x < 256; x++)
                 {
-                    int i = x + y*512;
+                    int i = x + y*256;
 
                     if (map[i] == Tile.Water.Id) pixels[i] = 0x000080;
                     if (map[i] == Tile.Grass.Id) pixels[i] = 0x208020;
@@ -124,6 +125,7 @@ namespace MiniRealms.Engine
                 return "Invalid command args";
             }
 
+
             switch (strings[0].ToLower())
             {
                 case "zombie":
@@ -159,12 +161,20 @@ namespace MiniRealms.Engine
                 return "Player doesn't exist in current game";
             }
 
+            var r = Resource.AllResources;
+
+            if (strings.Length == 1)
+            {
+                if (strings[0].ToLower() != "all-items") return "Invalid command args";
+                var items = r.Select(ii => ii.Name).ToList();
+
+                return $"All current items: {string.Join(" ,", items).ToLower()}";
+            }
+
             if (strings.Length < 2)
             {
                 return "Invalid command args";
             }
-
-            var r = Resource.AllResources;
 
             var item = r.FirstOrDefault(i => string.Equals(i.Name, strings[0], StringComparison.CurrentCultureIgnoreCase));
 

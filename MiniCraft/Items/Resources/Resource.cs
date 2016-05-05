@@ -36,9 +36,9 @@ namespace MiniRealms.Items.Resources
         public static Resource Cloth = new Resource("cloth", 1 + 4 * 32, Engine.Gfx.Color.Get(-1, 25, 252, 141));
         public static Resource Gem = new Resource("gem", 13 + 4 * 32, Engine.Gfx.Color.Get(-1, 101, 404, 545));
 
-        public readonly string Name;
-        public readonly int Sprite;
-        public readonly int Color;
+        public string Name { get;  }
+        public int Sprite { get; }
+        public int Color { get; }
 
         public Resource(string name, int sprite, int color)
         {

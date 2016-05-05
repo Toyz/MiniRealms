@@ -54,7 +54,7 @@ namespace MiniRealms.Screens
                 Game.IsLoadingWorld = true;
                 Task.Run(() =>
                 {
-                    Game.SetupLevel(512, 512);
+                    Game.SetupLevel(256, 256);
                 }).ContinueWith((e) =>
                 {
                     Game.IsLoadingWorld = false;
