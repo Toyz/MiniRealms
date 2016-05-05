@@ -21,7 +21,7 @@ namespace MiniRealms.Engine
         public ConsoleCommands(McGame game)
         {
             _game = game;
-            ManualInterpreter.RegisterCommand("game-seed", GameSeedCommand);
+            ManualInterpreter.RegisterCommand("game-seed", _ => $"Current game seed is: {LevelGen.Seed}");
             ManualInterpreter.RegisterCommand("give-item", GiveItemCommand);
             ManualInterpreter.RegisterCommand("spawn-mob", SpawnMobCommand);
             ManualInterpreter.RegisterCommand("kill-me", KillMeCommand);
@@ -30,7 +30,6 @@ namespace MiniRealms.Engine
             ManualInterpreter.RegisterCommand("exit", _ => game.Exit());
             ManualInterpreter.RegisterCommand("fps", _ => $"Current FPS: {game.FpsCounterComponent.FrameRate}");
 
-
             //Normal commands XD
             ManualInterpreter.RegisterCommand("clear", _ =>
             { 
@@ -38,7 +37,7 @@ namespace MiniRealms.Engine
             });
         }
 
-        private string PlaySoundCommand(string[] strings)
+        private static string PlaySoundCommand(string[] strings)
         {
             if (strings.Length < 1 || strings[0] == "list-sounds")
             {
@@ -47,18 +46,9 @@ namespace MiniRealms.Engine
 
             strings[0] = strings[0].ToLower();
 
-            if (Sound.AllSounds.ContainsKey(strings[0]))
-            {
-                Sound.AllSounds[strings[0]].Play();
-                return $"Playing sound {strings[0]}";
-            }
-
-            return "Sound does not exist";
-        }
-
-        private string GameSeedCommand(string[] arg)
-        {
-            return $"Current game seed is: {LevelGen.Seed}";
+            if (!Sound.AllSounds.ContainsKey(strings[0])) return "Sound does not exist";
+            Sound.AllSounds[strings[0]].Play();
+            return $"Playing sound {strings[0]}";
         }
 
         private string SaveWorldImageCommand(string[] arg)
@@ -142,7 +132,6 @@ namespace MiniRealms.Engine
                         Y = _game.Player.Y + 5
                     });
                     return "Summoned a slime";
-
                 case "creeper":
                     _game.Levels?[_game.CurrentLevel].Add(new Creeper(1)
                     {
