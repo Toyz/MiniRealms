@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 
@@ -6,41 +8,27 @@ namespace MiniRealms.Sounds
 {
     public class Sound
     {
-        public static Dictionary<string, Sound> AllSounds = new Dictionary<string, Sound>();
-
-        public static Sound PlayerHurt { get; private set; }
-        public static Sound PlayerDeath { get; private set; }
-        public static Sound MonsterHurt { get; private set; }
-        public static Sound Test { get; private set; }
-        public static Sound Pickup { get; private set; }
-        public static Sound Bossdeath { get; private set; }
-        public static Sound Craft { get; private set; }
-        public static Sound Fuse { get; private set; }
-        public static Sound Boom { get; private set; }
+        public static readonly Dictionary<string, Sound> AllSounds = new Dictionary<string, Sound>();
 
         public static void Initialize(ContentManager content)
         {
-            PlayerHurt = new Sound(content, "playerhurt");
-            PlayerDeath = new Sound(content, "death");
-            MonsterHurt = new Sound(content, "monsterhurt");
-            Test = new Sound(content, "test");
-            Pickup = new Sound(content, "pickup");
-            Bossdeath = new Sound(content, "bossdeath");
-            Craft = new Sound(content, "craft");
-            Fuse = new Sound(content, "fuse");
-            Boom = new Sound(content, "boom");
+            foreach (var fileName in Directory.GetFiles(Path.Combine(content.RootDirectory, "Sounds"), "*.xnb"))
+            {
+                var file = Path.GetFileNameWithoutExtension(fileName);
 
-            AllSounds.Add(nameof(PlayerHurt).ToLower(), PlayerHurt);
-            AllSounds.Add(nameof(PlayerDeath).ToLower(), PlayerDeath);
-            AllSounds.Add(nameof(MonsterHurt).ToLower(), MonsterHurt);
-            AllSounds.Add(nameof(Test).ToLower(), Test);
-            AllSounds.Add(nameof(Pickup).ToLower(), Pickup);
-            AllSounds.Add(nameof(Bossdeath).ToLower(), Bossdeath);
-            AllSounds.Add(nameof(Craft).ToLower(), Craft);
-            AllSounds.Add(nameof(Fuse).ToLower(), Fuse);
-            AllSounds.Add(nameof(Boom).ToLower(), Boom);
+                if (file != null) AllSounds.Add(file, new Sound(content, file));
+            }
+
         }
 
+        public static void PlaySound(string key)
+        {
+            if (!AllSounds.ContainsKey(key)) throw new IndexOutOfRangeException($"sound {key} doesn't exist");
+            AllSounds[key].Play();
+        }
+
+
+        //actual sound object
         private readonly SoundEffect _soundEffect;
 
         private Sound(ContentManager content, string path)

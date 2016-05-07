@@ -183,7 +183,7 @@ namespace MiniRealms.Entities
                 Level.Player.Score += 1000;
                 Level.Player.GameWon();
             }
-            Sound.Bossdeath.Play();
+            Sound.PlaySound("bossdeath");
         }
 
     }

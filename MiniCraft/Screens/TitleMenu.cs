@@ -49,7 +49,7 @@ namespace MiniRealms.Screens
 
             if (_selected == 0)
             {
-                Sound.Test.Play();
+                Sound.PlaySound("test");
                 Game.LoadingText = "World Creation";
                 Game.IsLoadingWorld = true;
                 Task.Run(() =>
@@ -76,9 +76,7 @@ namespace MiniRealms.Screens
         {
             screen.Clear(0);
 
-            string mg = "MiniRealms";
-
-            Font.Draw(mg, screen, (screen.W - mg.Length * 8) / 2, 20,
+            Font.Draw(Game.Name, screen, (screen.W - Game.Name.Length * 8) / 2, 20,
                  Game.TickCount / 20 % 2 == 0 ? Color.White : Color.Yellow);
 
             for (int i = 0; i < Options.Length; i++)

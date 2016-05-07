@@ -73,34 +73,30 @@ namespace MiniRealms.Levels
                     for (int y = 0; y < h; y++)
                         for (int x = 0; x < w; x++)
                         {
-                            if (parentLevel.GetTile(x, y) == Tile.StairsDown)
+                            if (parentLevel.GetTile(x, y) != Tile.StairsDown) continue;
+                            SetTile(x, y, Tile.StairsUp, 0);
+                            if (level == 0)
                             {
-
-                                SetTile(x, y, Tile.StairsUp, 0);
-                                if (level == 0)
-                                {
-                                    SetTile(x - 1, y, Tile.HardRock, 0);
-                                    SetTile(x + 1, y, Tile.HardRock, 0);
-                                    SetTile(x, y - 1, Tile.HardRock, 0);
-                                    SetTile(x, y + 1, Tile.HardRock, 0);
-                                    SetTile(x - 1, y - 1, Tile.HardRock, 0);
-                                    SetTile(x - 1, y + 1, Tile.HardRock, 0);
-                                    SetTile(x + 1, y - 1, Tile.HardRock, 0);
-                                    SetTile(x + 1, y + 1, Tile.HardRock, 0);
-                                }
-                                else
-                                {
-                                    SetTile(x - 1, y, Tile.Dirt, 0);
-                                    SetTile(x + 1, y, Tile.Dirt, 0);
-                                    SetTile(x, y - 1, Tile.Dirt, 0);
-                                    SetTile(x, y + 1, Tile.Dirt, 0);
-                                    SetTile(x - 1, y - 1, Tile.Dirt, 0);
-                                    SetTile(x - 1, y + 1, Tile.Dirt, 0);
-                                    SetTile(x + 1, y - 1, Tile.Dirt, 0);
-                                    SetTile(x + 1, y + 1, Tile.Dirt, 0);
-                                }
+                                SetTile(x - 1, y, Tile.HardRock, 0);
+                                SetTile(x + 1, y, Tile.HardRock, 0);
+                                SetTile(x, y - 1, Tile.HardRock, 0);
+                                SetTile(x, y + 1, Tile.HardRock, 0);
+                                SetTile(x - 1, y - 1, Tile.HardRock, 0);
+                                SetTile(x - 1, y + 1, Tile.HardRock, 0);
+                                SetTile(x + 1, y - 1, Tile.HardRock, 0);
+                                SetTile(x + 1, y + 1, Tile.HardRock, 0);
                             }
-
+                            else
+                            {
+                                SetTile(x - 1, y, Tile.Dirt, 0);
+                                SetTile(x + 1, y, Tile.Dirt, 0);
+                                SetTile(x, y - 1, Tile.Dirt, 0);
+                                SetTile(x, y + 1, Tile.Dirt, 0);
+                                SetTile(x - 1, y - 1, Tile.Dirt, 0);
+                                SetTile(x - 1, y + 1, Tile.Dirt, 0);
+                                SetTile(x + 1, y - 1, Tile.Dirt, 0);
+                                SetTile(x + 1, y + 1, Tile.Dirt, 0);
+                            }
                         }
                 }
 

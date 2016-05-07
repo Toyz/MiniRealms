@@ -87,7 +87,7 @@ namespace MiniRealms.Entities
                             Level.SetTile(xt, yt, Tile.Hole, 0);
                         }
 
-                        Sound.Boom.Play();
+                        Sound.PlaySound("boom");
                         Die();
                     }
                     else
@@ -159,7 +159,7 @@ namespace MiniRealms.Entities
             {
                 if (_fuseTime == 0)
                 {
-                    Sound.Fuse.Play();
+                    Sound.PlaySound("fuse");
                     _fuseTime = _maxFuseTime;
                     _fuseLit = true;
                 }

@@ -19,7 +19,7 @@ namespace MiniRealms
     /// </summary>
     public class McGame : Game
     {
-        public const string Name = "MiniRealms";
+        public string Name = "MiniRealms";
         public int Height = 160;
         public int Width = 200;
         public const int Scale = 4;

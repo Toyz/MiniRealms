@@ -402,7 +402,7 @@ namespace MiniRealms.Entities
         protected override void Die()
         {
             base.Die();
-            Sound.PlayerDeath.Play();
+            Sound.PlaySound("death");
         }
 
         public override void TouchedBy(Entity entity)
@@ -418,7 +418,7 @@ namespace MiniRealms.Entities
         {
             if (HurtTime > 0 || InvulnerableTime > 0) return;
 
-            Sound.PlayerHurt.Play();
+            Sound.PlaySound("playerhurt");
             Level.Add(new TextParticle("" + damage, X, Y, Color.Get(-1, 504, 504, 504)));
             Health -= damage;
             if (attackDir == 0) YKnockback = +6;
