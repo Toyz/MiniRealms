@@ -72,6 +72,7 @@
     <Compile Include="Engine\Gfx\Screen.cs" />
     <Compile Include="Engine\Gfx\Sprite.cs" />
     <Compile Include="Engine\Gfx\SpriteSheet.cs" />
+    <Compile Include="GameConts.cs" />
     <Compile Include="InputHandler.cs" />
     <Compile Include="Items\FurnitureItem.cs" />
     <Compile Include="Items\Item.cs" />

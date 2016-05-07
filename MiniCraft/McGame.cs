@@ -19,11 +19,6 @@ namespace MiniRealms
     /// </summary>
     public class McGame : Game
     {
-        public string Name = "MiniRealms";
-        public int Height = 160;
-        public int Width = 200;
-        public const int Scale = 4;
-
         private Texture2D _image;
         private Microsoft.Xna.Framework.Color[] _pixels;
         private bool _running;
@@ -60,8 +55,8 @@ namespace MiniRealms
         {
             var deviceManager = new GraphicsDeviceManager(this)
             {
-                PreferredBackBufferHeight = Height*Scale,
-                PreferredBackBufferWidth = Width*Scale
+                PreferredBackBufferHeight = GameConts.Height* GameConts.Scale,
+                PreferredBackBufferWidth = GameConts.Width * GameConts.Scale
             };
 
             Cc = new ConsoleCommands(this);
@@ -75,7 +70,7 @@ namespace MiniRealms
             IsMouseVisible = true;
             Content.RootDirectory = "Content";
 
-            Window.Title = Name;
+            Window.Title = GameConts.Name;
         }
 
         public bool HasFocus() => IsActive;
@@ -134,14 +129,14 @@ namespace MiniRealms
             //}
 
             var spriteSheet = Content.Load<Texture2D>("Textures/icons");
-            Screen = new Screen(Width, Height, new SpriteSheet(spriteSheet));
-            _lightScreen = new Screen(Width, Height, new SpriteSheet(spriteSheet));
+            Screen = new Screen(GameConts.Width, GameConts.Height, new SpriteSheet(spriteSheet));
+            _lightScreen = new Screen(GameConts.Width, GameConts.Height, new SpriteSheet(spriteSheet));
 
             Sound.Initialize(Content);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _pixels = new Microsoft.Xna.Framework.Color[Width*Height];
-            _image = new Texture2D(GraphicsDevice, Width, Height);
+            _pixels = new Microsoft.Xna.Framework.Color[GameConts.Width * GameConts.Height];
+            _image = new Texture2D(GraphicsDevice, GameConts.Width, GameConts.Height);
             _input = new InputHandler();
 
             ResetGame();
@@ -233,8 +228,8 @@ namespace MiniRealms
 
         public void RenderAlertWindow(string msg)
         {
-            var xx = (Width - msg.Length*8)/2;
-            var yy = (Height - 8)/2;
+            var xx = (GameConts.Width - msg.Length*8)/2;
+            var yy = (GameConts.Height - 8)/2;
             var w = msg.Length;
             var h = 1;
 
@@ -304,13 +299,13 @@ namespace MiniRealms
                 for (var x = 0; x < Screen.W; x++)
                 {
                     var cc = Screen.Pixels[x + y*Screen.W];
-                    if (cc < 255) _pixels[x + y*Width] = _colors[cc];
+                    if (cc < 255) _pixels[x + y* GameConts.Width] = _colors[cc];
                 }
             }
             _image.SetData(_pixels);
 
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-            _spriteBatch.Draw(_image, new Rectangle(0, 0, Width*Scale, Height*Scale), Microsoft.Xna.Framework.Color.White);
+            _spriteBatch.Draw(_image, new Rectangle(0, 0, GameConts.Width * GameConts.Scale, GameConts.Height * GameConts.Scale), Microsoft.Xna.Framework.Color.White);
             _spriteBatch.End();
 
             base.Draw(gameTime);
@@ -371,7 +366,7 @@ namespace MiniRealms
                         ? hours + "h" + (minutes < 10 ? "0" : "") + minutes + "m"
                         : minutes + "m " + (seconds < 10 ? "0" : "") + seconds + "s";
 
-                    var xx = (Width - timeString.Length*8) + 1;
+                    var xx = (GameConts.Width - timeString.Length*8) + 1;
 
                     Font.Draw(timeString, Screen, xx, 1, Color.White);
                 }

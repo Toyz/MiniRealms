@@ -58,7 +58,7 @@ namespace MiniRealms.Screens
 
                 Task.Run(() =>
                 {
-                    Game.SetupLevel(256, 256);
+                    Game.SetupLevel(GameConts.MaxWidth, GameConts.MaxHeight);
                 }).ContinueWith((e) =>
                 {
                     Game.IsLoadingWorld = false;
@@ -80,7 +80,7 @@ namespace MiniRealms.Screens
         {
             screen.Clear(0);
 
-            Font.Draw(Game.Name, screen, (screen.W - Game.Name.Length * 8) / 2, 20,
+            Font.Draw(GameConts.Name, screen, (screen.W - GameConts.Name.Length * 8) / 2, 20,
                  Game.TickCount / 20 % 2 == 0 ? Color.White : Color.Yellow);
 
             for (int i = 0; i < Options.Length; i++)
@@ -96,7 +96,7 @@ namespace MiniRealms.Screens
             }
 
 
-            var xx = (Game.Width - "(Arrow keys,X and C)".Length * 8) / 2;
+            var xx = (GameConts.Width - "(Arrow keys,X and C)".Length * 8) / 2;
 
             Font.Draw("(Arrow keys,X and C)", screen, xx, screen.H - 8, Color.DarkGrey);
 

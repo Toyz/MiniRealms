@@ -76,13 +76,13 @@ namespace MiniRealms.Engine
 
             byte[] map = _game.Levels[_game.CurrentLevel].Tiles;
 
-            var bmp = new Bitmap(256, 256, PixelFormat.Format32bppRgb);
-            int[] pixels = new int[256 * 256];
-            for (int y = 0; y < 256; y++)
+            var bmp = new Bitmap(GameConts.MaxWidth, GameConts.MaxHeight, PixelFormat.Format32bppRgb);
+            int[] pixels = new int[GameConts.MaxWidth * GameConts.MaxHeight];
+            for (int y = 0; y < GameConts.MaxWidth; y++)
             {
-                for (int x = 0; x < 256; x++)
+                for (int x = 0; x < GameConts.MaxHeight; x++)
                 {
-                    int i = x + y*256;
+                    int i = x + y* GameConts.MaxHeight;
 
                     if (map[i] == Tile.Water.Id) pixels[i] = 0x000080;
                     if (map[i] == Tile.Grass.Id) pixels[i] = 0x208020;
