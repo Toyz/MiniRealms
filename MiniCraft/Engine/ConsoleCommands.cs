@@ -27,6 +27,7 @@ namespace MiniRealms.Engine
             ManualInterpreter.RegisterCommand("kill-me", KillMeCommand);
             ManualInterpreter.RegisterCommand("save-image", SaveWorldImageCommand);
             ManualInterpreter.RegisterCommand("play-sound", PlaySoundCommand);
+            ManualInterpreter.RegisterCommand("goto-level", MoveToLevel);
             ManualInterpreter.RegisterCommand("exit", _ => game.Exit());
             ManualInterpreter.RegisterCommand("fps", _ => $"Current FPS: {game.FpsCounterComponent.FrameRate}");
 
@@ -35,6 +36,18 @@ namespace MiniRealms.Engine
             { 
                 game.Console.Clear();
             });
+        }
+
+        private string MoveToLevel(string[] strings)
+        {
+            if (_game.Levels?[int.Parse(strings[0])] == null)
+            {
+                return "World is null, or doesn't exist!";
+            }
+
+            _game.ChangeLevel(int.Parse(strings[0]), true);
+                
+            return "Moved to new level";
         }
 
         private static string PlaySoundCommand(string[] strings)

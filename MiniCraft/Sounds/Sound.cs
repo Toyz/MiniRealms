@@ -18,12 +18,11 @@ namespace MiniRealms.Sounds
 
                 if (file != null) AllSounds.Add(file, new Sound(content, file));
             }
-
         }
 
         public static void PlaySound(string key)
         {
-            if (!AllSounds.ContainsKey(key)) throw new IndexOutOfRangeException($"sound {key} doesn't exist");
+            if (!AllSounds.ContainsKey(key)) throw new IndexOutOfRangeException($"Sound \"{key}\" doesn't exist");
             AllSounds[key].Play();
         }
 
@@ -31,9 +30,9 @@ namespace MiniRealms.Sounds
         //actual sound object
         private readonly SoundEffect _soundEffect;
 
-        private Sound(ContentManager content, string path)
+        private Sound(ContentManager content, string fileName, bool isPhysicalPath = false)
         {
-            _soundEffect = content.Load<SoundEffect>("Sounds/" + path);
+            _soundEffect = isPhysicalPath ? content.Load<SoundEffect>(fileName) : content.Load<SoundEffect>("Sounds/" + fileName);
         }
 
         public void Play()

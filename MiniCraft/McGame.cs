@@ -380,10 +380,17 @@ namespace MiniRealms
             Menu?.Render(Screen);
         }
 
-        public void ChangeLevel(int dir)
+        public void ChangeLevel(int dir, bool isAbsLevel = false)
         {
             Level.Remove(Player);
-            CurrentLevel += dir;
+            if (isAbsLevel)
+            {
+                CurrentLevel = dir;
+            }
+            else
+            {
+                CurrentLevel += dir;
+            }
             Level = Levels[CurrentLevel];
             Player.X = (Player.X >> 4)*16 + 8;
             Player.Y = (Player.Y >> 4)*16 + 8;

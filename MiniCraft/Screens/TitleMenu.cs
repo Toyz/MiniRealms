@@ -54,6 +54,8 @@ namespace MiniRealms.Screens
                 Sound.PlaySound("test");
                 Game.LoadingText = "World Creation";
                 Game.IsLoadingWorld = true;
+                Game.CurrentLevel = 3;
+
                 Task.Run(() =>
                 {
                     Game.SetupLevel(256, 256);
