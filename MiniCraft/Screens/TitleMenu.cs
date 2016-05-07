@@ -24,9 +24,11 @@ namespace MiniRealms.Screens
             {
                 _selected--;
                 ShowErrorAlert = false;
+                Sound.PlaySound("menu_move");
             }
             if (Input.Down.Clicked)
             {
+                Sound.PlaySound("menu_move");
                 _selected++;
                 ShowErrorAlert = false;
             }

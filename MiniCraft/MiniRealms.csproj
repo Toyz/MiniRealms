@@ -137,6 +137,7 @@
     <Content Include="Content\Sounds\craft.wav" />
     <Content Include="Content\Sounds\death.wav" />
     <Content Include="Content\Sounds\fuse.wav" />
+    <Content Include="Content\Sounds\menu_move.wav" />
     <Content Include="Content\Sounds\monsterhurt.wav" />
     <Content Include="Content\Sounds\pickup.wav" />
     <Content Include="Content\Sounds\playerhurt.wav" />

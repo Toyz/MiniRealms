@@ -103,3 +103,9 @@
 /processorParam:Quality=Best
 /build:Sounds/boom.wav
 
+#begin Sounds/menu_move.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/menu_move.wav
+

@@ -12,7 +12,7 @@ namespace MiniRealms.Sounds
 
         public static void Initialize(ContentManager content)
         {
-            foreach (var fileName in Directory.GetFiles(Path.Combine(content.RootDirectory, "Sounds"), "*.xnb"))
+            foreach (var fileName in Directory.EnumerateFiles(Path.Combine(content.RootDirectory, "Sounds"), "*.xnb"))
             {
                 var file = Path.GetFileNameWithoutExtension(fileName);
 
