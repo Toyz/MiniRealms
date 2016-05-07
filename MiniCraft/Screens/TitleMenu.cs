@@ -75,13 +75,11 @@ namespace MiniRealms.Screens
             }
         }
 
-
         public override void Render(Screen screen)
         {
             screen.Clear(0);
 
-            Font.Draw(GameConts.Name, screen, (screen.W - GameConts.Name.Length * 8) / 2, 20,
-                 Game.TickCount / 20 % 2 == 0 ? Color.White : Color.Yellow);
+            Font.Draw(GameConts.Name, screen, (screen.W - GameConts.Name.Length * 8) / 2, 20, Game.TickCount / 20 % 2 == 0 ? Color.White : Color.Yellow);
 
             for (int i = 0; i < Options.Length; i++)
             {

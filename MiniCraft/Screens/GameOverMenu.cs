@@ -4,9 +4,17 @@ using MiniRealms.Engine.LevelGens;
 namespace MiniRealms.Screens
 {
 
-    public class DeadMenu : Menu
+    public class GameOverMenu : Menu
     {
+        private readonly string _title;
+        private readonly string _body;
         private int _inputDelay = 60;
+
+        public GameOverMenu(string title, string body)
+        {
+            _title = title;
+            _body = body;
+        }
 
         public override void Tick()
         {
@@ -24,9 +32,7 @@ namespace MiniRealms.Screens
 
         public override void Render(Screen screen)
         {
-            Font.RenderFrame(screen, "", 3, 4, 21, 10);
-            Font.Draw("You died! Aww!", screen, 5 * 8, 5 * 8, Color.Get(-1, 555, 555, 555));
-
+            Font.RenderFrame(screen, _title, 10, 4, 29, 10);
             int seconds = Game.GameTime / 60;
             int minutes = seconds / 60;
             int hours = minutes / 60;
@@ -36,11 +42,11 @@ namespace MiniRealms.Screens
             var timeString = hours > 0
                 ? hours + "h" + (minutes < 10 ? "0" : "") + minutes + "m"
                 : minutes + "m " + (seconds < 10 ? "0" : "") + seconds + "s";
-            Font.Draw("Time:", screen, 5 * 8, 6 * 8, Color.Get(-1, 555, 555, 555));
-            Font.Draw(timeString, screen, (5 + 5) * 8, 6 * 8, Color.Get(-1, 550, 550, 550));
-            Font.Draw("Score:", screen, 5 * 8, 7 * 8, Color.Get(-1, 555, 555, 555));
-            Font.Draw("" + Game.Player.Score, screen, (5 + 6) * 8, 7 * 8, Color.Get(-1, 550, 550, 550));
-            Font.Draw("Press C to lose", screen, 5 * 8, 9 * 8, Color.Get(-1, 333, 333, 333));
+            Font.Draw("Time:", screen, 11 * 8, 6 * 8, Color.Get(-1, 555, 555, 555));
+            Font.Draw(timeString, screen, (11 + 5) * 8, 6 * 8, Color.Get(-1, 550, 550, 550));
+            Font.Draw("Score:", screen, 11 * 8, 7 * 8, Color.Get(-1, 555, 555, 555));
+            Font.Draw("" + Game.Player.Score, screen, (11 + 6) * 8, 7 * 8, Color.Get(-1, 550, 550, 550));
+            Font.Draw(_body, screen, 11 * 8, 9 * 8, Color.Get(-1, 333, 333, 333));
         }
     }
 }

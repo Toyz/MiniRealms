@@ -1,4 +1,6 @@
-﻿namespace MiniRealms
+﻿using Microsoft.Xna.Framework.Graphics;
+
+namespace MiniRealms
 {
     public static class GameConts
     {
@@ -6,8 +8,14 @@
         public static int MaxWidth = 256;
 
         public static string Name = "MiniRealms";
-        public static int Height = 160;
-        public static int Width = 200;
-        public static int Scale = 4;
+
+        public static int BaseScaling = 5;
+        public static int Scale = 3;
+
+        public static int Height = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / BaseScaling;
+        public static int Width = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / BaseScaling;
+
+        public static int ScreenMiddleWidth = Width/2;
+        public static int ScreenMiddleHeight = Height/2;
     }
 }

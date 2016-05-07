@@ -50,10 +50,11 @@ namespace MiniRealms
         public ConsoleComponent Console;
         public ConsoleCommands Cc;
         public FpsCounterComponent FpsCounterComponent;
+        private GraphicsDeviceManager _graphics;
 
         public McGame()
         {
-            var deviceManager = new GraphicsDeviceManager(this)
+            _graphics = new GraphicsDeviceManager(this)
             {
                 PreferredBackBufferHeight = GameConts.Height* GameConts.Scale,
                 PreferredBackBufferWidth = GameConts.Width * GameConts.Scale
@@ -135,7 +136,7 @@ namespace MiniRealms
             Sound.Initialize(Content);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _pixels = new Microsoft.Xna.Framework.Color[GameConts.Width * GameConts.Height];
+            _pixels = new Microsoft.Xna.Framework.Color[GameConts.Width  * GameConts.Height];
             _image = new Texture2D(GraphicsDevice, GameConts.Width, GameConts.Height);
             _input = new InputHandler();
 
@@ -166,6 +167,15 @@ namespace MiniRealms
             }
             else
             {
+                if (_input.FullScreen.Clicked)
+                {
+                    _graphics.IsFullScreen = !_graphics.IsFullScreen;
+
+                    GameConts.BaseScaling = _graphics.IsFullScreen ? 3 : 5;
+
+                    _graphics.ApplyChanges();
+                }
+
                 if (_input.ConsoleKey.Clicked)
                 {
                     Console.ToggleOpenClose();
@@ -202,7 +212,7 @@ namespace MiniRealms
                         _playerDeadTime++;
                         if (_playerDeadTime > 60)
                         {
-                            SetMenu(new DeadMenu());
+                            SetMenu(new GameOverMenu("Game Over :: Stats", "Goto Main Menu 'C'"));
                         }
                     }
                     else
@@ -217,7 +227,7 @@ namespace MiniRealms
                     {
                         if (--_wonTimer == 0)
                         {
-                            SetMenu(new WonMenu());
+                            SetMenu(new GameOverMenu("You Won :: Stats", "Goto Main Menu 'C'"));
                         }
                     }
                     Level.Tick();
@@ -323,7 +333,7 @@ namespace MiniRealms
                     {
                         for (var x = 0; x < 10; x++)
                         {
-                            Screen.Render(x*8 + 60, Screen.H - 18 + y*8, 0 + 12*32,
+                            Screen.Render(x*8 + GameConts.ScreenMiddleWidth - 40, Screen.H - 18 + y*8, 0 + 12*32,
                                 Color.Get(000, 000, 000, 000), 0);
                         }
                     }
@@ -332,19 +342,19 @@ namespace MiniRealms
                 for (var i = 0; i < 10; i++)
                 {
 
-                    Screen.Render(i*8  + 20, Screen.H - 9, 0 + 12*32,
+                    Screen.Render(GameConts.ScreenMiddleWidth + i * 8 - 80, Screen.H - 9, 0 + 12*32,
                         i < Player.Health ? Color.Get(-1, 200, 500, 533) : Color.Get(-1, 100, 000, 000), 0);
 
                     if (Player.StaminaRechargeDelay > 0)
                     {
-                        Screen.Render(i*8 + 80 + 20, Screen.H - 9, 1 + 12*32,
+                        Screen.Render((i*8 + GameConts.ScreenMiddleWidth) + 5, Screen.H - 9, 1 + 12*32,
                             Player.StaminaRechargeDelay/4%2 == 0
                                 ? Color.Get(-1, 555, 000, 100)
                                 : Color.Get(-1, 110, 000, 100), 0);
                     }
                     else
                     {
-                        Screen.Render(i*8 + 80 + 20, Screen.H - 9, 1 + 12*32,
+                        Screen.Render((i * 8 + GameConts.ScreenMiddleWidth) + 5, Screen.H - 9, 1 + 12*32,
                             i < Player.Stamina
                                 ? Color.Get(-1, 220, 550, 553)
                                 : Color.Get(-1, 110, 000, 000),
@@ -352,7 +362,7 @@ namespace MiniRealms
                     }
 
                 }
-                Player.ActiveItem?.RenderInventory(Screen, 10*6, Screen.H - 18);
+                Player.ActiveItem?.RenderInventory(Screen, GameConts.ScreenMiddleWidth - 40, Screen.H - 18);
 
                 if (_playerDeadTime < 60)
                 {

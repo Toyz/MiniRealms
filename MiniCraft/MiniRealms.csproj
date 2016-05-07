@@ -113,14 +113,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screens\ContainerMenu.cs" />
     <Compile Include="Screens\CraftingMenu.cs" />
-    <Compile Include="Screens\DeadMenu.cs" />
+    <Compile Include="Screens\GameOverMenu.cs" />
     <Compile Include="Screens\InstructionsMenu.cs" />
     <Compile Include="Screens\InventoryMenu.cs" />
     <Compile Include="Screens\LevelTransitionMenu.cs" />
     <Compile Include="Screens\IListItem.cs" />
     <Compile Include="Screens\Menu.cs" />
     <Compile Include="Screens\TitleMenu.cs" />
-    <Compile Include="Screens\WonMenu.cs" />
     <Compile Include="Sounds\Sound.cs" />
   </ItemGroup>
   <ItemGroup>
