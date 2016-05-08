@@ -111,19 +111,21 @@ namespace MiniRealms
             if (ke == Keys.Left) Left.Toggle(pressed);
             if (ke == Keys.Right) Right.Toggle(pressed);
 
-            //Toggles
+            //Toggles Menu
             if (ke == Keys.Tab) Menu.Toggle(pressed);
             if (ke == Keys.LeftAlt) Menu.Toggle(pressed);
             if (ke == Keys.RightAlt) Menu.Toggle(pressed);
+            if (ke == Keys.Enter) Menu.Toggle(pressed);
+            if (ke == Keys.X) Menu.Toggle(pressed);
+
+            //Toggles Attack
             if (ke == Keys.Space) Attack.Toggle(pressed);
             if (ke == Keys.LeftControl) Attack.Toggle(pressed);
             if (ke == Keys.NumPad0) Attack.Toggle(pressed);
+            if (ke == Keys.C) Attack.Toggle(pressed);
             if (ke == Keys.Insert) Attack.Toggle(pressed);
-            if (ke == Keys.Enter) Menu.Toggle(pressed);
 
             //Actions
-            if (ke == Keys.X) Menu.Toggle(pressed);
-            if (ke == Keys.C) Attack.Toggle(pressed);
             if (ke == Keys.Escape) CloseKey.Toggle(pressed);
             if (ke == Keys.OemTilde) ConsoleKey.Toggle(pressed);
             if (ke == Keys.F4) FullScreen.Toggle(pressed);

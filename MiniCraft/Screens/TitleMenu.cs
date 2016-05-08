@@ -11,7 +11,7 @@ namespace MiniRealms.Screens
 
         private int _selected;
 
-        private static readonly string[] Options = { "Start game", "How to play", "Mods and Addons", "Options" };
+        private static readonly string[] Options = { "Start game", "How to play", "Mods and Addons", "Options", "Exit" };
 
         public override void Tick()
         {
@@ -73,6 +73,10 @@ namespace MiniRealms.Screens
                 ShowErrorAlert = true;
                 ErrorAlertBody = "Coming Soon";
             }
+            if (_selected == 4)
+            {
+                Game.Exit();
+            }
         }
 
         public override void Render(Screen screen)
@@ -90,7 +94,7 @@ namespace MiniRealms.Screens
                     msg = "> " + msg + " <";
                     col = Color.White;
                 }
-                Font.Draw(msg, screen, (screen.W - msg.Length * 8) / 2, (8 + i) * 8, col);
+                Font.Draw(msg, screen, (screen.W - msg.Length * 8) / 2, GameConts.ScreenMiddleHeight + (i * 8) - 20, col);
             }
 
 
