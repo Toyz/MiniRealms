@@ -8,6 +8,7 @@ namespace MiniRealms
         public static int MaxWidth = 256;
 
         public static string Name = "MiniRealms";
+        public static string Version = "0.0.1 - Alpha";
 
         public static int BaseScaling = 5;
         public static int Scale = 3;

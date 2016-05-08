@@ -341,7 +341,6 @@ namespace MiniRealms
 
                 for (var i = 0; i < 10; i++)
                 {
-
                     Screen.Render(GameConts.ScreenMiddleWidth + i * 8 - 80, Screen.H - 9, 0 + 12*32,
                         i < Player.Health ? Color.Get(-1, 200, 500, 533) : Color.Get(-1, 100, 000, 000), 0);
 
@@ -360,7 +359,6 @@ namespace MiniRealms
                                 : Color.Get(-1, 110, 000, 000),
                             0);
                     }
-
                 }
                 Player.ActiveItem?.RenderInventory(Screen, GameConts.ScreenMiddleWidth - 40, Screen.H - 18);
 
@@ -379,8 +377,10 @@ namespace MiniRealms
                     var xx = (GameConts.Width - timeString.Length*8) + 1;
 
                     Font.Draw(timeString, Screen, xx, 1, Color.White);
+
                 }
 
+                Font.Draw(GameConts.Version, Screen, (GameConts.Width - GameConts.Version.Length * 8) / 2, 1, Color.White);
             }
             Menu?.Render(Screen);
         }

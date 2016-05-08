@@ -1,4 +1,5 @@
-﻿using MiniRealms.Engine.Gfx;
+﻿using System.Diagnostics;
+using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
 using MiniRealms.Levels;
 using MiniRealms.Levels.Tiles;
@@ -36,6 +37,11 @@ namespace MiniRealms.Items
 
         public virtual string GetName() => "";
 
-        public virtual bool Matches(Item item) => item.GetType() == GetType();
+        public virtual int Id() => GetName().GetHashCode();
+
+        public virtual bool Matches(Item item)
+        {
+            return item.Id() == Id(); 
+        } 
     }
 }
