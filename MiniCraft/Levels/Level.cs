@@ -13,8 +13,8 @@ namespace MiniRealms.Levels
 
         public int W, H;
 
-        public byte[] Tiles;
-        public byte[] Data;
+        public byte[] Tiles { get; protected set; }
+        public byte[] Data { get; protected set; }
         public List<Entity>[] EntitiesInTiles;
 
         public int GrassColor = 141;

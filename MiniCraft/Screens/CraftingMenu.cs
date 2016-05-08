@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using MiniRealms.Crafts;
 using MiniRealms.Engine.Gfx;
@@ -18,7 +17,7 @@ namespace MiniRealms.Screens
             {
                 if (r1.CanCraft && !r2.CanCraft) return -1;
                 if (!r1.CanCraft && r2.CanCraft) return 1;
-                return string.Compare(r1.ResultTemplate.GetName(), r2.ResultTemplate.GetName(), StringComparison.Ordinal);
+                return string.Compare(r1.ResultTemplate.Id().ToString(), r2.ResultTemplate.Id().ToString(), StringComparison.Ordinal);
             }
         }
 
@@ -80,11 +79,10 @@ namespace MiniRealms.Screens
             if (_recipes.Size() > 0)
             {
                 Recipe recipe = _recipes.Get(_selected);
-                Debug.WriteLine(recipe.ResultTemplate.GetType());
                 int hasResultItems = _player.Inventory.Count(recipe.ResultTemplate);
                 int xo = 15 * 8;
                 screen.Render(xo - 3, 3 * 8 + 2, recipe.ResultTemplate.GetSprite(), recipe.ResultTemplate.GetColor(), 0);
-                Font.Draw("" + hasResultItems, screen, xo + 8, 3 * 8 + 2, Color.Get(-1, 555, 555, 555));
+                Font.Draw($"{hasResultItems}", screen, xo + 8, 3 * 8 + 2, Color.Get(-1, 555, 555, 555));
 
                 List<Item> costs = recipe.Costs;
                 for (int i = 0; i < costs.Size(); i++)
@@ -105,10 +103,9 @@ namespace MiniRealms.Screens
                         color = Color.Get(-1, 222, 222, 222);
                     }
                     if (has > 99) has = 99;
-                    Font.Draw("" + has + "/" + requiredAmt, screen, xo + 8 + 1, yo, color);
+                    Font.Draw($"{has}/{requiredAmt}", screen, xo + 8 + 1, yo, color);
                 }
             }
-            // renderItemList(screen, 12, 4, 19, 11, recipes.get(selected).costs, -1);
         }
     }
 }

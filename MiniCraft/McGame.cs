@@ -416,6 +416,7 @@ namespace MiniRealms
         public void SetupLevel(int lw = 128, int lh = 128)
         {
             Levels = new Level[5];
+
             LoadingText = "Creating Level 1";
             Levels[4] = new Level(lw, lh, 1, null);
 
@@ -443,6 +444,7 @@ namespace MiniRealms
             {
                 t.TrySpawn(5000);
             }
+
             LoadingText = "Finished";
         }
     }

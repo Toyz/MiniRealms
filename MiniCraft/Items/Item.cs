@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using MiniRealms.Engine.Gfx;
+﻿using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
 using MiniRealms.Levels;
 using MiniRealms.Levels.Tiles;
