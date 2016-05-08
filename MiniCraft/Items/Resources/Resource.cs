@@ -13,7 +13,10 @@ namespace MiniRealms.Items.Resources
 
         public static Resource Wood = new Resource("Wood", 1 + 4 * 32, Engine.Gfx.Color.Get(-1, 200, 531, 430));
         public static Resource Stone = new Resource("Stone", 2 + 4 * 32, Engine.Gfx.Color.Get(-1, 111, 333, 555));
+        //Flowers!
         public static Resource Flower = new PlantableResource("Flower", 0 + 4 * 32, Engine.Gfx.Color.Get(-1, 10, 444, 330), TileId.Flower, TileId.Grass);
+        public static Resource RedFlower = new PlantableResource("R.Flower", 0 + 4 * 32, Engine.Gfx.Color.Get(-1, 10, 300, 330), TileId.RedFlower, TileId.Grass);
+        //Other shit
         public static Resource Acorn = new PlantableResource("Acorn", 3 + 4 * 32, Engine.Gfx.Color.Get(-1, 100, 531, 320), TileId.TreeSapling, TileId.Grass);
         public static Resource Dirt = new PlantableResource("Dirt", 2 + 4 * 32, Engine.Gfx.Color.Get(-1, 100, 322, 432), TileId.Dirt, TileId.Hole, TileId.Water, TileId.Lava);
         public static Resource Sand = new PlantableResource("Sand", 2 + 4 * 32, Engine.Gfx.Color.Get(-1, 110, 440, 550), TileId.Sand, TileId.Grass, TileId.Dirt);
@@ -42,7 +45,7 @@ namespace MiniRealms.Items.Resources
 
         public Resource(string name, int sprite, int color)
         {
-            if (name.Length > 6) throw new InvalidProgramException("Name cannot be longer than six characters!");
+            if (name.Length > 8) throw new InvalidProgramException("Name cannot be longer than six characters!");
             Name = name;
             Sprite = sprite;
             Color = color;

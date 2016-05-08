@@ -59,12 +59,11 @@ namespace MiniRealms.Screens
 
         public override void Render(Screen screen)
         {
-            if (_window == 1) screen.SetOffset(6 * 8, 0);
-            Font.RenderFrame(screen, _title, 1, 1, 12, 11);
-            RenderItemList(screen, 1, 1, 12, 11, _container.Items, _window == 0 ? _selected : -_oSelected - 1);
+            Font.RenderFrame(screen, _title, 1, 1, 14, 11);
+            RenderItemList(screen, 1, 1, 14, 11, _container.Items, _window == 0 ? _selected : -_oSelected - 1);
 
-            Font.RenderFrame(screen, "inventory", 13, 1, 13 + 11, 11);
-            RenderItemList(screen, 13, 1, 13 + 11, 11, _player.Inventory.Items, _window == 1 ? _selected : -_oSelected - 1);
+            Font.RenderFrame(screen, "inventory", 15, 1, 13 + 15, 11);
+            RenderItemList(screen, 15, 1, 13 + 15, 11, _player.Inventory.Items, _window == 1 ? _selected : -_oSelected - 1);
             screen.SetOffset(0, 0);
         }
     }

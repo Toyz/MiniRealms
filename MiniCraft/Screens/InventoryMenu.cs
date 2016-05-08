@@ -41,18 +41,18 @@ namespace MiniRealms.Screens
             Item i = _player.Inventory.Items[_selected];
             int amount = _player.Inventory.Count(i);
 
-            Font.RenderFrame(screen, "inventory", 1, 2, 12, 11);
-            Font.RenderFrame(screen, i.GetName(), 13, 2, 23, 5);
+            Font.RenderFrame(screen, "inventory", 1, 2, 14, 11);
+            Font.RenderFrame(screen, i.GetName(), 15, 2, 24, 5);
 
             if (amount > 99)
             {
-                Font.RenderFrame(screen, "Amount", 13, 6, 23, 8);
-                Font.Draw(amount.ToString("N0"), screen, 14*8, 7*8 + 2, Color.DarkGrey);
+                Font.RenderFrame(screen, "Amount", 15, 6, 24, 8);
+                Font.Draw(amount.ToString("N0"), screen, 16*8, 7*8 + 2, Color.DarkGrey);
             }
 
-            Font.Draw(i.GetName(), screen, 14 * 8, 3 * 8, Color.White);
+            Font.Draw(i.GetName(), screen, 16 * 8, 3 * 8, Color.White);
 
-            RenderItemList(screen, 1, 2, 12, 11, _player.Inventory.Items, _selected);
+            RenderItemList(screen, 1, 2, 14, 11, _player.Inventory.Items, _selected);
         }
     }
 }

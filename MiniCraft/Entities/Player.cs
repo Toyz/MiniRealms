@@ -423,7 +423,6 @@ namespace MiniRealms.Entities
 
         public override void TouchedBy(Entity entity)
         {
-
             if (!(entity is Player))
             {
                 entity.TouchedBy(this);

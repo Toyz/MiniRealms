@@ -239,7 +239,18 @@ namespace MiniRealms.Engine.LevelGens
                     int xx = x + Random.NextInt(5) - Random.NextInt(5);
                     int yy = y + Random.NextInt(5) - Random.NextInt(5);
                     if (xx < 0 || yy < 0 || xx >= w || yy >= h || map[xx + yy*w] != Tile.Grass.Id) continue;
-                    map[xx + yy*w] = Tile.Flower.Id;
+
+                    var ftype = Random.NextInt(2);
+                    if (ftype == 1)
+                    {
+                        map[xx + yy*w] = Tile.RedFlower.Id;
+                    }
+                    else
+                    {
+                        map[xx + yy*w] = Tile.Flower.Id;
+                    }
+
+ 
                     data[xx + yy*w] = (byte) (col + Random.NextInt(4)*16);
                 }
             }
