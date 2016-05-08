@@ -28,6 +28,7 @@ namespace MiniRealms.Engine
             ManualInterpreter.RegisterCommand("save-image", SaveWorldImageCommand);
             ManualInterpreter.RegisterCommand("play-sound", PlaySoundCommand);
             ManualInterpreter.RegisterCommand("goto-level", MoveToLevel);
+            ManualInterpreter.RegisterCommand("player-color", NewRandomPlayerColorCommand);
             ManualInterpreter.RegisterCommand("exit", _ => game.Exit());
             ManualInterpreter.RegisterCommand("fps", _ => $"Current FPS: {game.FpsCounterComponent.FrameRate}");
 
@@ -36,6 +37,14 @@ namespace MiniRealms.Engine
             { 
                 game.Console.Clear();
             });
+        }
+
+        private static string NewRandomPlayerColorCommand(string[] arg)
+        {
+            var rnd = new Random();
+            Player.PlayerColor = Gfx.Color.Get(-1, 100, rnd.NextInt(555) + 1, rnd.NextInt(555) + 1);
+
+            return $"Set player color to {Player.PlayerColor}";
         }
 
         private string MoveToLevel(string[] strings)

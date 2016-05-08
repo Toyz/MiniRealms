@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using MiniRealms.Engine.Gfx;
+using MiniRealms.Engine.LevelGens;
 using MiniRealms.Entities.Particles;
 using MiniRealms.Items;
 using MiniRealms.Items.Resources;
@@ -27,7 +28,7 @@ namespace MiniRealms.Entities
         public int MaxStamina = 10;
         private int _onStairDelay;
         public int InvulnerableTime;
-        public int PlayerColor; //Old color: Color.Get(-1, 100, 220, 532);
+        public static int PlayerColor; //Old color: Color.Get(-1, 100, 220, 532);
 
         public Player(McGame game, InputHandler input)
         {
@@ -40,14 +41,16 @@ namespace MiniRealms.Entities
             Inventory.Add(new FurnitureItem(new Workbench()));
             Inventory.Add(new PowerGloveItem());
 
-            PlayerColor = Color.Get(-1, 100, new Random().NextInt(555) + 1, 532);
+            var rnd = new Random((int) LevelGen.Seed);
+
+            PlayerColor = Color.Get(-1, 100, rnd.NextInt(555) + 1, rnd.NextInt(555) + 1);
 #if DEBUG
             foreach (var item in Resource.AllResources)
             {
                 Inventory.Add(new ResourceItem(item, 1000));
             }
-            //Inventory.Add(new ResourceItem(Resource.Wood, 1000));
 #endif
+
         }
 
         public override void Tick()
@@ -352,7 +355,6 @@ namespace MiniRealms.Entities
                 furniture.X = X;
                 furniture.Y = yo;
                 furniture.Render(screen);
-
             }
         }
 
