@@ -18,5 +18,8 @@ namespace MiniRealms
 
         public static int ScreenMiddleWidth = Width/2;
         public static int ScreenMiddleHeight = Height/2;
+
+        public static int ScreenThirdWidth = Width/3;
+        public static int ScreenThirdHeight = Height/2;
     }
 }

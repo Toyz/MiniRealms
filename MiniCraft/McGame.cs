@@ -50,7 +50,7 @@ namespace MiniRealms
         public ConsoleComponent Console;
         public ConsoleCommands Cc;
         public FpsCounterComponent FpsCounterComponent;
-        private GraphicsDeviceManager _graphics;
+        private readonly GraphicsDeviceManager _graphics;
 
         public McGame()
         {
@@ -71,7 +71,7 @@ namespace MiniRealms
             IsMouseVisible = true;
             Content.RootDirectory = "Content";
 
-            Window.Title = GameConts.Name;
+            Window.Title = $"{GameConts.Name} -- {GameConts.Version}";
         }
 
         public bool HasFocus() => IsActive;
