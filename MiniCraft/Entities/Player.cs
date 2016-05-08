@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities.Particles;
 using MiniRealms.Items;
@@ -26,6 +27,7 @@ namespace MiniRealms.Entities
         public int MaxStamina = 10;
         private int _onStairDelay;
         public int InvulnerableTime;
+        public int PlayerColor; //Old color: Color.Get(-1, 100, 220, 532);
 
         public Player(McGame game, InputHandler input)
         {
@@ -37,6 +39,8 @@ namespace MiniRealms.Entities
 
             Inventory.Add(new FurnitureItem(new Workbench()));
             Inventory.Add(new PowerGloveItem());
+
+            PlayerColor = Color.Get(-1, 100, new Random().NextInt(555) + 1, 532);
 #if DEBUG
             foreach (var item in Resource.AllResources)
             {
@@ -308,11 +312,7 @@ namespace MiniRealms.Entities
                 screen.Render(xo + 8, yo - 4, 6 + 13*32, Color.Get(-1, 555, 555, 555), 1);
                 AttackItem?.RenderIcon(screen, xo + 4, yo - 4);
             }
-            int col = Color.Get(-1, 100, 220, 532);
-            if (HurtTime > 0)
-            {
-                col = Color.Get(-1, 555, 555, 555);
-            }
+            var col = HurtTime > 0 ? Color.Get(-1, 555, 555, 555) : PlayerColor;
 
             if (ActiveItem is FurnitureItem)
             {
