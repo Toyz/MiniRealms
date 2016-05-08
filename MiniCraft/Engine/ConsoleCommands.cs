@@ -36,12 +36,37 @@ namespace MiniRealms.Engine
             ManualInterpreter.RegisterCommand("clear", _ => game.Console.Clear());
         }
 
-        private static string NewRandomPlayerColorCommand(string[] arg)
+        private string NewRandomPlayerColorCommand(string[] arg)
         {
-            var rnd = new Random();
-            Player.PlayerColor = Gfx.Color.Get(-1, 100, rnd.NextInt(555) + 1, rnd.NextInt(555) + 1);
+            if (_game.Player == null)
+            {
+                return "Player doesn't exist in current game";
+            }
 
-            return $"Set player color to {Player.PlayerColor}";
+            Player player = _game.Player;
+
+            var rnd = new Random();
+            if(arg.Length <= 0)
+                player.ChangePlayerColor(100, rnd.NextInt(555) + 1, rnd.NextInt(555) + 1);
+            else
+            {
+                if (arg[0].Equals("skin", StringComparison.OrdinalIgnoreCase))
+                {
+                    player.ChangePlayerColor(100, player.Shirt, rnd.NextInt(555) + 1);
+                }
+
+                if (arg[0].Equals("shirt", StringComparison.OrdinalIgnoreCase))
+                {
+                    player.ChangePlayerColor(100, rnd.NextInt(555) + 1, player.Skin);
+                }
+
+                if (arg[0].Equals("outline", StringComparison.OrdinalIgnoreCase))
+                {
+                    player.ChangePlayerColor(rnd.NextInt(555) + 1, player.Shirt, player.Skin);
+                }
+            }
+
+            return $"Set player color to {player.FullColor}";
         }
 
         private string MoveToLevel(string[] strings)

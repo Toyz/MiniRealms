@@ -28,7 +28,12 @@ namespace MiniRealms.Entities
         public int MaxStamina = 10;
         private int _onStairDelay;
         public int InvulnerableTime;
-        public static int PlayerColor; //Old color: Color.Get(-1, 100, 220, 532);
+
+        //Apperance
+        public int FullColor { get; protected set; } //Old color: Color.Get(-1, 100, 220, 532);
+        public int Outline { get; protected  set; }
+        public int Shirt { get; protected set; }
+        public int Skin { get; protected set; }
 
         public Player(McGame game, InputHandler input)
         {
@@ -43,7 +48,8 @@ namespace MiniRealms.Entities
 
             var rnd = new Random((int) LevelGen.Seed);
 
-            PlayerColor = Color.Get(-1, 100, rnd.NextInt(555) + 1, rnd.NextInt(555) + 1);
+
+            ChangePlayerColor(100, rnd.NextInt(555) + 1, rnd.NextInt(555) + 1);
 #if DEBUG
             foreach (var item in Resource.AllResources)
             {
@@ -51,6 +57,14 @@ namespace MiniRealms.Entities
             }
 #endif
 
+        }
+
+        public void ChangePlayerColor(int outline, int shirt, int skin)
+        {
+            Outline = outline;
+            Shirt = shirt;
+            Skin = skin;
+            FullColor = Color.Get(-1, outline, shirt, skin);
         }
 
         public override void Tick()
@@ -315,7 +329,7 @@ namespace MiniRealms.Entities
                 screen.Render(xo + 8, yo - 4, 6 + 13*32, Color.Get(-1, 555, 555, 555), 1);
                 AttackItem?.RenderIcon(screen, xo + 4, yo - 4);
             }
-            var col = HurtTime > 0 ? Color.Get(-1, 555, 555, 555) : PlayerColor;
+            var col = HurtTime > 0 ? Color.Get(-1, 555, 555, 555) : FullColor;
 
             if (ActiveItem is FurnitureItem)
             {
