@@ -1,7 +1,7 @@
 ﻿using System;
+using MiniRealms.Engine.Audio.Sounds;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Levels.Tiles;
-using MiniRealms.Sounds;
 
 namespace MiniRealms.Entities
 {
@@ -87,7 +87,7 @@ namespace MiniRealms.Entities
                             Level.SetTile(xt, yt, Tile.Hole, 0);
                         }
 
-                        Sound.PlaySound("boom");
+                        SoundManager.Play("boom");
                         Die();
                     }
                     else
@@ -159,7 +159,7 @@ namespace MiniRealms.Entities
             {
                 if (_fuseTime == 0)
                 {
-                    Sound.PlaySound("fuse");
+                    SoundManager.Play("fuse");
                     _fuseTime = _maxFuseTime;
                     _fuseLit = true;
                 }
@@ -170,6 +170,7 @@ namespace MiniRealms.Entities
         protected override void Die()
         {
             base.Die();
+            SoundManager.Stop("fuse");
             if (Level.Player != null)
             {
                 Level.Player.Score += 50 * _lvl;

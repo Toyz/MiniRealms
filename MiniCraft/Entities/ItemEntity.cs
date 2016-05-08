@@ -1,6 +1,6 @@
-﻿using MiniRealms.Engine.Gfx;
+﻿using MiniRealms.Engine.Audio.Sounds;
+using MiniRealms.Engine.Gfx;
 using MiniRealms.Items;
-using MiniRealms.Sounds;
 
 namespace MiniRealms.Entities
 {
@@ -86,7 +86,7 @@ namespace MiniRealms.Entities
 
         public void Take(Player player)
         {
-            Sound.PlaySound("pickup");
+            SoundManager.Play("pickup");
             player.Score++;
             Item.OnTake(this);
             Remove();

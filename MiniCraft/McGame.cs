@@ -3,13 +3,13 @@ using GameConsole;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MiniRealms.Engine;
+using MiniRealms.Engine.Audio.Sounds;
 using MiniRealms.Engine.Compents;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
 using MiniRealms.Levels;
 using MiniRealms.Levels.Tiles;
 using MiniRealms.Screens;
-using MiniRealms.Sounds;
 using Color = MiniRealms.Engine.Gfx.Color;
 
 namespace MiniRealms
@@ -133,7 +133,7 @@ namespace MiniRealms
             Screen = new Screen(GameConts.Width, GameConts.Height, new SpriteSheet(spriteSheet));
             _lightScreen = new Screen(GameConts.Width, GameConts.Height, new SpriteSheet(spriteSheet));
 
-            Sound.Initialize(Content);
+            SoundManager.Initialize(Content);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             _pixels = new Microsoft.Xna.Framework.Color[GameConts.Width  * GameConts.Height];

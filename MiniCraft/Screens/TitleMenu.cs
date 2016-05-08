@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
+using MiniRealms.Engine.Audio.Sounds;
 using MiniRealms.Engine.Gfx;
-using MiniRealms.Sounds;
 
 namespace MiniRealms.Screens
 {
@@ -24,11 +24,11 @@ namespace MiniRealms.Screens
             {
                 _selected--;
                 ShowErrorAlert = false;
-                Sound.PlaySound("menu_move");
+                SoundManager.Play("menu_move");
             }
             if (Input.Down.Clicked)
             {
-                Sound.PlaySound("menu_move");
+                SoundManager.Play("menu_move");
                 _selected++;
                 ShowErrorAlert = false;
             }
@@ -51,7 +51,7 @@ namespace MiniRealms.Screens
 
             if (_selected == 0)
             {
-                Sound.PlaySound("test");
+                SoundManager.Play("test");
                 Game.LoadingText = "World Creation";
                 Game.IsLoadingWorld = true;
                 Game.CurrentLevel = 3;

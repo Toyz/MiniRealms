@@ -4,12 +4,12 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using GameConsole.ManualInterpreter;
+using MiniRealms.Engine.Audio.Sounds;
 using MiniRealms.Engine.LevelGens;
 using MiniRealms.Entities;
 using MiniRealms.Items;
 using MiniRealms.Items.Resources;
 using MiniRealms.Levels.Tiles;
-using MiniRealms.Sounds;
 
 namespace MiniRealms.Engine
 {
@@ -85,13 +85,13 @@ namespace MiniRealms.Engine
         {
             if (strings.Length < 1 || strings[0] == "list-sounds")
             {
-                return $"All Sounds: {string.Join(", ", Sound.AllSounds.Keys)}";
+                return $"All Sounds: {string.Join(", ", SoundManager.AllSounds.Keys)}";
             }
 
             strings[0] = strings[0].ToLower();
 
-            if (!Sound.AllSounds.ContainsKey(strings[0])) return "Sound does not exist";
-            Sound.AllSounds[strings[0]].Play();
+            if (!SoundManager.AllSounds.ContainsKey(strings[0])) return "Sound does not exist";
+            SoundManager.AllSounds[strings[0]].Play();
             return $"Playing sound {strings[0]}";
         }
 

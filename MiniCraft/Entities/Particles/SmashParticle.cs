@@ -1,5 +1,5 @@
-﻿using MiniRealms.Engine.Gfx;
-using MiniRealms.Sounds;
+﻿using MiniRealms.Engine.Audio.Sounds;
+using MiniRealms.Engine.Gfx;
 
 namespace MiniRealms.Entities.Particles
 {
@@ -11,7 +11,7 @@ namespace MiniRealms.Entities.Particles
         {
             X = x;
             Y = y;
-            Sound.PlaySound("monsterhurt");
+            SoundManager.Play("monsterhurt");
         }
 
         public override void Tick()

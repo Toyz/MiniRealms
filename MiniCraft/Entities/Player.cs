@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MiniRealms.Engine.Audio.Sounds;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Engine.LevelGens;
 using MiniRealms.Entities.Particles;
@@ -8,7 +9,6 @@ using MiniRealms.Items.Resources;
 using MiniRealms.Levels;
 using MiniRealms.Levels.Tiles;
 using MiniRealms.Screens;
-using MiniRealms.Sounds;
 
 namespace MiniRealms.Entities
 {
@@ -418,7 +418,7 @@ namespace MiniRealms.Entities
         protected override void Die()
         {
             base.Die();
-            Sound.PlaySound("death");
+            SoundManager.Play("death");
         }
 
         public override void TouchedBy(Entity entity)
@@ -433,7 +433,7 @@ namespace MiniRealms.Entities
         {
             if (HurtTime > 0 || InvulnerableTime > 0) return;
 
-            Sound.PlaySound("playerhurt");
+            SoundManager.Play("playerhurt");
             Level.Add(new TextParticle("" + damage, X, Y, Color.Get(-1, 504, 504, 504)));
             Health -= damage;
             if (attackDir == 0) YKnockback = +6;

@@ -1,8 +1,8 @@
-﻿using MiniRealms.Engine.Gfx;
+﻿using MiniRealms.Engine.Audio.Sounds;
+using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
 using MiniRealms.Items;
 using MiniRealms.Items.Resources;
-using MiniRealms.Sounds;
 
 namespace MiniRealms.Levels.Tiles
 {
@@ -78,7 +78,7 @@ namespace MiniRealms.Levels.Tiles
             if (tool.Type == ToolType.Shovel && player.PayStamina(4 - tool.Level))
             {
                 level.SetTile(xt, yt, Dirt, 0);
-                Sound.PlaySound("monsterhurt");
+                SoundManager.Play("monsterhurt");
                 if (Random.NextInt(5) == 0)
                 {
                     level.Add(new ItemEntity(new ResourceItem(Resource.Seeds), xt*16 + Random.NextInt(10) + 3,
@@ -88,7 +88,7 @@ namespace MiniRealms.Levels.Tiles
             }
             if (tool.Type != ToolType.Hoe) return false;
             if (!player.PayStamina(4 - tool.Level)) return false;
-            Sound.PlaySound("monsterhurt");
+            SoundManager.Play("monsterhurt");
             if (Random.NextInt(5) == 0)
             {
                 level.Add(new ItemEntity(new ResourceItem(Resource.Seeds), xt * 16 + Random.NextInt(10) + 3, yt * 16 + Random.NextInt(10) + 3));

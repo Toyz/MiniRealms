@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using MiniRealms.Crafts;
+using MiniRealms.Engine.Audio.Sounds;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
 using MiniRealms.Items;
-using MiniRealms.Sounds;
 
 namespace MiniRealms.Screens
 {
@@ -60,7 +60,7 @@ namespace MiniRealms.Screens
                 {
                     r.DeductCost(_player);
                     r.Craft(_player);
-                    Sound.PlaySound("craft");
+                    SoundManager.Play("craft");
                 }
                 for (int i = 0; i < _recipes.Size(); i++)
                 {

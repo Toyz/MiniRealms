@@ -1,6 +1,6 @@
 ﻿using System;
+using MiniRealms.Engine.Audio.Sounds;
 using MiniRealms.Engine.Gfx;
-using MiniRealms.Sounds;
 
 namespace MiniRealms.Entities
 {
@@ -183,7 +183,7 @@ namespace MiniRealms.Entities
                 Level.Player.Score += 1000;
                 Level.Player.GameWon();
             }
-            Sound.PlaySound("bossdeath");
+            SoundManager.Play("bossdeath");
         }
 
     }

@@ -1,8 +1,8 @@
-﻿using MiniRealms.Engine.Gfx;
+﻿using MiniRealms.Engine.Audio.Sounds;
+using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities.Particles;
 using MiniRealms.Levels;
 using MiniRealms.Levels.Tiles;
-using MiniRealms.Sounds;
 
 namespace MiniRealms.Entities
 {
@@ -119,7 +119,7 @@ namespace MiniRealms.Entities
                 int yd = Level.Player.Y - Y;
                 if (xd * xd + yd * yd < 80 * 80)
                 {
-                    Sound.PlaySound("monsterhurt");
+                    SoundManager.Play("monsterhurt");
                 }
             }
             Level.Add(new TextParticle("" + damage, X, Y, Color.Get(-1, 500, 500, 500)));
