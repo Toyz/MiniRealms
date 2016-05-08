@@ -33,10 +33,7 @@ namespace MiniRealms.Engine
             ManualInterpreter.RegisterCommand("fps", _ => $"Current FPS: {game.FpsCounterComponent.FrameRate}");
 
             //Normal commands XD
-            ManualInterpreter.RegisterCommand("clear", _ =>
-            { 
-                game.Console.Clear();
-            });
+            ManualInterpreter.RegisterCommand("clear", _ => game.Console.Clear());
         }
 
         private static string NewRandomPlayerColorCommand(string[] arg)

@@ -21,6 +21,5 @@
             int b = d%10;
             return r*36 + g*6 + b;
         }
-
     }
 }
