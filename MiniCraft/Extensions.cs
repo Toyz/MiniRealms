@@ -17,20 +17,11 @@ namespace MiniRealms
 
         public static T Get<T>(this List<T> list, int index) => list[index];
 
-        public static void Add<T>(this List<T> list, int index, T item)
-        {
-            list?.Insert(index, item);
-        }
+        public static void Add<T>(this List<T> list, int index, T item) => list?.Insert(index, item);
 
-        public static void Add<T>(this List<T> list, T item)
-        {
-            list.Add(item);
-        }
+        public static void Add<T>(this List<T> list, T item) => list.Add(item);
 
-        public static void Remove<T>(this List<T> list, T item)
-        {
-            list.Remove(item);
-        }
+        public static void Remove<T>(this List<T> list, T item) => list.Remove(item);
 
         public static T Remove<T>(this List<T> list, int index)
         {
@@ -39,15 +30,9 @@ namespace MiniRealms
             return item;
         }
 
-        public static void Clear<T>(this List<T> list)
-        {
-            list.Clear();
-        }
+        public static void Clear<T>(this List<T> list) => list.Clear();
 
-        public static void AddAll<T>(this List<T> list, IEnumerable<T> items)
-        {
-            list.AddRange(items);
-        }
+        public static void AddAll<T>(this List<T> list, IEnumerable<T> items) => list.AddRange(items);
 
         public static void RemoveAll<T>(this List<T> list, List<T> other)
         {
