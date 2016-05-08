@@ -247,10 +247,10 @@ namespace MiniRealms.Engine.LevelGens
                             map[xx + yy * w] = Tile.YellowFlower.Id;
                             break;
                         case 1:
-                            map[xx + yy*w] = Tile.RedFlower.Id;
+                            map[xx + yy * w] = Tile.RedFlower.Id;
                             break;
                         case 0:
-                            map[xx + yy*w] = Tile.Flower.Id;
+                            map[xx + yy * w] = Tile.Flower.Id;
                             break;
                     }
 
