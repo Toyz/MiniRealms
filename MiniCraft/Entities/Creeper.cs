@@ -87,7 +87,7 @@ namespace MiniRealms.Entities
                             Level.SetTile(xt, yt, Tile.Hole, 0);
                         }
 
-                        SoundManager.Play("boom");
+                        SoundEffectManager.Play("boom");
                         Die();
                     }
                     else
@@ -159,7 +159,7 @@ namespace MiniRealms.Entities
             {
                 if (_fuseTime == 0)
                 {
-                    SoundManager.Play("fuse");
+                    SoundEffectManager.Play("fuse");
                     _fuseTime = _maxFuseTime;
                     _fuseLit = true;
                 }
@@ -170,7 +170,7 @@ namespace MiniRealms.Entities
         protected override void Die()
         {
             base.Die();
-            SoundManager.Stop("fuse");
+            SoundEffectManager.Stop("fuse");
             if (Level.Player != null)
             {
                 Level.Player.Score += 50 * _lvl;

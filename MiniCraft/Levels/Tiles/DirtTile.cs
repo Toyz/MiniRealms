@@ -32,12 +32,12 @@ namespace MiniRealms.Levels.Tiles
                 level.SetTile(xt, yt, Hole, 0);
                 level.Add(new ItemEntity(new ResourceItem(Resource.Dirt), xt*16 + Random.NextInt(10) + 3,
                     yt*16 + Random.NextInt(10) + 3));
-                SoundManager.Play("monsterhurt");
+                SoundEffectManager.Play("monsterhurt");
                 return true;
             }
             if (tool.Type != ToolType.Hoe || !player.PayStamina(4 - tool.Level)) return false;
             level.SetTile(xt, yt, Farmland, 0);
-            SoundManager.Play("monsterhurt");
+            SoundEffectManager.Play("monsterhurt");
             return true;
         }
     }

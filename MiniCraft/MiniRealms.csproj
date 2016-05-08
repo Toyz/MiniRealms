@@ -44,7 +44,7 @@
     <Compile Include="Crafts\Recipe.cs" />
     <Compile Include="Crafts\ResourceRecipe.cs" />
     <Compile Include="Crafts\ToolRecipe.cs" />
-    <Compile Include="Engine\Audio\Sounds\SoundManager.cs" />
+    <Compile Include="Engine\Audio\Sounds\SoundEffectManager.cs" />
     <Compile Include="Engine\BinaryHelpers.cs" />
     <Compile Include="Engine\Compents\FpsCounterComponent.cs" />
     <Compile Include="Engine\ConsoleCommands.cs" />
@@ -122,7 +122,7 @@
     <Compile Include="Screens\IListItem.cs" />
     <Compile Include="Screens\Menu.cs" />
     <Compile Include="Screens\TitleMenu.cs" />
-    <Compile Include="Engine\Audio\Sounds\Sound.cs" />
+    <Compile Include="Engine\Audio\Sounds\SoundEffect.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

@@ -86,7 +86,7 @@ namespace MiniRealms.Entities
 
         public void Take(Player player)
         {
-            SoundManager.Play("pickup");
+            SoundEffectManager.Play("pickup");
             player.Score++;
             Item.OnTake(this);
             Remove();

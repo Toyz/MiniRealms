@@ -60,7 +60,7 @@ namespace MiniRealms.Screens
                 {
                     r.DeductCost(_player);
                     r.Craft(_player);
-                    SoundManager.Play("craft");
+                    SoundEffectManager.Play("craft");
                 }
                 for (int i = 0; i < _recipes.Size(); i++)
                 {

@@ -133,7 +133,7 @@ namespace MiniRealms
             Screen = new Screen(GameConts.Width, GameConts.Height, new SpriteSheet(spriteSheet));
             _lightScreen = new Screen(GameConts.Width, GameConts.Height, new SpriteSheet(spriteSheet));
 
-            SoundManager.Initialize(Content);
+            SoundEffectManager.Initialize(Content);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             _pixels = new Microsoft.Xna.Framework.Color[GameConts.Width  * GameConts.Height];

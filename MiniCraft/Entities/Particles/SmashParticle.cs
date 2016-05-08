@@ -11,7 +11,7 @@ namespace MiniRealms.Entities.Particles
         {
             X = x;
             Y = y;
-            SoundManager.Play("monsterhurt");
+            SoundEffectManager.Play("monsterhurt");
         }
 
         public override void Tick()

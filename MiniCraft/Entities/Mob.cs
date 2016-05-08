@@ -119,7 +119,7 @@ namespace MiniRealms.Entities
                 int yd = Level.Player.Y - Y;
                 if (xd * xd + yd * yd < 80 * 80)
                 {
-                    SoundManager.Play("monsterhurt");
+                    SoundEffectManager.Play("monsterhurt");
                 }
             }
             Level.Add(new TextParticle("" + damage, X, Y, Color.Get(-1, 500, 500, 500)));
