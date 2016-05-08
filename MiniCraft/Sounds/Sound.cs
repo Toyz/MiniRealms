@@ -28,16 +28,26 @@ namespace MiniRealms.Sounds
 
 
         //actual sound object
-        private readonly SoundEffect _soundEffect;
+        private SoundEffect _soundEffect;
 
         private Sound(ContentManager content, string fileName, bool isPhysicalPath = false)
         {
             _soundEffect = isPhysicalPath ? content.Load<SoundEffect>(fileName) : content.Load<SoundEffect>("Sounds/" + fileName);
         }
 
+        private Sound(byte[] file, int sampleRate)
+        {
+            _soundEffect = new SoundEffect(file, sampleRate, AudioChannels.Stereo);
+        }
+
         public void Play()
         {
             _soundEffect.Play();
+        }
+
+        public void Unload()
+        {
+            _soundEffect = null;
         }
     }
 }

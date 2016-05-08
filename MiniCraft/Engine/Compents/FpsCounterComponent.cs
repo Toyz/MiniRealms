@@ -20,12 +20,10 @@ namespace MiniRealms.Engine.Compents
         {
             _elapsedTime += gameTime.ElapsedGameTime;
 
-            if (_elapsedTime > TimeSpan.FromSeconds(1))
-            {
-                _elapsedTime -= TimeSpan.FromSeconds(1);
-                FrameRate = _frameCounter;
-                _frameCounter = 0;
-            }
+            if (_elapsedTime <= TimeSpan.FromSeconds(1)) return;
+            _elapsedTime -= TimeSpan.FromSeconds(1);
+            FrameRate = _frameCounter;
+            _frameCounter = 0;
         }
 
 
