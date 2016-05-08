@@ -46,7 +46,7 @@ namespace MiniRealms.Items.Resources
 
         public Resource(string name, int sprite, int color)
         {
-            if (name.Length > 8) throw new InvalidProgramException("Name cannot be longer than six characters!");
+            if (name.Length > 8) throw new Exception($"{nameof(name)} cannot be longer than 8 characters!");
             Name = name;
             Sprite = sprite;
             Color = color;
