@@ -108,7 +108,7 @@ namespace MiniRealms.Screens
 
             Font.Draw("(Arrow keys,X and C)", screen, xx, screen.H - 8, Color.DarkGrey);
 
-            if (ShowErrorAlert && !Game.IsLoadingWorld)ll you
+            if (ShowErrorAlert && !Game.IsLoadingWorld)
             {
                 Game.RenderAlertWindow(ErrorAlertBody);
             }
