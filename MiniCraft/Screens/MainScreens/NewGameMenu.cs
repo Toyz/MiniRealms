@@ -1,53 +1,59 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using MiniRealms.Engine.Audio.Sounds;
 using MiniRealms.Engine.Gfx;
+using MiniRealms.Screens.Interfaces;
 using MiniRealms.Screens.Options;
+using Color = MiniRealms.Engine.Gfx.Color;
+using Font = MiniRealms.Engine.Gfx.Font;
+using Point = Microsoft.Xna.Framework.Point;
 
-namespace MiniRealms.Screens
+namespace MiniRealms.Screens.MainScreens
 {
-    public class OptionsMenu : Menu
+    public class NewGameMenu : Menu
     {
-        private readonly McGame _game;
-
         private int _selected;
+        private readonly List<IOption> _options;
+        private readonly WorldSizeOption _worldSizeOption;
 
-        private static List<IOption> _options;
-        private readonly ActionOption _fullScreenOption;
-        private readonly ActionOption _boardLessOption;
-
-        public OptionsMenu(Menu parent, McGame game)
+        public NewGameMenu(Menu parent)
         {
-            _game = game;
-            _fullScreenOption = new ActionOption($"Full Screen: {(game.Gdm.IsFullScreen ? "Yes" : "No")}", FullScreenActionToggle);
-            _boardLessOption = new ActionOption($"Borderless: {(game.Window.IsBorderless ? "Yes" : "No")}", SetWindowBorderlessToggle);
-
+            _worldSizeOption = new WorldSizeOption();
             _options = new List<IOption>
             {
-                new VolumeContol(),
-                _fullScreenOption,
-                _boardLessOption,
-                new ActionOption("Main Menu", () => Game.SetMenu(parent))
+                _worldSizeOption,
+                new ActionOption("Create and Start", CreateAndStartWorld),
+                new ActionOption("Cancel", () => Game.SetMenu(parent))
             };
         }
 
-        private void SetWindowBorderlessToggle()
+        private void CreateAndStartWorld()
         {
-            Game.Window.IsBorderless = !Game.Window.IsBorderless;
-            _boardLessOption.Text = $"Borderless: {(Game.Window.IsBorderless ? "Yes" : "No")}";
-        }
+            SoundEffectManager.Play("test");
+            Game.LoadingText = "World Creation";
+            Game.IsLoadingWorld = true;
+            Game.CurrentLevel = 3;
 
-        public void FullScreenActionToggle()
-        {
-            McGame mcGame = _game;
+            Point s = _worldSizeOption.Sizes[_worldSizeOption.Selected];
+            GameConts.MaxHeight = s.Y;
+            GameConts.MaxWidth = s.X;
 
-            mcGame.Gdm.IsFullScreen = !mcGame.Gdm.IsFullScreen;
-            mcGame.Gdm.ApplyChanges();
-            _fullScreenOption.Text = $"Full Screen: {(mcGame.Gdm.IsFullScreen ? "Yes" : "No")}";
-            _boardLessOption.Enabled = !Game.Gdm.IsFullScreen;
+            Task.Run(() =>
+            {
+                Game.SetupLevel(s.X, s.Y);
+            }).ContinueWith((e) =>
+            {
+                Game.IsLoadingWorld = false;
+                Game.LoadingText = string.Empty;
+                Game.ResetGame();
+                Game.SetMenu(null);
+            });
         }
 
         public override void Tick()
         {
+            if (Game.IsLoadingWorld) return;
+            
             if (Input.Up.Clicked)
             {
                 _selected--;
@@ -63,7 +69,6 @@ namespace MiniRealms.Screens
             int len = _options.Count;
             if (_selected < 0) _selected += len;
             if (_selected >= len) _selected -= len;
-
 
             _options[_selected].HandleInput(Input);
         }

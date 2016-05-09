@@ -1,7 +1,8 @@
 ﻿using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
+using MiniRealms.Screens.Interfaces;
 
-namespace MiniRealms.Screens
+namespace MiniRealms.Screens.GameScreens
 {
     public class ContainerMenu : Menu
     {

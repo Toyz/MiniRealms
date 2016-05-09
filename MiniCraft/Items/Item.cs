@@ -3,6 +3,7 @@ using MiniRealms.Entities;
 using MiniRealms.Levels;
 using MiniRealms.Levels.Tiles;
 using MiniRealms.Screens;
+using MiniRealms.Screens.Interfaces;
 
 namespace MiniRealms.Items
 {

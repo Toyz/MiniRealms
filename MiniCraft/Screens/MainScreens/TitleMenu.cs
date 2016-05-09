@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using MiniRealms.Engine.Audio.Sounds;
 using MiniRealms.Engine.Gfx;
+using MiniRealms.Screens.Interfaces;
 using MiniRealms.Screens.Options;
 
-namespace MiniRealms.Screens
+namespace MiniRealms.Screens.MainScreens
 {
     public class TitleMenu : Menu
     {

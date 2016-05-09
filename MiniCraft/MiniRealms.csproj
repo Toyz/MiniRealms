@@ -113,22 +113,22 @@
     <Compile Include="McGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Screens\ContainerMenu.cs" />
-    <Compile Include="Screens\CraftingMenu.cs" />
-    <Compile Include="Screens\GameOverMenu.cs" />
-    <Compile Include="Screens\InstructionsMenu.cs" />
-    <Compile Include="Screens\InventoryMenu.cs" />
-    <Compile Include="Screens\LevelTransitionMenu.cs" />
-    <Compile Include="Screens\IListItem.cs" />
-    <Compile Include="Screens\Menu.cs" />
-    <Compile Include="Screens\NewGameMenu.cs" />
-    <Compile Include="Screens\OptionsMenu.cs" />
+    <Compile Include="Screens\GameScreens\ContainerMenu.cs" />
+    <Compile Include="Screens\GameScreens\CraftingMenu.cs" />
+    <Compile Include="Screens\GameScreens\GameOverMenu.cs" />
+    <Compile Include="Screens\MainScreens\InstructionsMenu.cs" />
+    <Compile Include="Screens\GameScreens\InventoryMenu.cs" />
+    <Compile Include="Screens\GameScreens\LevelTransitionMenu.cs" />
+    <Compile Include="Screens\Interfaces\IListItem.cs" />
+    <Compile Include="Screens\Interfaces\Menu.cs" />
+    <Compile Include="Screens\MainScreens\NewGameMenu.cs" />
+    <Compile Include="Screens\MainScreens\OptionsMenu.cs" />
     <Compile Include="Screens\Options\IOption.cs" />
     <Compile Include="Screens\Options\ActionOption.cs" />
     <Compile Include="Screens\Options\LabelOption.cs" />
     <Compile Include="Screens\Options\VolumeContol.cs" />
     <Compile Include="Screens\Options\WorldSizeOption.cs" />
-    <Compile Include="Screens\TitleMenu.cs" />
+    <Compile Include="Screens\MainScreens\TitleMenu.cs" />
     <Compile Include="Engine\Audio\Sounds\SoundEffect.cs" />
   </ItemGroup>
   <ItemGroup>

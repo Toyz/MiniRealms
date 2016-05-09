@@ -4,6 +4,7 @@ using MiniRealms.Entities;
 using MiniRealms.Items;
 using MiniRealms.Items.Resources;
 using MiniRealms.Screens;
+using MiniRealms.Screens.Interfaces;
 
 namespace MiniRealms.Crafts
 {

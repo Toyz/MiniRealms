@@ -9,6 +9,7 @@ using MiniRealms.Items.Resources;
 using MiniRealms.Levels;
 using MiniRealms.Levels.Tiles;
 using MiniRealms.Screens;
+using MiniRealms.Screens.GameScreens;
 
 namespace MiniRealms.Entities
 {

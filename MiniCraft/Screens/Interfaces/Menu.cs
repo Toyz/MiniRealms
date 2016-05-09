@@ -2,7 +2,7 @@
 using System.Linq;
 using MiniRealms.Engine.Gfx;
 
-namespace MiniRealms.Screens
+namespace MiniRealms.Screens.Interfaces
 {
     public class Menu
     {

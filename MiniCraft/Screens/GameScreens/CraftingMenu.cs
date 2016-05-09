@@ -6,8 +6,9 @@ using MiniRealms.Engine.Audio.Sounds;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
 using MiniRealms.Items;
+using MiniRealms.Screens.Interfaces;
 
-namespace MiniRealms.Screens
+namespace MiniRealms.Screens.GameScreens
 {
     public class CraftingMenu : Menu
     {

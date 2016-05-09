@@ -1,5 +1,5 @@
 ﻿using MiniRealms.Engine.Gfx;
-using MiniRealms.Screens;
+using MiniRealms.Screens.GameScreens;
 
 namespace MiniRealms.Entities
 {

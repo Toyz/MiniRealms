@@ -1,7 +1,9 @@
 ﻿using MiniRealms.Engine.Gfx;
 using MiniRealms.Engine.LevelGens;
+using MiniRealms.Screens.Interfaces;
+using MiniRealms.Screens.MainScreens;
 
-namespace MiniRealms.Screens
+namespace MiniRealms.Screens.GameScreens
 {
 
     public class GameOverMenu : Menu

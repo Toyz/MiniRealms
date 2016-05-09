@@ -10,6 +10,9 @@ using MiniRealms.Entities;
 using MiniRealms.Levels;
 using MiniRealms.Levels.Tiles;
 using MiniRealms.Screens;
+using MiniRealms.Screens.GameScreens;
+using MiniRealms.Screens.Interfaces;
+using MiniRealms.Screens.MainScreens;
 using Color = MiniRealms.Engine.Gfx.Color;
 
 namespace MiniRealms

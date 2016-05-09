@@ -1,6 +1,7 @@
 ﻿using MiniRealms.Engine.Gfx;
+using MiniRealms.Screens.Interfaces;
 
-namespace MiniRealms.Screens
+namespace MiniRealms.Screens.GameScreens
 {
 
     public class LevelTransitionMenu : Menu

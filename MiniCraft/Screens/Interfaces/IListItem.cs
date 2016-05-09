@@ -1,6 +1,6 @@
 ﻿using MiniRealms.Engine.Gfx;
 
-namespace MiniRealms.Screens
+namespace MiniRealms.Screens.Interfaces
 {
     public interface IListItem
     {
