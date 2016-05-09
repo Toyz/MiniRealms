@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using MiniRealms.Engine.Audio.Sounds;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Screens.Options;
@@ -24,11 +23,14 @@ namespace MiniRealms.Screens
                     SoundEffectManager.Play("test");
                     Game.SetMenu(new NewGameMenu(this));
                 }),
+#if DEBUG
                 new ActionOption("How to play", () =>
                 {
                     SoundEffectManager.Play("test");
                     Game.SetMenu(new InstructionsMenu(this));
                 }),
+                new LabelOption("Mods and Addons"),
+#endif
                 new ActionOption("Options", () =>
                 {
                     SoundEffectManager.Play("test");
@@ -37,9 +39,6 @@ namespace MiniRealms.Screens
                 new ActionOption("Exit", () => Game.Exit())
             };
 
-#if DEBUG
-            _options.Insert(2, new LabelOption("Mods and Addons"));
-#endif
         }
 
         public override void Tick()

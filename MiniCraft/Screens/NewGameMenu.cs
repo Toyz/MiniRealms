@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Drawing;
 using System.Threading.Tasks;
 using MiniRealms.Engine.Audio.Sounds;
 using MiniRealms.Engine.Gfx;
@@ -12,15 +11,12 @@ namespace MiniRealms.Screens
 {
     public class NewGameMenu : Menu
     {
-        private readonly Menu _parent;
         private int _selected;
         private readonly List<IOption> _options;
         private readonly WorldSizeOption _worldSizeOption;
 
         public NewGameMenu(Menu parent)
         {
-            _parent = parent;
-
             _worldSizeOption = new WorldSizeOption();
             _options = new List<IOption>
             {
@@ -38,6 +34,8 @@ namespace MiniRealms.Screens
             Game.CurrentLevel = 3;
 
             Point s = _worldSizeOption.Sizes[_worldSizeOption.Selected];
+            GameConts.MaxHeight = s.Y;
+            GameConts.MaxWidth = s.X;
 
             Task.Run(() =>
             {
