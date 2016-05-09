@@ -2,7 +2,7 @@
 {
     public interface IOption
     {
-        string Name { get; set; }
+        string Text { get; set; }
         void Tick(InputHandler input);
         void Update();
     }

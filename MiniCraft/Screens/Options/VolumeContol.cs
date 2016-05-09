@@ -4,7 +4,7 @@ namespace MiniRealms.Screens.Options
 {
     public class VolumeContol : IOption
     {
-        public string Name { get; set; } = "Volume: ";
+        public string Text { get; set; } = "Volume: ";
 
         public void Tick(InputHandler input)
         {
@@ -28,7 +28,7 @@ namespace MiniRealms.Screens.Options
             }
 
             SoundEffectManager.SetMasterVolume(volume);
-            Name = $"Volume: {volume.ToString("P0")}";
+            Text = $"Volume: {volume.ToString("P0")}";
         }
 
         public void Update()

@@ -13,18 +13,29 @@ namespace MiniRealms.Screens
 
         private static List<IOption> _options;
         private readonly ActionOption _fullScreenOption;
+        private readonly ActionOption _boardLessOption;
 
         public OptionsMenu(Menu parent, McGame game)
         {
             _game = game;
             _fullScreenOption = new ActionOption(
                 $"Full Screen: {(game.Gdm.IsFullScreen ? "Yes" : "No")}", FullScreenActionToggle);
+            _boardLessOption = new ActionOption($"Borderless: {(game.Window.IsBorderless ? "Yes" : "No")}", SetWindowBorderlessToggle);
+
             _options = new List<IOption>
             {
                 new VolumeContol(),
                 _fullScreenOption,
+                _boardLessOption,
                 new ActionOption("Main Menu", () => Game.SetMenu(parent))
             };
+        }
+
+        private void SetWindowBorderlessToggle()
+        {
+            Game.Window.IsBorderless = !Game.Window.IsBorderless;
+            _boardLessOption.Text = $"Borderless: {(Game.Window.IsBorderless ? "Yes" : "No")}";
+
         }
 
         public void FullScreenActionToggle()
@@ -33,7 +44,9 @@ namespace MiniRealms.Screens
 
             mcGame.Gdm.IsFullScreen = !mcGame.Gdm.IsFullScreen;
             mcGame.Gdm.ApplyChanges();
-            _fullScreenOption.Name = $"Full Screen: {(mcGame.Gdm.IsFullScreen ? "Yes" : "No")}";
+            _fullScreenOption.Text = $"Full Screen: {(mcGame.Gdm.IsFullScreen ? "Yes" : "No")}";
+            _boardLessOption.Enabled = !Game.Gdm.IsFullScreen;
+
         }
 
         public override void Tick()
@@ -54,6 +67,7 @@ namespace MiniRealms.Screens
             if (_selected < 0) _selected += len;
             if (_selected >= len) _selected -= len;
 
+
             _options[_selected].Tick(Input);
         }
 
@@ -65,7 +79,7 @@ namespace MiniRealms.Screens
 
             for (int i = 0; i < _options.Count; i++)
             {
-                string msg = _options[i].Name;
+                string msg = _options[i].Text;
                 int col = Color.DarkGrey;
                 if (i == _selected)
                 {

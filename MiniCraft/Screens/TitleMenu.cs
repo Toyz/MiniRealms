@@ -77,7 +77,7 @@ namespace MiniRealms.Screens
             for (int i = 0; i < _options.Count; i++)
             {
                 IOption option = _options[i];
-                string msg = option.Name;
+                string msg = option.Text;
                 int col = Color.DarkGrey;
                 if (i == _selected)
                 {

@@ -6,18 +6,17 @@ namespace MiniRealms.Screens.Options
 {
     public class WorldSizeOption : IOption
     {
-        public List<Point> Sizes = new List<Point>
+        public readonly List<Point> Sizes = new List<Point>
         {
             new Point(128, 128),
             new Point(256, 256),
             new Point(512, 512),
-            new Point(720, 720),
-            new Point(1024, 1024),
+            new Point(1024, 1024)
         };
 
         public int Selected;
 
-        public string Name { get; set; } = "World Size: ";
+        public string Text { get; set; } = "World Size: ";
 
         public void Tick(InputHandler input)
         {
@@ -39,7 +38,7 @@ namespace MiniRealms.Screens.Options
 
             Point s = Sizes[Selected];
 
-            Name = $"World Size: {s.X}x{s.Y}";
+            Text = $"World Size: {s.X}x{s.Y}";
         }
 
         public void Update()

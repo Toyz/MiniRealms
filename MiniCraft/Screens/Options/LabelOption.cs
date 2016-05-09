@@ -2,11 +2,11 @@
 {
     public class LabelOption : IOption
     {
-        public string Name { get; set; }
+        public string Text { get; set; }
 
         public LabelOption(string label)
         {
-            Name = label;
+            Text = label;
         }
 
         public virtual void Tick(InputHandler input)
