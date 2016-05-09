@@ -92,11 +92,12 @@ namespace MiniRealms.Screens
 
             for (int i = 0; i < _options.Count; i++)
             {
-                string msg = _options[i].Name;
+                IOption option = _options[i];
+                string msg = option.Name;
                 int col = Color.DarkGrey;
                 if (i == _selected)
                 {
-                    _options[i].Update();
+                    option.Update();
                     msg = "> " + msg + " <";
                     col = Color.White;
                 }
