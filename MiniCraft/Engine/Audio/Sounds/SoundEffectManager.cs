@@ -21,6 +21,16 @@ namespace MiniRealms.Engine.Audio.Sounds
             }
         }
 
+        public static float GetMasterVolume()
+        {
+            return Microsoft.Xna.Framework.Audio.SoundEffect.MasterVolume;
+        }
+
+        public static void SetMasterVolume(float volume)
+        {
+            Microsoft.Xna.Framework.Audio.SoundEffect.MasterVolume = volume;
+        }
+
         public static void Play(string key)
         {
             Get(key).Play();

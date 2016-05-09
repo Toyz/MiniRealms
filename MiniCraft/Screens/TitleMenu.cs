@@ -1,6 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using MiniRealms.Engine.Audio.Sounds;
 using MiniRealms.Engine.Gfx;
+using MiniRealms.Screens.Options;
 
 namespace MiniRealms.Screens
 {
@@ -11,7 +13,49 @@ namespace MiniRealms.Screens
 
         private int _selected;
 
-        private static readonly string[] Options = { "Start game", "How to play", "Mods and Addons", "Options", "Exit" };
+        private static List<IOption> _options;
+
+        public TitleMenu()
+        {
+            _options = new List<IOption>
+            {
+                new ActionOption("New Game", NewGameOption),
+                new ActionOption("How to play", () =>
+                {
+                    SoundEffectManager.Play("test");
+                    Game.SetMenu(new InstructionsMenu(this));
+                }),
+                new ActionOption("Options", () =>
+                {
+                    SoundEffectManager.Play("test");
+                    Game.SetMenu(new OptionsMenu(this, Game));
+                }),
+                new ActionOption("Exit", () => Game.Exit())
+            };
+
+#if DEBUG
+            _options.Insert(2, new LabelOption("Mods and Addons"));
+#endif
+        }
+
+        private void NewGameOption()
+        {
+            SoundEffectManager.Play("test");
+            Game.LoadingText = "World Creation";
+            Game.IsLoadingWorld = true;
+            Game.CurrentLevel = 3;
+
+            Task.Run(() =>
+            {
+                Game.SetupLevel(GameConts.MaxWidth, GameConts.MaxHeight);
+            }).ContinueWith((e) =>
+            {
+                Game.IsLoadingWorld = false;
+                Game.LoadingText = string.Empty;
+                Game.ResetGame();
+                Game.SetMenu(null);
+            });
+        }
 
         public override void Tick()
         {
@@ -33,50 +77,11 @@ namespace MiniRealms.Screens
                 ShowErrorAlert = false;
             }
 
-            int len = Options.Length;
+            int len = _options.Count;
             if (_selected < 0) _selected += len;
             if (_selected >= len) _selected -= len;
 
-            if (!Input.Attack.Clicked && !Input.Menu.Clicked) return;
-
-            if (_selected < 0)
-            {
-                _selected = len - 1;
-            }
-
-            if (_selected > len - 1)
-            {
-                _selected = 0;
-            }
-
-            if (_selected == 0)
-            {
-                SoundEffectManager.Play("test");
-                Game.LoadingText = "World Creation";
-                Game.IsLoadingWorld = true;
-                Game.CurrentLevel = 3;
-
-                Task.Run(() =>
-                {
-                    Game.SetupLevel(GameConts.MaxWidth, GameConts.MaxHeight);
-                }).ContinueWith((e) =>
-                {
-                    Game.IsLoadingWorld = false;
-                    Game.LoadingText = string.Empty;
-                    Game.ResetGame();
-                    Game.SetMenu(null);
-                });
-            }
-            if (_selected == 1) Game.SetMenu(new InstructionsMenu(this));
-            if (_selected == 2 || _selected == 3)
-            {
-                ShowErrorAlert = true;
-                ErrorAlertBody = "Coming Soon";
-            }
-            if (_selected == 4)
-            {
-                Game.Exit();
-            }
+            _options[_selected].Tick(Input);
         }
 
         public override void Render(Screen screen)
@@ -85,12 +90,13 @@ namespace MiniRealms.Screens
 
             Font.Draw(GameConts.Name, screen, (screen.W - GameConts.Name.Length * 8) / 2, 20, Game.TickCount / 20 % 2 == 0 ? Color.White : Color.Yellow);
 
-            for (int i = 0; i < Options.Length; i++)
+            for (int i = 0; i < _options.Count; i++)
             {
-                string msg = Options[i];
+                string msg = _options[i].Name;
                 int col = Color.DarkGrey;
                 if (i == _selected)
                 {
+                    _options[i].Update();
                     msg = "> " + msg + " <";
                     col = Color.White;
                 }
@@ -102,7 +108,7 @@ namespace MiniRealms.Screens
 
             Font.Draw("(Arrow keys,X and C)", screen, xx, screen.H - 8, Color.DarkGrey);
 
-            if (ShowErrorAlert && !Game.IsLoadingWorld)
+            if (ShowErrorAlert && !Game.IsLoadingWorld)ll you
             {
                 Game.RenderAlertWindow(ErrorAlertBody);
             }

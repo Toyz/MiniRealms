@@ -50,7 +50,7 @@
                 }
             }
 
-            Draw(title, screen, x0 * 8 + 8, y0 * 8, Color.Get(5, 5, 5, 550));
+            Draw(title, screen, x0 * 8 + 8, y0 * 8, Color.Get(5, 5, 5, 540));
 
         }
     }

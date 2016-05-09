@@ -42,12 +42,12 @@ namespace MiniRealms.Screens
             int amount = _player.Inventory.Count(i);
 
             Font.RenderFrame(screen, "inventory", 1, 2, 14, 11);
-            Font.RenderFrame(screen, i.GetName(), 15, 2, 24, 5);
+            Font.RenderFrame(screen, i.GetName(), 15, 2, 25, 5);
 
             if (amount > 99)
             {
-                Font.RenderFrame(screen, "Amount", 15, 6, 24, 8);
-                Font.Draw(amount.ToString("N0"), screen, 16*8, 7*8 + 2, Color.DarkGrey);
+                Font.RenderFrame(screen, "Amount", 15, 6, 25, 8);
+                Font.Draw(amount.ToString("N0"), screen, 16*8, 7*8 + 2, Color.White);
             }
 
             Font.Draw(i.GetName(), screen, 16 * 8, 3 * 8, Color.White);

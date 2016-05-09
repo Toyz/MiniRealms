@@ -50,11 +50,11 @@ namespace MiniRealms
         public ConsoleComponent Console;
         public ConsoleCommands Cc;
         public FpsCounterComponent FpsCounterComponent;
-        private readonly GraphicsDeviceManager _graphics;
+        public readonly GraphicsDeviceManager GDM;
 
         public McGame()
         {
-            _graphics = new GraphicsDeviceManager(this)
+            GDM = new GraphicsDeviceManager(this)
             {
                 PreferredBackBufferHeight = GameConts.Height* GameConts.Scale,
                 PreferredBackBufferWidth = GameConts.Width * GameConts.Scale
@@ -169,11 +169,11 @@ namespace MiniRealms
             {
                 if (_input.FullScreen.Clicked)
                 {
-                    _graphics.IsFullScreen = !_graphics.IsFullScreen;
+                    GDM.IsFullScreen = !GDM.IsFullScreen;
 
-                    GameConts.BaseScaling = _graphics.IsFullScreen ? 3 : 5;
+                    GameConts.BaseScaling = GDM.IsFullScreen ? 3 : 5;
 
-                    _graphics.ApplyChanges();
+                    GDM.ApplyChanges();
                 }
 
                 if (_input.ConsoleKey.Clicked)
