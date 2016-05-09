@@ -1,43 +1,60 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
+using System.Threading.Tasks;
 using MiniRealms.Engine.Audio.Sounds;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Screens.Options;
+using Color = MiniRealms.Engine.Gfx.Color;
+using Font = MiniRealms.Engine.Gfx.Font;
+using Point = Microsoft.Xna.Framework.Point;
 
 namespace MiniRealms.Screens
 {
-    public class OptionsMenu : Menu
+    public class NewGameMenu : Menu
     {
-        private readonly McGame _game;
-
+        private readonly Menu _parent;
         private int _selected;
+        private readonly List<IOption> _options;
+        private readonly WorldSizeOption _worldSizeOption;
 
-        private static List<IOption> _options;
-        private readonly ActionOption _fullScreenOption;
-
-        public OptionsMenu(Menu parent, McGame game)
+        public NewGameMenu(Menu parent)
         {
-            _game = game;
-            _fullScreenOption = new ActionOption(
-                $"Full Screen: {(game.Gdm.IsFullScreen ? "Yes" : "No")}", FullScreenActionToggle);
+            _parent = parent;
+
+            _worldSizeOption = new WorldSizeOption();
             _options = new List<IOption>
             {
-                new VolumeContol(),
-                _fullScreenOption,
-                new ActionOption("Main Menu", () => Game.SetMenu(parent))
+                _worldSizeOption,
+                new ActionOption("Create and Start", CreateAndStartWorld),
+                new ActionOption("Cancel", () => Game.SetMenu(parent))
             };
         }
 
-        public void FullScreenActionToggle()
+        private void CreateAndStartWorld()
         {
-            McGame mcGame = _game;
+            SoundEffectManager.Play("test");
+            Game.LoadingText = "World Creation";
+            Game.IsLoadingWorld = true;
+            Game.CurrentLevel = 3;
 
-            mcGame.Gdm.IsFullScreen = !mcGame.Gdm.IsFullScreen;
-            mcGame.Gdm.ApplyChanges();
-            _fullScreenOption.Name = $"Full Screen: {(mcGame.Gdm.IsFullScreen ? "Yes" : "No")}";
+            Point s = _worldSizeOption.Sizes[_worldSizeOption.Selected];
+
+            Task.Run(() =>
+            {
+                Game.SetupLevel(s.X, s.Y);
+            }).ContinueWith((e) =>
+            {
+                Game.IsLoadingWorld = false;
+                Game.LoadingText = string.Empty;
+                Game.ResetGame();
+                Game.SetMenu(null);
+            });
         }
 
         public override void Tick()
         {
+            if (Game.IsLoadingWorld) return;
+            
             if (Input.Up.Clicked)
             {
                 _selected--;

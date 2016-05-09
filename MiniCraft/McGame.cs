@@ -50,11 +50,11 @@ namespace MiniRealms
         public ConsoleComponent Console;
         public ConsoleCommands Cc;
         public FpsCounterComponent FpsCounterComponent;
-        public readonly GraphicsDeviceManager GDM;
+        public readonly GraphicsDeviceManager Gdm;
 
         public McGame()
         {
-            GDM = new GraphicsDeviceManager(this)
+            Gdm = new GraphicsDeviceManager(this)
             {
                 PreferredBackBufferHeight = GameConts.Height* GameConts.Scale,
                 PreferredBackBufferWidth = GameConts.Width * GameConts.Scale
@@ -134,6 +134,8 @@ namespace MiniRealms
             _lightScreen = new Screen(GameConts.Width, GameConts.Height, new SpriteSheet(spriteSheet));
 
             SoundEffectManager.Initialize(Content);
+            SoundEffectManager.SetMasterVolume(0.5f);
+
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             _pixels = new Microsoft.Xna.Framework.Color[GameConts.Width  * GameConts.Height];
@@ -169,11 +171,11 @@ namespace MiniRealms
             {
                 if (_input.FullScreen.Clicked)
                 {
-                    GDM.IsFullScreen = !GDM.IsFullScreen;
+                    Gdm.IsFullScreen = !Gdm.IsFullScreen;
 
-                    GameConts.BaseScaling = GDM.IsFullScreen ? 3 : 5;
+                    GameConts.BaseScaling = Gdm.IsFullScreen ? 3 : 5;
 
-                    GDM.ApplyChanges();
+                    Gdm.ApplyChanges();
                 }
 
                 if (_input.ConsoleKey.Clicked)

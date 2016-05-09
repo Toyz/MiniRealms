@@ -121,11 +121,13 @@
     <Compile Include="Screens\LevelTransitionMenu.cs" />
     <Compile Include="Screens\IListItem.cs" />
     <Compile Include="Screens\Menu.cs" />
+    <Compile Include="Screens\NewGameMenu.cs" />
     <Compile Include="Screens\OptionsMenu.cs" />
     <Compile Include="Screens\Options\IOption.cs" />
     <Compile Include="Screens\Options\ActionOption.cs" />
     <Compile Include="Screens\Options\LabelOption.cs" />
     <Compile Include="Screens\Options\VolumeContol.cs" />
+    <Compile Include="Screens\Options\WorldSizeOption.cs" />
     <Compile Include="Screens\TitleMenu.cs" />
     <Compile Include="Engine\Audio\Sounds\SoundEffect.cs" />
   </ItemGroup>

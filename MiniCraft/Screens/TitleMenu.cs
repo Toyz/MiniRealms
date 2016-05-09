@@ -19,7 +19,11 @@ namespace MiniRealms.Screens
         {
             _options = new List<IOption>
             {
-                new ActionOption("New Game", NewGameOption),
+                new ActionOption("New Game", () =>
+                {
+                    SoundEffectManager.Play("test");
+                    Game.SetMenu(new NewGameMenu(this));
+                }),
                 new ActionOption("How to play", () =>
                 {
                     SoundEffectManager.Play("test");
@@ -36,25 +40,6 @@ namespace MiniRealms.Screens
 #if DEBUG
             _options.Insert(2, new LabelOption("Mods and Addons"));
 #endif
-        }
-
-        private void NewGameOption()
-        {
-            SoundEffectManager.Play("test");
-            Game.LoadingText = "World Creation";
-            Game.IsLoadingWorld = true;
-            Game.CurrentLevel = 3;
-
-            Task.Run(() =>
-            {
-                Game.SetupLevel(GameConts.MaxWidth, GameConts.MaxHeight);
-            }).ContinueWith((e) =>
-            {
-                Game.IsLoadingWorld = false;
-                Game.LoadingText = string.Empty;
-                Game.ResetGame();
-                Game.SetMenu(null);
-            });
         }
 
         public override void Tick()

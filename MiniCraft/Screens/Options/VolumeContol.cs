@@ -4,7 +4,7 @@ namespace MiniRealms.Screens.Options
 {
     public class VolumeContol : IOption
     {
-        public string Name { get; set; }
+        public string Name { get; set; } = "Volume: ";
 
         public void Tick(InputHandler input)
         {
