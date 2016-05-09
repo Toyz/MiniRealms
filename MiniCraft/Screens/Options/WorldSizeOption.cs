@@ -18,7 +18,7 @@ namespace MiniRealms.Screens.Options
 
         public string Text { get; set; } = "World Size: ";
 
-        public void Tick(InputHandler input)
+        public void HandleInput(InputHandler input)
         {
             if (input.Left.Clicked)
             {
@@ -41,7 +41,7 @@ namespace MiniRealms.Screens.Options
             Text = $"World Size: {s.X}x{s.Y}";
         }
 
-        public void Update()
+        public void HandleRender()
         {
         }
     }

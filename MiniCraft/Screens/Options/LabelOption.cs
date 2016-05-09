@@ -9,11 +9,11 @@
             Text = label;
         }
 
-        public virtual void Tick(InputHandler input)
+        public virtual void HandleInput(InputHandler input)
         {
         }
 
-        public virtual void Update()
+        public virtual void HandleRender()
         {
         }
     }

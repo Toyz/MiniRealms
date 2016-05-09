@@ -69,7 +69,7 @@ namespace MiniRealms.Screens
             if (_selected < 0) _selected += len;
             if (_selected >= len) _selected -= len;
 
-            _options[_selected].Tick(Input);
+            _options[_selected].HandleInput(Input);
         }
 
         public override void Render(Screen screen)
@@ -86,7 +86,7 @@ namespace MiniRealms.Screens
                 {
                     msg = "> " + msg + " <";
                     col = Color.White;
-                    _options[i].Update();
+                    _options[i].HandleRender();
                 }
                 Font.Draw(msg, screen, (screen.W - msg.Length * 8) / 2, GameConts.ScreenMiddleHeight + (i * 8) - 20, col);
             }

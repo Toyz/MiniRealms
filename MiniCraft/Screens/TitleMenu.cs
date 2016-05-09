@@ -65,7 +65,7 @@ namespace MiniRealms.Screens
             if (_selected < 0) _selected += len;
             if (_selected >= len) _selected -= len;
 
-            _options[_selected].Tick(Input);
+            _options[_selected].HandleInput(Input);
         }
 
         public override void Render(Screen screen)
@@ -81,7 +81,7 @@ namespace MiniRealms.Screens
                 int col = Color.DarkGrey;
                 if (i == _selected)
                 {
-                    option.Update();
+                    option.HandleRender();
                     msg = "> " + msg + " <";
                     col = Color.White;
                 }

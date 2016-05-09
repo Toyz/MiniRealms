@@ -12,14 +12,14 @@ namespace MiniRealms.Screens.Options
             _function = function;
         }
 
-        public override void Tick(InputHandler input)
+        public override void HandleInput(InputHandler input)
         {
             if (!input.Attack.Clicked && !input.Menu.Clicked) return;
             if (!Enabled) return;
             _function?.Invoke();
         }
 
-        public override void Update()
+        public override void HandleRender()
         {
         }
     }

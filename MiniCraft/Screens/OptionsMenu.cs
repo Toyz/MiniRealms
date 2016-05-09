@@ -18,8 +18,7 @@ namespace MiniRealms.Screens
         public OptionsMenu(Menu parent, McGame game)
         {
             _game = game;
-            _fullScreenOption = new ActionOption(
-                $"Full Screen: {(game.Gdm.IsFullScreen ? "Yes" : "No")}", FullScreenActionToggle);
+            _fullScreenOption = new ActionOption($"Full Screen: {(game.Gdm.IsFullScreen ? "Yes" : "No")}", FullScreenActionToggle);
             _boardLessOption = new ActionOption($"Borderless: {(game.Window.IsBorderless ? "Yes" : "No")}", SetWindowBorderlessToggle);
 
             _options = new List<IOption>
@@ -35,7 +34,6 @@ namespace MiniRealms.Screens
         {
             Game.Window.IsBorderless = !Game.Window.IsBorderless;
             _boardLessOption.Text = $"Borderless: {(Game.Window.IsBorderless ? "Yes" : "No")}";
-
         }
 
         public void FullScreenActionToggle()
@@ -46,7 +44,6 @@ namespace MiniRealms.Screens
             mcGame.Gdm.ApplyChanges();
             _fullScreenOption.Text = $"Full Screen: {(mcGame.Gdm.IsFullScreen ? "Yes" : "No")}";
             _boardLessOption.Enabled = !Game.Gdm.IsFullScreen;
-
         }
 
         public override void Tick()
@@ -68,7 +65,7 @@ namespace MiniRealms.Screens
             if (_selected >= len) _selected -= len;
 
 
-            _options[_selected].Tick(Input);
+            _options[_selected].HandleInput(Input);
         }
 
         public override void Render(Screen screen)
@@ -85,7 +82,7 @@ namespace MiniRealms.Screens
                 {
                     msg = "> " + msg + " <";
                     col = Color.White;
-                    _options[i].Update();
+                    _options[i].HandleRender();
                 }
                 Font.Draw(msg, screen, (screen.W - msg.Length * 8) / 2, GameConts.ScreenMiddleHeight + (i * 8) - 20, col);
             }

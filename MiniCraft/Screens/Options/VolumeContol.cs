@@ -6,7 +6,7 @@ namespace MiniRealms.Screens.Options
     {
         public string Text { get; set; } = "Volume: ";
 
-        public void Tick(InputHandler input)
+        public void HandleInput(InputHandler input)
         {
             float volume = SoundEffectManager.GetMasterVolume();
 
@@ -31,7 +31,7 @@ namespace MiniRealms.Screens.Options
             Text = $"Volume: {volume.ToString("P0")}";
         }
 
-        public void Update()
+        public void HandleRender()
         {
         }
     }

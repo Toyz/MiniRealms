@@ -3,7 +3,7 @@
     public interface IOption
     {
         string Text { get; set; }
-        void Tick(InputHandler input);
-        void Update();
+        void HandleInput(InputHandler input);
+        void HandleRender();
     }
 }
