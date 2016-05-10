@@ -123,11 +123,11 @@
     <Compile Include="Screens\Interfaces\Menu.cs" />
     <Compile Include="Screens\MainScreens\NewGameMenu.cs" />
     <Compile Include="Screens\MainScreens\OptionsMenu.cs" />
-    <Compile Include="Screens\Options\IOption.cs" />
-    <Compile Include="Screens\Options\ActionOption.cs" />
-    <Compile Include="Screens\Options\LabelOption.cs" />
-    <Compile Include="Screens\Options\VolumeContol.cs" />
-    <Compile Include="Screens\Options\WorldSizeOption.cs" />
+    <Compile Include="Screens\Interfaces\IOption.cs" />
+    <Compile Include="Screens\OptionItems\ActionOption.cs" />
+    <Compile Include="Screens\OptionItems\LabelOption.cs" />
+    <Compile Include="Screens\OptionItems\VolumeContol.cs" />
+    <Compile Include="Screens\OptionItems\WorldSizeOption.cs" />
     <Compile Include="Screens\MainScreens\TitleMenu.cs" />
     <Compile Include="Engine\Audio\Sounds\SoundEffect.cs" />
   </ItemGroup>

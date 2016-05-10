@@ -2,7 +2,7 @@
 using MiniRealms.Engine.Audio.Sounds;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Screens.Interfaces;
-using MiniRealms.Screens.Options;
+using MiniRealms.Screens.OptionItems;
 
 namespace MiniRealms.Screens.MainScreens
 {

@@ -1,4 +1,6 @@
-﻿namespace MiniRealms.Screens.Options
+﻿using MiniRealms.Screens.Interfaces;
+
+namespace MiniRealms.Screens.OptionItems
 {
     public class LabelOption : IOption
     {

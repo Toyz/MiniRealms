@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using MiniRealms.Engine.Audio.Sounds;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Screens.Interfaces;
-using MiniRealms.Screens.Options;
+using MiniRealms.Screens.OptionItems;
 using Color = MiniRealms.Engine.Gfx.Color;
 using Font = MiniRealms.Engine.Gfx.Font;
 using Point = Microsoft.Xna.Framework.Point;
@@ -29,7 +29,6 @@ namespace MiniRealms.Screens.MainScreens
 
         private void CreateAndStartWorld()
         {
-            SoundEffectManager.Play("test");
             Game.LoadingText = "World Creation";
             Game.IsLoadingWorld = true;
             Game.CurrentLevel = 3;

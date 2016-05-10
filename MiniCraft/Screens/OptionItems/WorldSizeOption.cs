@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using MiniRealms.Engine.Audio.Sounds;
+using MiniRealms.Screens.Interfaces;
 
-namespace MiniRealms.Screens.Options
+namespace MiniRealms.Screens.OptionItems
 {
     public class WorldSizeOption : IOption
     {

@@ -2,7 +2,7 @@
 using MiniRealms.Engine.Audio.Sounds;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Screens.Interfaces;
-using MiniRealms.Screens.Options;
+using MiniRealms.Screens.OptionItems;
 
 namespace MiniRealms.Screens.MainScreens
 {
@@ -21,20 +21,17 @@ namespace MiniRealms.Screens.MainScreens
             {
                 new ActionOption("New Game", () =>
                 {
-                    SoundEffectManager.Play("test");
                     Game.SetMenu(new NewGameMenu(this));
                 }),
 #if DEBUG
                 new ActionOption("How to play", () =>
                 {
-                    SoundEffectManager.Play("test");
                     Game.SetMenu(new InstructionsMenu(this));
                 }),
                 new LabelOption("Mods and Addons"),
 #endif
                 new ActionOption("Options", () =>
                 {
-                    SoundEffectManager.Play("test");
                     Game.SetMenu(new OptionsMenu(this, Game));
                 }),
                 new ActionOption("Exit", () => Game.Exit())

@@ -1,6 +1,7 @@
 ﻿using System;
+using MiniRealms.Engine.Audio.Sounds;
 
-namespace MiniRealms.Screens.Options
+namespace MiniRealms.Screens.OptionItems
 {
     public class ActionOption : LabelOption
     {
@@ -16,6 +17,7 @@ namespace MiniRealms.Screens.Options
         {
             if (!input.Attack.Clicked && !input.Menu.Clicked) return;
             if (!Enabled) return;
+            SoundEffectManager.Play("test");
             _function?.Invoke();
         }
 

@@ -1,4 +1,4 @@
-﻿namespace MiniRealms.Screens.Options
+﻿namespace MiniRealms.Screens.Interfaces
 {
     public interface IOption
     {
