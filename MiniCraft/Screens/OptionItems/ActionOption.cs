@@ -7,6 +7,7 @@ namespace MiniRealms.Screens.OptionItems
     {
         private readonly Action _function;
         public bool Enabled { get; set; } = true;
+        public bool ClickSound { get; set; } = true;
 
         public ActionOption(string label, Action function) : base(label)
         {
@@ -17,7 +18,8 @@ namespace MiniRealms.Screens.OptionItems
         {
             if (!input.Attack.Clicked && !input.Menu.Clicked) return;
             if (!Enabled) return;
-            SoundEffectManager.Play("test");
+            if(ClickSound)
+                SoundEffectManager.Play("test");
             _function?.Invoke();
         }
 

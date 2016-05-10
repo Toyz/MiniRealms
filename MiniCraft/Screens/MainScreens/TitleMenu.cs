@@ -34,7 +34,7 @@ namespace MiniRealms.Screens.MainScreens
                 {
                     Game.SetMenu(new OptionsMenu(this, Game));
                 }),
-                new ActionOption("Exit", () => Game.Exit())
+                new ActionOption("Exit", () => Game.Exit()) { ClickSound = false }
             };
 
         }
