@@ -9,7 +9,6 @@ using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
 using MiniRealms.Levels;
 using MiniRealms.Levels.Tiles;
-using MiniRealms.Screens;
 using MiniRealms.Screens.GameScreens;
 using MiniRealms.Screens.Interfaces;
 using MiniRealms.Screens.MainScreens;
@@ -253,19 +252,19 @@ namespace MiniRealms
             var w = msg.Length;
             var h = 1;
 
-            Screen.Render(xx - 8, yy - 8, 0 + 13*32, Color.Get(-1, 1, 5, 445), 0);
-            Screen.Render(xx + w*8, yy - 8, 0 + 13*32, Color.Get(-1, 1, 5, 445), 1);
-            Screen.Render(xx - 8, yy + 8, 0 + 13*32, Color.Get(-1, 1, 5, 445), 2);
-            Screen.Render(xx + w*8, yy + 8, 0 + 13*32, Color.Get(-1, 1, 5, 445), 3);
+            Screen.Render(xx - 8, yy - 8, 0 + 13*32, Color.Get(0, 1, 5, 445), 0);
+            Screen.Render(xx + w*8, yy - 8, 0 + 13*32, Color.Get(0, 1, 5, 445), 1);
+            Screen.Render(xx - 8, yy + 8, 0 + 13*32, Color.Get(0, 1, 5, 445), 2);
+            Screen.Render(xx + w*8, yy + 8, 0 + 13*32, Color.Get(0, 1, 5, 445), 3);
             for (var x = 0; x < w; x++)
             {
-                Screen.Render(xx + x*8, yy - 8, 1 + 13*32, Color.Get(-1, 1, 5, 445), 0);
-                Screen.Render(xx + x*8, yy + 8, 1 + 13*32, Color.Get(-1, 1, 5, 445), 2);
+                Screen.Render(xx + x*8, yy - 8, 1 + 13*32, Color.Get(0, 1, 5, 445), 0);
+                Screen.Render(xx + x*8, yy + 8, 1 + 13*32, Color.Get(0, 1, 5, 445), 2);
             }
             for (var y = 0; y < h; y++)
             {
-                Screen.Render(xx - 8, yy + y*8, 2 + 13*32, Color.Get(-1, 1, 5, 445), 0);
-                Screen.Render(xx + w*8, yy + y*8, 2 + 13*32, Color.Get(-1, 1, 5, 445), 1);
+                Screen.Render(xx - 8, yy + y*8, 2 + 13*32, Color.Get(0, 1, 5, 445), 0);
+                Screen.Render(xx + w*8, yy + y*8, 2 + 13*32, Color.Get(0, 1, 5, 445), 1);
             }
 
             Font.Draw(msg, Screen, xx, yy,
