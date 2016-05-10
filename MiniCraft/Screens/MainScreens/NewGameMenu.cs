@@ -13,17 +13,17 @@ namespace MiniRealms.Screens.MainScreens
     public class NewGameMenu : Menu
     {
         private int _selected;
-        private readonly List<IOption> _options;
+        private readonly List<Option> _options;
         private readonly WorldSizeOption _worldSizeOption;
 
         public NewGameMenu(Menu parent)
         {
             _worldSizeOption = new WorldSizeOption();
-            _options = new List<IOption>
+            _options = new List<Option>
             {
                 _worldSizeOption,
                 new ActionOption("Create and Start", CreateAndStartWorld),
-                new ActionOption("Cancel", () => Game.SetMenu(parent))
+                new ActionOption("Cancel", () => Game.SetMenu(new TransitionMenu(parent,  color: Color.DarkGrey, transitionTime: 60)))
             };
         }
 
@@ -34,8 +34,8 @@ namespace MiniRealms.Screens.MainScreens
             Game.CurrentLevel = 3;
 
             Point s = _worldSizeOption.Sizes[_worldSizeOption.Selected];
-            GameConts.MaxHeight = s.Y;
-            GameConts.MaxWidth = s.X;
+            GameConts.Instance.MaxHeight = s.Y;
+            GameConts.Instance.MaxWidth = s.X;
 
             Task.Run(() =>
             {
@@ -80,13 +80,14 @@ namespace MiniRealms.Screens.MainScreens
 
             for (int i = 0; i < _options.Count; i++)
             {
-                string msg = _options[i].Text;
+                Option option = _options[i];
+                string msg = option.Text;
                 int col = Color.DarkGrey;
                 if (i == _selected)
                 {
-                    msg = "> " + msg + " <";
+                    msg = option.SelectedText;
                     col = Color.White;
-                    _options[i].HandleRender();
+                    option.HandleRender();
                 }
                 Font.Draw(msg, screen, (screen.W - msg.Length * 8) / 2, GameConts.ScreenMiddleHeight + (i * 8) - 20, col);
             }

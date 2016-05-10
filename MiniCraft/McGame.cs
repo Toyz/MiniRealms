@@ -59,8 +59,8 @@ namespace MiniRealms
         {
             Gdm = new GraphicsDeviceManager(this)
             {
-                PreferredBackBufferHeight = GameConts.Height* GameConts.Scale,
-                PreferredBackBufferWidth = GameConts.Width * GameConts.Scale
+                PreferredBackBufferHeight = GameConts.Height* GameConts.Instance.Scale,
+                PreferredBackBufferWidth = GameConts.Width * GameConts.Instance.Scale
             };
 
             Cc = new ConsoleCommands(this);
@@ -75,6 +75,11 @@ namespace MiniRealms
             Content.RootDirectory = "Content";
 
             Window.Title = $"{GameConts.Name} -- {GameConts.Version}";
+
+            GameConts.Instance.Load();
+
+            Window.IsBorderless = GameConts.Instance.Borderless;
+            Gdm.IsFullScreen = GameConts.Instance.FullScreen;
         }
 
         public bool HasFocus() => IsActive;
@@ -137,7 +142,7 @@ namespace MiniRealms
             _lightScreen = new Screen(GameConts.Width, GameConts.Height, new SpriteSheet(spriteSheet));
 
             SoundEffectManager.Initialize(Content);
-            SoundEffectManager.SetMasterVolume(0.5f);
+            SoundEffectManager.SetMasterVolume(GameConts.Instance.Volume);
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -176,7 +181,7 @@ namespace MiniRealms
                 {
                     Gdm.IsFullScreen = !Gdm.IsFullScreen;
 
-                    GameConts.BaseScaling = Gdm.IsFullScreen ? 3 : 5;
+                    GameConts.Instance.BaseScaling = Gdm.IsFullScreen ? 3 : 5;
 
                     Gdm.ApplyChanges();
                 }
@@ -320,7 +325,7 @@ namespace MiniRealms
             _image.SetData(_pixels);
 
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-            _spriteBatch.Draw(_image, new Rectangle(0, 0, GameConts.Width * GameConts.Scale, GameConts.Height * GameConts.Scale), Microsoft.Xna.Framework.Color.White);
+            _spriteBatch.Draw(_image, new Rectangle(0, 0, GameConts.Width * GameConts.Instance.Scale, GameConts.Height * GameConts.Instance.Scale), Microsoft.Xna.Framework.Color.White);
             _spriteBatch.End();
 
             base.Draw(gameTime);

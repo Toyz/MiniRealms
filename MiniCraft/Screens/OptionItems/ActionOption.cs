@@ -14,7 +14,7 @@ namespace MiniRealms.Screens.OptionItems
             _function = function;
         }
 
-        public override void HandleInput(InputHandler input)
+        protected internal override void HandleInput(InputHandler input)
         {
             if (!input.Attack.Clicked && !input.Menu.Clicked) return;
             if (!Enabled) return;
@@ -23,7 +23,7 @@ namespace MiniRealms.Screens.OptionItems
             _function?.Invoke();
         }
 
-        public override void HandleRender()
+        protected internal override void HandleRender()
         {
         }
     }

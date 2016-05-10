@@ -2,20 +2,20 @@
 
 namespace MiniRealms.Screens.OptionItems
 {
-    public class LabelOption : IOption
+    public class LabelOption : Option
     {
-        public string Text { get; set; }
+        public sealed override string Text { get; set; }
 
         public LabelOption(string label)
         {
             Text = label;
         }
 
-        public virtual void HandleInput(InputHandler input)
+        protected internal override void HandleInput(InputHandler input)
         {
         }
 
-        public virtual void HandleRender()
+        protected internal override void HandleRender()
         {
         }
     }

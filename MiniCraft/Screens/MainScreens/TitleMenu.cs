@@ -13,26 +13,26 @@ namespace MiniRealms.Screens.MainScreens
 
         private int _selected;
 
-        private static List<IOption> _options;
+        private static List<Option> _options;
 
         public TitleMenu()
         {
-            _options = new List<IOption>
+            _options = new List<Option>
             {
                 new ActionOption("New Game", () =>
                 {
-                    Game.SetMenu(new NewGameMenu(this));
+                    Game.SetMenu(new TransitionMenu(new NewGameMenu(this), color: Color.DarkGrey, transitionTime: 60));
                 }),
 #if DEBUG
                 new ActionOption("How to play", () =>
                 {
-                    Game.SetMenu(new InstructionsMenu(this));
+                    Game.SetMenu(new TransitionMenu(new InstructionsMenu(this), color: Color.DarkGrey, transitionTime: 60));
                 }),
                 new LabelOption("Mods and Addons"),
 #endif
                 new ActionOption("Options", () =>
                 {
-                    Game.SetMenu(new OptionsMenu(this, Game));
+                    Game.SetMenu(new TransitionMenu(new OptionsMenu(this, Game), color: Color.DarkGrey, transitionTime: 60));
                 }),
                 new ActionOption("Exit", () => Game.Exit()) { ClickSound = false }
             };
@@ -74,14 +74,14 @@ namespace MiniRealms.Screens.MainScreens
 
             for (int i = 0; i < _options.Count; i++)
             {
-                IOption option = _options[i];
+                Option option = _options[i];
                 string msg = option.Text;
                 int col = Color.DarkGrey;
                 if (i == _selected)
                 {
-                    option.HandleRender();
-                    msg = "> " + msg + " <";
+                    msg = option.SelectedText;
                     col = Color.White;
+                    option.HandleRender();
                 }
                 Font.Draw(msg, screen, (screen.W - msg.Length * 8) / 2, GameConts.ScreenMiddleHeight + (i * 8) - 20, col);
             }

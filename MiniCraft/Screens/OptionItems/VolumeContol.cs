@@ -3,14 +3,17 @@ using MiniRealms.Screens.Interfaces;
 
 namespace MiniRealms.Screens.OptionItems
 {
-    public class VolumeContol : IOption
+    public class VolumeContol : Option
     {
-        public string Text { get; set; } = "Volume: ";
+        private float _current;
+        public override string Text { get; set; } = "Volume: ";
+        public override string SelectedText => $"< {Text} >";
 
-        public void HandleInput(InputHandler input)
+        protected internal override void HandleInput(InputHandler input)
         {
             float volume = SoundEffectManager.GetMasterVolume();
 
+            _current = volume;
             if (input.Right.Clicked)
             {
                 volume += 0.10f;
@@ -28,11 +31,16 @@ namespace MiniRealms.Screens.OptionItems
                 }
             }
 
-            SoundEffectManager.SetMasterVolume(volume);
+            if (volume != _current)
+            {
+                GameConts.Instance.Volume = volume;
+                GameConts.Instance.Save();
+                SoundEffectManager.SetMasterVolume(volume);
+            }
             Text = $"Volume: {volume.ToString("P0")}";
         }
 
-        public void HandleRender()
+        protected internal override void HandleRender()
         {
         }
     }

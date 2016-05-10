@@ -48,6 +48,7 @@
     <Compile Include="Engine\BinaryHelpers.cs" />
     <Compile Include="Engine\Compents\FpsCounterComponent.cs" />
     <Compile Include="Engine\ConsoleCommands.cs" />
+    <Compile Include="Engine\XmlHelpers.cs" />
     <Compile Include="Entities\AirWizard.cs" />
     <Compile Include="Entities\Anvil.cs" />
     <Compile Include="Entities\Chest.cs" />
@@ -116,6 +117,8 @@
     <Compile Include="Screens\GameScreens\ContainerMenu.cs" />
     <Compile Include="Screens\GameScreens\CraftingMenu.cs" />
     <Compile Include="Screens\GameScreens\GameOverMenu.cs" />
+    <Compile Include="Screens\MainScreens\EmptyMenu.cs" />
+    <Compile Include="Screens\MainScreens\TransitionMenu.cs" />
     <Compile Include="Screens\MainScreens\InstructionsMenu.cs" />
     <Compile Include="Screens\GameScreens\InventoryMenu.cs" />
     <Compile Include="Screens\GameScreens\LevelTransitionMenu.cs" />
@@ -123,7 +126,7 @@
     <Compile Include="Screens\Interfaces\Menu.cs" />
     <Compile Include="Screens\MainScreens\NewGameMenu.cs" />
     <Compile Include="Screens\MainScreens\OptionsMenu.cs" />
-    <Compile Include="Screens\Interfaces\IOption.cs" />
+    <Compile Include="Screens\Interfaces\Option.cs" />
     <Compile Include="Screens\OptionItems\ActionOption.cs" />
     <Compile Include="Screens\OptionItems\LabelOption.cs" />
     <Compile Include="Screens\OptionItems\VolumeContol.cs" />

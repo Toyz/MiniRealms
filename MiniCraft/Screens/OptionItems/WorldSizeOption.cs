@@ -5,7 +5,7 @@ using MiniRealms.Screens.Interfaces;
 
 namespace MiniRealms.Screens.OptionItems
 {
-    public class WorldSizeOption : IOption
+    public class WorldSizeOption : Option
     {
         public readonly List<Point> Sizes = new List<Point>
         {
@@ -17,9 +17,10 @@ namespace MiniRealms.Screens.OptionItems
 
         public int Selected;
 
-        public string Text { get; set; } = "World Size: ";
+        public override string Text { get; set; } = "World Size: ";
+        public override string SelectedText => $"< {Text} >";
 
-        public void HandleInput(InputHandler input)
+        protected internal override void HandleInput(InputHandler input)
         {
             if (input.Left.Clicked)
             {
@@ -42,7 +43,7 @@ namespace MiniRealms.Screens.OptionItems
             Text = $"World Size: {s.X}x{s.Y}";
         }
 
-        public void HandleRender()
+        protected internal override void HandleRender()
         {
         }
     }

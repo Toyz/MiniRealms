@@ -10,6 +10,7 @@ using MiniRealms.Entities;
 using MiniRealms.Items;
 using MiniRealms.Items.Resources;
 using MiniRealms.Levels.Tiles;
+using MiniRealms.Screens.GameScreens;
 
 namespace MiniRealms.Engine
 {
@@ -76,7 +77,7 @@ namespace MiniRealms.Engine
                 return "World is null, or doesn't exist!";
             }
 
-            _game.ChangeLevel(int.Parse(strings[0]), true);
+            _game.SetMenu(new LevelTransitionMenu(int.Parse(strings[0]), true));
                 
             return "Moved to new level";
         }
@@ -107,13 +108,13 @@ namespace MiniRealms.Engine
 
             byte[] map = _game.Levels[_game.CurrentLevel].Tiles;
 
-            var bmp = new Bitmap(GameConts.MaxWidth, GameConts.MaxHeight, PixelFormat.Format32bppRgb);
-            int[] pixels = new int[GameConts.MaxWidth * GameConts.MaxHeight];
-            for (int y = 0; y < GameConts.MaxWidth; y++)
+            var bmp = new Bitmap(GameConts.Instance.MaxWidth, GameConts.Instance.MaxHeight, PixelFormat.Format32bppRgb);
+            int[] pixels = new int[GameConts.Instance.MaxWidth * GameConts.Instance.MaxHeight];
+            for (int y = 0; y < GameConts.Instance.MaxWidth; y++)
             {
-                for (int x = 0; x < GameConts.MaxHeight; x++)
+                for (int x = 0; x < GameConts.Instance.MaxHeight; x++)
                 {
-                    int i = x + y* GameConts.MaxHeight;
+                    int i = x + y* GameConts.Instance.MaxHeight;
 
                     if (map[i] == Tile.Water.Id) pixels[i] = 0x000080;
                     if (map[i] == Tile.Grass.Id) pixels[i] = 0x208020;

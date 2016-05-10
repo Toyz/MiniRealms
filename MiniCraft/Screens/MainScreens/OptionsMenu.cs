@@ -12,7 +12,7 @@ namespace MiniRealms.Screens.MainScreens
 
         private int _selected;
 
-        private static List<IOption> _options;
+        private static List<Option> _options;
         private readonly ActionOption _fullScreenOption;
         private readonly ActionOption _boardLessOption;
 
@@ -22,12 +22,12 @@ namespace MiniRealms.Screens.MainScreens
             _fullScreenOption = new ActionOption($"Full Screen: {(game.Gdm.IsFullScreen ? "Yes" : "No")}", FullScreenActionToggle);
             _boardLessOption = new ActionOption($"Borderless: {(game.Window.IsBorderless ? "Yes" : "No")}", SetWindowBorderlessToggle);
 
-            _options = new List<IOption>
+            _options = new List<Option>
             {
                 new VolumeContol(),
                 _fullScreenOption,
                 _boardLessOption,
-                new ActionOption("Main Menu", () => Game.SetMenu(parent))
+                new ActionOption("Main Menu", () => Game.SetMenu(new TransitionMenu(parent,  color: Color.DarkGrey, transitionTime: 60)))
             };
         }
 
@@ -35,6 +35,8 @@ namespace MiniRealms.Screens.MainScreens
         {
             Game.Window.IsBorderless = !Game.Window.IsBorderless;
             _boardLessOption.Text = $"Borderless: {(Game.Window.IsBorderless ? "Yes" : "No")}";
+            GameConts.Instance.Borderless = Game.Window.IsBorderless;
+            GameConts.Instance.Save();
         }
 
         public void FullScreenActionToggle()
@@ -45,6 +47,8 @@ namespace MiniRealms.Screens.MainScreens
             mcGame.Gdm.ApplyChanges();
             _fullScreenOption.Text = $"Full Screen: {(mcGame.Gdm.IsFullScreen ? "Yes" : "No")}";
             _boardLessOption.Enabled = !Game.Gdm.IsFullScreen;
+            GameConts.Instance.FullScreen = mcGame.Gdm.IsFullScreen;
+            GameConts.Instance.Save();
         }
 
         public override void Tick()
@@ -77,13 +81,14 @@ namespace MiniRealms.Screens.MainScreens
 
             for (int i = 0; i < _options.Count; i++)
             {
-                string msg = _options[i].Text;
+                Option option = _options[i];
+                string msg = option.Text;
                 int col = Color.DarkGrey;
                 if (i == _selected)
                 {
-                    msg = "> " + msg + " <";
+                    msg = option.SelectedText;
                     col = Color.White;
-                    _options[i].HandleRender();
+                    option.HandleRender();
                 }
                 Font.Draw(msg, screen, (screen.W - msg.Length * 8) / 2, GameConts.ScreenMiddleHeight + (i * 8) - 20, col);
             }
