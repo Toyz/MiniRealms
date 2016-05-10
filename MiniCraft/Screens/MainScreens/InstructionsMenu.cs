@@ -7,6 +7,20 @@ namespace MiniRealms.Screens.MainScreens
     {
         private readonly Menu _parent;
 
+        private readonly string[] _howToPlay =
+        {
+            "Arrow Keys to Move",
+            "C to attack",
+            "X to interact and use items.",
+            " ",
+            " ",
+            "Pick a item in your",
+            "inventory to use it.",
+            " ",
+            " ",
+            "Kill the boss to win!"
+        };
+
         public InstructionsMenu(Menu parent)
         {
             _parent = parent;
@@ -24,18 +38,16 @@ namespace MiniRealms.Screens.MainScreens
         {
             screen.Clear(0);
 
-            Font.Draw("HOW TO PLAY", screen, 4 * 8 + 4, 1 * 8, Color.Get(0, 555, 555, 555));
-            Font.Draw("Move your character", screen, 0 * 8 + 4, 3 * 8, Color.Get(0, 333, 333, 333));
-            Font.Draw("with the arrow keys", screen, 0 * 8 + 4, 4 * 8, Color.Get(0, 333, 333, 333));
-            Font.Draw("press C to attack", screen, 0 * 8 + 4, 5 * 8, Color.Get(0, 333, 333, 333));
-            Font.Draw("and X to open the", screen, 0 * 8 + 4, 6 * 8, Color.Get(0, 333, 333, 333));
-            Font.Draw("inventory and to", screen, 0 * 8 + 4, 7 * 8, Color.Get(0, 333, 333, 333));
-            Font.Draw("use items.", screen, 0 * 8 + 4, 8 * 8, Color.Get(0, 333, 333, 333));
-            Font.Draw("Select an item in", screen, 0 * 8 + 4, 9 * 8, Color.Get(0, 333, 333, 333));
-            Font.Draw("the inventory to", screen, 0 * 8 + 4, 10 * 8, Color.Get(0, 333, 333, 333));
-            Font.Draw("equip it.", screen, 0 * 8 + 4, 11 * 8, Color.Get(0, 333, 333, 333));
-            Font.Draw("Kill the air wizard", screen, 0 * 8 + 4, 12 * 8, Color.Get(0, 333, 333, 333));
-            Font.Draw("to win the game!", screen, 0 * 8 + 4, 13 * 8, Color.Get(0, 333, 333, 333));
+            Font.Draw("HOW TO PLAY", screen, GameConts.ScreenMiddleWidth - ("HOW TO PLAY".Length * 8 / 2) , 1 * 8, Color.Get(0, 555, 555, 555));
+
+            for (var line = 0; line < _howToPlay.Length; line++)
+            {
+                Font.Draw(_howToPlay[line], screen, GameConts.ScreenMiddleWidth - (_howToPlay[line].Length * 8 / 2 ), ((GameConts.ScreenMiddleWidth / 8) / 3 + line) * 8, Color.Get(0, 333, 333, 333));
+            }
+
+            string msg = "Press C to go back";
+
+            Font.Draw(msg, screen, GameConts.ScreenMiddleWidth - (msg.Length * 8 / 2), screen.H - 8, Color.White);
         }
     }
 

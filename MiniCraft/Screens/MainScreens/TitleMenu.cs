@@ -21,18 +21,18 @@ namespace MiniRealms.Screens.MainScreens
             {
                 new ActionOption("New Game", () =>
                 {
-                    Game.SetMenu(new AnimatedTransitionMenu(new NewGameMenu(this), color: Color.DarkGrey, transitionTime: 60));
+                    Game.SetMenu(new AnimatedTransitionMenu(new NewGameMenu(this), color: Color.DarkGrey));
                 }),
-#if DEBUG
                 new ActionOption("How to play", () =>
                 {
-                    Game.SetMenu(new AnimatedTransitionMenu(new InstructionsMenu(this), color: Color.DarkGrey, transitionTime: 60));
+                    Game.SetMenu(new AnimatedTransitionMenu(new InstructionsMenu(this), color: Color.DarkGrey));
                 }),
+#if DEBUG
                 new LabelOption("Mods and Addons"),
 #endif
                 new ActionOption("Options", () =>
                 {
-                    Game.SetMenu(new AnimatedTransitionMenu(new OptionsMenu(this, Game), color: Color.DarkGrey, transitionTime: 60));
+                    Game.SetMenu(new AnimatedTransitionMenu(new OptionsMenu(this, Game), color: Color.DarkGrey));
                 }),
                 new ActionOption("Exit", () => Game.Exit()) { ClickSound = false }
             };

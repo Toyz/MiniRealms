@@ -27,7 +27,7 @@ namespace MiniRealms.Screens.MainScreens
                 new VolumeContol(),
                 _fullScreenOption,
                 _boardLessOption,
-                new ActionOption("Main Menu", () => Game.SetMenu(new AnimatedTransitionMenu(parent,  color: Color.DarkGrey, transitionTime: 60)))
+                new ActionOption("Main Menu", () => Game.SetMenu(new AnimatedTransitionMenu(parent,  color: Color.DarkGrey)))
             };
         }
 
@@ -77,7 +77,8 @@ namespace MiniRealms.Screens.MainScreens
         {
             screen.Clear(0);
 
-            Font.Draw(GameConts.Name, screen, (screen.W - GameConts.Name.Length * 8) / 2, 20, Game.TickCount / 20 % 2 == 0 ? Color.White : Color.Yellow);
+            string title = "Options";
+            Font.Draw(title, screen,  GameConts.ScreenMiddleWidth - (title.Length * 8 / 2), 1 * 8, Color.White);
 
             for (int i = 0; i < _options.Count; i++)
             {
