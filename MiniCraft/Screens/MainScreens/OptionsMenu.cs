@@ -27,7 +27,7 @@ namespace MiniRealms.Screens.MainScreens
                 new VolumeContol(),
                 _fullScreenOption,
                 _boardLessOption,
-                new ActionOption("Main Menu", () => Game.SetMenu(new TransitionMenu(parent,  color: Color.DarkGrey, transitionTime: 60)))
+                new ActionOption("Main Menu", () => Game.SetMenu(new AnimatedTransitionMenu(parent,  color: Color.DarkGrey, transitionTime: 60)))
             };
         }
 

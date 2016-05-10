@@ -4,7 +4,7 @@ using MiniRealms.Screens.Interfaces;
 namespace MiniRealms.Screens.MainScreens
 {
 
-    public class TransitionMenu : Menu
+    public class AnimatedTransitionMenu : Menu
     {
         private readonly Menu _menu;
         private readonly int _transitionTime;
@@ -13,7 +13,7 @@ namespace MiniRealms.Screens.MainScreens
         private readonly bool _spawnMenu;
         private int _time;
 
-        public TransitionMenu(Menu menu, int transitionTime = 60, int dir = 0, int color = 0, bool spawnMenu = false)
+        public AnimatedTransitionMenu(Menu menu, int transitionTime = 60, int dir = 0, int color = 0, bool spawnMenu = false)
         {
             _menu = menu;
             _transitionTime = transitionTime;
@@ -27,7 +27,7 @@ namespace MiniRealms.Screens.MainScreens
             _time += 2;
             if (_time == _transitionTime)
             {
-                Game.SetMenu(!_spawnMenu ? new TransitionMenu(_menu, _transitionTime, 1, Color.Grey, true) : _menu);
+                Game.SetMenu(!_spawnMenu ? new AnimatedTransitionMenu(_menu, _transitionTime, 1, Color.Grey, true) : _menu);
             }
         }
 

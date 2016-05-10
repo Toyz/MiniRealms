@@ -118,7 +118,7 @@
     <Compile Include="Screens\GameScreens\CraftingMenu.cs" />
     <Compile Include="Screens\GameScreens\GameOverMenu.cs" />
     <Compile Include="Screens\MainScreens\EmptyMenu.cs" />
-    <Compile Include="Screens\MainScreens\TransitionMenu.cs" />
+    <Compile Include="Screens\MainScreens\AnimatedTransitionMenu.cs" />
     <Compile Include="Screens\MainScreens\InstructionsMenu.cs" />
     <Compile Include="Screens\GameScreens\InventoryMenu.cs" />
     <Compile Include="Screens\GameScreens\LevelTransitionMenu.cs" />
