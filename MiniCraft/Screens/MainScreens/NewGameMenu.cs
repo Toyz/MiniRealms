@@ -90,7 +90,7 @@ namespace MiniRealms.Screens.MainScreens
                     col = Color.White;
                     option.HandleRender();
                 }
-                Font.Draw(msg, screen, (screen.W - msg.Length * 8) / 2, GameConts.ScreenMiddleHeight + (i * 8) - 20, col);
+                Font.Draw(msg, screen, (screen.W - msg.Length * 8) / 2, GameConts.ScreenMiddleHeight + (i * 10) - 20, col);
             }
         }
     }

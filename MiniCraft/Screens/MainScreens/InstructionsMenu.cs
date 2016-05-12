@@ -10,11 +10,14 @@ namespace MiniRealms.Screens.MainScreens
         private readonly string[] _howToPlay =
         {
             "Arrow Keys to Move",
+            " ",
             "C to attack",
+            " ",
             "X to interact and use items.",
             " ",
             " ",
             "Pick a item in your",
+            " ",
             "inventory to use it.",
             " ",
             " ",
@@ -42,7 +45,7 @@ namespace MiniRealms.Screens.MainScreens
 
             for (var line = 0; line < _howToPlay.Length; line++)
             {
-                Font.Draw(_howToPlay[line], screen, GameConts.ScreenMiddleWidth - (_howToPlay[line].Length * 8 / 2 ), ((GameConts.ScreenMiddleWidth / 8) / 3 + line) * 8, Color.Get(0, 333, 333, 333));
+                Font.Draw(_howToPlay[line], screen, GameConts.ScreenMiddleWidth - (_howToPlay[line].Length * 8 / 2 ), ((GameConts.ScreenMiddleWidth / 8) / 4 + line) * 8, Color.Get(0, 333, 333, 333));
             }
 
             string msg = "Press C to go back";
