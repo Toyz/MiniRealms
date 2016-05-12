@@ -79,11 +79,11 @@ namespace MiniRealms.Screens.MainScreens
             string title = "Options";
             Font.Draw(title, screen,  GameConts.ScreenMiddleWidth - (title.Length * 8 / 2), 1 * 8, Color.White);
 
-            for (int i = 0; i < _options.Count; i++)
+            for (var i = 0; i < _options.Count; i++)
             {
-                Option option = _options[i];
-                string msg = option.Text;
-                int col = Color.DarkGrey;
+                var option = _options[i];
+                var msg = option.Text;
+                var col = Color.DarkGrey;
                 if (i == _selected)
                 {
                     msg = option.SelectedText;
