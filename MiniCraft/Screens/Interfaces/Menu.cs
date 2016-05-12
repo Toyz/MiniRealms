@@ -23,7 +23,7 @@ namespace MiniRealms.Screens.Interfaces
         {
         }
 
-        public void RenderItemList(Screen screen, int xo, int yo, int x1, int y1, IEnumerable<IListItem> listItemsIter, int selected)
+        protected void RenderItemList(Screen screen, int xo, int yo, int x1, int y1, IEnumerable<IListItem> listItemsIter, int selected)
         {
             var listItems = listItemsIter.ToArray();
 
