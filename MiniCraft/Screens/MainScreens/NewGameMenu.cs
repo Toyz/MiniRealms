@@ -23,7 +23,7 @@ namespace MiniRealms.Screens.MainScreens
             {
                 _worldSizeOption,
                 new ActionOption("Create and Start", CreateAndStartWorld),
-                new ActionOption("Cancel", () => Game.SetMenu(new AnimatedTransitionMenu(parent,  color: Color.DarkGrey, transitionTime: 60)))
+                new ActionOption("Cancel", () => Game.SetMenu(new AnimatedTransitionMenu(parent,  color: Color.DarkGrey)))
             };
         }
 

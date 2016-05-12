@@ -3,6 +3,7 @@
     public abstract class Option
     {
         public virtual string Text { get; set; }
+        public virtual bool Enabled { get; set; }
         public virtual string SelectedText => $"> {Text} <";
 
         protected internal abstract void HandleInput(InputHandler input);

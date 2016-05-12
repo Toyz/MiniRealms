@@ -6,8 +6,10 @@ namespace MiniRealms.Screens.OptionItems
     public class ActionOption : LabelOption
     {
         private readonly Action _function;
-        public bool Enabled { get; set; } = true;
-        public bool ClickSound { get; set; } = true;
+
+        public override bool Enabled { get; set; } = true;
+
+        public bool ClickSound { private get; set; } = true;
 
         public ActionOption(string label, Action function) : base(label)
         {

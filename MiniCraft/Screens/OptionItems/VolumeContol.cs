@@ -6,6 +6,7 @@ namespace MiniRealms.Screens.OptionItems
     public class VolumeContol : Option
     {
         private float _current;
+        public override bool Enabled { get; set; } = true;
         public override string Text { get; set; } = "Volume: ";
         public override string SelectedText => $"< {Text} >";
 

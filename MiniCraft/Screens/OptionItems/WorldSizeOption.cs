@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using MiniRealms.Engine.Audio.Sounds;
 using MiniRealms.Screens.Interfaces;
 
 namespace MiniRealms.Screens.OptionItems
@@ -17,6 +16,7 @@ namespace MiniRealms.Screens.OptionItems
 
         public int Selected;
 
+        public override bool Enabled { get; set; } = true;
         public override string Text { get; set; } = "World Size: ";
         public override string SelectedText => $"< {Text} >";
 
@@ -25,12 +25,10 @@ namespace MiniRealms.Screens.OptionItems
             if (input.Left.Clicked)
             {
                 Selected--;
-                SoundEffectManager.Play("menu_move");
             }
 
             if (input.Right.Clicked)
             {
-                SoundEffectManager.Play("menu_move");
                 Selected++;
             }
 

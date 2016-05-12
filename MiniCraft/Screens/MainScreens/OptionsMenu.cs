@@ -39,14 +39,13 @@ namespace MiniRealms.Screens.MainScreens
             GameConts.Instance.Save();
         }
 
-        public void FullScreenActionToggle()
+        private void FullScreenActionToggle()
         {
             McGame mcGame = _game;
 
             mcGame.Gdm.IsFullScreen = !mcGame.Gdm.IsFullScreen;
             mcGame.Gdm.ApplyChanges();
             _fullScreenOption.Text = $"Full Screen: {(mcGame.Gdm.IsFullScreen ? "Yes" : "No")}";
-            _boardLessOption.Enabled = !Game.Gdm.IsFullScreen;
             GameConts.Instance.FullScreen = mcGame.Gdm.IsFullScreen;
             GameConts.Instance.Save();
         }

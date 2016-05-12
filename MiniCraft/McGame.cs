@@ -19,7 +19,7 @@ namespace MiniRealms
     /// <summary>
     ///     This is the main type for your game.
     /// </summary>
-    public class McGame : Game
+    public sealed class McGame : Game
     {
         private Texture2D _image;
         private Microsoft.Xna.Framework.Color[] _pixels;
@@ -29,29 +29,29 @@ namespace MiniRealms
         public int CurrentLevel = 3;
         public int GameTime;
 
-        public bool IsGamePaused { get; set; }
+        private bool IsGamePaused { get; set; }
         public bool IsLoadingWorld { get; set; }
-        public string LoadingText { get; set; }
+        public string LoadingText { private get; set; }
 
-        public bool HasWon;
+        private bool _hasWon;
         private InputHandler _input;
 
         public Level Level;
         public Level[] Levels = new Level[5];
         private Screen _lightScreen;
 
-        public Menu Menu;
+        public Menu Menu { get; set; }
         private int _pendingLevelChange;
         public Player Player;
         private int _playerDeadTime;
-        public Screen Screen;
+        public Screen Screen { get; set; }
         private SpriteBatch _spriteBatch;
         public int TickCount;
         private int _wonTimer;
 
-        public ConsoleComponent Console;
-        public ConsoleCommands Cc;
-        public FpsCounterComponent FpsCounterComponent;
+        public ConsoleComponent Console { get; }
+        private ConsoleCommands Cc { get; }
+        public FpsCounterComponent FpsCounterComponent { get; }
         public readonly GraphicsDeviceManager Gdm;
 
         public McGame()
@@ -100,7 +100,7 @@ namespace MiniRealms
             _playerDeadTime = 0;
             _wonTimer = 0;
             GameTime = 0;
-            HasWon = false;
+            _hasWon = false;
 
             CurrentLevel = 3;
         }
@@ -167,7 +167,7 @@ namespace MiniRealms
             base.Update(gameTime);
         }
 
-        protected new virtual void Tick()
+        private new void Tick()
         {
             TickCount++;
             if ((!HasFocus()) && !IsLoadingWorld)
@@ -190,7 +190,7 @@ namespace MiniRealms
                     Console.ToggleOpenClose();
                 }
 
-                if (Player != null && !Player.Removed && !HasWon)
+                if (Player != null && !Player.Removed && !_hasWon)
                 {
                     if (!IsGamePaused)
                     {
@@ -200,7 +200,7 @@ namespace MiniRealms
 
                 _input.Tick();
 
-                if (Player != null && !Player.Removed && !HasWon)
+                if (Player != null && !Player.Removed && !_hasWon)
                 {
                     if (_input.CloseKey.Clicked)
                     {
@@ -419,7 +419,7 @@ namespace MiniRealms
         public void Won()
         {
             _wonTimer = 60*3;
-            HasWon = true;
+            _hasWon = true;
         }
 
         public void SetupLevel(int lw = 128, int lh = 128)
