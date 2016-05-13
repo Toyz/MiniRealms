@@ -13,7 +13,7 @@ namespace MiniRealms.Screens.MainScreens
             " ",
             "C to attack",
             " ",
-            "X to interact and use items.",
+            "X to interact and use items",
             " ",
             " ",
             "Pick a item in your",
