@@ -8,24 +8,26 @@ namespace MiniRealms.Screens.OptionItems
         public class Difficulty
         {
 
-            public Difficulty(string v1, int v2, int v3)
+            public Difficulty(string v1, int v2, int v3, int densenty)
             {
                 Name = v1;
                 BaseLevel = v2;
                 SpawnAmount = v3;
+                Density = densenty;
             }
 
             public string Name { get; }
             public int BaseLevel { get; }
             public int SpawnAmount { get; }
+            public int Density { get; }
         }
 
-        private readonly List<Difficulty> Sizes = new List<Difficulty>
+        private readonly List<Difficulty> _modes = new List<Difficulty>
         {
-            new Difficulty("Easy", 0, 5000),
-            new Difficulty("Medium", 1, 10000),
-            new Difficulty("Hard", 2, 15000),
-            new Difficulty("Nightmare", 3, 20000),
+            new Difficulty("Easy", 0, 5000, 8),
+            new Difficulty("Medium", 1, 10000, 7),
+            new Difficulty("Hard", 2, 15000, 6),
+            new Difficulty("Nightmare", 3, 20000, 5),
 
         };
 
@@ -37,7 +39,7 @@ namespace MiniRealms.Screens.OptionItems
 
         public DifficultyOption()
         {
-            Difficulty s = Sizes[_selected];
+            Difficulty s = _modes[_selected];
 
             Text = $"Difficulty: {s.Name}";
         }
@@ -54,18 +56,18 @@ namespace MiniRealms.Screens.OptionItems
                 _selected++;
             }
 
-            int len = Sizes.Count;
+            int len = _modes.Count;
             if (_selected < 0) _selected += len;
             if (_selected >= len) _selected -= len;
 
-            Difficulty s = Sizes[_selected];
+            Difficulty s = _modes[_selected];
 
             Text = $"Difficulty: {s.Name}";
         }
 
         public Difficulty GetDifficulty()
         {
-            return Sizes[_selected];
+            return _modes[_selected];
         }
 
         protected internal override void HandleRender()

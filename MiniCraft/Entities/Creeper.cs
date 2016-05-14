@@ -74,17 +74,20 @@ namespace MiniRealms.Entities
 
                         int xt = X >> 4;
                         int yt = Y - 2 >> 4;
-                        if (_lvl == 4)
+
+                        var plvl = _lvl - McGame.Difficulty.BaseLevel;
+
+                        switch (plvl)
                         {
-                            Level.SetTile(xt, yt, Tile.InfiniteFall, 0);
-                        }
-                        else if (_lvl == 3)
-                        {
-                            Level.SetTile(xt, yt, Tile.Lava, 0);
-                        }
-                        else
-                        {
-                            Level.SetTile(xt, yt, Tile.Hole, 0);
+                            case 4:
+                                Level.SetTile(xt, yt, Tile.InfiniteFall, 0);
+                                break;
+                            case 3:
+                                Level.SetTile(xt, yt, Tile.Lava, 0);
+                                break;
+                            default:
+                                Level.SetTile(xt, yt, Tile.Hole, 0);
+                                break;
                         }
 
                         SoundEffectManager.Play("boom");

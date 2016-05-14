@@ -453,9 +453,10 @@ namespace MiniRealms
 
             Level.Add(Player);
 
-            foreach (Level t in Levels)
+            foreach (Level level in Levels)
             {
-                t.TrySpawn(difficulty.SpawnAmount, difficulty.BaseLevel);
+                level.MonsterDensity = difficulty.Density;
+                level.TrySpawn(difficulty.SpawnAmount, difficulty.BaseLevel);
             }
 
             LoadingText = "Finished";
