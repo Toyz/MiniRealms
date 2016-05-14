@@ -7,12 +7,12 @@ using MiniRealms.Levels.Tiles;
 
 namespace MiniRealms.Levels
 {
-    public class Level
+    public sealed class Level
     {
         private readonly Random _random = new Random();
 
         public readonly int W;
-        public int H;
+        public readonly int H;
 
         public byte[] Tiles { get; }
         public byte[] Data { get; }
@@ -310,7 +310,7 @@ namespace MiniRealms.Levels
             }
         }
 
-        public virtual void Tick()
+        public void Tick()
         {
             TrySpawn(1, McGame.Difficulty.BaseLevel);
 
