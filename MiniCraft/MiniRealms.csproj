@@ -130,6 +130,7 @@
     <Compile Include="Screens\OptionItems\ActionOption.cs" />
     <Compile Include="Screens\OptionItems\LabelOption.cs" />
     <Compile Include="Screens\OptionItems\VolumeContol.cs" />
+    <Compile Include="Screens\OptionItems\DifficultyOption.cs" />
     <Compile Include="Screens\OptionItems\WorldSizeOption.cs" />
     <Compile Include="Screens\MainScreens\TitleMenu.cs" />
     <Compile Include="Engine\Audio\Sounds\SoundEffect.cs" />

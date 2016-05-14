@@ -12,6 +12,7 @@ using MiniRealms.Levels.Tiles;
 using MiniRealms.Screens.GameScreens;
 using MiniRealms.Screens.Interfaces;
 using MiniRealms.Screens.MainScreens;
+using MiniRealms.Screens.OptionItems;
 using Color = MiniRealms.Engine.Gfx.Color;
 
 namespace MiniRealms
@@ -45,6 +46,7 @@ namespace MiniRealms
         public Player Player;
         private int _playerDeadTime;
         public Screen Screen { get; set; }
+        public static DifficultyOption.Difficulty Difficulty { get; set; }
         private SpriteBatch _spriteBatch;
         public int TickCount;
         private int _wonTimer;
@@ -422,8 +424,10 @@ namespace MiniRealms
             _hasWon = true;
         }
 
-        public void SetupLevel(int lw = 128, int lh = 128)
+        public void SetupLevel(int lw, int lh, DifficultyOption.Difficulty difficulty)
         {
+            Difficulty = difficulty;
+
             Levels = new Level[5];
 
             LoadingText = "Creating Level 1";
@@ -451,7 +455,7 @@ namespace MiniRealms
 
             foreach (Level t in Levels)
             {
-                t.TrySpawn(5000);
+                t.TrySpawn(difficulty.SpawnAmount, difficulty.BaseLevel);
             }
 
             LoadingText = "Finished";

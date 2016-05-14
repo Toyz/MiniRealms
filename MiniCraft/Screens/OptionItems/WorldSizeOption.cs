@@ -20,6 +20,13 @@ namespace MiniRealms.Screens.OptionItems
         public override string Text { get; set; } = "World Size: ";
         public override string SelectedText => $"< {Text} >";
 
+        public WorldSizeOption()
+        {
+            Point s = Sizes[Selected];
+
+            Text = $"World Size: {s.X}x{s.Y}";
+        }
+
         protected internal override void HandleInput(InputHandler input)
         {
             if (input.Left.Clicked)

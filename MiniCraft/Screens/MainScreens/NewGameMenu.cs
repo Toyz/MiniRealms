@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using MiniRealms.Engine.Audio.Sounds;
 using MiniRealms.Engine.Gfx;
+using MiniRealms.Screens.GameScreens;
 using MiniRealms.Screens.Interfaces;
 using MiniRealms.Screens.OptionItems;
 using Color = MiniRealms.Engine.Gfx.Color;
@@ -15,13 +16,17 @@ namespace MiniRealms.Screens.MainScreens
         private int _selected;
         private readonly List<Option> _options;
         private readonly WorldSizeOption _worldSizeOption;
+        private readonly DifficultyOption _difficultyOption;
 
         public NewGameMenu(Menu parent)
         {
             _worldSizeOption = new WorldSizeOption();
+            _difficultyOption = new DifficultyOption();
+
             _options = new List<Option>
             {
                 _worldSizeOption,
+                _difficultyOption,
                 new ActionOption("Create and Start", CreateAndStartWorld),
                 new ActionOption("Cancel", () => Game.SetMenu(new AnimatedTransitionMenu(parent,  color: Color.DarkGrey)))
             };
@@ -31,21 +36,21 @@ namespace MiniRealms.Screens.MainScreens
         {
             Game.LoadingText = "World Creation";
             Game.IsLoadingWorld = true;
-            Game.CurrentLevel = 3;
 
             Point s = _worldSizeOption.Sizes[_worldSizeOption.Selected];
             GameConts.Instance.MaxHeight = s.Y;
             GameConts.Instance.MaxWidth = s.X;
-
+            
             Task.Run(() =>
             {
-                Game.SetupLevel(s.X, s.Y);
+                Game.SetupLevel(s.X, s.Y, _difficultyOption.GetDifficulty());
             }).ContinueWith((e) =>
             {
                 Game.IsLoadingWorld = false;
                 Game.LoadingText = string.Empty;
                 Game.ResetGame();
-                Game.SetMenu(null);
+                Game.SetMenu(new LevelTransitionMenu(3, true));
+                //Game.SetMenu(null);
             });
         }
 

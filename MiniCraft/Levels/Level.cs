@@ -11,11 +11,12 @@ namespace MiniRealms.Levels
     {
         private readonly Random _random = new Random();
 
-        public int W, H;
+        public readonly int W;
+        public int H;
 
-        public byte[] Tiles { get; protected set; }
-        public byte[] Data { get; protected set; }
-        public List<Entity>[] EntitiesInTiles;
+        public byte[] Tiles { get; }
+        public byte[] Data { get; }
+        private readonly List<Entity>[] _entitiesInTiles;
 
         public int GrassColor = 141;
         public int DirtColor = 322;
@@ -23,7 +24,7 @@ namespace MiniRealms.Levels
         private readonly int _depth;
         public int MonsterDensity = 8;
 
-        public List<Entity> Entities = new List<Entity>();
+        private readonly List<Entity> _entities = new List<Entity>();
         private static readonly SpriteSorter _spriteSorter = new SpriteSorter();
         private class SpriteSorter : IComparer<Entity>
         {
@@ -100,10 +101,10 @@ namespace MiniRealms.Levels
                         }
                 }
 
-                EntitiesInTiles = new List<Entity>[w * h];
+                _entitiesInTiles = new List<Entity>[w * h];
                 for (int i = 0; i < w * h; i++)
                 {
-                    EntitiesInTiles[i] = new List<Entity>();
+                    _entitiesInTiles[i] = new List<Entity>();
                 }
 
                 if (level == 1)
@@ -152,7 +153,7 @@ namespace MiniRealms.Levels
                 for (int x = xo; x <= w + xo; x++)
                 {
                     if (x < 0 || y < 0 || x >= W || y >= H) continue;
-                    _rowSprites.AddAll(EntitiesInTiles[x + y * W]);
+                    _rowSprites.AddAll(_entitiesInTiles[x + y * W]);
                 }
                 if (_rowSprites.Size() > 0)
                 {
@@ -177,7 +178,7 @@ namespace MiniRealms.Levels
                 for (int x = xo - r; x <= w + xo + r; x++)
                 {
                     if (x < 0 || y < 0 || x >= W || y >= H) continue;
-                    List<Entity> entities = EntitiesInTiles[x + y * W];
+                    List<Entity> entities = _entitiesInTiles[x + y * W];
                     for (int i = 0; i < entities.Size(); i++)
                     {
                         Entity e = entities.Get(i);
@@ -240,7 +241,7 @@ namespace MiniRealms.Levels
                 Player = player;
             }
             entity.Removed = false;
-            Extensions.Add(Entities, entity);
+            Extensions.Add(_entities, entity);
             entity.Init(this);
 
             InsertEntity(entity.X >> 4, entity.Y >> 4, entity);
@@ -248,7 +249,7 @@ namespace MiniRealms.Levels
 
         public void Remove(Entity e)
         {
-            Extensions.Remove(Entities, e);
+            Extensions.Remove(_entities, e);
             int xto = e.X >> 4;
             int yto = e.Y >> 4;
             RemoveEntity(xto, yto, e);
@@ -257,16 +258,16 @@ namespace MiniRealms.Levels
         private void InsertEntity(int x, int y, Entity e)
         {
             if (x < 0 || y < 0 || x >= W || y >= H) return;
-            Extensions.Add(EntitiesInTiles[x + y * W], e);
+            Extensions.Add(_entitiesInTiles[x + y * W], e);
         }
 
         private void RemoveEntity(int x, int y, Entity e)
         {
             if (x < 0 || y < 0 || x >= W || y >= H) return;
-            Extensions.Remove(EntitiesInTiles[x + y * W], e);
+            Extensions.Remove(_entitiesInTiles[x + y * W], e);
         }
 
-        public void TrySpawn(int count)
+        public void TrySpawn(int count, int baseLevel)
         {
             for (int i = 0; i < count; i++)
             {
@@ -283,7 +284,10 @@ namespace MiniRealms.Levels
                     minLevel = maxLevel = 4;
                 }
 
+
                 int lvl = _random.NextInt(maxLevel - minLevel + 1) + minLevel;
+                lvl += baseLevel;
+
                 int spawner = _random.NextInt(5);
 
                 if (spawner <= 1)
@@ -308,7 +312,7 @@ namespace MiniRealms.Levels
 
         public virtual void Tick()
         {
-            TrySpawn(1);
+            TrySpawn(1, McGame.Difficulty.BaseLevel);
 
             for (int i = 0; i < W * H / 50; i++)
             {
@@ -316,9 +320,9 @@ namespace MiniRealms.Levels
                 int yt = _random.NextInt(W);
                 GetTile(xt, yt).Tick(this, xt, yt);
             }
-            for (int i = 0; i < Entities.Size(); i++)
+            for (int i = 0; i < _entities.Size(); i++)
             {
-                Entity e = Entities.Get(i);
+                Entity e = _entities.Get(i);
                 int xto = e.X >> 4;
                 int yto = e.Y >> 4;
 
@@ -326,7 +330,7 @@ namespace MiniRealms.Levels
 
                 if (e.Removed)
                 {
-                    Entities.Remove(i--);
+                    _entities.Remove(i--);
                     RemoveEntity(xto, yto, e);
                 }
                 else
@@ -355,7 +359,7 @@ namespace MiniRealms.Levels
                 for (int x = xt0; x <= xt1; x++)
                 {
                     if (x < 0 || y < 0 || x >= W || y >= H) continue;
-                    List<Entity> entities = EntitiesInTiles[x + y * W];
+                    List<Entity> entities = _entitiesInTiles[x + y * W];
                     for (int i = 0; i < entities.Size(); i++)
                     {
                         Entity e = entities.Get(i);
