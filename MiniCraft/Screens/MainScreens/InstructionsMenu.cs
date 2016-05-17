@@ -33,7 +33,7 @@ namespace MiniRealms.Screens.MainScreens
         {
             if (Input.Attack.Clicked || Input.Menu.Clicked)
             {
-                Game.SetMenu(_parent);
+                Game.SetMenu(new AnimatedTransitionMenu(_parent));
             }
         }
 

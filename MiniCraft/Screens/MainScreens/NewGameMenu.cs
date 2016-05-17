@@ -28,7 +28,7 @@ namespace MiniRealms.Screens.MainScreens
                 _worldSizeOption,
                 _difficultyOption,
                 new ActionOption("Create and Start", CreateAndStartWorld),
-                new ActionOption("Cancel", () => Game.SetMenu(new AnimatedTransitionMenu(parent,  color: Color.DarkGrey)))
+                new ActionOption("Cancel", () => Game.SetMenu(new AnimatedTransitionMenu(parent)))
             };
         }
 
@@ -50,7 +50,6 @@ namespace MiniRealms.Screens.MainScreens
                 Game.LoadingText = string.Empty;
                 Game.ResetGame();
                 Game.SetMenu(new LevelTransitionMenu(3, true));
-                //Game.SetMenu(null);
             });
         }
 

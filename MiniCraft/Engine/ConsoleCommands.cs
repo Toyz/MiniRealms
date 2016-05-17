@@ -30,11 +30,11 @@ namespace MiniRealms.Engine
             ManualInterpreter.RegisterCommand("play-sound", PlaySoundCommand);
             ManualInterpreter.RegisterCommand("goto-level", MoveToLevel);
             ManualInterpreter.RegisterCommand("player-color", NewRandomPlayerColorCommand);
-            ManualInterpreter.RegisterCommand("exit", _ => game.Exit());
-            ManualInterpreter.RegisterCommand("fps", _ => $"Current FPS: {game.FpsCounterComponent.FrameRate}");
 
             //Normal commands XD
             ManualInterpreter.RegisterCommand("clear", _ => game.Console.Clear());
+            ManualInterpreter.RegisterCommand("exit", _ => game.Exit());
+            ManualInterpreter.RegisterCommand("fps", _ => $"Current FPS: {game.FpsCounterComponent.FrameRate}");
         }
 
         private string NewRandomPlayerColorCommand(string[] arg)
