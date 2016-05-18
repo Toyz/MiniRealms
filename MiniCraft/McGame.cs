@@ -41,12 +41,12 @@ namespace MiniRealms
         public Level[] Levels = new Level[5];
         private Screen _lightScreen;
 
-        public Menu Menu { get; set; }
+        private Menu Menu { get; set; }
         private int _pendingLevelChange;
         public Player Player;
         private int _playerDeadTime;
-        public Screen Screen { get; set; }
-        public static DifficultyOption.Difficulty Difficulty { get; set; }
+        private Screen Screen { get; set; }
+        public static DifficultyOption.Difficulty Difficulty { get; private set; }
         private SpriteBatch _spriteBatch;
         public int TickCount;
         private int _wonTimer;
@@ -83,7 +83,7 @@ namespace MiniRealms
             Gdm.IsFullScreen = GameConts.Instance.FullScreen;
         }
 
-        public bool HasFocus() => IsActive;
+        private bool HasFocus() => IsActive;
 
         public void SetMenu(Menu menu)
         {

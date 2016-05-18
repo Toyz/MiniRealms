@@ -19,17 +19,18 @@ namespace MiniRealms.Engine.LevelGens
                 return R;
             }
         }
-        public double[] Values;
+
+        private double[] _values;
         public static long Seed;
         private readonly int _w;
         private readonly int _h;
 
-        public LevelGen(int w, int h, int featureSize)
+        private LevelGen(int w, int h, int featureSize)
         {
             _w = w;
             _h = h;
 
-            Values = new double[w * h];
+            _values = new double[w * h];
 
             for (int y = 0; y < w; y += featureSize)
             {
@@ -81,11 +82,11 @@ namespace MiniRealms.Engine.LevelGens
             } while (stepSize > 1);
         }
 
-        private double Sample(int x, int y) => Values[(x & (_w - 1)) + (y & (_h - 1)) * _w];
+        private double Sample(int x, int y) => _values[(x & (_w - 1)) + (y & (_h - 1)) * _w];
 
         private void SetSample(int x, int y, double value)
         {
-            if (Values != null) Values[(x & (_w - 1)) + (y & (_h - 1)) * _w] = value;
+            if (_values != null) _values[(x & (_w - 1)) + (y & (_h - 1)) * _w] = value;
         }
 
         public static byte[][] CreateAndValidateTopMap(int w, int h)
@@ -171,9 +172,9 @@ namespace MiniRealms.Engine.LevelGens
                 {
                     int i = x + y * w;
 
-                    double val = Math.Abs(noise1.Values[i] - noise2.Values[i]) * 3 - 2;
-                    double mval = Math.Abs(mnoise1.Values[i] - mnoise2.Values[i]);
-                    mval = Math.Abs(mval - mnoise3.Values[i]) * 3 - 2;
+                    double val = Math.Abs(noise1._values[i] - noise2._values[i]) * 3 - 2;
+                    double mval = Math.Abs(mnoise1._values[i] - mnoise2._values[i]);
+                    mval = Math.Abs(mval - mnoise3._values[i]) * 3 - 2;
 
                     double xd = x / (w - 1.0) * 2 - 1;
                     double yd = y / (h - 1.0) * 2 - 1;
@@ -320,15 +321,15 @@ namespace MiniRealms.Engine.LevelGens
                 {
                     int i = x + y * w;
 
-                    double val = Math.Abs(noise1.Values[i] - noise2.Values[i]) * 3 - 2;
+                    double val = Math.Abs(noise1._values[i] - noise2._values[i]) * 3 - 2;
 
-                    double mval = Math.Abs(mnoise1.Values[i] - mnoise2.Values[i]);
-                    mval = Math.Abs(mval - mnoise3.Values[i]) * 3 - 2;
+                    double mval = Math.Abs(mnoise1._values[i] - mnoise2._values[i]);
+                    mval = Math.Abs(mval - mnoise3._values[i]) * 3 - 2;
 
-                    double nval = Math.Abs(nnoise1.Values[i] - nnoise2.Values[i]);
-                    nval = Math.Abs(nval - nnoise3.Values[i]) * 3 - 2;
+                    double nval = Math.Abs(nnoise1._values[i] - nnoise2._values[i]);
+                    nval = Math.Abs(nval - nnoise3._values[i]) * 3 - 2;
 
-                    var wval = Math.Abs(nval - wnoise3.Values[i]) * 3 - 2;
+                    var wval = Math.Abs(nval - wnoise3._values[i]) * 3 - 2;
 
                     double xd = x / (w - 1.0) * 2 - 1;
                     double yd = y / (h - 1.0) * 2 - 1;
@@ -405,7 +406,7 @@ namespace MiniRealms.Engine.LevelGens
                 {
                     int i = x + y * w;
 
-                    double val = Math.Abs(noise1.Values[i] - noise2.Values[i]) * 3 - 2;
+                    double val = Math.Abs(noise1._values[i] - noise2._values[i]) * 3 - 2;
 
                     double xd = x / (w - 1.0) * 2 - 1;
                     double yd = y / (h - 1.0) * 2 - 1;
