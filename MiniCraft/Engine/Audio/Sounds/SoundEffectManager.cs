@@ -5,9 +5,9 @@ using Microsoft.Xna.Framework.Content;
 
 namespace MiniRealms.Engine.Audio.Sounds
 {
-    public class SoundEffectManager
+    public static class SoundEffectManager
     {
-        public static Dictionary<string, SoundEffect> AllSounds { get; protected set; }
+        public static Dictionary<string, SoundEffect> AllSounds { get; private set; }
 
         public static void Initialize(ContentManager content)
         {
@@ -46,13 +46,11 @@ namespace MiniRealms.Engine.Audio.Sounds
             AllSounds.Add(name, soundEffect);
         }
 
-        public static SoundEffect Get(string key)
+        private static SoundEffect Get(string key)
         {
             if (!AllSounds.ContainsKey(key)) throw new IndexOutOfRangeException($"Sound \"{key}\" doesn't exist");
 
             return AllSounds[key];
         }
-
-
     }
 }

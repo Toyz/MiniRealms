@@ -5,7 +5,7 @@ namespace MiniRealms.Engine.Compents
 {
     public class FpsCounterComponent : DrawableGameComponent
     {
-        public int FrameRate { get; protected set; }
+        public int FrameRate { get; private set; }
         private int _frameCounter;
         private TimeSpan _elapsedTime = TimeSpan.Zero;
 

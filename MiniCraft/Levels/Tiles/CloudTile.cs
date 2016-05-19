@@ -1,4 +1,5 @@
-﻿using MiniRealms.Engine.Gfx;
+﻿using MiniRealms.Engine;
+using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
 using MiniRealms.Items;
 using MiniRealms.Items.Resources;
@@ -75,7 +76,7 @@ namespace MiniRealms.Levels.Tiles
             var toolItem = item as ToolItem;
             if (toolItem == null) return false;
             ToolItem tool = toolItem;
-            if (tool.Type != ToolType.Shovel || !player.PayStamina(5)) return false;
+            if (tool.ObjectType != ToolType.Shovel || !player.PayStamina(5)) return false;
             // level.setTile(xt, yt, Tile.infiniteFall, 0);
             int count = Random.NextInt(2) + 1;
             for (int i = 0; i < count; i++)

@@ -1,4 +1,5 @@
-﻿using MiniRealms.Engine.Gfx;
+﻿using MiniRealms.Engine;
+using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
 using MiniRealms.Items;
 using MiniRealms.Items.Resources;
@@ -16,8 +17,8 @@ namespace MiniRealms.Levels.Tiles
 
         public override void Render(Screen screen, Level level, int x, int y)
         {
-            int col = Color.Get(level.SandColor + 2, level.SandColor, level.SandColor - 110, level.SandColor - 110);
-            int transitionColor = Color.Get(level.SandColor - 110, level.SandColor, level.SandColor - 110, level.DirtColor);
+            int col = Color.Get(550 + 2, 550, 550 - 110, 550 - 110);
+            int transitionColor = Color.Get(550 - 110, 550, 550 - 110, level.DirtColor);
 
             bool u = !level.GetTile(x, y - 1).ConnectsToSand;
             bool d = !level.GetTile(x, y + 1).ConnectsToSand;
@@ -80,7 +81,7 @@ namespace MiniRealms.Levels.Tiles
             var toolItem = item as ToolItem;
             if (toolItem == null) return false;
             ToolItem tool = toolItem;
-            if (tool.Type != ToolType.Shovel || !player.PayStamina(4 - tool.Level)) return false;
+            if (tool.ObjectType != ToolType.Shovel || !player.PayStamina(4 - tool.Level)) return false;
             level.SetTile(xt, yt, Dirt, 0);
             level.Add(new ItemEntity(new ResourceItem(Resource.Sand), xt*16 + Random.NextInt(10) + 3,
                 yt*16 + Random.NextInt(10) + 3));

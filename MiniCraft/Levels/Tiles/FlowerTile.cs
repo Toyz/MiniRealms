@@ -28,7 +28,7 @@ namespace MiniRealms.Levels.Tiles
 
             int data = level.GetData(x, y);
             int shape = (data / 16) % 2;
-            int flowerCol = Color.Get(10, level.GrassColor, _c1, _c2);
+            int flowerCol = Color.Get(10, 141, _c1, _c2);
 
             if (shape == 0) screen.Render(x * 16 + 0, y * 16 + 0, 1 + 1 * 32, flowerCol, 0);
             if (shape == 1) screen.Render(x * 16 + 8, y * 16 + 0, 1 + 1 * 32, flowerCol, 0);
@@ -41,7 +41,7 @@ namespace MiniRealms.Levels.Tiles
             var toolItem = item as ToolItem;
             if (toolItem == null) return false;
             ToolItem tool = toolItem;
-            if (tool.Type != ToolType.Shovel) return false;
+            if (tool.ObjectType != ToolType.Shovel) return false;
             if (!player.PayStamina(4 - tool.Level)) return false;
             level.Add(new ItemEntity(new ResourceItem(_drop), x * 16 + Random.NextInt(10) + 3, y * 16 + Random.NextInt(10) + 3));
             level.Add(new ItemEntity(new ResourceItem(_drop), x * 16 + Random.NextInt(10) + 3, y * 16 + Random.NextInt(10) + 3));

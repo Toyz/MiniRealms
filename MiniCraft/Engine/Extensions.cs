@@ -34,7 +34,7 @@ namespace MiniRealms.Engine
 
         public static void AddAll<T>(this List<T> list, IEnumerable<T> items) => list.AddRange(items);
 
-        public static void RemoveAll<T>(this List<T> list, List<T> other)
+        public static void RemoveAll<T>(this List<T> list, IEnumerable<T> other)
         {
             foreach (var item in other)
                 list.Remove(item);

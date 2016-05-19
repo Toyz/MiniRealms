@@ -1,25 +1,28 @@
-﻿using MiniRealms.Engine.Gfx;
+﻿using MiniRealms.Engine;
+using MiniRealms.Engine.Gfx;
 
 namespace MiniRealms.Entities
 {
     public class Spark : Entity
     {
         private readonly int _lifeTime;
-        public double Xa, Ya;
-        public double Xx, Yy;
+        private readonly double _xa;
+        private readonly double _ya;
+        private double _xx;
+        private double _yy;
         private int _time;
         private readonly AirWizard _owner;
 
         public Spark(AirWizard owner, double xa, double ya)
         {
             _owner = owner;
-            Xx = X = owner.X;
-            Yy = Y = owner.Y;
+            _xx = X = owner.X;
+            _yy = Y = owner.Y;
             Xr = 0;
             Yr = 0;
 
-            Xa = xa;
-            Ya = ya;
+            _xa = xa;
+            _ya = ya;
 
             _lifeTime = 60*10 + Random.NextInt(30);
         }
@@ -32,10 +35,10 @@ namespace MiniRealms.Entities
                 Remove();
                 return;
             }
-            Xx += Xa;
-            Yy += Ya;
-            X = (int) Xx;
-            Y = (int) Yy;
+            _xx += _xa;
+            _yy += _ya;
+            X = (int) _xx;
+            Y = (int) _yy;
             var toHit = Level.GetEntities(X, Y, X, Y);
             for (int i = 0; i < toHit.Size(); i++)
             {

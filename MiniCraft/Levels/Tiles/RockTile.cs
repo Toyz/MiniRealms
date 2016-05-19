@@ -1,4 +1,5 @@
-﻿using MiniRealms.Engine.Gfx;
+﻿using MiniRealms.Engine;
+using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
 using MiniRealms.Entities.Particles;
 using MiniRealms.Items;
@@ -83,7 +84,7 @@ namespace MiniRealms.Levels.Tiles
             var toolItem = item as ToolItem;
             if (toolItem == null) return false;
             ToolItem tool = toolItem;
-            if (tool.Type != ToolType.Pickaxe || !player.PayStamina(4 - tool.Level)) return false;
+            if (tool.ObjectType != ToolType.Pickaxe || !player.PayStamina(4 - tool.Level)) return false;
             Hurt(level, xt, yt, Random.NextInt(10) + (tool.Level)*5 + 10);
             return true;
         }

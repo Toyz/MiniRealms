@@ -1,4 +1,5 @@
-﻿using MiniRealms.Engine.Gfx;
+﻿using MiniRealms.Engine;
+using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
 using MiniRealms.Items;
 using MiniRealms.Items.Resources;
@@ -47,7 +48,7 @@ namespace MiniRealms.Levels.Tiles
             ToolItem toolItem = item as ToolItem;
             if (toolItem == null) return false;
             ToolItem tool = toolItem;
-            if (tool.Type != ToolType.Shovel || !player.PayStamina(4 - tool.Level)) return false;
+            if (tool.ObjectType != ToolType.Shovel || !player.PayStamina(4 - tool.Level)) return false;
             level.SetTile(xt, yt, Dirt, 0);
             return true;
         }

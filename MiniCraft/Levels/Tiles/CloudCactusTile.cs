@@ -36,7 +36,7 @@ namespace MiniRealms.Levels.Tiles
             var toolItem = item as ToolItem;
             if (toolItem == null) return false;
             ToolItem tool = toolItem;
-            if (tool.Type != ToolType.Pickaxe || !player.PayStamina(6 - tool.Level)) return false;
+            if (tool.ObjectType != ToolType.Pickaxe || !player.PayStamina(6 - tool.Level)) return false;
             Hurt(level, xt, yt, 1);
             return true;
         }

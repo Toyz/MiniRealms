@@ -1,4 +1,5 @@
-﻿using MiniRealms.Engine.Gfx;
+﻿using MiniRealms.Engine;
+using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
 using MiniRealms.Entities.Particles;
 using MiniRealms.Items;
@@ -42,7 +43,7 @@ namespace MiniRealms.Levels.Tiles
             if (toolItem != null)
             {
                 ToolItem tool = toolItem;
-                if (tool.Type == ToolType.Pickaxe)
+                if (tool.ObjectType == ToolType.Pickaxe)
                 {
                     if (player.PayStamina(6 - tool.Level))
                     {

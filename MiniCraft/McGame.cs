@@ -290,8 +290,8 @@ namespace MiniRealms
                 if (CurrentLevel > 3)
                 {
                     var col = Color.Get(20, 20, 121, 121);
-                    for (var y = 0; y < 14; y++)
-                        for (var x = 0; x < 24; x++)
+                    for (var y = 0; y < GameConts.Height / 8  + 1; y++)
+                        for (var x = 0; x < GameConts.Width / 8 + 1; x++)
                         {
                             Screen.Render(x*8 - ((xScroll/4) & 7), y*8 - ((yScroll/4) & 7), 0, col, 0);
                         }
@@ -430,20 +430,31 @@ namespace MiniRealms
 
             Levels = new Level[5];
 
-            LoadingText = "Creating Level 1";
-            Levels[4] = new Level(lw, lh, 1, null);
+            var parent = 1;
+            var si = -3;
+            for(var i = 0; i < Levels.Length; i++)
+            {
+                var ti = i + 1;
+                LoadingText = $"Creating Level {ti}";
+                Levels[i] = new Level(lw, lh, si, si, parent < Levels.Length - 1 ? Levels[parent] : null);
+                si++;
+                parent++;
+            }
+
+            /*LoadingText = "Creating Level 1";
+            Levels[4] = new Level(lw, lh, 1, 1,null);
 
             LoadingText = "Creating Level 2";
-            Levels[3] = new Level(lw, lh, 0, Levels[4]);
+            Levels[3] = new Level(lw, lh, 0, 0, Levels[4]);
 
             LoadingText = "Creating Level 3";
-            Levels[2] = new Level(lw, lh, -1, Levels[3]);
+            Levels[2] = new Level(lw, lh, -1, -1, Levels[3]);
 
             LoadingText = "Creating Level 4";
-            Levels[1] = new Level(lw, lh, -2, Levels[2]);
+            Levels[1] = new Level(lw, lh, -2, -2, Levels[2]);
 
             LoadingText = "Creating Level 5";
-            Levels[0] = new Level(lw, lh, -3, Levels[1]);
+            Levels[0] = new Level(lw, lh, -3, -3, Levels[1]);*/
 
             Level = Levels[CurrentLevel];
 

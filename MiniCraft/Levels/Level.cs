@@ -16,14 +16,17 @@ namespace MiniRealms.Levels
         public readonly int H;
 
         public byte[] Tiles { get; }
-        public byte[] Data { get; }
+        private byte[] Data { get; }
         private readonly List<Entity>[] _entitiesInTiles;
 
-        public int GrassColor = 141;
-        public int DirtColor = 322;
-        public int SandColor = 550;
+        //private readonly int _grassColor = 141;
+        public int DirtColor { get; }
+        //private readonly int _sandColor = 550;
+
         private readonly int _depth;
         public int MonsterDensity = 8;
+        public int Index { get; }
+       
 
         private readonly List<Entity> _entities = new List<Entity>();
         private static readonly SpriteSorter _spriteSorter = new SpriteSorter();
@@ -37,8 +40,10 @@ namespace MiniRealms.Levels
             }
         }
 
-        public Level(int w, int h, int level, Level parentLevel)
+        public Level(int w, int h, int level, int index, Level parentLevel)
         {
+            DirtColor = 322;
+            Index = index;
             unchecked
             {
                 if (level < 0)

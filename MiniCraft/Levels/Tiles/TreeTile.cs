@@ -1,4 +1,5 @@
-﻿using MiniRealms.Engine.Gfx;
+﻿using MiniRealms.Engine;
+using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
 using MiniRealms.Entities.Particles;
 using MiniRealms.Items;
@@ -17,9 +18,9 @@ namespace MiniRealms.Levels.Tiles
 
         public override void Render(Screen screen, Level level, int x, int y)
         {
-            int col = Color.Get(10, 30, 151, level.GrassColor);
-            int barkCol1 = Color.Get(10, 30, 430, level.GrassColor);
-            int barkCol2 = Color.Get(10, 30, 320, level.GrassColor);
+            int col = Color.Get(10, 30, 151, 141);
+            int barkCol1 = Color.Get(10, 30, 430, 141);
+            int barkCol2 = Color.Get(10, 30, 320, 141);
 
             bool u = level.GetTile(x, y - 1) == this;
             bool l = level.GetTile(x - 1, y) == this;
@@ -82,7 +83,7 @@ namespace MiniRealms.Levels.Tiles
             var toolItem = item as ToolItem;
             if (toolItem == null) return false;
             ToolItem tool = toolItem;
-            if (tool.Type == ToolType.Axe)
+            if (tool.ObjectType == ToolType.Axe)
             {
                 if (player.PayStamina(4 - tool.Level))
                 {

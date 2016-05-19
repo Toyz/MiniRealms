@@ -1,4 +1,5 @@
 ﻿using System;
+using MiniRealms.Engine;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
 
@@ -9,12 +10,13 @@ namespace MiniRealms.Items
     {
         private readonly Random _random = new Random();
 
-        public const int MaxLevel = 5;
-        public static readonly string[] LevelNames = { //
+        //public const int MaxLevel = 5;
+
+        private static readonly string[] LevelNames = { //
 	        "Wood", "Rock", "Iron", "Gold", "Gem"//
 	    };
 
-        public static readonly int[] LevelColors = {//
+        private static readonly int[] LevelColors = {//
 	        Color.Get(-1, 100, 321, 431),//
 			Color.Get(-1, 100, 321, 111),//
 			Color.Get(-1, 100, 321, 555),//
@@ -22,18 +24,18 @@ namespace MiniRealms.Items
 			Color.Get(-1, 100, 321, 055),//
 	    };
 
-        public ToolType Type;
-        public int Level;
+        public ToolType ObjectType { get; }
+        public int Level { get; }
 
-        public ToolItem(ToolType type, int level)
+        public ToolItem(ToolType objectType, int level)
         {
-            Type = type;
+            ObjectType = objectType;
             Level = level;
         }
 
         public override int GetColor() => LevelColors[Level];
 
-        public override int GetSprite() => Type.Sprite + 5 * 32;
+        public override int GetSprite() => ObjectType.Sprite + 5 * 32;
 
         public override void RenderIcon(Screen screen, int x, int y, int bits = 0)
         {
@@ -46,7 +48,7 @@ namespace MiniRealms.Items
             Font.Draw(GetName(), screen, x + 8, y, Color.Get(-1, 555, 555, 555));
         }
 
-        public override string GetName() => LevelNames[Level] + " " + Type.Name;
+        public override string GetName() => LevelNames[Level] + " " + ObjectType.Name;
 
         public override void OnTake(ItemEntity itemEntity)
         {
@@ -56,11 +58,11 @@ namespace MiniRealms.Items
 
         public override int GetAttackDamageBonus(Entity e)
         {
-            if (Type == ToolType.Axe)
+            if (ObjectType == ToolType.Axe)
             {
                 return (Level + 1) * 2 + _random.NextInt(4);
             }
-            if (Type == ToolType.Sword)
+            if (ObjectType == ToolType.Sword)
             {
                 return (Level + 1) * 3 + _random.NextInt(2 + Level * Level * 2);
             }
@@ -72,7 +74,7 @@ namespace MiniRealms.Items
             var toolItem = item as ToolItem;
             if (toolItem == null) return false;
             var other = toolItem;
-            if (other.Type != Type) return false;
+            if (other.ObjectType != ObjectType) return false;
             return other.Level == Level;
         }
     }

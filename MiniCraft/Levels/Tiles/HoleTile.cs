@@ -17,7 +17,7 @@ namespace MiniRealms.Levels.Tiles
         {
             int col = Color.Get(111, 111, 110, 110);
             int transitionColor1 = Color.Get(3, 111, level.DirtColor - 111, level.DirtColor);
-            int transitionColor2 = Color.Get(3, 111, level.SandColor - 110, level.SandColor);
+            int transitionColor2 = Color.Get(3, 111, 550 - 110, 550);
 
             bool u = !level.GetTile(x, y - 1).ConnectsToLiquid();
             bool d = !level.GetTile(x, y + 1).ConnectsToLiquid();

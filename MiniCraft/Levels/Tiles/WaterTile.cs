@@ -1,4 +1,5 @@
 ﻿using System;
+using MiniRealms.Engine;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
 
@@ -21,7 +22,7 @@ namespace MiniRealms.Levels.Tiles
             //TODO: wRandom.setSeed((tickCount + (x / 2 - y) * 4311) / 10 * 54687121L + x * 3271612L + y * 3412987161L);
             int col = Color.Get(005, 005, 115, 115);
             int transitionColor1 = Color.Get(3, 005, level.DirtColor - 111, level.DirtColor);
-            int transitionColor2 = Color.Get(3, 005, level.SandColor - 110, level.SandColor);
+            int transitionColor2 = Color.Get(3, 005, 550 - 110, 550);
 
             bool u = !level.GetTile(x, y - 1).ConnectsToWater;
             bool d = !level.GetTile(x, y + 1).ConnectsToWater;

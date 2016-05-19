@@ -17,8 +17,8 @@ namespace MiniRealms.Levels.Tiles
 
         public override void Render(Screen screen, Level level, int x, int y)
         {
-            int col = Color.Get(level.GrassColor, level.GrassColor, level.GrassColor + 111, level.GrassColor + 111);
-            int transitionColor = Color.Get(level.GrassColor - 111, level.GrassColor, level.GrassColor + 111, level.DirtColor);
+            int col = Color.Get(141, 141, 141 + 111, 141 + 111);
+            int transitionColor = Color.Get(141 - 111, 141, 141 + 111, level.DirtColor);
 
             bool u = !level.GetTile(x, y - 1).ConnectsToGrass;
             bool d = !level.GetTile(x, y + 1).ConnectsToGrass;
@@ -76,7 +76,7 @@ namespace MiniRealms.Levels.Tiles
             var toolItem = item as ToolItem;
             if (toolItem == null) return false;
             ToolItem tool = toolItem;
-            if (tool.Type == ToolType.Shovel && player.PayStamina(4 - tool.Level))
+            if (tool.ObjectType == ToolType.Shovel && player.PayStamina(4 - tool.Level))
             {
                 level.SetTile(xt, yt, Dirt, 0);
                 SoundEffectManager.Play("monsterhurt");
@@ -87,7 +87,7 @@ namespace MiniRealms.Levels.Tiles
                     return true;
                 }
             }
-            if (tool.Type != ToolType.Hoe) return false;
+            if (tool.ObjectType != ToolType.Hoe) return false;
             if (!player.PayStamina(4 - tool.Level)) return false;
             SoundEffectManager.Play("monsterhurt");
             if (Random.NextInt(5) == 0)

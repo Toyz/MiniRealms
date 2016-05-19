@@ -1,4 +1,5 @@
-﻿using MiniRealms.Engine.Gfx;
+﻿using MiniRealms.Engine;
+using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
 using MiniRealms.Entities.Particles;
 using MiniRealms.Items;
@@ -17,7 +18,7 @@ namespace MiniRealms.Levels.Tiles
 
         public override void Render(Screen screen, Level level, int x, int y)
         {
-            int col = Color.Get(20, 40, 50, level.SandColor);
+            int col = Color.Get(20, 40, 50, 550);
             screen.Render(x * 16 + 0, y * 16 + 0, 8 + 2 * 32, col, 0);
             screen.Render(x * 16 + 8, y * 16 + 0, 9 + 2 * 32, col, 0);
             screen.Render(x * 16 + 0, y * 16 + 8, 8 + 3 * 32, col, 0);
@@ -42,7 +43,7 @@ namespace MiniRealms.Levels.Tiles
             var toolItem = item as ToolItem;
             if (toolItem == null) return false;
             ToolItem tool = toolItem;
-            if (tool.Type != ToolType.Sword || !player.PayStamina(4 - tool.Level)) return false;
+            if (tool.ObjectType != ToolType.Sword || !player.PayStamina(4 - tool.Level)) return false;
             Hurt(xt, yt, Random.NextInt(10) + (tool.Level)*5 + 10, level);
             return true;
         }

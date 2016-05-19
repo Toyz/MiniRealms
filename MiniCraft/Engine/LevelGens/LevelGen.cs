@@ -20,7 +20,7 @@ namespace MiniRealms.Engine.LevelGens
             }
         }
 
-        private double[] _values;
+        private readonly double[] _values;
         public static long Seed;
         private readonly int _w;
         private readonly int _h;

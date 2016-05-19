@@ -28,7 +28,7 @@ namespace MiniRealms.Levels.Tiles
             var toolItem = item as ToolItem;
             if (toolItem == null) return false;
             ToolItem tool = toolItem;
-            if (tool.Type == ToolType.Shovel && player.PayStamina(4 - tool.Level))
+            if (tool.ObjectType == ToolType.Shovel && player.PayStamina(4 - tool.Level))
             {
                 level.SetTile(xt, yt, Hole, 0);
                 level.Add(new ItemEntity(new ResourceItem(Resource.Dirt), xt*16 + Random.NextInt(10) + 3,
@@ -36,7 +36,7 @@ namespace MiniRealms.Levels.Tiles
                 SoundEffectManager.Play("monsterhurt");
                 return true;
             }
-            if (tool.Type != ToolType.Hoe || !player.PayStamina(4 - tool.Level)) return false;
+            if (tool.ObjectType != ToolType.Hoe || !player.PayStamina(4 - tool.Level)) return false;
             level.SetTile(xt, yt, Farmland, 0);
             SoundEffectManager.Play("monsterhurt");
             return true;

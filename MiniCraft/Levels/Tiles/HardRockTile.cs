@@ -1,4 +1,5 @@
-﻿using MiniRealms.Engine.Gfx;
+﻿using MiniRealms.Engine;
+using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
 using MiniRealms.Entities.Particles;
 using MiniRealms.Items;
@@ -82,7 +83,7 @@ namespace MiniRealms.Levels.Tiles
         public override bool Interact(Level level, int xt, int yt, Player player, Item item, int attackDir) {
 		if (item is ToolItem) {
 			ToolItem tool = (ToolItem) item;
-			if (tool.Type == ToolType.Pickaxe && tool.Level == 4) {
+			if (tool.ObjectType == ToolType.Pickaxe && tool.Level == 4) {
 				if (player.PayStamina(4 - tool.Level)) {
 					Hurt(level, xt, yt, Random.NextInt(10) + (tool.Level) * 5 + 10);
 					return true;
