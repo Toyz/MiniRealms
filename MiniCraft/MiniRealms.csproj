@@ -69,7 +69,7 @@
     <Compile Include="Entities\Spark.cs" />
     <Compile Include="Entities\Workbench.cs" />
     <Compile Include="Entities\Zombie.cs" />
-    <Compile Include="Extensions.cs" />
+    <Compile Include="Engine\Extensions.cs" />
     <Compile Include="Engine\Gfx\Color.cs" />
     <Compile Include="Engine\Gfx\Font.cs" />
     <Compile Include="Engine\Gfx\Screen.cs" />

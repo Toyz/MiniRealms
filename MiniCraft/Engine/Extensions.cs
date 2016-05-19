@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MiniRealms
+namespace MiniRealms.Engine
 {
     public static class Extensions
     {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MiniRealms.Engine;
 using MiniRealms.Engine.Audio.Sounds;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Engine.LevelGens;
