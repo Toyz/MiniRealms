@@ -160,16 +160,14 @@ namespace MiniRealms.Entities
 
         public override void TouchedBy(Entity entity)
         {
-            if ((entity is Player))
+            if (!(entity is Player)) return;
+            if (_fuseTime == 0)
             {
-                if (_fuseTime == 0)
-                {
-                    SoundEffectManager.Play("fuse");
-                    _fuseTime = _maxFuseTime;
-                    _fuseLit = true;
-                }
-                entity.Hurt(this, 1, Dir);
+                SoundEffectManager.Play("fuse");
+                _fuseTime = _maxFuseTime;
+                _fuseLit = true;
             }
+            entity.Hurt(this, 1, Dir);
         }
 
         protected override void Die()
