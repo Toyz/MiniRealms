@@ -129,15 +129,17 @@ namespace MiniRealms.Entities
             int yo = Y - 11;
 
             int col = Color.Get(-1, 10, 252, 242);
-            if (_lvl == 2)
+            var baseLevel = _lvl - McGame.Difficulty.BaseLevel;
+
+            if (baseLevel == 2)
             {
                 col = Color.Get(-1, 200, 262, 232);
             }
-            if (_lvl == 3)
+            if (baseLevel == 3)
             {
                 col = Color.Get(-1, 200, 272, 222);
             }
-            if (_lvl == 4)
+            if (baseLevel == 4)
             {
                 col = Color.Get(-1, 200, 292, 282);
             }

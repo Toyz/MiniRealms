@@ -77,9 +77,11 @@ namespace MiniRealms.Entities
             int yo = Y - 11;
 
             int col = Color.Get(-1, 10, 252, 050);
-            if (_lvl == 2) col = Color.Get(-1, 100, 522, 050);
-            if (_lvl == 3) col = Color.Get(-1, 111, 444, 050);
-            if (_lvl == 4) col = Color.Get(-1, 000, 111, 020);
+            var baseLevel = _lvl - McGame.Difficulty.BaseLevel;
+
+            if (baseLevel == 2) col = Color.Get(-1, 100, 522, 050);
+            if (baseLevel == 3) col = Color.Get(-1, 111, 444, 050);
+            if (baseLevel == 4) col = Color.Get(-1, 000, 111, 020);
             if (HurtTime > 0)
             {
                 col = Color.Get(-1, 555, 555, 555);
