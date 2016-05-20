@@ -1,16 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Xml.Serialization;
 using GameConsole.ManualInterpreter;
 using MiniRealms.Engine.Audio.Sounds;
+using MiniRealms.Engine.Gfx;
 using MiniRealms.Engine.LevelGens;
 using MiniRealms.Entities;
 using MiniRealms.Items;
 using MiniRealms.Items.Resources;
 using MiniRealms.Levels.Tiles;
 using MiniRealms.Screens.GameScreens;
+using Color = System.Drawing.Color;
 
 namespace MiniRealms.Engine
 {
@@ -30,11 +34,132 @@ namespace MiniRealms.Engine
             ManualInterpreter.RegisterCommand("play-sound", PlaySoundCommand);
             ManualInterpreter.RegisterCommand("goto-level", MoveToLevel);
             ManualInterpreter.RegisterCommand("player-color", NewRandomPlayerColorCommand);
+#if DEBUG
+            ManualInterpreter.RegisterCommand("etx", ExportTileXmlCommand);
+#endif
 
             //Normal commands XD
             ManualInterpreter.RegisterCommand("clear", _ => game.Console.Clear());
             ManualInterpreter.RegisterCommand("exit", _ => game.Exit());
             ManualInterpreter.RegisterCommand("fps", _ => $"Current FPS: {game.FpsCounterComponent.FrameRate}");
+        }
+
+        private static string ExportTileXmlCommand(string[] arg)
+        {
+
+            var tileDict = new XmlDictionary<TileId, List<Sprite>>
+            {
+                {
+                    TileId.Cactus, new List<Sprite>
+                    {
+                        new Sprite(8 + 2*32, Gfx.Color.Get(20, 40, 50, 550), 0),
+                        new Sprite(9 + 2*32, Gfx.Color.Get(20, 40, 50, 550), 0),
+                        new Sprite(8 + 3*32, Gfx.Color.Get(20, 40, 50, 550), 0),
+                        new Sprite(9 + 3*32, Gfx.Color.Get(20, 40, 50, 550), 0)
+                    }
+                },
+                {
+                    TileId.Flower, new List<Sprite>
+                    {
+                        new Sprite(1 + 1*32, Gfx.Color.Get(10, 141, 555, 440), 0)
+                    }
+                },
+                {
+                    TileId.RedFlower, new List<Sprite>
+                    {
+                        new Sprite(1 + 1*32, Gfx.Color.Get(10, 141, 300, 440), 0)
+                    }
+                },
+                {
+                    TileId.YellowFlower, new List<Sprite>
+                    {
+                        new Sprite(1 + 1*32, Gfx.Color.Get(10, 141, 550, 440), 0)
+                    }
+                },
+                {
+                    TileId.Dirt, new List<Sprite>
+                    {
+                        new Sprite(0, -1, 0),
+                        new Sprite(1, -1, 0),
+                        new Sprite(2, -1, 0),
+                        new Sprite(3, -1, 0),
+                    }
+                },
+                {
+                    TileId.Tree, new List<Sprite>
+                    {
+                        new Sprite(10 + 0 * 32, -1, 0), //0
+                        new Sprite(10 + 1 * 32, -1, 0), //1
+                        new Sprite(10 + 2 * 32, -1, 0), //2
+                        new Sprite(10 + 3 * 32, -1, 0), //3
+                        new Sprite(9 + 0 * 32, -1, 0), //4
+                        new Sprite(9 + 1 * 32, -1, 0) //5
+                    }
+                },
+                {
+                    TileId.Farmland, new List<Sprite>
+                    {
+                        new Sprite(2+32, -1, 1),
+                        new Sprite(2+32, -1, 0)
+                    }
+                },
+                {
+                    TileId.CactusSapling, new List<Sprite>
+                    {
+                        new Sprite(11 + 3 * 32, -1, 0)
+                    }
+                },
+                {
+                    TileId.TreeSapling, new List<Sprite>
+                    {
+                        new Sprite(11 + 3 * 32, -1, 0)
+                    }
+                },
+                {
+                    TileId.Rock, new List<Sprite>
+                    {
+                        new Sprite(0, -1, 0), //0
+                        new Sprite(7 + 0*32, -1, 0), //1
+                        new Sprite(1, -1, 0), //2
+                        new Sprite(8 + 0*32, -1, 0), //3
+                        new Sprite(2, -1, 0), //4
+                        new Sprite(7 + 1*32, -1, 0), //5
+                        new Sprite(3, -1, 0), //6
+                        new Sprite(8 + 1*32, -1, 0), //7
+                    }
+                },
+                {
+                    TileId.Grass, new List<Sprite>
+                    {
+                        new Sprite(0, Gfx.Color.Get(141, 141, 141 + 111, 141 + 111), 0), //0
+                        new Sprite(1, Gfx.Color.Get(141, 141, 141 + 111, 141 + 111), 0), //1
+                        new Sprite(2, Gfx.Color.Get(141, 141, 141 + 111, 141 + 111), 0), //2
+                        new Sprite(3, Gfx.Color.Get(141, 141, 141 + 111, 141 + 111), 0), //3
+                    }
+                },
+                {
+                    //Gfx.Color.Get(444, 444, 555, 555) //norlam
+                    //Gfx.Color.Get(333, 444, 555, -1) //trans
+                    TileId.Cloud, new List<Sprite>
+                    {
+                        new Sprite(17, Gfx.Color.Get(444, 444, 555, 555), 0), //0
+                        new Sprite(7 + 0*32, Gfx.Color.Get(333, 444, 555, -1), 3), //1
+                        new Sprite(18, Gfx.Color.Get(444, 444, 555, 555), 0), //2
+                        new Sprite(8 + 0*32, Gfx.Color.Get(333, 444, 555, -1), 3), //3
+                        new Sprite(20, Gfx.Color.Get(444, 444, 555, 555), 0), //4
+                        new Sprite(7 + 1*32, Gfx.Color.Get(333, 444, 555, -1), 3), //5
+                        new Sprite(19, Gfx.Color.Get(444, 444, 555, 555), 0), //6
+                        new Sprite(8 + 0*32, Gfx.Color.Get(333, 444, 555, -1), 3), //7
+                    }
+                }
+            };
+
+            FileStream ms = new FileStream("tiles.xml", FileMode.CreateNew);
+            XmlSerializer xs = new XmlSerializer(tileDict.GetType());
+            xs.Serialize(ms, tileDict);
+            ms.Close();
+
+            return "Saved XML";
         }
 
         private string NewRandomPlayerColorCommand(string[] arg)
@@ -108,6 +233,14 @@ namespace MiniRealms.Engine
 
             byte[] map = _game.Levels[_game.CurrentLevel].Tiles;
 
+            if (arg.Length >= 1)
+            {
+                if (arg[0] == "sky")
+                {
+                    map = _game.Levels[4].Tiles;
+                    sp = sp.Replace("Output.png", "Sky.Output.png");
+                }
+            }
             var bmp = new Bitmap(GameConts.Instance.MaxWidth, GameConts.Instance.MaxHeight, PixelFormat.Format32bppRgb);
             int[] pixels = new int[GameConts.Instance.MaxWidth * GameConts.Instance.MaxHeight];
             for (int y = 0; y < GameConts.Instance.MaxWidth; y++)

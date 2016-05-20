@@ -8,15 +8,11 @@ namespace MiniRealms.Levels.Tiles
 {
     public class FlowerTile : GrassTile
     {
-        private readonly int _c1;
-        private readonly int _c2;
         private readonly Resource _drop;
 
-        public FlowerTile(TileId id, int c1, int c2, Resource drop)
-            : base(id)
+        public FlowerTile(TileId id, Resource drop)
+            : base(id, SpriteSheet.GetSprites(TileId.Grass))
         {
-            _c1 = c1;
-            _c2 = c2;
             _drop = drop;
             Tiles[(byte)id] = this;
             ConnectsToGrass = true;
@@ -28,12 +24,12 @@ namespace MiniRealms.Levels.Tiles
 
             int data = level.GetData(x, y);
             int shape = (data / 16) % 2;
-            int flowerCol = Color.Get(10, 141, _c1, _c2);
+            int flowerCol = Sprites[0].Col;
 
-            if (shape == 0) screen.Render(x * 16 + 0, y * 16 + 0, 1 + 1 * 32, flowerCol, 0);
-            if (shape == 1) screen.Render(x * 16 + 8, y * 16 + 0, 1 + 1 * 32, flowerCol, 0);
-            if (shape == 1) screen.Render(x * 16 + 0, y * 16 + 8, 1 + 1 * 32, flowerCol, 0);
-            if (shape == 0) screen.Render(x * 16 + 8, y * 16 + 8, 1 + 1 * 32, flowerCol, 0);
+            if (shape == 0) screen.Render(x * 16 + 0, y * 16 + 0, Sprites[0].Img, flowerCol, 0);
+            if (shape == 1) screen.Render(x * 16 + 8, y * 16 + 0, Sprites[0].Img, flowerCol, 0);
+            if (shape == 1) screen.Render(x * 16 + 0, y * 16 + 8, Sprites[0].Img, flowerCol, 0);
+            if (shape == 0) screen.Render(x * 16 + 8, y * 16 + 8, Sprites[0].Img, flowerCol, 0);
         }
 
         public override bool Interact(Level level, int x, int y, Player player, Item item, int attackDir)

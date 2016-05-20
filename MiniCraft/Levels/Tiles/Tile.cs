@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
 using MiniRealms.Items;
@@ -18,7 +19,7 @@ namespace MiniRealms.Levels.Tiles
 
         public static Tile Flower;
         public static Tile RedFlower;
-        public static Tile YellowFlower { get; set; }
+        public static Tile YellowFlower;
 
         public static Tile Tree;
         public static Tile Dirt;
@@ -45,9 +46,9 @@ namespace MiniRealms.Levels.Tiles
             Grass = new GrassTile(TileId.Grass);
             Rock = new RockTile(TileId.Rock);
             Water = new WaterTile(TileId.Water);
-            Flower = new FlowerTile(TileId.Flower, 555, 440, Resource.Flower);
-            RedFlower = new FlowerTile(TileId.RedFlower, 300, 440, Resource.RedFlower);
-            YellowFlower = new FlowerTile(TileId.YellowFlower, 550, 440, Resource.YellowFlower);
+            Flower = new FlowerTile(TileId.Flower, Resource.Flower);
+            RedFlower = new FlowerTile(TileId.RedFlower, Resource.RedFlower);
+            YellowFlower = new FlowerTile(TileId.YellowFlower, Resource.YellowFlower);
             Tree = new TreeTile(TileId.Tree);
             Dirt = new DirtTile(TileId.Dirt);
             Sand = new SandTile(TileId.Sand);
@@ -70,19 +71,22 @@ namespace MiniRealms.Levels.Tiles
         }
 
 
-
         public readonly byte Id;
 
         public bool ConnectsToGrass = false;
         public bool ConnectsToSand = false;
         public bool ConnectsToLava = false;
         public bool ConnectsToWater = false;
+        public readonly Sprite[] Sprites;
 
         public Tile(TileId tileId)
         {
             Id = (byte)tileId;
             if (Tiles[Id] != null) throw new InvalidOperationException("Duplicate tile ids!");
             Tiles[Id] = this;
+
+            Sprites = SpriteSheet.GetSprites(tileId).ToArray();
+//            Debug.WriteLine($"{tileId}, Spirts Count {Sprites.Count}");
         }
 
         public virtual void Render(Screen screen, Level level, int x, int y)

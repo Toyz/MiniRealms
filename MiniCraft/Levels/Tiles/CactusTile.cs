@@ -19,10 +19,16 @@ namespace MiniRealms.Levels.Tiles
         public override void Render(Screen screen, Level level, int x, int y)
         {
             int col = Color.Get(20, 40, 50, 550);
+            /*
             screen.Render(x * 16 + 0, y * 16 + 0, 8 + 2 * 32, col, 0);
             screen.Render(x * 16 + 8, y * 16 + 0, 9 + 2 * 32, col, 0);
             screen.Render(x * 16 + 0, y * 16 + 8, 8 + 3 * 32, col, 0);
             screen.Render(x * 16 + 8, y * 16 + 8, 9 + 3 * 32, col, 0);
+            */
+            screen.Render(x * 16 + 0, y * 16 + 0, Sprites[0].Img, col, 0);
+            screen.Render(x * 16 + 8, y * 16 + 0, Sprites[1].Img, col, 0);
+            screen.Render(x * 16 + 0, y * 16 + 8, Sprites[2].Img, col, 0);
+            screen.Render(x * 16 + 8, y * 16 + 8, Sprites[3].Img, col, 0);
         }
 
         public override bool MayPass(Level level, int x, int y, Entity e)

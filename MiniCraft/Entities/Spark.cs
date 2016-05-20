@@ -11,9 +11,9 @@ namespace MiniRealms.Entities
         private double _xx;
         private double _yy;
         private int _time;
-        private readonly AirWizard _owner;
+        private readonly TheWizard _owner;
 
-        public Spark(AirWizard owner, double xa, double ya)
+        public Spark(TheWizard owner, double xa, double ya)
         {
             _owner = owner;
             _xx = X = owner.X;
@@ -44,7 +44,7 @@ namespace MiniRealms.Entities
             {
                 var e = toHit.Get(i);
                 var mob = e as Mob;
-                if (mob != null && !(e is AirWizard))
+                if (mob != null && !(e is TheWizard))
                 {
                     e.Hurt(_owner, 1, mob.Dir ^ 1);
                 }

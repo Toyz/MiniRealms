@@ -1,4 +1,5 @@
-﻿using MiniRealms.Engine.Gfx;
+﻿using System.Collections.Generic;
+using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
 
 namespace MiniRealms.Levels.Tiles
@@ -23,7 +24,8 @@ namespace MiniRealms.Levels.Tiles
         {
             _onType.Render(screen, level, x, y);
             int col = Color.Get(10, 40, 50, -1);
-            screen.Render(x * 16 + 4, y * 16 + 4, 11 + 3 * 32, col, 0);
+            //screen.Render(x * 16 + 4, y * 16 + 4, 11 + 3 * 32, col, 0);
+            screen.Render(x * 16 + 4, y * 16 + 4, Sprites[0].Img, col, 0);
         }
 
         public override void Tick(Level level, int x, int y)

@@ -10,7 +10,8 @@ namespace MiniRealms.Levels
 {
     public sealed class Level
     {
-        private readonly Random _random = new Random();
+        public int Index { get; }
+        private readonly Random _random = new Random((int) LevelGen.Seed);
 
         public readonly int W;
         public readonly int H;
@@ -25,8 +26,7 @@ namespace MiniRealms.Levels
 
         private readonly int _depth;
         public int MonsterDensity = 8;
-        public int Index { get; }
-       
+
 
         private readonly List<Entity> _entities = new List<Entity>();
         private static readonly SpriteSorter _spriteSorter = new SpriteSorter();
@@ -42,8 +42,8 @@ namespace MiniRealms.Levels
 
         public Level(int w, int h, int level, int index, Level parentLevel)
         {
-            DirtColor = 322;
             Index = index;
+            DirtColor = 322;
             unchecked
             {
                 if (level < 0)
@@ -115,7 +115,7 @@ namespace MiniRealms.Levels
 
                 if (level == 1)
                 {
-                    AirWizard aw = new AirWizard
+                    TheWizard aw = new TheWizard
                     {
                         X = w*8,
                         Y = h*8

@@ -18,6 +18,6 @@ namespace MiniRealms.Levels.Tiles
         {
         }
 
-        public override bool MayPass(Level level, int x, int y, Entity e) => e is AirWizard;
+        public override bool MayPass(Level level, int x, int y, Entity e) => e is TheWizard;
     }
 }

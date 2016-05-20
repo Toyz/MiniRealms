@@ -6,7 +6,7 @@ using MiniRealms.Engine.Gfx;
 namespace MiniRealms.Entities
 {
 
-    public class AirWizard : Mob
+    public class TheWizard : Mob
     {
         private int _xa, _ya;
         private int _randomWalkTime;
@@ -14,7 +14,7 @@ namespace MiniRealms.Entities
         private int _attackTime;
         private int _attackType;
 
-        public AirWizard()
+        public TheWizard()
         {
             X = Random.NextInt(64 * 16);
             Y = Random.NextInt(64 * 16);

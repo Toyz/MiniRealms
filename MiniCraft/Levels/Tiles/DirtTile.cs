@@ -17,10 +17,10 @@ namespace MiniRealms.Levels.Tiles
         public override void Render(Screen screen, Level level, int x, int y)
         {
             int col = Color.Get(level.DirtColor, level.DirtColor, level.DirtColor - 111, level.DirtColor - 111);
-            screen.Render(x * 16 + 0, y * 16 + 0, 0, col, 0);
-            screen.Render(x * 16 + 8, y * 16 + 0, 1, col, 0);
-            screen.Render(x * 16 + 0, y * 16 + 8, 2, col, 0);
-            screen.Render(x * 16 + 8, y * 16 + 8, 3, col, 0);
+            screen.Render(x * 16 + 0, y * 16 + 0, Sprites[0].Img, col, 0);
+            screen.Render(x * 16 + 8, y * 16 + 0, Sprites[1].Img, col, 0);
+            screen.Render(x * 16 + 0, y * 16 + 8, Sprites[2].Img, col, 0);
+            screen.Render(x * 16 + 8, y * 16 + 8, Sprites[3].Img, col, 0);
         }
 
         public override bool Interact(Level level, int xt, int yt, Player player, Item item, int attackDir)

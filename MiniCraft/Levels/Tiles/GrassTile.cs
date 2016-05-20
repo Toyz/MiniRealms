@@ -1,4 +1,5 @@
-﻿using MiniRealms.Engine;
+﻿using System.Collections.Generic;
+using MiniRealms.Engine;
 using MiniRealms.Engine.Audio.Sounds;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
@@ -9,15 +10,24 @@ namespace MiniRealms.Levels.Tiles
 {
     public class GrassTile : Tile
     {
+        private readonly Sprite[] _sprites;
+
         public GrassTile(TileId id)
             : base(id)
         {
             ConnectsToGrass = true;
+            _sprites = Sprites;
+        }
+
+        public GrassTile(TileId id, List<Sprite> ParentSprits) : base(id)
+        {
+            ConnectsToGrass = true;
+
+            _sprites = ParentSprits.ToArray();
         }
 
         public override void Render(Screen screen, Level level, int x, int y)
         {
-            int col = Color.Get(141, 141, 141 + 111, 141 + 111);
             int transitionColor = Color.Get(141 - 111, 141, 141 + 111, level.DirtColor);
 
             bool u = !level.GetTile(x, y - 1).ConnectsToGrass;
@@ -27,27 +37,30 @@ namespace MiniRealms.Levels.Tiles
 
             if (!u && !l)
             {
-                screen.Render(x * 16 + 0, y * 16 + 0, 0, col, 0);
+                //screen.Render(x * 16 + 0, y * 16 + 0, 0, col, 0);
+                screen.Render(x * 16 + 0, y * 16 + 0, _sprites[0].Img, _sprites[0].Col, 0);
             }
             else
                 screen.Render(x * 16 + 0, y * 16 + 0, (l ? 11 : 12) + (u ? 0 : 1) * 32, transitionColor, 0);
 
             if (!u && !r)
             {
-                screen.Render(x * 16 + 8, y * 16 + 0, 1, col, 0);
+                //screen.Render(x * 16 + 8, y * 16 + 0, 1, col, 0);
+                screen.Render(x * 16 + 8, y * 16 + 0, _sprites[1].Img, _sprites[1].Col, 0);
             }
             else
                 screen.Render(x * 16 + 8, y * 16 + 0, (r ? 13 : 12) + (u ? 0 : 1) * 32, transitionColor, 0);
 
             if (!d && !l)
             {
-                screen.Render(x * 16 + 0, y * 16 + 8, 2, col, 0);
+                //screen.Render(x * 16 + 0, y * 16 + 8, 2, col, 0);
+                screen.Render(x * 16 + 0, y * 16 + 8, _sprites[2].Img, _sprites[2].Col, 0);
             }
             else
                 screen.Render(x * 16 + 0, y * 16 + 8, (l ? 11 : 12) + (d ? 2 : 1) * 32, transitionColor, 0);
             if (!d && !r)
             {
-                screen.Render(x * 16 + 8, y * 16 + 8, 3, col, 0);
+                screen.Render(x * 16 + 8, y * 16 + 8, _sprites[3].Img, _sprites[3].Col, 0);
             }
             else
                 screen.Render(x * 16 + 8, y * 16 + 8, (r ? 13 : 12) + (d ? 2 : 1) * 32, transitionColor, 0);

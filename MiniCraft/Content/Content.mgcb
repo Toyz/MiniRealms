@@ -109,3 +109,6 @@
 /processorParam:Quality=Best
 /build:Sounds/menu_move.wav
 
+#begin Data/tiles.xml
+/copy:Data/tiles.xml
+

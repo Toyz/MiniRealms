@@ -1,16 +1,26 @@
-﻿namespace MiniRealms.Engine.Gfx
+﻿using System;
+using System.Xml;
+using System.Xml.Serialization;
+
+namespace MiniRealms.Engine.Gfx
 {
+    [Serializable]
     public class Sprite
     {
-        public int X, Y;
+        [XmlElement("ID")]
         public int Img;
+        [XmlElement("Color")]
         public int Col;
+        [XmlElement("Rotation")]
         public int Bits;
 
-        public Sprite(int x, int y, int img, int col, int bits)
+        public Sprite()
         {
-            X = x;
-            Y = y;
+            
+        }
+
+        public Sprite(int img, int col, int bits)
+        {
             Img = img;
             Col = col;
             Bits = bits;

@@ -48,8 +48,9 @@
     <Compile Include="Engine\BinaryHelpers.cs" />
     <Compile Include="Engine\Compents\FpsCounterComponent.cs" />
     <Compile Include="Engine\ConsoleCommands.cs" />
+    <Compile Include="Engine\XmlDictionary.cs" />
     <Compile Include="Engine\XmlHelpers.cs" />
-    <Compile Include="Entities\AirWizard.cs" />
+    <Compile Include="Entities\TheWizard.cs" />
     <Compile Include="Entities\Anvil.cs" />
     <Compile Include="Entities\Chest.cs" />
     <Compile Include="Entities\Creeper.cs" />
@@ -144,6 +145,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Data\tiles.xml" />
     <Content Include="Content\qc_background.fx" />
     <Content Include="Content\Sounds\boom.wav" />
     <Content Include="Content\Sounds\bossdeath.wav" />

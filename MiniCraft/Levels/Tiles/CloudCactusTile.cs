@@ -23,7 +23,7 @@ namespace MiniRealms.Levels.Tiles
 
         public override bool MayPass(Level level, int x, int y, Entity e)
         {
-            return e is AirWizard;
+            return e is TheWizard;
         }
 
         public override void Hurt(Level level, int x, int y, Mob source, int dmg, int attackDir)
@@ -59,7 +59,7 @@ namespace MiniRealms.Levels.Tiles
 
         public override void BumpedInto(Level level, int x, int y, Entity entity)
         {
-            if (entity is AirWizard) return;
+            if (entity is TheWizard) return;
             entity.Hurt(this, x, y, 3);
         }
     }
