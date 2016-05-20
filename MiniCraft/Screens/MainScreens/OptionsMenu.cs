@@ -8,12 +8,14 @@ namespace MiniRealms.Screens.MainScreens
 {
     public class OptionsMenu : ScrollingMenu
     {
+        private readonly string _backTitle;
         private static List<Option> _options;
         private ActionOption _fullScreenOption;
         private ActionOption _boardLessOption;
 
-        public OptionsMenu(Menu parent) : base(parent)
+        public OptionsMenu(Menu parent, string backTitle = "Main Menu") : base(parent)
         {
+            _backTitle = backTitle;
             MaxToShow = 10;
         }
 
@@ -29,7 +31,7 @@ namespace MiniRealms.Screens.MainScreens
                 new VolumeContol(),
                 _fullScreenOption,
                 _boardLessOption,
-                new ChangeMenuOption("Main Menu", Parent, game)
+                new ChangeMenuOption(_backTitle, Parent, game)
             };
 
             RenderScrollingListTable(_options);

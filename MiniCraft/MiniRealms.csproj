@@ -115,6 +115,7 @@
     <Compile Include="Levels\Tiles\WaterTile.cs" />
     <Compile Include="Levels\Tiles\WheatTile.cs" />
     <Compile Include="McGame.cs" />
+    <Compile Include="Screens\GameScreens\PauseGameMenu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screens\DebugScreens\DebugMenu.cs" />

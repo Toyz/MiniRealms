@@ -195,7 +195,7 @@ namespace MiniRealms
 
                 if (Player != null && !Player.Removed && !_hasWon)
                 {
-                    if (!IsGamePaused)
+                    if (Menu == null)
                     {
                         GameTime++;
                     }
@@ -205,13 +205,13 @@ namespace MiniRealms
 
                 if (Player != null && !Player.Removed && !_hasWon)
                 {
-                    if (_input.CloseKey.Clicked)
+                    if (_input.CloseKey.Clicked && Menu == null)
                     {
-                        IsGamePaused = !IsGamePaused;
+                        SetMenu(new AnimatedTransitionMenu(new PauseGameMenu(null)));
                     }
                 }
 
-                if (IsGamePaused || Console.IsVisible) return;
+                if (Console.IsVisible) return;
 
                 if (Menu != null)
                 {
