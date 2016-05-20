@@ -13,13 +13,21 @@ namespace MiniRealms.Screens.MainScreens
 {
     public class NewGameMenu : Menu
     {
+        private readonly Menu _parent;
         private int _selected;
-        private readonly List<Option> _options;
-        private readonly WorldSizeOption _worldSizeOption;
-        private readonly DifficultyOption _difficultyOption;
+        private List<Option> _options;
+        private WorldSizeOption _worldSizeOption;
+        private DifficultyOption _difficultyOption;
 
         public NewGameMenu(Menu parent)
         {
+            _parent = parent;
+        }
+
+        public override void Init(McGame game, InputHandler input)
+        {
+            base.Init(game, input);
+
             _worldSizeOption = new WorldSizeOption();
             _difficultyOption = new DifficultyOption();
 
@@ -28,7 +36,7 @@ namespace MiniRealms.Screens.MainScreens
                 _worldSizeOption,
                 _difficultyOption,
                 new ActionOption("Create and Start", CreateAndStartWorld),
-                new ActionOption("Cancel", () => Game.SetMenu(new AnimatedTransitionMenu(parent)))
+                new ChangeMenuOption("Cancel", _parent, game)
             };
         }
 

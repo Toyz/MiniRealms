@@ -1,6 +1,6 @@
 ﻿namespace MiniRealms.Engine.Gfx
 {
-    public class Color
+    public static class Color
     {
         public static int White => Get(-1, 555, 555, 555);
         public static int Black => Get(-1, 000, 000, 000);

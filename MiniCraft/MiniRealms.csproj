@@ -128,6 +128,7 @@
     <Compile Include="Screens\MainScreens\NewGameMenu.cs" />
     <Compile Include="Screens\MainScreens\OptionsMenu.cs" />
     <Compile Include="Screens\Interfaces\Option.cs" />
+    <Compile Include="Screens\OptionItems\ChangeMenuOption.cs" />
     <Compile Include="Screens\OptionItems\ActionOption.cs" />
     <Compile Include="Screens\OptionItems\LabelOption.cs" />
     <Compile Include="Screens\OptionItems\VolumeContol.cs" />

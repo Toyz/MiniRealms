@@ -8,16 +8,24 @@ namespace MiniRealms.Screens.MainScreens
 {
     public class OptionsMenu : Menu
     {
-        private readonly McGame _game;
+        private readonly Menu _parent;
+        private McGame _game;
 
         private int _selected;
 
         private static List<Option> _options;
-        private readonly ActionOption _fullScreenOption;
-        private readonly ActionOption _boardLessOption;
+        private ActionOption _fullScreenOption;
+        private ActionOption _boardLessOption;
 
-        public OptionsMenu(Menu parent, McGame game)
+        public OptionsMenu(Menu parent)
         {
+            _parent = parent;
+        }
+
+        public override void Init(McGame game, InputHandler input)
+        {
+            base.Init(game, input);
+
             _game = game;
             _fullScreenOption = new ActionOption($"Full Screen: {(game.Gdm.IsFullScreen ? "Yes" : "No")}", FullScreenActionToggle);
             _boardLessOption = new ActionOption($"Borderless: {(game.Window.IsBorderless ? "Yes" : "No")}", SetWindowBorderlessToggle);
@@ -27,7 +35,7 @@ namespace MiniRealms.Screens.MainScreens
                 new VolumeContol(),
                 _fullScreenOption,
                 _boardLessOption,
-                new ActionOption("Main Menu", () => Game.SetMenu(new AnimatedTransitionMenu(parent)))
+                new ChangeMenuOption("Main Menu", _parent, game)
             };
         }
 

@@ -13,34 +13,24 @@ namespace MiniRealms.Screens.MainScreens
 
         private int _selected;
 
-        private static List<Option> _options;
+        private static List<Option> _options = new List<Option>();
 
-        public TitleMenu()
+
+        public override void Init(McGame game, InputHandler input)
         {
+            base.Init(game, input);
+
             _options = new List<Option>
             {
-                new ActionOption("New Game", () =>
-                {
-                    Game.SetMenu(new AnimatedTransitionMenu(new NewGameMenu(this)));
-                }),
-                new ActionOption("How to play", () =>
-                {
-                    Game.SetMenu(new AnimatedTransitionMenu(new InstructionsMenu(this)));
-                }),
+                new ChangeMenuOption("New Game", new NewGameMenu(this), Game),
+                new ChangeMenuOption("How to play", new InstructionsMenu(this), Game),
 #if DEBUG
                 new LabelOption("Mods and Addons"),
-                new ActionOption("Test Menu", () =>
-                {
-                    Game.SetMenu(new AnimatedTransitionMenu(new TestScreen(this)));
-                }),
+                new ChangeMenuOption("Color Test Menu", new TestScreen(this), Game),
 #endif
-                new ActionOption("Options", () =>
-                {
-                    Game.SetMenu(new AnimatedTransitionMenu(new OptionsMenu(this, Game)));
-                }),
+                new ChangeMenuOption("Options", new OptionsMenu(this), Game),
                 new ActionOption("Exit", () => Game.Exit()) { ClickSound = false }
             };
-
         }
 
         public override void Tick()
@@ -48,7 +38,6 @@ namespace MiniRealms.Screens.MainScreens
             if (Game.IsLoadingWorld) return;
 
             if (Input.CloseKey.Clicked) ShowErrorAlert = false;
-
 
             if (Input.Up.Clicked)
             {

@@ -9,7 +9,7 @@ namespace MiniRealms.Screens.Interfaces
         protected McGame Game;
         protected InputHandler Input;
 
-        public void Init(McGame game, InputHandler input)
+        public virtual void Init(McGame game, InputHandler input)
         {
             Input = input;
             Game = game;
