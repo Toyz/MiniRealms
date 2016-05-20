@@ -9,11 +9,9 @@ namespace MiniRealms.Screens.UIMenus
 {
     public class ScrollingMenu : Menu
     {
-        protected int CoolDownTick { private get; set; } = 5;
-
         private int _selected;
         private int _selectedItem;
-        private int _MaxToShow = 15;
+        protected int MaxToShow = 15;
 
         private static List<Option> _options;
         private List<Option> _visible = new List<Option>();
@@ -25,74 +23,70 @@ namespace MiniRealms.Screens.UIMenus
         protected void RenderScrollingListTable(List<Option> options)
         {
             _options = options;
-            _visible = _options.Page(1, _MaxToShow).ToList();
+            _visible = _options.Page(1, MaxToShow).ToList();
         }
 
         public override void Tick()
         {
             var index = _options.IndexOf(_options[_selected]);
 
-            if (Input.Up.Down)
+            if (Input.Up.Clicked)
             {
-                if (Game.TickCount%CoolDownTick == 0)
+                SoundEffectManager.Play("menu_move");
+                _selected--;
+                _selectedItem--;
+
+                if (_selected < 0)
                 {
-                    SoundEffectManager.Play("menu_move");
-                    _selected--;
-                    _selectedItem--;
+                    _selected = 0;
+                }
 
-                    if (_selected < 0)
+                if (_selectedItem < 0)
+                {
+                    var item = _options.Skip(_selected).Take(1).FirstOrDefault();
+
+                    if (item != null)
                     {
-                        _selected = 0;
-                    }
-
-                    if (_selectedItem < 0)
-                    {
-                        var item = _options.Skip(_selected).Take(1).FirstOrDefault();
-
-                        if (item != null)
+                        if (_options.IndexOf(item) != index)
                         {
-                            if (_options.IndexOf(item) != index)
-                            {
-                                _visible.RemoveAt(_visible.Count - 1);
-                                _visible.Insert(0, item);
-                            }
-                            _selectedItem = 0;
+                            _visible.RemoveAt(_visible.Count - 1);
+                            _visible.Insert(0, item);
                         }
+                        _selectedItem = 0;
                     }
                 }
             }
 
-            if (Input.Down.Down)
+            if (Input.Down.Clicked)
             {
-                if (Game.TickCount%CoolDownTick == 0)
+                SoundEffectManager.Play("menu_move");
+                _selected++;
+                _selectedItem++;
+
+                if (_selected > _options.Count - 1)
                 {
-                    SoundEffectManager.Play("menu_move");
-                    _selected++;
-                    _selectedItem++;
+                    _selected = _options.Count - 1;
+                }
 
-                    if (_selected > _options.Count - 1)
+                if (_selectedItem > MaxToShow - 1)
+                {
+                    var item = _options.Skip(_selected).Take(1).FirstOrDefault();
+
+                    if (item != null)
                     {
-                        _selected = _options.Count - 1;
-                    }
-
-                    if (_selectedItem > _MaxToShow - 1)
-                    {
-                        var item = _options.Skip(_selected).Take(1).FirstOrDefault();
-
-                        if (item != null)
+                        if (_options.IndexOf(item) != index)
                         {
-                            if (_options.IndexOf(item) != index)
-                            {
-                                _visible.RemoveAt(0);
-                                _visible.Insert(_visible.Count, item);
-                            }
-                            _selectedItem = _visible.Count - 1;
+                            _visible.RemoveAt(0);
+                            _visible.Insert(_visible.Count, item);
                         }
+                        _selectedItem = _visible.Count - 1;
                     }
                 }
+
             }
 
-            _visible[_selectedItem].HandleInput(Input);
+
+            _options[_selected].HandleInput(Input);
         }
 
         public override void Render(Screen screen)
@@ -112,8 +106,7 @@ namespace MiniRealms.Screens.UIMenus
                     col = option.SelectedColor;
                     option.HandleRender();
                 }
-                Font.Draw(msg, screen, (screen.W - msg.Length*8)/2,
-                    (GameConts.ScreenMiddleHeight + (i*10) - ((_MaxToShow*8)/2)), col);
+                Font.Draw(msg, screen, (screen.W - msg.Length*8)/2, (GameConts.ScreenMiddleHeight + (i*10) - ((_visible.Count*8)/2)), col);
             }
         }
     }

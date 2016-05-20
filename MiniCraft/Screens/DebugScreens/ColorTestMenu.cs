@@ -14,6 +14,7 @@ namespace MiniRealms.Screens.DebugScreens
 
         public ColorTestMenu(Menu parent) : base(parent)
         {
+            MaxToShow = 15;
         }
        
         public override void Init(McGame game, InputHandler input)
@@ -21,7 +22,7 @@ namespace MiniRealms.Screens.DebugScreens
             base.Init(game, input);
 
             _options.Clear();
-            for (var i = 0; i < 50; i++)
+            for (var i = 0; i < _rand.Next(9, 100) + 1; i++)
             {
                 var a = -1;
                 var b = _rand.Next(1, 555) + 1;
