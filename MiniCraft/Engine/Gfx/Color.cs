@@ -13,6 +13,19 @@
             return (Get(d) << 24) + (Get(c) << 16) + (Get(b) << 8) + (Get(a));
         }
 
+        /// <summary>
+        /// Doesn't work yet so don't even try
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="c"></param>
+        /// <param name="d"></param>
+        /// <returns></returns>
+        public static string GetHex(int a, int b, int c, int d)
+        {
+            return Get(a, b, c, d).ToString("X");
+        }
+
         public static int Get(int d)
         {
             if (d < 0) return 255;

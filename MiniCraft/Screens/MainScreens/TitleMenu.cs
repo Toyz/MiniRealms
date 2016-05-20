@@ -29,6 +29,10 @@ namespace MiniRealms.Screens.MainScreens
                 }),
 #if DEBUG
                 new LabelOption("Mods and Addons"),
+                new ActionOption("Test Menu", () =>
+                {
+                    Game.SetMenu(new AnimatedTransitionMenu(new TestScreen(this)));
+                }),
 #endif
                 new ActionOption("Options", () =>
                 {

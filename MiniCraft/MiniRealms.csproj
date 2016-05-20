@@ -135,6 +135,7 @@
     <Compile Include="Screens\OptionItems\WorldSizeOption.cs" />
     <Compile Include="Screens\MainScreens\TitleMenu.cs" />
     <Compile Include="Engine\Audio\Sounds\SoundEffect.cs" />
+    <Compile Include="Screens\TestScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
