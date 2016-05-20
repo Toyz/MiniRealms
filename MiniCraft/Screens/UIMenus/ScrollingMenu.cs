@@ -18,7 +18,7 @@ namespace MiniRealms.Screens.UIMenus
         private static List<Option> _options;
         private List<Option> _visible = new List<Option>();
 
-        public ScrollingMenu(Menu parent) : base(parent)
+        protected ScrollingMenu(Menu parent) : base(parent)
         {
         }
 

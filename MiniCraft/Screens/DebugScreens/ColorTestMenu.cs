@@ -14,7 +14,6 @@ namespace MiniRealms.Screens.DebugScreens
 
         public ColorTestMenu(Menu parent) : base(parent)
         {
-            CoolDownTick = 5;
         }
        
         public override void Init(McGame game, InputHandler input)
