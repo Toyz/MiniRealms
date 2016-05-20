@@ -430,19 +430,7 @@ namespace MiniRealms
             Difficulty = difficulty;
 
             Levels = new Level[5];
-
-            var parent = 1;
-            var si = -3;
-            for(var i = 0; i < Levels.Length; i++)
-            {
-                var ti = i + 1;
-                LoadingText = $"Creating Level {ti}";
-                Levels[i] = new Level(lw, lh, si, si, parent < Levels.Length - 1 ? Levels[parent] : null);
-                si++;
-                parent++;
-            }
-
-            /*LoadingText = "Creating Level 1";
+            LoadingText = "Creating Level 1";
             Levels[4] = new Level(lw, lh, 1, 1,null);
 
             LoadingText = "Creating Level 2";
@@ -455,7 +443,7 @@ namespace MiniRealms
             Levels[1] = new Level(lw, lh, -2, -2, Levels[2]);
 
             LoadingText = "Creating Level 5";
-            Levels[0] = new Level(lw, lh, -3, -3, Levels[1]);*/
+            Levels[0] = new Level(lw, lh, -3, -3, Levels[1]);
 
             Level = Levels[CurrentLevel];
 

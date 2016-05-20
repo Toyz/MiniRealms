@@ -6,16 +6,14 @@ namespace MiniRealms.Screens.MainScreens
 
     public class AnimatedTransitionMenu : Menu
     {
-        private readonly Menu _menu;
         private readonly int _transitionTime;
         private readonly int _dir;
         private readonly int _color;
         private readonly bool _spawnMenu;
         private int _time;
 
-        public AnimatedTransitionMenu(Menu menu, int transitionTime = 60, int dir = 0, int color = 0, bool spawnMenu = false)
+        public AnimatedTransitionMenu(Menu menu, int transitionTime = 60, int dir = 0, int color = 0, bool spawnMenu = false) : base(menu)
         {
-            _menu = menu;
             _transitionTime = transitionTime;
             _dir = dir;
             _color = color;
@@ -27,7 +25,7 @@ namespace MiniRealms.Screens.MainScreens
             _time += 2;
             if (_time == _transitionTime)
             {
-                Game.SetMenu(!_spawnMenu ? new AnimatedTransitionMenu(_menu, _transitionTime, 1, Color.Grey, true) : _menu);
+                Game.SetMenu(!_spawnMenu ? new AnimatedTransitionMenu(Parent, _transitionTime, 1, Color.Grey, true) : Parent);
             }
         }
 

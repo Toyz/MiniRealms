@@ -6,8 +6,19 @@ namespace MiniRealms.Screens.Interfaces
 {
     public class Menu
     {
+        protected readonly Menu Parent;
         protected McGame Game;
         protected InputHandler Input;
+
+        protected Menu(Menu parent)
+        {
+            Parent = parent;
+        }
+
+        protected Menu()
+        {
+            Parent = this;
+        }
 
         public virtual void Init(McGame game, InputHandler input)
         {

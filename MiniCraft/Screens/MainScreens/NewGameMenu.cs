@@ -13,15 +13,13 @@ namespace MiniRealms.Screens.MainScreens
 {
     public class NewGameMenu : Menu
     {
-        private readonly Menu _parent;
         private int _selected;
         private List<Option> _options;
         private WorldSizeOption _worldSizeOption;
         private DifficultyOption _difficultyOption;
 
-        public NewGameMenu(Menu parent)
+        public NewGameMenu(Menu parent) : base(parent)
         {
-            _parent = parent;
         }
 
         public override void Init(McGame game, InputHandler input)
@@ -36,7 +34,7 @@ namespace MiniRealms.Screens.MainScreens
                 _worldSizeOption,
                 _difficultyOption,
                 new ActionOption("Create and Start", CreateAndStartWorld),
-                new ChangeMenuOption("Cancel", _parent, game)
+                new ChangeMenuOption("Cancel", Parent, game)
             };
         }
 
@@ -102,7 +100,7 @@ namespace MiniRealms.Screens.MainScreens
                     col = Color.White;
                     option.HandleRender();
                 }
-                Font.Draw(msg, screen, (screen.W - msg.Length * 8) / 2, GameConts.ScreenMiddleHeight + (i * 10) - 20, col);
+                Font.Draw(msg, screen, (screen.W - msg.Length * 8) / 2, (GameConts.ScreenThirdHeight + (i * 10) - ((_options.Count * 8) / 2)), col);
             }
         }
     }

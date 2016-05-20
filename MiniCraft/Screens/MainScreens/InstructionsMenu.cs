@@ -5,8 +5,6 @@ namespace MiniRealms.Screens.MainScreens
 {
     public class InstructionsMenu : Menu
     {
-        private readonly Menu _parent;
-
         private readonly string[] _howToPlay =
         {
             "Arrow Keys to Move",
@@ -24,16 +22,15 @@ namespace MiniRealms.Screens.MainScreens
             "Kill the boss to win!"
         };
 
-        public InstructionsMenu(Menu parent)
+        public InstructionsMenu(Menu parent) : base(parent)
         {
-            _parent = parent;
         }
 
         public override void Tick()
         {
             if (Input.Attack.Clicked || Input.Menu.Clicked)
             {
-                Game.SetMenu(new AnimatedTransitionMenu(_parent));
+                Game.SetMenu(new AnimatedTransitionMenu(Parent));
             }
         }
 
@@ -48,7 +45,7 @@ namespace MiniRealms.Screens.MainScreens
                 Font.Draw(_howToPlay[line], screen, GameConts.ScreenMiddleWidth - (_howToPlay[line].Length * 8 / 2 ), ((GameConts.ScreenMiddleWidth / 8) / 4 + line) * 8, Color.Get(0, 333, 333, 333));
             }
 
-            string msg = "Press C to go back";
+            const string msg = "Press C to go back";
 
             Font.Draw(msg, screen, GameConts.ScreenMiddleWidth - (msg.Length * 8 / 2), screen.H - 8, Color.White);
         }

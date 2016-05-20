@@ -8,7 +8,6 @@ namespace MiniRealms.Screens.MainScreens
 {
     public class OptionsMenu : Menu
     {
-        private readonly Menu _parent;
         private McGame _game;
 
         private int _selected;
@@ -17,9 +16,8 @@ namespace MiniRealms.Screens.MainScreens
         private ActionOption _fullScreenOption;
         private ActionOption _boardLessOption;
 
-        public OptionsMenu(Menu parent)
+        public OptionsMenu(Menu parent) : base(parent)
         {
-            _parent = parent;
         }
 
         public override void Init(McGame game, InputHandler input)
@@ -35,7 +33,7 @@ namespace MiniRealms.Screens.MainScreens
                 new VolumeContol(),
                 _fullScreenOption,
                 _boardLessOption,
-                new ChangeMenuOption("Main Menu", _parent, game)
+                new ChangeMenuOption("Main Menu", Parent, game)
             };
         }
 
@@ -98,7 +96,7 @@ namespace MiniRealms.Screens.MainScreens
                     col = Color.White;
                     option.HandleRender();
                 }
-                Font.Draw(msg, screen, (screen.W - msg.Length * 8) / 2, GameConts.ScreenMiddleHeight + (i * 10) - 20, col);
+                Font.Draw(msg, screen, (screen.W - msg.Length * 8) / 2, (GameConts.ScreenThirdHeight + (i * 10) - ((_options.Count * 8) / 2)), col);
             }
         }
     }

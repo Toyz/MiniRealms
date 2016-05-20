@@ -25,7 +25,7 @@ namespace MiniRealms.Screens.MainScreens
                 new ChangeMenuOption("New Game", new NewGameMenu(this), Game),
                 new ChangeMenuOption("How to play", new InstructionsMenu(this), Game),
 #if DEBUG
-                new LabelOption("Mods and Addons"),
+                new LabelOption("Mods and Addons") {Enabled = false},
                 new ChangeMenuOption("Color Test Menu", new TestScreen(this), Game),
 #endif
                 new ChangeMenuOption("Options", new OptionsMenu(this), Game),
@@ -70,13 +70,18 @@ namespace MiniRealms.Screens.MainScreens
                 Option option = _options[i];
                 string msg = option.Text;
                 int col = Color.DarkGrey;
-                if (i == _selected)
+                if (i == _selected )
                 {
+
                     msg = option.SelectedText;
                     col = Color.White;
+                    if (!option.Enabled)
+                    {
+                        col = Color.DarkGrey;
+                    }
                     option.HandleRender();
                 }
-                Font.Draw(msg, screen, (screen.W - msg.Length * 8) / 2, GameConts.ScreenMiddleHeight + (i * 10) - 20, col);
+                Font.Draw(msg, screen, (screen.W - msg.Length * 8) / 2, (GameConts.ScreenThirdHeight + (i * 10) - ((_options.Count * 8) / 2)), col);
             }
 
             var xx = (GameConts.Width - "(Arrow keys,X and C)".Length * 8) / 2;

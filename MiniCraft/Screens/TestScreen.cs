@@ -15,20 +15,28 @@ namespace MiniRealms.Screens
             public string Hex;
         }
 
-        private readonly List<RenderColorTest> _rTest = new List<RenderColorTest>();
+        private readonly List<RenderColorTest> _options = new List<RenderColorTest>();
+        private readonly Random _rand = new Random();
+
         public TestScreen(Interfaces.Menu parent)
         {
             _parent = parent;
+        }
 
-            var rand = new Random();
-            for (var i = 0; i < 10; i++)
+
+        public override void Init(McGame game, InputHandler input)
+        {
+            base.Init(game, input);
+
+            _options.Clear();
+            for (var i = 0; i < GameConts.Height / 8 + 10; i++)
             {
                 var a = -1;
-                var b = rand.Next(1, 555) + 1;
-                var c = rand.Next(1, 555) + 1;
-                var d = rand.Next(1, 555) + 1;
+                var b = _rand.Next(1, 555) + 1;
+                var c = _rand.Next(1, 555) + 1;
+                var d = _rand.Next(1, 555) + 1;
 
-                _rTest.Add(new RenderColorTest
+                _options.Add(new RenderColorTest
                 {
                     Color = Color.Get(a, b, c, d),
                     Hex = Color.GetHex(a, b, c, d)
@@ -42,15 +50,33 @@ namespace MiniRealms.Screens
             {
                 Game.SetMenu(new AnimatedTransitionMenu(_parent));
             }
+
+            if (Game.TickCount%60 == 0)
+            {
+                foreach (RenderColorTest t in _options)
+                {
+                    var a = -1;
+                    var b = _rand.Next(1, 555) + 1;
+                    var c = _rand.Next(1, 555) + 1;
+                    var d = _rand.Next(1, 555) + 1;
+                    t.Color = Color.Get(a, b, c, d);
+                    t.Hex = Color.GetHex(a, b, c, d);
+                    /*_options[i] = new RenderColorTest
+                    {
+                        Color = Color.Get(a, b, c, d),
+                        Hex = Color.GetHex(a, b, c, d)
+                    };*/
+                }
+            }
         }
 
         public override void Render(Screen screen)
         {
             screen.Clear(0);
-            for (var i = 0; i < _rTest.Count; i++)
+            for (var i = 0; i < _options.Count; i++)
             {
-                var s = _rTest[i].Hex + " - " + _rTest[i].Color;
-                Font.Draw(s, screen, (GameConts.ScreenMiddleWidth - (s.Length * 8 / 2)), GameConts.ScreenMiddleHeight - (i * 10) + 25, _rTest[i].Color);
+                var s = _options[i].Hex + " - " + _options[i].Color;
+                Font.Draw(s, screen, (screen.W - s.Length * 8) / 2, (GameConts.ScreenMiddleHeight + (i * 10) - ((_options.Count * 8) / 2)), _options[i].Color);
             }
         }
     }
