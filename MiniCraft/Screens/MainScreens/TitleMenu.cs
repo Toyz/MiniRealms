@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using MiniRealms.Engine.Audio.Sounds;
 using MiniRealms.Engine.Gfx;
+using MiniRealms.Screens.DebugScreens;
 using MiniRealms.Screens.Interfaces;
 using MiniRealms.Screens.OptionItems;
 
@@ -26,7 +27,7 @@ namespace MiniRealms.Screens.MainScreens
                 new ChangeMenuOption("How to play", new InstructionsMenu(this), Game),
 #if DEBUG
                 new LabelOption("Mods and Addons") {Enabled = false},
-                new ChangeMenuOption("Color Test Menu", new TestScreen(this), Game),
+                new ChangeMenuOption("Debug And Testing", new DebugMenu(this), Game),
 #endif
                 new ChangeMenuOption("Options", new OptionsMenu(this), Game),
                 new ActionOption("Exit", () => Game.Exit()) { ClickSound = false }
@@ -74,7 +75,7 @@ namespace MiniRealms.Screens.MainScreens
                 {
 
                     msg = option.SelectedText;
-                    col = Color.White;
+                    col = option.SelectedColor;
                     if (!option.Enabled)
                     {
                         col = Color.DarkGrey;

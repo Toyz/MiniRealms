@@ -97,7 +97,7 @@ namespace MiniRealms.Screens.MainScreens
                 if (i == _selected)
                 {
                     msg = option.SelectedText;
-                    col = Color.White;
+                    col = option.SelectedColor;
                     option.HandleRender();
                 }
                 Font.Draw(msg, screen, (screen.W - msg.Length * 8) / 2, (GameConts.ScreenThirdHeight + (i * 10) - ((_options.Count * 8) / 2)), col);

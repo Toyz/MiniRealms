@@ -15,6 +15,8 @@
     <MonoGamePlatform>Windows</MonoGamePlatform>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -115,6 +117,8 @@
     <Compile Include="McGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Screens\DebugScreens\DebugMenu.cs" />
+    <Compile Include="Screens\UIMenus\ScrollingMenu.cs" />
     <Compile Include="Screens\GameScreens\ContainerMenu.cs" />
     <Compile Include="Screens\GameScreens\CraftingMenu.cs" />
     <Compile Include="Screens\GameScreens\GameOverMenu.cs" />
@@ -135,7 +139,7 @@
     <Compile Include="Screens\OptionItems\WorldSizeOption.cs" />
     <Compile Include="Screens\MainScreens\TitleMenu.cs" />
     <Compile Include="Engine\Audio\Sounds\SoundEffect.cs" />
-    <Compile Include="Screens\TestScreen.cs" />
+    <Compile Include="Screens\DebugScreens\ColorTestMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -167,6 +171,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\bin\" />
+    <Folder Include="Content\Data\Scripts\" />
     <Folder Include="Content\obj\" />
   </ItemGroup>
   <ItemGroup>

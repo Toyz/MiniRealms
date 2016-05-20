@@ -4,19 +4,17 @@ using MiniRealms.Engine.Gfx;
 using MiniRealms.Screens.Interfaces;
 using MiniRealms.Screens.OptionItems;
 
-namespace MiniRealms.Screens.MainScreens
+namespace MiniRealms.Screens.DebugScreens
 {
-    public class OptionsMenu : Menu
+    public class DebugMenu : Menu
     {
         private McGame _game;
 
         private int _selected;
 
         private static List<Option> _options;
-        private ActionOption _fullScreenOption;
-        private ActionOption _boardLessOption;
 
-        public OptionsMenu(Menu parent) : base(parent)
+        public DebugMenu(Menu parent) : base(parent)
         {
         }
 
@@ -25,35 +23,13 @@ namespace MiniRealms.Screens.MainScreens
             base.Init(game, input);
 
             _game = game;
-            _fullScreenOption = new ActionOption($"Full Screen: {(game.Gdm.IsFullScreen ? "Yes" : "No")}", FullScreenActionToggle);
-            _boardLessOption = new ActionOption($"Borderless: {(game.Window.IsBorderless ? "Yes" : "No")}", SetWindowBorderlessToggle);
 
             _options = new List<Option>
             {
-                new VolumeContol(),
-                _fullScreenOption,
-                _boardLessOption,
+                //new ChangeMenuOption("Scrolling Menu", new ScrollingMenu(this), game),
+                new ChangeMenuOption("Color Test", new ColorTestMenu(this), game),
                 new ChangeMenuOption("Main Menu", Parent, game)
             };
-        }
-
-        private void SetWindowBorderlessToggle()
-        {
-            Game.Window.IsBorderless = !Game.Window.IsBorderless;
-            _boardLessOption.Text = $"Borderless: {(Game.Window.IsBorderless ? "Yes" : "No")}";
-            GameConts.Instance.Borderless = Game.Window.IsBorderless;
-            GameConts.Instance.Save();
-        }
-
-        private void FullScreenActionToggle()
-        {
-            McGame mcGame = _game;
-
-            mcGame.Gdm.IsFullScreen = !mcGame.Gdm.IsFullScreen;
-            mcGame.Gdm.ApplyChanges();
-            _fullScreenOption.Text = $"Full Screen: {(mcGame.Gdm.IsFullScreen ? "Yes" : "No")}";
-            GameConts.Instance.FullScreen = mcGame.Gdm.IsFullScreen;
-            GameConts.Instance.Save();
         }
 
         public override void Tick()
@@ -82,7 +58,7 @@ namespace MiniRealms.Screens.MainScreens
         {
             screen.Clear(0);
 
-            string title = "Options";
+            string title = "Debug Options";
             Font.Draw(title, screen,  GameConts.ScreenMiddleWidth - (title.Length * 8 / 2), 1 * 8, Color.White);
 
             for (var i = 0; i < _options.Count; i++)
@@ -93,7 +69,7 @@ namespace MiniRealms.Screens.MainScreens
                 if (i == _selected)
                 {
                     msg = option.SelectedText;
-                    col = option.SelectedColor;
+                    col = Color.White;
                     option.HandleRender();
                 }
                 Font.Draw(msg, screen, (screen.W - msg.Length * 8) / 2, (GameConts.ScreenThirdHeight + (i * 10) - ((_options.Count * 8) / 2)), col);

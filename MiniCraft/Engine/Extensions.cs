@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MiniRealms.Engine
 {
@@ -41,5 +42,46 @@ namespace MiniRealms.Engine
         }
 
         public static int Length(this string s) => s.Length;
+
+        //used by LINQ
+        public static IEnumerable<TSource> Page<TSource>(this IEnumerable<TSource> source, int page, int pageSize)
+        {
+            return source.Skip((page - 1)).Take(pageSize);
+        }
+
+        public static IEnumerable<TSource> SkipSingle<TSource>(this IEnumerable<TSource> source, int page, int pageSize)
+        {
+            return source.Skip(page).Take(pageSize);
+        }
+
+        public static List<T> ShiftLeft<T>(this List<T> lst, int shifts)
+        {
+            for (int i = shifts; i < lst.Count; i++)
+            {
+                lst[i - shifts] = lst[i];
+            }
+
+            for (int i = lst.Count - shifts; i < lst.Count; i++)
+            {
+                lst[i] = default(T);
+            }
+
+            return lst;
+        }
+
+        public static List<T> ShiftRight<T>(this List<T> lst, int shifts)
+        {
+            for (int i = lst.Count - shifts - 1; i >= 0; i--)
+            {
+                lst[i + shifts] = lst[i];
+            }
+
+            for (int i = 0; i < shifts; i++)
+            {
+                lst[i] = default(T);
+            }
+
+            return lst;
+        }
     }
 }
