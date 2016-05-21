@@ -52,6 +52,11 @@ namespace MiniRealms
         [NonSerialized] [XmlIgnore] public static string Settings =
             Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), Name, "settings.conf");
 
+        [NonSerialized]
+        [XmlIgnore]
+        public static string ScoreLocation =
+            Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), Name, "scores.dat");
+
         public void Save()
         {
             if (!Directory.Exists(GetDirectoryName(Settings)))

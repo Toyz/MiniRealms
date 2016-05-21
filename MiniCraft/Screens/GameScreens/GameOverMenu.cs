@@ -1,5 +1,7 @@
-﻿using MiniRealms.Engine.Gfx;
+﻿using System;
+using MiniRealms.Engine.Gfx;
 using MiniRealms.Engine.LevelGens;
+using MiniRealms.Objects.ScoreSystem;
 using MiniRealms.Screens.Interfaces;
 using MiniRealms.Screens.MainScreens;
 
@@ -16,6 +18,13 @@ namespace MiniRealms.Screens.GameScreens
         {
             _title = title;
             _body = body;
+        }
+
+        public override void Init(McGame game, InputHandler input)
+        {
+            base.Init(game, input);
+
+            ScoreManager.AddItem(DateTime.Now, game.GameTime);
         }
 
         public override void Tick()

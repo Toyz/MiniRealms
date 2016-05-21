@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using MiniRealms.Engine.Gfx;
+using MiniRealms.Objects.ScoreSystem;
 using MiniRealms.Screens.DebugScreens;
 using MiniRealms.Screens.Interfaces;
 using MiniRealms.Screens.OptionItems;
@@ -12,6 +13,7 @@ namespace MiniRealms.Screens.MainScreens
         private bool ShowErrorAlert { get; set; }
         private string ErrorAlertBody { get; set; }
 
+        private List<Score> score;
         public TitleMenu() : base(null)
         {
         }
@@ -19,6 +21,10 @@ namespace MiniRealms.Screens.MainScreens
         public override void Init(McGame game, InputHandler input)
         {
             base.Init(game, input);
+
+            ScoreManager.Load();
+            score = ScoreManager.Scores.Score;
+            //ScoreManager.Save();
 
             var options = new List<Option>
             {
@@ -59,9 +65,28 @@ namespace MiniRealms.Screens.MainScreens
 
         private void RenderLeftMenuItems(Screen screen)
         {
-            for (var i = 0; i < 5; i++)
+            if (score.Count > 0)
             {
-                RenderLeftMenuItem(15, i, $"UserItem: {i}", screen);
+                for (var i = 0; i < score.Count; i++)
+                {
+                    Score s = score[i];
+
+                    int seconds = s.TimeTookMs/60;
+                    int minutes = seconds/60;
+                    int hours = minutes/60;
+                    minutes %= 60;
+                    seconds %= 60;
+
+                    var timeString = hours > 0
+                        ? hours + "h" + (minutes < 10 ? "0" : "") + minutes + "m"
+                        : minutes + "m " + (seconds < 10 ? "0" : "") + seconds + "s";
+
+                    RenderLeftMenuItem(15, i, $"{s.FinishDateTime.ToShortDateString()}: {timeString}", screen);
+                }
+            }
+            else
+            {
+                RenderLeftMenuItem(15, 2, "No scores saved", screen);
             }
         }
 
@@ -70,7 +95,7 @@ namespace MiniRealms.Screens.MainScreens
             var xx = x1;
             var yy = (GameConts.Height / 4) + y1 * 22 + 8;
 
-            const int w = 20;
+            const int w = 21;
             const int h = 1;
 
             if (w > msg.Length)
