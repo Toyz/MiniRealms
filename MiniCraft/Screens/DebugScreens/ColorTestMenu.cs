@@ -37,7 +37,7 @@ namespace MiniRealms.Screens.DebugScreens
 
             _options.Add(new ChangeMenuOption("Debug Menu", Parent, Game));
 
-            RenderScrollingListTable(_options);
+            RenderScrollingListTable(_options, Location.Right);
         }
 
         public override void Render(Screen screen)

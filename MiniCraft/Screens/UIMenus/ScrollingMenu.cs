@@ -9,19 +9,28 @@ namespace MiniRealms.Screens.UIMenus
 {
     public class ScrollingMenu : Menu
     {
+        protected enum Location
+        {
+           Left,
+           Right,
+           Center
+        }
+
         private int _selected;
         private int _selectedItem;
         protected int MaxToShow = 15;
-
         private static List<Option> _options;
         private List<Option> _visible = new List<Option>();
+        private Location _renderLocation;
+
 
         protected ScrollingMenu(Menu parent) : base(parent)
         {
         }
 
-        protected void RenderScrollingListTable(List<Option> options)
+        protected void RenderScrollingListTable(List<Option> options, Location renderLocation = Location.Center)
         {
+            _renderLocation = renderLocation;
             _options = options;
             _visible = _options.Page(1, MaxToShow).ToList();
         }
@@ -103,10 +112,24 @@ namespace MiniRealms.Screens.UIMenus
                 if (index == _selected)
                 {
                     msg = option.SelectedText;
-                    col = option.SelectedColor;
+                    col = option.Enabled ? option.SelectedColor : Color.DarkGrey;
                     option.HandleRender();
                 }
-                Font.Draw(msg, screen, (screen.W - msg.Length*8)/2, (GameConts.ScreenMiddleHeight + (i*10) - ((_visible.Count*8)/2)), col);
+
+                if (_renderLocation == Location.Center)
+                {
+                    Font.Draw(msg, screen, (screen.W - msg.Length*8)/2,
+                        (GameConts.ScreenMiddleHeight + (i*10) - ((_visible.Count*8)/2)), col);
+                }else if (_renderLocation == Location.Left)
+                {
+                    Font.Draw(msg, screen, 10, 
+                        (GameConts.ScreenMiddleHeight + (i * 10) - ((_visible.Count * 8) / 2)), col);
+                }
+                else if (_renderLocation == Location.Right)
+                {
+                    Font.Draw(msg, screen, screen.W - (msg.Length * 8) - 10 ,
+                        (GameConts.ScreenMiddleHeight + (i * 10) - ((_visible.Count * 8) / 2)), col);
+                }
             }
         }
     }

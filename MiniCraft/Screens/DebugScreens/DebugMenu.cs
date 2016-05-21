@@ -8,8 +8,6 @@ namespace MiniRealms.Screens.DebugScreens
 {
     public class DebugMenu : ScrollingMenu
     {
-        private static List<Option> _options;
-
         public DebugMenu(Menu parent) : base(parent)
         {
         }
@@ -18,14 +16,13 @@ namespace MiniRealms.Screens.DebugScreens
         {
             base.Init(game, input);
 
-            _options = new List<Option>
+            var options = new List<Option>
             {
-                //new ChangeMenuOption("Scrolling Menu", new ScrollingMenu(this), game),
                 new ChangeMenuOption("Color Test", new ColorTestMenu(this), game),
                 new ChangeMenuOption("Main Menu", Parent, game)
             };
 
-            RenderScrollingListTable(_options);
+            RenderScrollingListTable(options);
         }
 
         public override void Render(Screen screen)
