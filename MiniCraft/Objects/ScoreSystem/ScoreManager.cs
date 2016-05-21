@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
+using MiniRealms.Engine;
 
 namespace MiniRealms.Objects.ScoreSystem
 {
@@ -42,21 +42,14 @@ namespace MiniRealms.Objects.ScoreSystem
 
         private static void Save()
         {
-            FileStream fs = new FileStream(GameConts.ScoreLocation, FileMode.Create);
-            BinaryFormatter bf = new BinaryFormatter();
-            bf.Serialize(fs, Scores);
-            fs.Close();
+           BinaryHelpers.WriteToBinaryFile(GameConts.ScoreLocation, Scores);
         }
 
         public static void Load()
         {
             if (File.Exists(GameConts.ScoreLocation))
             {
-                FileStream fs = new FileStream(GameConts.ScoreLocation, FileMode.Open);
-                BinaryFormatter bf = new BinaryFormatter();
-                fs.Position = 0;
-                Scores = (Scores) bf.Deserialize(fs);
-                fs.Close();
+                Scores = BinaryHelpers.ReadFromBinaryFile<Scores>(GameConts.ScoreLocation);
             }
         }
     }

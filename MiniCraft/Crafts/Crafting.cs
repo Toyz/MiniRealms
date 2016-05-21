@@ -6,8 +6,7 @@ using MiniRealms.Items.Resources;
 
 namespace MiniRealms.Crafts
 {
-
-    public class Crafting
+    public static class Crafting
     {
         public static readonly List<Recipe> AnvilRecipes = new List<Recipe>();
         public static readonly List<Recipe> OvenRecipes = new List<Recipe>();

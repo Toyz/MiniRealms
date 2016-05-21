@@ -4,16 +4,15 @@ using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
 using MiniRealms.Items;
 using MiniRealms.Items.Resources;
-using MiniRealms.Screens;
 using MiniRealms.Screens.Interfaces;
 
 namespace MiniRealms.Crafts
 {
     public abstract class Recipe : IListItem
     {
-        public List<Item> Costs = new List<Item>();
+        public readonly List<Item> Costs = new List<Item>();
         public bool CanCraft;
-        public Item ResultTemplate;
+        public readonly Item ResultTemplate;
 
         protected Recipe(Item resultTemplate)
         {
