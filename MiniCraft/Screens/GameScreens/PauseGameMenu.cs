@@ -30,10 +30,10 @@ namespace MiniRealms.Screens.GameScreens
 
             RenderScrollingListTable(options, Location.Right);
 
-            var width = 16;
-            int seconds = Game.GameTime/60;
-            int minutes = seconds/60;
-            int hours = minutes/60;
+            const int width = 16;
+            var seconds = Game.GameTime/60;
+            var minutes = seconds/60;
+            var hours = minutes/60;
             minutes %= 60;
             seconds %= 60;
 
