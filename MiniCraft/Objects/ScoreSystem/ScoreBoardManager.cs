@@ -32,7 +32,7 @@ namespace MiniRealms.Objects.ScoreSystem
         {
             Scores.Score.Add(new Score(dt, score, ac, diff));
 
-            Scores.Score = Scores.Score.OrderByDescending(x => x.TimeTookMs).ToList();
+            Scores.Score = Scores.Score.OrderByDescending(x => x.TimeTookMs).ThenBy(x => x.AcScore).ToList();
 
             if(Scores.Score.Count > 3)
                 Scores.Score.RemoveAt(Scores.Score.Count - 1);
@@ -47,10 +47,10 @@ namespace MiniRealms.Objects.ScoreSystem
 
         public static void Load()
         {
-            if (File.Exists(GameConts.ScoreLocation))
-            {
-                Scores = BinaryHelpers.ReadFromBinaryFile<Scores>(GameConts.ScoreLocation);
-            }
+            if (!File.Exists(GameConts.ScoreLocation)) return;
+            Scores = BinaryHelpers.ReadFromBinaryFile<Scores>(GameConts.ScoreLocation);
+
+            Scores.Score = Scores.Score.OrderByDescending(x => x.TimeTookMs)/*.ThenByDescending(x => x.AcScore)*/.ToList();
         }
     }
 }
