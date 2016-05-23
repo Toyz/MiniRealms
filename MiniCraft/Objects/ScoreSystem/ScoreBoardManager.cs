@@ -28,13 +28,13 @@ namespace MiniRealms.Objects.ScoreSystem
             }
         }
 
-        public static void AddItem(DateTime dt, int score)
+        public static void AddItem(DateTime dt, int score, int ac, string diff)
         {
-            Scores.Score.Add(new Score(dt, score));
+            Scores.Score.Add(new Score(dt, score, ac, diff));
 
             Scores.Score = Scores.Score.OrderByDescending(x => x.TimeTookMs).ToList();
 
-            if(Scores.Score.Count > 5)
+            if(Scores.Score.Count > 3)
                 Scores.Score.RemoveAt(Scores.Score.Count - 1);
 
             Save();

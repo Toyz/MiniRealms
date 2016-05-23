@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using MiniRealms.Engine;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Objects.ScoreSystem;
 using MiniRealms.Screens.DebugScreens;
@@ -77,52 +78,25 @@ namespace MiniRealms.Screens.MainScreens
                     minutes %= 60;
                     seconds %= 60;
 
-                    var timeString = hours > 0
+                    var ts = hours > 0
                         ? hours + "h" + (minutes < 10 ? "0" : "") + minutes + "m"
                         : minutes + "m " + (seconds < 10 ? "0" : "") + seconds + "s";
 
-                    RenderLeftMenuItem(15, i, $"{s.FinishDateTime.ToShortDateString()}: {timeString}", screen);
+
+                    var l = new List<string>()
+                    {
+                        Utils.SpacesCenter(ts, 21, 0, -2),
+                        $"Score:{Utils.SpacesPushleft(s.AcScore.ToString(), 21, 6)}",
+                        $"Mode:{Utils.SpacesPushleft(s.Difficulty, 21, 5)}",
+                    };
+
+                    RenderLeftMenuItem(15, (GameConts.Height / 4) + i * 40, 21, l.Count, l.ToArray(), Color.Get(5, 333, 333, 333), screen);
                 }
             }
             else
             {
-                RenderLeftMenuItem(15, 2, "No scores saved", screen);
+                RenderLeftMenuItem(15, (GameConts.Height / 4) + 2 * 22, 21, 1, Utils.SpacesCenter("No scores", 21, 0, 3), Color.Get(5, 333, 333, 333), screen);
             }
-        }
-
-        private void RenderLeftMenuItem(int x1, int y1, string msg, Screen screen)
-        {
-            var xx = x1;
-            var yy = (GameConts.Height / 4) + y1 * 22 + 8;
-
-            const int w = 21;
-            const int h = 1;
-
-            if (w > msg.Length)
-            {
-                var spaces = w - msg.Length;
-                for (var i = 0; i < spaces; i++)
-                {
-                    msg += " ";
-                }
-            }
-
-            screen.Render(xx - 8, yy - 8, 0 + 13 * 32, Color.Get(0, 1, 5, 445), 0);
-            screen.Render(xx + w * 8, yy - 8, 0 + 13 * 32, Color.Get(0, 1, 5, 445), 1);
-            screen.Render(xx - 8, yy + 8, 0 + 13 * 32, Color.Get(0, 1, 5, 445), 2);
-            screen.Render(xx + w * 8, yy + 8, 0 + 13 * 32, Color.Get(0, 1, 5, 445), 3);
-            for (var x = 0; x < w; x++)
-            {
-                screen.Render(xx + x * 8, yy - 8, 1 + 13 * 32, Color.Get(0, 1, 5, 445), 0);
-                screen.Render(xx + x * 8, yy + 8, 1 + 13 * 32, Color.Get(0, 1, 5, 445), 2);
-            }
-            for (var y = 0; y < h; y++)
-            {
-                screen.Render(xx - 8, yy + y * 8, 2 + 13 * 32, Color.Get(0, 1, 5, 445), 0);
-                screen.Render(xx + w * 8, yy + y * 8, 2 + 13 * 32, Color.Get(0, 1, 5, 445), 1);
-            }
-
-            Font.Draw(msg, screen, xx, yy, Color.Get(5, 333, 333, 333));
         }
     }
 }

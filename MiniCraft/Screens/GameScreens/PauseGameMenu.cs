@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using MiniRealms.Engine;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Engine.LevelGens;
 using MiniRealms.Screens.Interfaces;
@@ -10,6 +11,7 @@ namespace MiniRealms.Screens.GameScreens
 {
     public class PauseGameMenu : ScrollingMenu
     {
+        private List<string> _lines;
 
         public PauseGameMenu(Menu parent) : base(parent)
         {
@@ -26,7 +28,25 @@ namespace MiniRealms.Screens.GameScreens
                 new ActionOption("Return to Title", ReturnToTitleAction)
             };
 
-            RenderScrollingListTable(options);
+            RenderScrollingListTable(options, Location.Right);
+
+            var width = 16;
+            int seconds = Game.GameTime/60;
+            int minutes = seconds/60;
+            int hours = minutes/60;
+            minutes %= 60;
+            seconds %= 60;
+
+            var ts =
+                $"{(hours > 0 ? hours + "h" + (minutes < 10 ? "0" : "") + minutes + "m" : minutes + "m " + (seconds < 10 ? "0" : "") + seconds + "s")}";
+
+            _lines = new List<string>
+            {
+                Utils.SpacesCenter(ts, width, 0, 1),
+                $"Score:{Utils.SpacesPushleft(Game.Player.Score.ToString(), width, 6)}",
+                $"Mode:{Utils.SpacesPushleft(McGame.Difficulty.Name, width, 5)}",
+                $"Size:{Utils.SpacesPushleft($"{GameConts.Instance.MaxWidth}x{GameConts.Instance.MaxHeight}", width, 5)}"
+            };
         }
 
         public override void Tick()
@@ -53,6 +73,8 @@ namespace MiniRealms.Screens.GameScreens
         {
             screen.Clear(0);
             base.Render(screen);
+
+            RenderLeftMenuItem(18, (GameConts.Height / 4) + 1 * 22, 16, _lines.Count, _lines.ToArray(), Color.Get(5, 333, 333, 333), screen);
 
             string title = "Game is Paused";
             Font.Draw(title, screen, GameConts.ScreenMiddleWidth - (title.Length * 8 / 2), 1 * 8, Color.White);

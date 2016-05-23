@@ -24,7 +24,7 @@ namespace MiniRealms.Screens.GameScreens
         {
             base.Init(game, input);
 
-            ScoreBoardManager.AddItem(DateTime.Now, game.GameTime);
+            ScoreBoardManager.AddItem(DateTime.Now, game.GameTime, Game.Player.Score, McGame.Difficulty.Name);
         }
 
         public override void Tick()

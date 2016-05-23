@@ -52,6 +52,7 @@
     <Compile Include="Engine\BinaryHelpers.cs" />
     <Compile Include="Engine\Compents\FpsCounterComponent.cs" />
     <Compile Include="Engine\ConsoleCommands.cs" />
+    <Compile Include="Engine\Utils.cs" />
     <Compile Include="Engine\XmlDictionary.cs" />
     <Compile Include="Engine\XmlHelpers.cs" />
     <Compile Include="Entities\TheWizard.cs" />

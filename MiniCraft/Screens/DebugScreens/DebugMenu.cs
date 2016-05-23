@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using MiniRealms.Engine.Gfx;
+using MiniRealms.Screens.GameScreens;
 using MiniRealms.Screens.Interfaces;
 using MiniRealms.Screens.OptionItems;
 using MiniRealms.Screens.UIMenus;
@@ -19,6 +20,7 @@ namespace MiniRealms.Screens.DebugScreens
             var options = new List<Option>
             {
                 new ChangeMenuOption("Color Test", new ColorTestMenu(this), game),
+                new ChangeMenuOption("Pause Menu", new PauseGameMenu(this), game),
                 new ChangeMenuOption("Main Menu", Parent, game)
             };
 
