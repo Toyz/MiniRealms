@@ -118,7 +118,7 @@
     <Compile Include="Levels\Tiles\WheatTile.cs" />
     <Compile Include="McGame.cs" />
     <Compile Include="Objects\ScoreSystem\Score.cs" />
-    <Compile Include="Objects\ScoreSystem\ScoreManager.cs" />
+    <Compile Include="Objects\ScoreSystem\ScoreBoardManager.cs" />
     <Compile Include="Screens\GameScreens\PauseGameMenu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

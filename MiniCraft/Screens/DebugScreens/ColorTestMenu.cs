@@ -31,7 +31,8 @@ namespace MiniRealms.Screens.DebugScreens
 
                 _options.Add(new LabelOption(Color.GetHex(a, b, c, d))
                 {
-                    SelectedColor = Color.Get(a, b, c, d)
+                    SelectedColor = Color.Get(a, b, c, d),
+                    Enabled = true
                 });
             }
 

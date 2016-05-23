@@ -13,7 +13,7 @@ namespace MiniRealms.Screens.MainScreens
         private bool ShowErrorAlert { get; set; }
         private string ErrorAlertBody { get; set; }
 
-        private List<Score> score;
+        private List<Score> _score;
         public TitleMenu() : base(null)
         {
         }
@@ -22,9 +22,9 @@ namespace MiniRealms.Screens.MainScreens
         {
             base.Init(game, input);
 
-            ScoreManager.Load();
-            score = ScoreManager.Scores.Score;
-            //ScoreManager.Save();
+            ScoreBoardManager.Load();
+            _score = ScoreBoardManager.Scores.Score;
+            //ScoreBoardManager.Save();
 
             var options = new List<Option>
             {
@@ -65,11 +65,11 @@ namespace MiniRealms.Screens.MainScreens
 
         private void RenderLeftMenuItems(Screen screen)
         {
-            if (score.Count > 0)
+            if (_score.Count > 0)
             {
-                for (var i = 0; i < score.Count; i++)
+                for (var i = 0; i < _score.Count; i++)
                 {
-                    Score s = score[i];
+                    Score s = _score[i];
 
                     int seconds = s.TimeTookMs/60;
                     int minutes = seconds/60;

@@ -6,11 +6,11 @@ using MiniRealms.Engine;
 
 namespace MiniRealms.Objects.ScoreSystem
 {
-    public static class ScoreManager
+    public static class ScoreBoardManager
     {
         public static Scores Scores { get; private set; }
 
-        static ScoreManager()
+        static ScoreBoardManager()
         {
             if (Scores == null)
             {
