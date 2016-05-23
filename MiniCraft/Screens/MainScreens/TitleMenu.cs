@@ -11,9 +11,6 @@ namespace MiniRealms.Screens.MainScreens
 {
     public class TitleMenu : ScrollingMenu
     {
-        private bool ShowErrorAlert { get; set; }
-        private string ErrorAlertBody { get; set; }
-
         private List<Score> _score;
         public TitleMenu() : base(null)
         {
@@ -25,7 +22,6 @@ namespace MiniRealms.Screens.MainScreens
 
             ScoreBoardManager.Load();
             _score = ScoreBoardManager.Scores.Score;
-            //ScoreBoardManager.Save();
 
             var options = new List<Option>
             {
@@ -57,11 +53,6 @@ namespace MiniRealms.Screens.MainScreens
             var xx = (GameConts.Width - "(Arrow keys,X and C)".Length * 8) / 2;
 
             Font.Draw("(Arrow keys,X and C)", screen, xx, screen.H - 8, Color.DarkGrey);
-
-            if (ShowErrorAlert && !Game.IsLoadingWorld)
-            {
-                Game.RenderAlertWindow(ErrorAlertBody);
-            }
         }
 
         private void RenderLeftMenuItems(Screen screen)
@@ -83,14 +74,14 @@ namespace MiniRealms.Screens.MainScreens
                         : minutes + "m " + (seconds < 10 ? "0" : "") + seconds + "s";
 
 
-                    var l = new List<string>()
+                    var l = new List<string>
                     {
                         Utils.SpacesCenter(ts, 21, 0, -2),
                         $"Score:{Utils.SpacesPushleft(s.AcScore.ToString(), 21, 6)}",
                         $"Mode:{Utils.SpacesPushleft(s.Difficulty, 21, 5)}",
                     };
 
-                    RenderLeftMenuItem(15, (GameConts.Height / 4) + i * 40, 21, l.Count, l.ToArray(), Color.Get(5, 333, 333, 333), screen);
+                    RenderLeftMenuItem(15, (GameConts.Height / 4) + i * 38, 21, l.Count, l.ToArray(), Color.Get(5, 333, 333, 333), screen);
                 }
             }
             else

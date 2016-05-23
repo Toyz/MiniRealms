@@ -47,6 +47,7 @@ namespace MiniRealms.Screens.GameScreens
                 $"Mode:{Utils.SpacesPushleft(McGame.Difficulty.Name, width, 5)}",
                 $"Size:{Utils.SpacesPushleft($"{GameConts.Instance.MaxWidth}x{GameConts.Instance.MaxHeight}", width, 5)}"
             };
+
         }
 
         public override void Tick()
