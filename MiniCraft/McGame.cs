@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Windows.Forms;
 using GameConsole;
 using Microsoft.Xna.Framework;
@@ -26,6 +28,8 @@ namespace MiniRealms
     /// </summary>
     public sealed class McGame : Game
     {
+        private bool TakeScreenShot { get; set; }
+
         private Texture2D _image;
         private Microsoft.Xna.Framework.Color[] _pixels;
         private bool _running;
@@ -34,7 +38,7 @@ namespace MiniRealms
         public int CurrentLevel = 3;
         public int GameTime;
 
-        public bool IsLoadingWorld { get; set; }
+        public bool IsLoadingWorld { private get; set; }
         public string LoadingText { private get; set; }
 
         private bool _hasWon;
@@ -189,6 +193,12 @@ namespace MiniRealms
         private new void Tick()
         {
             TickCount++;
+            if (_input.Screenshot.Clicked)
+            {
+                if(!TakeScreenShot)
+                    TakeScreenShot = true;
+            }
+
             if ((!HasFocus()) && !IsLoadingWorld)
             {
                 _input.ReleaseAll();
@@ -264,7 +274,7 @@ namespace MiniRealms
             }
         }
 
-        public void RenderAlertWindow(string msg, bool trans = false)
+        private void RenderAlertWindow(string msg, bool trans = false)
         {
             var xx = (GameConts.Width - msg.Length*8)/2;
             var yy = (GameConts.Height - 8)/2;
@@ -343,6 +353,13 @@ namespace MiniRealms
                 }
             }
             _image.SetData(_pixels);
+
+            if (TakeScreenShot)
+            {
+                _image.Save(ImageFormat.Png,
+                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Screenshot.png"));
+                TakeScreenShot = false;
+            }
 
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             _spriteBatch.Draw(_image, new Rectangle(0, 0, GameConts.Width * GameConts.Instance.Scale, GameConts.Height * GameConts.Instance.Scale), Microsoft.Xna.Framework.Color.White);

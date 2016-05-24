@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
+using System.Runtime.InteropServices;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace MiniRealms.Engine
 {
@@ -49,39 +53,29 @@ namespace MiniRealms.Engine
             return source.Skip((page - 1)).Take(pageSize);
         }
 
-        public static IEnumerable<TSource> SkipSingle<TSource>(this IEnumerable<TSource> source, int page, int pageSize)
+        public static void Save(this Texture2D texture, ImageFormat imageFormat, string filename)
         {
-            return source.Skip(page).Take(pageSize);
-        }
+            int width = texture.Bounds.Width;
+            int height = texture.Bounds.Height;
 
-        public static List<T> ShiftLeft<T>(this List<T> lst, int shifts)
-        {
-            for (int i = shifts; i < lst.Count; i++)
+            using (Bitmap bitmap = new Bitmap(width, height, PixelFormat.Format32bppArgb))
             {
-                lst[i - shifts] = lst[i];
+                Rectangle rect = new Rectangle(0, 0, width, height);
+                byte[] textureData = new byte[4 * width * height];
+
+                texture.GetData(textureData);
+                for (int i = 0; i < textureData.Length; i += 4)
+                {
+                    var blue = textureData[i];
+                    textureData[i] = textureData[i + 2];
+                    textureData[i + 2] = blue;
+                }
+                var bitmapData = bitmap.LockBits(rect, ImageLockMode.WriteOnly, PixelFormat.Format32bppArgb);
+                var safePtr = bitmapData.Scan0;
+                Marshal.Copy(textureData, 0, safePtr, textureData.Length);
+                bitmap.UnlockBits(bitmapData);
+                bitmap.Save(filename, imageFormat);
             }
-
-            for (int i = lst.Count - shifts; i < lst.Count; i++)
-            {
-                lst[i] = default(T);
-            }
-
-            return lst;
-        }
-
-        public static List<T> ShiftRight<T>(this List<T> lst, int shifts)
-        {
-            for (int i = lst.Count - shifts - 1; i >= 0; i--)
-            {
-                lst[i + shifts] = lst[i];
-            }
-
-            for (int i = 0; i < shifts; i++)
-            {
-                lst[i] = default(T);
-            }
-
-            return lst;
         }
     }
 }

@@ -52,6 +52,7 @@ namespace MiniRealms
         public Key Menu;
         public Key ConsoleKey;
         public Key FullScreen;
+        public Key Screenshot;
 
         public InputHandler()
         {
@@ -64,6 +65,7 @@ namespace MiniRealms
             CloseKey = new Key(this);
             ConsoleKey = new Key(this);
             FullScreen = new Key(this);
+            Screenshot = new Key(this);
         }
 
 
@@ -129,6 +131,7 @@ namespace MiniRealms
             if (ke == Keys.Escape) CloseKey.Toggle(pressed);
             if (ke == Keys.OemTilde) ConsoleKey.Toggle(pressed);
             if (ke == Keys.F4) FullScreen.Toggle(pressed);
+            if (ke == Keys.F1) Screenshot.Toggle(pressed);
         }
     }
 }
