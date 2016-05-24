@@ -7,6 +7,7 @@
         public static int Yellow => Get(-1, 5, 5, 550);
         public static int DarkGrey => Get(-1, 222, 222, 222);
         public static int Grey => Get(-1, 333, 333, 333);
+        public static int Green => Get(-1, 10, 252, 050);
 
         public static int Get(int a, int b, int c, int d)
         {

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using MiniRealms.Engine.Gfx;
+using MiniRealms.Engine.UI;
 using MiniRealms.Screens.Interfaces;
 using MiniRealms.Screens.OptionItems;
 using MiniRealms.Screens.UIMenus;
@@ -12,6 +13,7 @@ namespace MiniRealms.Screens.MainScreens
         private static List<Option> _options;
         private ActionOption _fullScreenOption;
         private ActionOption _boardLessOption;
+        private Label _titleLabel;
 
         public OptionsMenu(Menu parent, string backTitle = "Main Menu") : base(parent)
         {
@@ -34,6 +36,9 @@ namespace MiniRealms.Screens.MainScreens
                 new ChangeMenuOption(_backTitle, Parent, game)
             };
 
+            _titleLabel = new Label(Game.UiManager, "Options", (GameConts.ScreenMiddleWidth - ("Options".Length * 8 / 2)), 15, Color.White);
+            Game.UiManager.Add(_titleLabel);
+
             RenderScrollingListTable(_options);
         }
 
@@ -52,14 +57,6 @@ namespace MiniRealms.Screens.MainScreens
             _fullScreenOption.Text = $"Full Screen: {(Game.Gdm.IsFullScreen ? "Yes" : "No")}";
             GameConts.Instance.FullScreen = Game.Gdm.IsFullScreen;
             GameConts.Instance.Save();
-        }
-
-        public override void Render(Screen screen)
-        {
-            base.Render(screen);
-
-            string title = "Options";
-            Font.Draw(title, screen,  GameConts.ScreenMiddleWidth - (title.Length * 8 / 2), 1 * 8, Color.White);
         }
     }
 }

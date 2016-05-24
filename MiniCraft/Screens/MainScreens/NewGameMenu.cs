@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using MiniRealms.Engine.Gfx;
+using MiniRealms.Engine.UI;
 using MiniRealms.Screens.GameScreens;
 using MiniRealms.Screens.Interfaces;
 using MiniRealms.Screens.OptionItems;
@@ -16,6 +17,7 @@ namespace MiniRealms.Screens.MainScreens
         private List<Option> _options;
         private WorldSizeOption _worldSizeOption;
         private DifficultyOption _difficultyOption;
+        private Label _titleLabel;
 
         public NewGameMenu(Menu parent) : base(parent)
         {
@@ -36,6 +38,9 @@ namespace MiniRealms.Screens.MainScreens
                 new ActionOption("Create and Start", CreateAndStartWorld),
                 new ChangeMenuOption("Cancel", Parent, game)
             };
+
+            _titleLabel = new Label(Game.UiManager, "New Game", (GameConts.ScreenMiddleWidth - ("New Game".Length * 8 / 2)), 15, Color.White);
+            Game.UiManager.Add(_titleLabel);
 
             RenderScrollingListTable(_options);
         }
@@ -59,14 +64,6 @@ namespace MiniRealms.Screens.MainScreens
                 Game.ResetGame();
                 Game.SetMenu(new LevelTransitionMenu(3, true));
             });
-        }
-
-        public override void Render(Screen screen)
-        {
-            base.Render(screen);
-
-            string title = "New Game";
-            Font.Draw(title, screen, GameConts.ScreenMiddleWidth - (title.Length*8/2), 1*8, Color.White);
         }
     }
 }

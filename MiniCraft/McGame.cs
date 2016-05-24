@@ -10,6 +10,7 @@ using MiniRealms.Engine;
 using MiniRealms.Engine.Audio.Sounds;
 using MiniRealms.Engine.Compents;
 using MiniRealms.Engine.Gfx;
+using MiniRealms.Engine.UI;
 using MiniRealms.Entities;
 using MiniRealms.Levels;
 using MiniRealms.Levels.Tiles;
@@ -62,6 +63,7 @@ namespace MiniRealms
         private ConsoleCommands Cc { get; }
         public FpsCounterComponent FpsCounterComponent { get; }
         public readonly GraphicsDeviceManager Gdm;
+        public UiManager UiManager;
 
         public McGame()
         {
@@ -103,6 +105,7 @@ namespace MiniRealms
 
         public void SetMenu(Menu menu)
         {
+            UiManager.Clean();
             Menu = menu;
             menu?.Init(this, _input);
         }
@@ -171,6 +174,7 @@ namespace MiniRealms
             _pixels = new Microsoft.Xna.Framework.Color[GameConts.Width  * GameConts.Height];
             _image = new Texture2D(GraphicsDevice, GameConts.Width, GameConts.Height);
             _input = new InputHandler();
+            UiManager = new UiManager(this, _input);
 
             ResetGame();
             SetMenu(new TitleMenu());
@@ -357,7 +361,7 @@ namespace MiniRealms
             if (TakeScreenShot)
             {
                 _image.Save(ImageFormat.Png,
-                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Screenshot.png"));
+                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Minirealms.ss.png"));
                 TakeScreenShot = false;
             }
 

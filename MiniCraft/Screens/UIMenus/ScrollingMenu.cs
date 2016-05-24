@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Xna.Framework;
 using MiniRealms.Engine;
 using MiniRealms.Engine.Audio.Sounds;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Screens.Interfaces;
+using Color = MiniRealms.Engine.Gfx.Color;
 
 namespace MiniRealms.Screens.UIMenus
 {
@@ -37,6 +39,7 @@ namespace MiniRealms.Screens.UIMenus
 
         public override void Tick()
         {
+            Game.UiManager.Tick();
             var index = _options.IndexOf(_options[_selected]);
 
             if (Input.Up.Clicked)
@@ -101,6 +104,7 @@ namespace MiniRealms.Screens.UIMenus
         public override void Render(Screen screen)
         {
             screen.Clear(0);
+            Game.UiManager.Render(screen);
 
             for (var i = 0; i < _visible.Count; i++)
             {

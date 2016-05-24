@@ -52,6 +52,10 @@
     <Compile Include="Engine\BinaryHelpers.cs" />
     <Compile Include="Engine\Compents\FpsCounterComponent.cs" />
     <Compile Include="Engine\ConsoleCommands.cs" />
+    <Compile Include="Engine\UI\Label.cs" />
+    <Compile Include="Engine\UI\ProgressBar.cs" />
+    <Compile Include="Engine\UI\UiManager.cs" />
+    <Compile Include="Engine\UI\UiObject.cs" />
     <Compile Include="Engine\Utils.cs" />
     <Compile Include="Engine\XmlDictionary.cs" />
     <Compile Include="Engine\XmlHelpers.cs" />
@@ -120,6 +124,7 @@
     <Compile Include="McGame.cs" />
     <Compile Include="Objects\ScoreSystem\Score.cs" />
     <Compile Include="Objects\ScoreSystem\ScoreBoardManager.cs" />
+    <Compile Include="Screens\DebugScreens\UIObjectTestMenu.cs" />
     <Compile Include="Screens\Dialogs\AlertMenu.cs" />
     <Compile Include="Screens\GameScreens\PauseGameMenu.cs" />
     <Compile Include="Program.cs" />

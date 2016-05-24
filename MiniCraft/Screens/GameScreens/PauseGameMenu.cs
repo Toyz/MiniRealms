@@ -2,6 +2,7 @@
 using MiniRealms.Engine;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Engine.LevelGens;
+using MiniRealms.Engine.UI;
 using MiniRealms.Screens.Dialogs;
 using MiniRealms.Screens.Interfaces;
 using MiniRealms.Screens.MainScreens;
@@ -14,6 +15,7 @@ namespace MiniRealms.Screens.GameScreens
     {
         private List<string> _lines;
         private bool _showAlert = false;
+        private Label _titleLabel;
 
         public PauseGameMenu(Menu parent) : base(parent)
         {
@@ -50,6 +52,9 @@ namespace MiniRealms.Screens.GameScreens
                 $"Size:{Utils.SpacesPushleft($"{GameConts.Instance.MaxWidth}x{GameConts.Instance.MaxHeight}", width, 5)}"
             };
 
+            _titleLabel = new Label(Game.UiManager, "Game is Paused", (GameConts.ScreenMiddleWidth - ("Game is Paused".Length * 8 / 2)), 15, Color.White);
+            Game.UiManager.Add(_titleLabel);
+
         }
 
         public override void Tick()
@@ -84,9 +89,6 @@ namespace MiniRealms.Screens.GameScreens
             base.Render(screen);
 
             RenderLeftMenuItem(18, (GameConts.Height / 4) + 1 * 22, 16, _lines.Count, _lines.ToArray(), Color.Get(5, 333, 333, 333), screen);
-
-            string title = "Game is Paused";
-            Font.Draw(title, screen, GameConts.ScreenMiddleWidth - (title.Length * 8 / 2), 1 * 8, Color.White);
 
             var xx = (GameConts.Width - "(Press \"Escape\" to close)".Length * 8) / 2;
 

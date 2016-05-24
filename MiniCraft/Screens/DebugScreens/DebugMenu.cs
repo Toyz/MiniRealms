@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using MiniRealms.Engine.Gfx;
+using MiniRealms.Engine.UI;
 using MiniRealms.Screens.Dialogs;
 using MiniRealms.Screens.Interfaces;
 using MiniRealms.Screens.OptionItems;
@@ -11,6 +11,8 @@ namespace MiniRealms.Screens.DebugScreens
 {
     public class DebugMenu : ScrollingMenu
     {
+        private Label _titleLabel;
+
         public DebugMenu(Menu parent) : base(parent)
         {
         }
@@ -22,6 +24,7 @@ namespace MiniRealms.Screens.DebugScreens
             var options = new List<Option>
             {
                 new ChangeMenuOption("Color Test", new ColorTestMenu(this), game),
+                new ChangeMenuOption("UI Object Test", new UiObjectTestMenu(this), game),
                 new ActionOption("Alert Dialog", () =>
                 {
                     game.SetMenu(new AlertMenu(this, new[] {"I am a test", "So am i", "But also am i"}, YesAction));
@@ -29,20 +32,16 @@ namespace MiniRealms.Screens.DebugScreens
                 new ChangeMenuOption("Main Menu", Parent, game)
             };
 
+            _titleLabel = new Label(Game.UiManager, "Debug Tools", (GameConts.ScreenMiddleWidth - ("Debug Tools".Length * 8 / 2)), 15, Color.White);
+            Game.UiManager.Add(_titleLabel);
+
             RenderScrollingListTable(options);
         }
 
-        private static void YesAction()
+        private void YesAction()
         {
             Debug.WriteLine("Yes was pressed");
-        }
-
-        public override void Render(Screen screen)
-        {
-            base.Render(screen);
-
-            string title = "Debug Options";
-            Font.Draw(title, screen,  GameConts.ScreenMiddleWidth - (title.Length * 8 / 2), 1 * 8, Color.White);
+            Game.SetMenu(this);
         }
     }
 }
