@@ -138,7 +138,7 @@ namespace MiniRealms.Screens.UIMenus
             RenderLeftMenuItem(x1, y1, w, h, new []{ msg }, color, screen);
         }
 
-        protected void RenderLeftMenuItem(int x1, int y1, int w, int h, string[] msg, int color, Screen screen)
+        protected void RenderLeftMenuItem(int x1, int y1, int w, int h, string[] msg, int color, Screen screen, bool trans = false)
         {
             var xx = x1;
             var yy = y1;
@@ -158,19 +158,19 @@ namespace MiniRealms.Screens.UIMenus
                 }
             }
 
-            screen.Render(xx - 8, yy - 8 , 0 + 13 * 32, Color.Get(0, 1, 5, 445), 0);
-            screen.Render(xx + w * 8, yy - 8, 0 + 13 * 32, Color.Get(0, 1, 5, 445), 1);
-            screen.Render(xx - 8, yy + 8 *h, 0 + 13 * 32, Color.Get(0, 1, 5, 445), 2);
-            screen.Render(xx + w * 8, yy + 8 * h, 0 + 13 * 32, Color.Get(0, 1, 5, 445), 3);
+            screen.Render(xx - 8, yy - 8 , 0 + 13 * 32, Color.Get(!trans ? 0 : -1, 1, 5, 445), 0);
+            screen.Render(xx + w * 8, yy - 8, 0 + 13 * 32, Color.Get(!trans ? 0 : -1, 1, 5, 445), 1);
+            screen.Render(xx - 8, yy + 8 *h, 0 + 13 * 32, Color.Get(!trans ? 0 : -1, 1, 5, 445), 2);
+            screen.Render(xx + w * 8, yy + 8 * h, 0 + 13 * 32, Color.Get(!trans ? 0 : -1, 1, 5, 445), 3);
             for (var x = 0; x < w; x++)
             {
-                screen.Render(xx + x * 8, yy - 8, 1 + 13 * 32, Color.Get(0, 1, 5, 445), 0);
-                screen.Render(xx + x * 8, yy + 8 * h, 1 + 13 * 32, Color.Get(0, 1, 5, 445), 2);
+                screen.Render(xx + x * 8, yy - 8, 1 + 13 * 32, Color.Get(!trans ? 0 : -1, 1, 5, 445), 0);
+                screen.Render(xx + x * 8, yy + 8 * h, 1 + 13 * 32, Color.Get(!trans ? 0 : -1, 1, 5, 445), 2);
             }
             for (var y = 0; y < h; y++)
             {
-                screen.Render(xx - 8, yy + y * 8, 2 + 13 * 32, Color.Get(0, 1, 5, 445), 0);
-                screen.Render(xx + w * 8, yy + y * 8, 2 + 13 * 32, Color.Get(0, 1, 5, 445), 1);
+                screen.Render(xx - 8, yy + y * 8, 2 + 13 * 32, Color.Get(!trans ? 0 : -1, 1, 5, 445), 0);
+                screen.Render(xx + w * 8, yy + y * 8, 2 + 13 * 32, Color.Get(!trans ? 0 : -1, 1, 5, 445), 1);
             }
 
             for (var ss = 0; ss < msg.Length; ss++)

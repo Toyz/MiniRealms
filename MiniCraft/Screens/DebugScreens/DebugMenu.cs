@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using MiniRealms.Engine.Gfx;
-using MiniRealms.Screens.GameScreens;
+using MiniRealms.Screens.Dialogs;
 using MiniRealms.Screens.Interfaces;
 using MiniRealms.Screens.OptionItems;
 using MiniRealms.Screens.UIMenus;
@@ -16,15 +18,23 @@ namespace MiniRealms.Screens.DebugScreens
         public override void Init(McGame game, InputHandler input)
         {
             base.Init(game, input);
-
+            
             var options = new List<Option>
             {
                 new ChangeMenuOption("Color Test", new ColorTestMenu(this), game),
-                new ChangeMenuOption("Pause Menu", new PauseGameMenu(this), game),
+                new ActionOption("Alert Dialog", () =>
+                {
+                    game.SetMenu(new AlertMenu(this, new[] {"I am a test", "So am i", "But also am i"}, YesAction));
+                }),
                 new ChangeMenuOption("Main Menu", Parent, game)
             };
 
             RenderScrollingListTable(options);
+        }
+
+        private static void YesAction()
+        {
+            Debug.WriteLine("Yes was pressed");
         }
 
         public override void Render(Screen screen)

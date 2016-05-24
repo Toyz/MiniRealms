@@ -32,7 +32,7 @@ namespace MiniRealms.Objects.ScoreSystem
         {
             Scores.Score.Add(new Score(dt, score, ac, diff));
 
-            Scores.Score = Scores.Score.OrderByDescending(x => x.TimeTookMs).ThenBy(x => x.AcScore).ToList();
+            Scores.Score = Scores.Score.OrderByDescending(x => x.TimeTookMs)/*.ThenBy(x => x.AcScore)*/.ToList();
 
             if(Scores.Score.Count > 3)
                 Scores.Score.RemoveAt(Scores.Score.Count - 1);

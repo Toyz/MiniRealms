@@ -2,6 +2,7 @@
 using MiniRealms.Engine;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Engine.LevelGens;
+using MiniRealms.Screens.Dialogs;
 using MiniRealms.Screens.Interfaces;
 using MiniRealms.Screens.MainScreens;
 using MiniRealms.Screens.OptionItems;
@@ -12,6 +13,7 @@ namespace MiniRealms.Screens.GameScreens
     public class PauseGameMenu : ScrollingMenu
     {
         private List<string> _lines;
+        private bool _showAlert = false;
 
         public PauseGameMenu(Menu parent) : base(parent)
         {
@@ -62,12 +64,18 @@ namespace MiniRealms.Screens.GameScreens
 
         private void ReturnToTitleAction()
         {
-            Game.ResetGame();
-            Game.Level = null;
-            Game.Player = null;
-            Game.Levels = null;
-            LevelGen.R = null;
-            Game.SetMenu(new TitleMenu());
+            _showAlert = !_showAlert;
+
+            Game.SetMenu(new AlertMenu(this, new[] { "No progress is saved" },
+                () =>
+                {
+                    Game.ResetGame();
+                    Game.Level = null;
+                    Game.Player = null;
+                    Game.Levels = null;
+                    LevelGen.R = null;
+                    Game.SetMenu(new TitleMenu());
+                }));
         }
 
         public override void Render(Screen screen)

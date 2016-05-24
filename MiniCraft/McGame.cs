@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Windows.Forms;
 using GameConsole;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -9,11 +11,13 @@ using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
 using MiniRealms.Levels;
 using MiniRealms.Levels.Tiles;
+using MiniRealms.Screens.Dialogs;
 using MiniRealms.Screens.GameScreens;
-using MiniRealms.Screens.Interfaces;
 using MiniRealms.Screens.MainScreens;
 using MiniRealms.Screens.OptionItems;
 using Color = MiniRealms.Engine.Gfx.Color;
+using Menu = MiniRealms.Screens.Interfaces.Menu;
+using Screen = MiniRealms.Engine.Gfx.Screen;
 
 namespace MiniRealms
 {
@@ -30,7 +34,6 @@ namespace MiniRealms
         public int CurrentLevel = 3;
         public int GameTime;
 
-        private bool IsGamePaused { get; set; }
         public bool IsLoadingWorld { get; set; }
         public string LoadingText { private get; set; }
 
@@ -83,6 +86,15 @@ namespace MiniRealms
             Gdm.IsFullScreen = GameConts.Instance.FullScreen;
         }
 
+        private void ClosingFunction(object sender, CancelEventArgs e)
+        {
+            if (Menu == null)
+            {
+                e.Cancel = true;
+                SetMenu(new AlertMenu(Menu, new[] {"Are you sure you", "you want to exit?", " ", "No progress is saved" }, Exit));
+            }
+        }
+
         private bool HasFocus() => IsActive;
 
         public void SetMenu(Menu menu)
@@ -109,6 +121,10 @@ namespace MiniRealms
 
         protected override void LoadContent()
         {
+            Form myGameForm = (Form)Control.FromHandle(Window.Handle);
+            myGameForm.Closing += ClosingFunction;
+            myGameForm.StartPosition = FormStartPosition.CenterScreen;
+
             _running = true;
 
             var pp = 0;
@@ -312,8 +328,10 @@ namespace MiniRealms
 
             RenderGui();
 
-            if (!HasFocus() && !IsLoadingWorld) RenderAlertWindow("Click to Focus", true);
-            if (IsGamePaused) RenderAlertWindow("Game is Paused", true);
+            if (Menu?.ShowNagger == true || Menu == null)
+            {
+                if (!HasFocus() && !IsLoadingWorld) RenderAlertWindow("Click to Focus", true);
+            }
             if (IsLoadingWorld) RenderAlertWindow(LoadingText);
 
             for (var y = 0; y < Screen.H; y++)
