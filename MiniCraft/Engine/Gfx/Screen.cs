@@ -7,14 +7,14 @@
          * 
          * public int[] tiles = new int[MAP_WIDTH * MAP_WIDTH]; public int[] colors = new int[MAP_WIDTH * MAP_WIDTH]; public int[] databits = new int[MAP_WIDTH * MAP_WIDTH];
          */
-        public int XOffset;
-        public int YOffset;
+        private int _xOffset;
+        private int _yOffset;
 
         public const int BitMirrorX = 0x01;
         public const int BitMirrorY = 0x02;
 
         public readonly int W, H;
-        public int[] Pixels;
+        private readonly int[] _pixels;
 
         private readonly SpriteSheet _sheet;
 
@@ -24,7 +24,7 @@
             W = w;
             H = h;
 
-            Pixels = new int[w * h];
+            _pixels = new int[w * h];
 
             // Random random = new Random();
 
@@ -41,8 +41,13 @@
 
         public void Clear(int color)
         {
-            for (int i = 0; i < Pixels.Length; i++)
-                Pixels[i] = color;
+            for (int i = 0; i < _pixels.Length; i++)
+                _pixels[i] = color;
+        }
+
+        public int GetPixel(int pixel)
+        {
+            return _pixels[pixel];
         }
 
         /*
@@ -53,8 +58,8 @@
 
         public void Render(int xp, int yp, int tile, int colors, int bits)
         {
-            xp -= XOffset;
-            yp -= YOffset;
+            xp -= _xOffset;
+            yp -= _yOffset;
             var mirrorX = (bits & BitMirrorX) > 0;
             var mirrorY = (bits & BitMirrorY) > 0;
 
@@ -74,28 +79,28 @@
                     int xs = x;
                     if (mirrorX) xs = 7 - x;
                     int col = (colors >> (_sheet.Pixels[xs + ys * _sheet.Width + toffs] * 8)) & 255;
-                    if (col < 255) Pixels[(x + xp) + (y + yp) * W] = col;
+                    if (col < 255) _pixels[(x + xp) + (y + yp) * W] = col;
                 }
             }
         }
 
         public void SetOffset(int xOffset, int yOffset)
         {
-            XOffset = xOffset;
-            YOffset = yOffset;
+            _xOffset = xOffset;
+            _yOffset = yOffset;
         }
 
         private readonly int[] _dither = { 0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5, };
 
         public void Overlay(Screen screen2, int xa, int ya)
         {
-            int[] oPixels = screen2.Pixels;
+            int[] oPixels = screen2._pixels;
             int i = 0;
             for (int y = 0; y < H; y++)
             {
                 for (int x = 0; x < W; x++)
                 {
-                    if (oPixels[i] / 10 <= _dither[((x + xa) & 3) + ((y + ya) & 3) * 4]) Pixels[i] = 0;
+                    if (oPixels[i] / 10 <= _dither[((x + xa) & 3) + ((y + ya) & 3) * 4]) _pixels[i] = 0;
                     i++;
                 }
 
@@ -104,8 +109,8 @@
 
         public void RenderLight(int x, int y, int r)
         {
-            x -= XOffset;
-            y -= YOffset;
+            x -= _xOffset;
+            y -= _yOffset;
             int x0 = x - r;
             int x1 = x + r;
             int y0 = y - r;
@@ -128,7 +133,7 @@
                     if (dist <= r * r)
                     {
                         int br = 255 - dist * 255 / (r * r);
-                        if (Pixels[xx + yy * W] < br) Pixels[xx + yy * W] = br;
+                        if (_pixels[xx + yy * W] < br) _pixels[xx + yy * W] = br;
                     }
                 }
             }

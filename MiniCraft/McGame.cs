@@ -348,7 +348,7 @@ namespace MiniRealms
             {
                 for (var x = 0; x < Screen.W; x++)
                 {
-                    var cc = Screen.Pixels[x + y*Screen.W];
+                    var cc = Screen.GetPixel(x + y*Screen.W);
                     if (cc < 255) _pixels[x + y* GameConts.Width] = _colors[cc];
                 }
             }
