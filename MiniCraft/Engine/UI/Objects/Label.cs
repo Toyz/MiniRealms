@@ -1,14 +1,12 @@
-﻿using System.Diagnostics;
-using MiniRealms.Engine.Gfx;
+﻿using MiniRealms.Engine.Gfx;
+using MiniRealms.Engine.UI.Interface;
 
-namespace MiniRealms.Engine.UI
+namespace MiniRealms.Engine.UI.Objects
 {
     public class Label : UiObject
     {
         public string Text { get; set; }
-        public int X { get; set; }
-        public int Y { get; set; }
-        public int Color { get; set; }
+        public int Color { get; set; } = Gfx.Color.White;
 
         public Label(UiManager manager) : base(manager)
         {

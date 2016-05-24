@@ -2,6 +2,7 @@
 using MiniRealms.Engine;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Engine.UI;
+using MiniRealms.Engine.UI.Objects;
 using MiniRealms.Objects.ScoreSystem;
 using MiniRealms.Screens.DebugScreens;
 using MiniRealms.Screens.Interfaces;

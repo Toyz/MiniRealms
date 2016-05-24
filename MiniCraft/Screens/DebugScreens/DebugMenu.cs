@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Engine.UI;
+using MiniRealms.Engine.UI.Objects;
 using MiniRealms.Screens.Dialogs;
 using MiniRealms.Screens.Interfaces;
 using MiniRealms.Screens.OptionItems;

@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Diagnostics;
 using MiniRealms.Engine.Gfx;
+using MiniRealms.Engine.UI.Interface;
 
-namespace MiniRealms.Engine.UI
+namespace MiniRealms.Engine.UI.Objects
 {
     public class ProgressBar : UiObject
     {
@@ -10,8 +10,6 @@ namespace MiniRealms.Engine.UI
         public int Progress { get; set; } = 0;
         public int FinishedColor { get; set; } = Color.Get(5, 10, 252, 050);
         public int NotFinishedColor { get; set; } = Color.Get(333, 333, 333, 333);
-        public int X { get; set; }
-        public int Y { get; set; }
         public int Width { get; set; }
 
         public ProgressBar(UiManager manager) : base(manager)

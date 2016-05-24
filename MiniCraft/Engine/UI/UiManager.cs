@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using MiniRealms.Engine.Gfx;
+using MiniRealms.Engine.UI.Interface;
 
 namespace MiniRealms.Engine.UI
 {

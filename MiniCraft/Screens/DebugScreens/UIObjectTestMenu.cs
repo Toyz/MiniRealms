@@ -1,5 +1,6 @@
 ﻿using MiniRealms.Engine.Gfx;
 using MiniRealms.Engine.UI;
+using MiniRealms.Engine.UI.Objects;
 using MiniRealms.Screens.Interfaces;
 using MiniRealms.Screens.MainScreens;
 

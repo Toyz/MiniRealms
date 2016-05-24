@@ -52,10 +52,10 @@
     <Compile Include="Engine\BinaryHelpers.cs" />
     <Compile Include="Engine\Compents\FpsCounterComponent.cs" />
     <Compile Include="Engine\ConsoleCommands.cs" />
-    <Compile Include="Engine\UI\Label.cs" />
-    <Compile Include="Engine\UI\ProgressBar.cs" />
+    <Compile Include="Engine\UI\Objects\Label.cs" />
+    <Compile Include="Engine\UI\Objects\ProgressBar.cs" />
     <Compile Include="Engine\UI\UiManager.cs" />
-    <Compile Include="Engine\UI\UiObject.cs" />
+    <Compile Include="Engine\UI\Interface\UiObject.cs" />
     <Compile Include="Engine\Utils.cs" />
     <Compile Include="Engine\XmlDictionary.cs" />
     <Compile Include="Engine\XmlHelpers.cs" />
