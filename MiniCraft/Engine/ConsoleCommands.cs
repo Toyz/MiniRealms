@@ -240,6 +240,26 @@ namespace MiniRealms.Engine
                     map = _game.Levels[4].Tiles;
                     sp = sp.Replace("Output.png", "Sky.Output.png");
                 }
+
+                if (arg[0] == "userground1")
+                {
+                    map = _game.Levels[2].Tiles;
+                    sp = sp.Replace("Output.png", "Underground1.Output.png");
+                }
+
+
+                if (arg[0] == "userground2")
+                {
+                    map = _game.Levels[1].Tiles;
+                    sp = sp.Replace("Output.png", "Underground2.Output.png");
+                }
+
+
+                if (arg[0] == "userground3")
+                {
+                    map = _game.Levels[0].Tiles;
+                    sp = sp.Replace("Output.png", "Underground3.Output.png");
+                }
             }
             var bmp = new Bitmap(GameConts.Instance.MaxWidth, GameConts.Instance.MaxHeight, PixelFormat.Format32bppRgb);
             int[] pixels = new int[GameConts.Instance.MaxWidth * GameConts.Instance.MaxHeight];

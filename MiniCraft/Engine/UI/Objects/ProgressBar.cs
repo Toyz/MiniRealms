@@ -7,7 +7,7 @@ namespace MiniRealms.Engine.UI.Objects
     public class ProgressBar : UiObject
     {
         public int Max { get; set; } = 100;
-        public int Progress { get; set; } = 0;
+        public int Progress { get; set; }
         public int FinishedColor { get; set; } = Color.Get(5, 10, 252, 050);
         public int NotFinishedColor { get; set; } = Color.Get(333, 333, 333, 333);
         public int Width { get; set; }

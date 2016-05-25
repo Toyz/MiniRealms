@@ -1,5 +1,5 @@
-﻿using MiniRealms.Engine.Gfx;
-using MiniRealms.Engine.UI;
+﻿using System.Diagnostics;
+using MiniRealms.Engine.Gfx;
 using MiniRealms.Engine.UI.Objects;
 using MiniRealms.Screens.Interfaces;
 using MiniRealms.Screens.MainScreens;
@@ -21,13 +21,13 @@ namespace MiniRealms.Screens.DebugScreens
 
             string text = "Ui Object Testing"; 
 
-            _titleLabel = new Label(Game.UiManager, text, (GameConts.ScreenMiddleWidth - (text.Length * 8 / 2)), 20, Color.White);
+            _titleLabel = new Label(Game.UiManager, text, /*(GameConts.ScreenMiddleWidth - (text.Length * 8 / 2))*/ -text.Length, 20, Color.White);
             _progBar = new ProgressBar(Game.UiManager)
             {
                 X = 10,
                 Y = 30,
                 Width = 20,
-                Progress = 95
+                Progress = 0
             };
 
             Game.UiManager.Add(_titleLabel);
@@ -41,14 +41,27 @@ namespace MiniRealms.Screens.DebugScreens
 
             _titleLabel.Color = Game.TickCount / 20 % 2 == 0 ? Color.White : Color.Yellow;
 
-            if (Game.GameTime / 20 % 2 == 0)
+            if (Game.TickCount / 20 % 2 == 0)
             {
+                _progBar.Progress += 1;
+
+                Debug.WriteLine(_titleLabel.X);
+
                 if (_progBar.Progress > _progBar.Max)
                 {
-                   _progBar.Progress = 0;
+                    _progBar.Progress = 0;
+                }
+            }
+
+            if (Game.GameTime/40%2 == 0)
+            {
+
+                if (_titleLabel.X > GameConts.Width + (_titleLabel.Text.Length * 8))
+                {
+                    _titleLabel.X = -(_titleLabel.Text.Length * 8);
                 }
 
-                _progBar.Progress += 1;
+                _titleLabel.X += 2;
             }
 
             Game.UiManager.Tick();

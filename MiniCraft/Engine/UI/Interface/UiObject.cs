@@ -11,7 +11,6 @@ namespace MiniRealms.Engine.UI.Interface
         protected UiObject(UiManager manager)
         {
             Manager = manager;
-            //manager.Add(this);
         }
 
         public abstract void Tick();
