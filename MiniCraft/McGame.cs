@@ -64,6 +64,7 @@ namespace MiniRealms
         public FpsCounterComponent FpsCounterComponent { get; }
         public readonly GraphicsDeviceManager Gdm;
         public UiManager UiManager;
+        public static McGame Instance { get; private set; }
 
         public McGame()
         {
@@ -72,6 +73,8 @@ namespace MiniRealms
                 PreferredBackBufferHeight = GameConts.Height* GameConts.Instance.Scale,
                 PreferredBackBufferWidth = GameConts.Width * GameConts.Instance.Scale
             };
+
+            Instance = this;
 
             Cc = new ConsoleCommands(this);
 

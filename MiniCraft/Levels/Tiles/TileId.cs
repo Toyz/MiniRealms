@@ -26,6 +26,7 @@ namespace MiniRealms.Levels.Tiles
         GemOre,
         CloudCactus,
         RedFlower,
-        YellowFlower
+        YellowFlower,
+        Torch
     }
 }

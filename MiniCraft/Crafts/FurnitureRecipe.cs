@@ -6,7 +6,6 @@ namespace MiniRealms.Crafts
     public class FurnitureRecipe<T> : Recipe
         where T : Furniture, new()
     {
-
         public FurnitureRecipe()
             : base(new FurnitureItem(new T()))
         {

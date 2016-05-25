@@ -15,7 +15,12 @@ namespace MiniRealms.Crafts
 
         static Crafting()
         {
+            Extensions.Add(WorkbenchRecipes, new ResourceRecipe(Resource.Stick, 4).AddCost(Resource.Wood, 1));
+            Extensions.Add(WorkbenchRecipes, new ResourceRecipe(Resource.Torch, 4).AddCost(Resource.Wood, 4).AddCost(Resource.Coal, 1));
+
+
             Extensions.Add(WorkbenchRecipes, new FurnitureRecipe<Lantern>().AddCost(Resource.Wood, 5).AddCost(Resource.Slime, 10).AddCost(Resource.Glass, 4));
+            //Extensions.Add(WorkbenchRecipes, new FurnitureRecipe<Lantern>().AddCost(Resource.Wood, 4).AddCost(Resource.Coal, 1));
 
             Extensions.Add(WorkbenchRecipes, new FurnitureRecipe<Oven>().AddCost(Resource.Stone, 15));
             Extensions.Add(WorkbenchRecipes, new FurnitureRecipe<Furnace>().AddCost(Resource.Stone, 20));

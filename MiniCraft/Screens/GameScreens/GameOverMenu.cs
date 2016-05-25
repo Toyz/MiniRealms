@@ -37,6 +37,7 @@ namespace MiniRealms.Screens.GameScreens
                 Game.Player = null;
                 Game.Levels = null;
                 LevelGen.R = null;
+                Game.ResetGame();
                 Game.SetMenu(new TitleMenu());
             }
         }

@@ -7,16 +7,18 @@ namespace MiniRealms.Crafts
     public class ResourceRecipe : Recipe
     {
         private readonly Resource _resource;
+        private readonly int _amount;
 
-        public ResourceRecipe(Resource resource)
-            : base(new ResourceItem(resource, 1))
+        public ResourceRecipe(Resource resource, int amount = 1)
+            : base(new ResourceItem(resource, amount))
         {
             _resource = resource;
+            _amount = amount;
         }
 
         public override void Craft(Player player)
         {
-            player.Inventory.Add(0, new ResourceItem(_resource, 1));
+            player.Inventory.Add(0, new ResourceItem(_resource, _amount));
         }
     }
 }

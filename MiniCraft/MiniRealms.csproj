@@ -118,6 +118,7 @@
     <Compile Include="Levels\Tiles\StoneTile.cs" />
     <Compile Include="Levels\Tiles\Tile.cs" />
     <Compile Include="Levels\Tiles\TileId.cs" />
+    <Compile Include="Levels\Tiles\TorchTile.cs" />
     <Compile Include="Levels\Tiles\TreeTile.cs" />
     <Compile Include="Levels\Tiles\WaterTile.cs" />
     <Compile Include="Levels\Tiles\WheatTile.cs" />

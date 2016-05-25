@@ -40,6 +40,7 @@ namespace MiniRealms.Levels.Tiles
         public static Tile GoldOre;
         public static Tile GemOre;
         public static Tile CloudCactus;
+        public static Tile TorchTile;
 
         static Tile()
         {
@@ -68,6 +69,7 @@ namespace MiniRealms.Levels.Tiles
             GoldOre = new OreTile(TileId.GoldOre, Resource.GoldOre);
             GemOre = new OreTile(TileId.GemOre, Resource.Gem);
             CloudCactus = new CloudCactusTile(TileId.CloudCactus);
+            TorchTile = new TorchTile(TileId.Torch);
         }
 
 

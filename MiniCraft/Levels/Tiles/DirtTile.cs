@@ -1,4 +1,5 @@
-﻿using MiniRealms.Engine;
+﻿using System.Collections.Generic;
+using MiniRealms.Engine;
 using MiniRealms.Engine.Audio.Sounds;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
@@ -9,18 +10,29 @@ namespace MiniRealms.Levels.Tiles
 {
     public class DirtTile : Tile
     {
+        private Sprite[] _sprites;
+
         public DirtTile(TileId id)
             : base(id)
         {
+            _sprites = Sprites;
         }
+
+        public DirtTile(TileId id, List<Sprite> ParentSprits) : base(id)
+        {
+            ConnectsToGrass = true;
+
+            _sprites = ParentSprits.ToArray();
+        }
+
 
         public override void Render(Screen screen, Level level, int x, int y)
         {
             int col = Color.Get(level.DirtColor, level.DirtColor, level.DirtColor - 111, level.DirtColor - 111);
-            screen.Render(x * 16 + 0, y * 16 + 0, Sprites[0].Img, col, 0);
-            screen.Render(x * 16 + 8, y * 16 + 0, Sprites[1].Img, col, 0);
-            screen.Render(x * 16 + 0, y * 16 + 8, Sprites[2].Img, col, 0);
-            screen.Render(x * 16 + 8, y * 16 + 8, Sprites[3].Img, col, 0);
+            screen.Render(x * 16 + 0, y * 16 + 0, _sprites[0].Img, col, 0);
+            screen.Render(x * 16 + 8, y * 16 + 0, _sprites[1].Img, col, 0);
+            screen.Render(x * 16 + 0, y * 16 + 8, _sprites[2].Img, col, 0);
+            screen.Render(x * 16 + 8, y * 16 + 8, _sprites[3].Img, col, 0);
         }
 
         public override bool Interact(Level level, int xt, int yt, Player player, Item item, int attackDir)
