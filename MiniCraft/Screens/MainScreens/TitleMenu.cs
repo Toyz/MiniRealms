@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using MiniRealms.Engine;
 using MiniRealms.Engine.Gfx;
-using MiniRealms.Engine.UI;
-using MiniRealms.Engine.UI.Objects;
-using MiniRealms.Objects.ScoreSystem;
+using MiniRealms.Engine.ScoreSystem;
 using MiniRealms.Screens.DebugScreens;
 using MiniRealms.Screens.Interfaces;
 using MiniRealms.Screens.OptionItems;
@@ -14,7 +12,6 @@ namespace MiniRealms.Screens.MainScreens
     public class TitleMenu : ScrollingMenu
     {
         private List<Score> _score;
-        private Label _titleLabel;
 
         public TitleMenu() : base(null)
         {
@@ -26,8 +23,6 @@ namespace MiniRealms.Screens.MainScreens
 
             ScoreBoardManager.Load();
             _score = ScoreBoardManager.Scores.Score;
-            _titleLabel = new Label(Game.UiManager, GameConts.Name, (GameConts.ScreenMiddleWidth - (GameConts.Name.Length * 8 / 2)), 15, Color.White);
-            Game.UiManager.Add(_titleLabel);
 
             var options = new List<Option>
             {
@@ -49,8 +44,18 @@ namespace MiniRealms.Screens.MainScreens
             //right menu
             base.Render(screen);
 
-            _titleLabel.Color = Game.TickCount / 20 % 2 == 0 ? Color.White : Color.Yellow;
-            
+            int h = 3;
+            int w = 14;
+            int titleColor = Game.TickCount / 20 % 2 == 0 ? Color.Get(-1, 010, 131, 551) : Color.Get(-1, 010, 131, 549);
+            int xo = (screen.W - w * 8) / 2;
+            int yo = 10;
+            for (int y = 0; y < h; y++)
+            {
+                for (int x = 0; x < w; x++)
+                {
+                    screen.Render(xo + x * 8, yo + y * 8, x + (y + 26) * 32, titleColor, 0);
+                }
+            }
 
             //left menu
             RenderLeftMenuItems(screen);

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MiniRealms.Objects.ScoreSystem
+namespace MiniRealms.Engine.ScoreSystem
 {
     [Serializable]
     public class Score

@@ -1,7 +1,7 @@
 ﻿using System;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Engine.LevelGens;
-using MiniRealms.Objects.ScoreSystem;
+using MiniRealms.Engine.ScoreSystem;
 using MiniRealms.Screens.Interfaces;
 using MiniRealms.Screens.MainScreens;
 

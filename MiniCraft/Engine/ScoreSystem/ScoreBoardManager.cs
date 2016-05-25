@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using MiniRealms.Engine;
 
-namespace MiniRealms.Objects.ScoreSystem
+namespace MiniRealms.Engine.ScoreSystem
 {
     public static class ScoreBoardManager
     {

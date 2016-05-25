@@ -11,6 +11,7 @@ namespace MiniRealms.Entities
         private int _xa, _ya;
         private readonly int _lvl;
         private int _randomWalkTime;
+        private int _skinColor;
 
         public Zombie(int lvl)
         {
@@ -18,7 +19,7 @@ namespace MiniRealms.Entities
             X = Random.NextInt(64 * 16);
             Y = Random.NextInt(64 * 16);
             Health = MaxHealth = lvl * lvl * 10;
-
+            _skinColor = Random.Next(1, 555) + 1;
         }
 
         public override void Tick()
@@ -77,12 +78,12 @@ namespace MiniRealms.Entities
             int xo = X - 8;
             int yo = Y - 11;
 
-            int col = Color.Get(-1, 10, 252, 050);
+            int col = Color.Get(-1, 10, _skinColor, 050);//Color.Get(-1, 10, 252, 050);
             var baseLevel = _lvl - McGame.Difficulty.BaseLevel;
 
-            if (baseLevel == 2) col = Color.Get(-1, 100, 522, 050);
-            if (baseLevel == 3) col = Color.Get(-1, 111, 444, 050);
-            if (baseLevel == 4) col = Color.Get(-1, 000, 111, 020);
+            if (baseLevel == 2) col = Color.Get(-1, 100, _skinColor, 050);
+            if (baseLevel == 3) col = Color.Get(-1, 111, _skinColor, 050);
+            if (baseLevel == 4) col = Color.Get(-1, 000, _skinColor, 020);
             if (HurtTime > 0)
             {
                 col = Color.Get(-1, 555, 555, 555);

@@ -122,8 +122,8 @@
     <Compile Include="Levels\Tiles\WaterTile.cs" />
     <Compile Include="Levels\Tiles\WheatTile.cs" />
     <Compile Include="McGame.cs" />
-    <Compile Include="Objects\ScoreSystem\Score.cs" />
-    <Compile Include="Objects\ScoreSystem\ScoreBoardManager.cs" />
+    <Compile Include="Engine\ScoreSystem\Score.cs" />
+    <Compile Include="Engine\ScoreSystem\ScoreBoardManager.cs" />
     <Compile Include="Screens\DebugScreens\UIObjectTestMenu.cs" />
     <Compile Include="Screens\Dialogs\AlertMenu.cs" />
     <Compile Include="Screens\GameScreens\PauseGameMenu.cs" />
