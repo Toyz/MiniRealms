@@ -16,7 +16,7 @@ namespace MiniRealms.Entities
         private readonly int _glowColor;
         private readonly int _defaultGlowColor = 10;
         private readonly int _dmg;
-        private bool IsBossMob = false;
+        private readonly bool _isBossMob;
 
         public Zombie(int lvl)
         {
@@ -39,7 +39,7 @@ namespace MiniRealms.Entities
 
                 _dmg = lvl + Random.NextInt(3);
 
-                IsBossMob = true;
+                _isBossMob = true;
             }
         }
 
@@ -134,12 +134,15 @@ namespace MiniRealms.Entities
                 Level.Add(new ItemEntity(new ResourceItem(Resource.Cloth), X + Random.NextInt(11) - 5, Y + Random.NextInt(11) - 5));
             }
 
-            count = Random.NextInt(2) + 1;
-            for (int i = 0; i < count; i++)
+            if (_isBossMob)
             {
-                Level.Add(new ItemEntity(new ResourceItem(Resource.Gem), X + Random.NextInt(11) - 5, Y + Random.NextInt(11) - 5));
+                count = Random.NextInt(2) + 1;
+                for (int i = 0; i < count; i++)
+                {
+                    Level.Add(new ItemEntity(new ResourceItem(Resource.Gem), X + Random.NextInt(11) - 5,
+                        Y + Random.NextInt(11) - 5));
+                }
             }
-
 
             if (Level.Player != null)
             {
