@@ -16,7 +16,9 @@ namespace MiniRealms.Entities
             _lvl = lvl;
             X = Random.NextInt(64 * 16);
             Y = Random.NextInt(64 * 16);
-            Health = MaxHealth = lvl * lvl * 5;
+            int hp_level = _lvl - McGame.Difficulty.BaseLevel;
+
+            Health = MaxHealth = hp_level * hp_level * 5;
         }
 
         public override void Tick()

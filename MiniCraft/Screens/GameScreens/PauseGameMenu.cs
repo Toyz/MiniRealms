@@ -2,7 +2,6 @@
 using MiniRealms.Engine;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Engine.LevelGens;
-using MiniRealms.Engine.UI;
 using MiniRealms.Engine.UI.Objects;
 using MiniRealms.Screens.Dialogs;
 using MiniRealms.Screens.Interfaces;
@@ -15,7 +14,7 @@ namespace MiniRealms.Screens.GameScreens
     public class PauseGameMenu : ScrollingMenu
     {
         private List<string> _lines;
-        private bool _showAlert = false;
+        private bool _showAlert;
         private Label _titleLabel;
 
         public PauseGameMenu(Menu parent) : base(parent)

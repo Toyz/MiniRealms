@@ -24,7 +24,7 @@ namespace MiniRealms.Levels
         public int DirtColor { get; }
         //private readonly int _sandColor = 550;
 
-        private readonly int _depth;
+        public int Depth;
         public int MonsterDensity = 8;
 
 
@@ -50,7 +50,7 @@ namespace MiniRealms.Levels
                 {
                     DirtColor = 222;
                 }
-                _depth = level;
+                Depth = level;
                 W = w;
                 H = h;
                 byte[][] maps;
@@ -281,15 +281,14 @@ namespace MiniRealms.Levels
 
                 int minLevel = 1;
                 int maxLevel = 1;
-                if (_depth < 0)
+                if (Depth < 0)
                 {
-                    maxLevel = (-_depth) + 1;
+                    maxLevel = (-Depth) + 1;
                 }
-                if (_depth > 0)
+                if (Depth > 0)
                 {
                     minLevel = maxLevel = 4;
                 }
-
 
                 int lvl = _random.NextInt(maxLevel - minLevel + 1) + minLevel;
                 lvl += baseLevel;

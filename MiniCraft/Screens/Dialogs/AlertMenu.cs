@@ -64,10 +64,10 @@ namespace MiniRealms.Screens.Dialogs
         public override void Render(Screen screen)
         {
             var xx = (GameConts.Width - 20 * 8) / 2;
-            var yy = ((GameConts.Height - (_body.Count * 8 / 2) ) - 8) / 2;
+            var yy = ((GameConts.Height - (_body.Count / 2 * 8) - 16) / 2);
 
             RenderLeftMenuItem(xx, yy, 20, _body.Count, _body.ToArray(), Color.Get(5, 333, 333, 333), screen, true);
-            Font.Draw(_title, screen, (xx + ((_title.Length * 8) / 2)) - 20, yy - (_body.Count + 1 * 8) + 3, Color.Get(5, 5, 5, 550));
+            Font.Draw(_title, screen, (xx + ((_title.Length * 8) / 2)) - 22, yy - (_body.Count + 1 * 8) + 3, Color.Get(5, 5, 5, 550));
 
             Font.Draw("Yes", screen, 14 * 8, yy + (_body.Count - 1) * 8 , _selected == 0 ? Color.Yellow : Color.DarkGrey);
             Font.Draw("No", screen, 24 * 8, yy + (_body.Count - 1) * 8, _selected == 1 ? Color.Yellow : Color.DarkGrey);

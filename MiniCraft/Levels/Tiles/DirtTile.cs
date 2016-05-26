@@ -10,19 +10,17 @@ namespace MiniRealms.Levels.Tiles
 {
     public class DirtTile : Tile
     {
-        private Sprite[] _sprites;
+        private readonly Sprite[] _sprites;
 
         public DirtTile(TileId id)
             : base(id)
-        {
+        { 
             _sprites = Sprites;
         }
 
-        public DirtTile(TileId id, List<Sprite> ParentSprits) : base(id)
+        protected DirtTile(TileId id, List<Sprite> parentSprits) : base(id)
         {
-            ConnectsToGrass = true;
-
-            _sprites = ParentSprits.ToArray();
+            _sprites = parentSprits.ToArray();
         }
 
 

@@ -11,8 +11,9 @@ namespace MiniRealms
     [XmlRoot("options")]
     public class GameConts
     {
-        private static GameConts _instance { get; set; }
-        public static GameConts Instance => _instance ?? (_instance = new GameConts());
+        private static GameConts _instance;
+
+        [XmlIgnore] public static GameConts Instance => _instance ?? (_instance = new GameConts());
 
         [DefaultValue(5), XmlElement("WindowScale")]
         public int BaseScaling { get; set; } = 5;
@@ -37,24 +38,24 @@ namespace MiniRealms
 
         [NonSerialized] [XmlIgnore] public static string Version = "0.0.1 - Alpha";
 
-        [NonSerialized] [XmlIgnore] public static int Height = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height/
+        [NonSerialized] [XmlIgnore] public static readonly int Height = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height/
                                                                Instance.BaseScaling;
 
-        [NonSerialized] [XmlIgnore] public static int Width = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width/
+        [NonSerialized] [XmlIgnore] public static readonly int Width = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width/
                                                               Instance.BaseScaling;
 
-        [NonSerialized] [XmlIgnore] public static int ScreenMiddleWidth = Width/2;
-        [NonSerialized] [XmlIgnore] public static int ScreenMiddleHeight = Height/2;
+        [NonSerialized] [XmlIgnore] public static readonly int ScreenMiddleWidth = Width/2;
+        [NonSerialized] [XmlIgnore] public static readonly int ScreenMiddleHeight = Height/2;
 
         [NonSerialized] [XmlIgnore] public static int ScreenThirdWidth = Width/3;
         [NonSerialized] [XmlIgnore] public static int ScreenThirdHeight = Height/2;
 
-        [NonSerialized] [XmlIgnore] public static string Settings =
+        [NonSerialized] [XmlIgnore] private static readonly string Settings =
             Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), Name, "settings.conf");
 
         [NonSerialized]
         [XmlIgnore]
-        public static string ScoreLocation =
+        public static readonly string ScoreLocation =
             Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), Name, "scores.dat");
 
         public void Save()

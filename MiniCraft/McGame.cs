@@ -97,11 +97,9 @@ namespace MiniRealms
 
         private void ClosingFunction(object sender, CancelEventArgs e)
         {
-            if (Menu == null)
-            {
-                e.Cancel = true;
-                SetMenu(new AlertMenu(Menu, new[] {"Are you sure you", "you want to exit?", " ", "No progress is saved" }, Exit));
-            }
+            if (Menu != null) return;
+            e.Cancel = true;
+            SetMenu(new AlertMenu(Menu, new[] {"Awwww", "Are you closing me?", " ", "No progress is saved" }, Exit));
         }
 
         private bool HasFocus() => IsActive;

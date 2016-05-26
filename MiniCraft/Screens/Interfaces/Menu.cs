@@ -9,7 +9,7 @@ namespace MiniRealms.Screens.Interfaces
         protected readonly Menu Parent;
         protected McGame Game;
         protected InputHandler Input;
-        public bool ShowNagger { get; set; } = true;
+        public bool ShowNagger { get; protected set; } = true;
 
         protected Menu(Menu parent)
         {

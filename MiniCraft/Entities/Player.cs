@@ -402,7 +402,7 @@ namespace MiniRealms.Entities
             return true;
         }
 
-        public void ChangeLevel(int dir)
+        private void ChangeLevel(int dir)
         {
             Game.ScheduleLevelChange(dir);
         }
@@ -410,7 +410,21 @@ namespace MiniRealms.Entities
         public override int GetLightRadius()
         {
             int r = 2;
+
+            //Dude light doesn't shine when your swimming....
+            if (IsSwimming()) return r;
+
             var item = ActiveItem as FurnitureItem;
+            if (item == null)
+            {
+                var i = ActiveItem as ResourceItem;
+                if (i == null) return r;
+                if (i.Resource == Resource.Torch)
+                {
+                    return Tile.TorchTile.GetLightRadius(Level, 0, 0);
+                }
+            }
+
             if (item == null) return r;
             int rr = item.Furniture.GetLightRadius();
             if (rr > r) r = rr;
@@ -436,7 +450,7 @@ namespace MiniRealms.Entities
             if (HurtTime > 0 || InvulnerableTime > 0) return;
 
             SoundEffectManager.Play("playerhurt");
-            Level.Add(new TextParticle("" + damage, X, Y, Color.Get(-1, 504, 504, 504)));
+            Level.Add(new TextParticle($"{damage}", X, Y, Color.Get(-1, 504, 504, 504)));
             Health -= damage;
             if (attackDir == 0) YKnockback = +6;
             if (attackDir == 1) YKnockback = -6;

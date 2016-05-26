@@ -9,7 +9,7 @@ namespace MiniRealms.Levels.Tiles
     class TorchTile : DirtTile
     {
         private int _color = Color.Get(-1, 10, 531, 555);
-        private int _defaultLight = 5;
+
         public TorchTile(TileId tileId) : base(tileId, SpriteSheet.GetSprites(TileId.Dirt))
         {
             Tiles[(byte)tileId] = this;
@@ -41,6 +41,6 @@ namespace MiniRealms.Levels.Tiles
             return true;
         }
 
-        public override int GetLightRadius(Level level, int x, int y) => 4;
+        public override int GetLightRadius(Level level, int x, int y) => 5;
     }
 }

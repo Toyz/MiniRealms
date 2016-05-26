@@ -2,6 +2,7 @@
 using MiniRealms.Engine;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Engine.ScoreSystem;
+using MiniRealms.Engine.UI.Objects;
 using MiniRealms.Screens.DebugScreens;
 using MiniRealms.Screens.Interfaces;
 using MiniRealms.Screens.OptionItems;
@@ -12,6 +13,7 @@ namespace MiniRealms.Screens.MainScreens
     public class TitleMenu : ScrollingMenu
     {
         private List<Score> _score;
+        private Label _bottomLabel;
 
         public TitleMenu() : base(null)
         {
@@ -23,6 +25,11 @@ namespace MiniRealms.Screens.MainScreens
 
             ScoreBoardManager.Load();
             _score = ScoreBoardManager.Scores.Score;
+            _bottomLabel = new Label(Game.UiManager) {Text = "(Arrow keys,X and C)", Color = Color.DarkGrey};
+            _bottomLabel.X = -(_bottomLabel.Text.Length * 8);
+
+            _bottomLabel.Y = GameConts.Height - 8;
+            Game.UiManager.Add(_bottomLabel);
 
             var options = new List<Option>
             {
@@ -39,6 +46,21 @@ namespace MiniRealms.Screens.MainScreens
             RenderScrollingListTable(options, Location.Right);
         }
 
+        public override void Tick()
+        {
+            base.Tick();
+
+            //Bottom message ticker
+            if (Game.GameTime / 20 % 2 == 0)
+            {
+                _bottomLabel.X += 1;
+                if (_bottomLabel.X > GameConts.Width + _bottomLabel.Text.Length)
+                {
+                    _bottomLabel.X = -(_bottomLabel.Text.Length * 8);
+                }
+            }
+        }
+
         public override void Render(Screen screen)
         {
             //right menu
@@ -48,7 +70,7 @@ namespace MiniRealms.Screens.MainScreens
             int w = 14;
             int titleColor = Game.TickCount / 20 % 2 == 0 ? Color.Get(-1, 010, 131, 551) : Color.Get(-1, 010, 131, 549);
             int xo = (screen.W - w * 8) / 2;
-            int yo = 10;
+            int yo = 5;
             for (int y = 0; y < h; y++)
             {
                 for (int x = 0; x < w; x++)
@@ -59,11 +81,6 @@ namespace MiniRealms.Screens.MainScreens
 
             //left menu
             RenderLeftMenuItems(screen);
-
-            //Bottom render
-            var xx = (GameConts.Width - "(Arrow keys,X and C)".Length * 8) / 2;
-
-            Font.Draw("(Arrow keys,X and C)", screen, xx, screen.H - 8, Color.DarkGrey);
         }
 
         private void RenderLeftMenuItems(Screen screen)

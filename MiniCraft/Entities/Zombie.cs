@@ -1,4 +1,5 @@
-﻿using MiniRealms.Engine;
+﻿using System.Diagnostics;
+using MiniRealms.Engine;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Items;
 using MiniRealms.Items.Resources;
@@ -11,15 +12,35 @@ namespace MiniRealms.Entities
         private int _xa, _ya;
         private readonly int _lvl;
         private int _randomWalkTime;
-        private int _skinColor;
+        private readonly int _shirtColor;
+        private readonly int _glowColor;
+        private readonly int _defaultGlowColor = 10;
+        private readonly int _dmg;
+        private bool IsBossMob = false;
 
         public Zombie(int lvl)
         {
             _lvl = lvl;
+
             X = Random.NextInt(64 * 16);
             Y = Random.NextInt(64 * 16);
-            Health = MaxHealth = lvl * lvl * 10;
-            _skinColor = Random.Next(1, 555) + 1;
+            int hp_level = _lvl - McGame.Difficulty.BaseLevel;
+
+            Health = MaxHealth = hp_level * hp_level * 10;
+            _shirtColor = Random.Next(1, 555) + 1;
+            _glowColor = Random.NextInt(McGame.Difficulty.BossMobSpawnRate + 1) >= McGame.Difficulty.BossMobSpawnRate ? Random.Next(10, 555) - 1 : 10;
+
+            _dmg = lvl + 1;
+
+            if (_glowColor != _defaultGlowColor)
+            {
+                MaxHealth = Random.Next(10, 50);
+                Health = MaxHealth = hp_level * hp_level * 10 * MaxHealth;
+
+                _dmg = lvl + Random.NextInt(3);
+
+                IsBossMob = true;
+            }
         }
 
         public override void Tick()
@@ -78,12 +99,12 @@ namespace MiniRealms.Entities
             int xo = X - 8;
             int yo = Y - 11;
 
-            int col = Color.Get(-1, 10, _skinColor, 050);//Color.Get(-1, 10, 252, 050);
+            int col = Color.Get(-1, _glowColor, _shirtColor, 050);//Color.Get(-1, 10, 252, 050);
             var baseLevel = _lvl - McGame.Difficulty.BaseLevel;
 
-            if (baseLevel == 2) col = Color.Get(-1, 100, _skinColor, 050);
-            if (baseLevel == 3) col = Color.Get(-1, 111, _skinColor, 050);
-            if (baseLevel == 4) col = Color.Get(-1, 000, _skinColor, 020);
+            if (baseLevel == 2) col = Color.Get(-1, _glowColor, _shirtColor, 050);
+            if (baseLevel == 3) col = Color.Get(-1, _glowColor, _shirtColor, 050);
+            if (baseLevel == 4) col = Color.Get(-1, _glowColor, _shirtColor, 020);
             if (HurtTime > 0)
             {
                 col = Color.Get(-1, 555, 555, 555);
@@ -99,7 +120,8 @@ namespace MiniRealms.Entities
         {
             var player = entity as Player;
             if (player == null) return;
-            entity.Hurt(this, _lvl + 1, Dir);
+            Debug.WriteLine(Health);
+            entity.Hurt(this, _dmg, Dir);
         }
 
         protected override void Die()
@@ -111,6 +133,13 @@ namespace MiniRealms.Entities
             {
                 Level.Add(new ItemEntity(new ResourceItem(Resource.Cloth), X + Random.NextInt(11) - 5, Y + Random.NextInt(11) - 5));
             }
+
+            count = Random.NextInt(2) + 1;
+            for (int i = 0; i < count; i++)
+            {
+                Level.Add(new ItemEntity(new ResourceItem(Resource.Gem), X + Random.NextInt(11) - 5, Y + Random.NextInt(11) - 5));
+            }
+
 
             if (Level.Player != null)
             {

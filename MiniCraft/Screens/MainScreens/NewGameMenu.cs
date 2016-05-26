@@ -1,14 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using MiniRealms.Engine.Gfx;
-using MiniRealms.Engine.UI;
 using MiniRealms.Engine.UI.Objects;
 using MiniRealms.Screens.GameScreens;
 using MiniRealms.Screens.Interfaces;
 using MiniRealms.Screens.OptionItems;
 using MiniRealms.Screens.UIMenus;
 using Color = MiniRealms.Engine.Gfx.Color;
-using Font = MiniRealms.Engine.Gfx.Font;
 using Point = Microsoft.Xna.Framework.Point;
 
 namespace MiniRealms.Screens.MainScreens

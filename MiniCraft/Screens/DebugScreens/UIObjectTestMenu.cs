@@ -53,9 +53,9 @@ namespace MiniRealms.Screens.DebugScreens
                 }
             }
 
+            //Will be changed to read from a list of messages to be completely random :3
             if (Game.GameTime/40%2 == 0)
             {
-
                 if (_titleLabel.X > GameConts.Width + (_titleLabel.Text.Length * 8))
                 {
                     _titleLabel.X = -(_titleLabel.Text.Length * 8);

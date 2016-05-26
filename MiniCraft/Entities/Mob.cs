@@ -1,4 +1,5 @@
-﻿using MiniRealms.Engine;
+﻿using System.Diagnostics;
+using MiniRealms.Engine;
 using MiniRealms.Engine.Audio.Sounds;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities.Particles;
@@ -24,6 +25,8 @@ namespace MiniRealms.Entities
             X = Y = 8;
             Xr = 4;
             Yr = 3;
+
+            //Debug.WriteLine(MaxHealth);
         }
 
         public override void Tick()
@@ -105,7 +108,7 @@ namespace MiniRealms.Entities
         {
             if (HurtTime > 0) return;
 
-            Level.Add(new TextParticle("" + heal, X, Y, Color.Get(-1, 50, 50, 50)));
+            Level.Add(new TextParticle($"{heal}", X, Y, Color.Get(-1, 50, 50, 50)));
             Health += heal;
             if (Health > MaxHealth) Health = MaxHealth;
         }
@@ -123,7 +126,7 @@ namespace MiniRealms.Entities
                     SoundEffectManager.Play("monsterhurt");
                 }
             }
-            Level.Add(new TextParticle("" + damage, X, Y, Color.Get(-1, 500, 500, 500)));
+            Level.Add(new TextParticle($"{damage}", X, Y, Color.Get(-1, 500, 500, 500)));
             Health -= damage;
             if (attackDir == 0) YKnockback = +6;
             if (attackDir == 1) YKnockback = -6;

@@ -54,11 +54,11 @@ namespace MiniRealms.Levels.Tiles
             return true;
         }
 
-        public void Hurt(int x, int y, int dmg, Level level)
+        private void Hurt(int x, int y, int dmg, Level level)
         {
             int damage = level.GetData(x, y) + dmg;
             level.Add(new SmashParticle(x * 16 + 8, y * 16 + 8));
-            level.Add(new TextParticle("" + dmg, x * 16 + 8, y * 16 + 8, Color.Get(-1, 500, 500, 500)));
+            level.Add(new TextParticle($"{dmg}", x * 16 + 8, y * 16 + 8, Color.Get(-1, 500, 500, 500)));
 
 
             if (damage >= 10)

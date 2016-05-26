@@ -13,8 +13,7 @@ namespace MiniRealms.Entities
         private static int _blastDamage = 20;
         private int _fuseTime;
         private bool _fuseLit;
-
-
+        
         private int _xa, _ya;
         private readonly int _lvl;
         private int _randomWalkTime;
@@ -27,7 +26,8 @@ namespace MiniRealms.Entities
             X = Random.NextInt(64 * 16);
             Y = Random.NextInt(64 * 16);
 
-            Health = MaxHealth = lvl * lvl * 5;
+            int hp_level = _lvl - McGame.Difficulty.BaseLevel;
+            Health = MaxHealth = hp_level * hp_level * 5;
         }
 
         public override void Tick()
