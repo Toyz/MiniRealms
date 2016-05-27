@@ -19,10 +19,11 @@ namespace MiniRealms.Items.Resources
         public static Resource Torch = new PlantableResource("Torch", 6 + 5 * 32, Engine.Gfx.Color.Get(-1, 10, 531, 550), TileId.Torch, TileId.Dirt) { MinDepthPlacementLevel = 0};
 
         //Flowers!
-        public static Resource Flower = new PlantableResource("Flower", 0 + 4 * 32, Engine.Gfx.Color.Get(-1, 10, 444, 330), TileId.Flower, TileId.Grass);
+        public static Resource Flower = new PlantableResource("Daisy", 0 + 4 * 32, Engine.Gfx.Color.Get(-1, 10, 444, 330), TileId.Flower, TileId.Grass);
         public static Resource RedFlower = new PlantableResource("Rose", 0 + 4 * 32, Engine.Gfx.Color.Get(-1, 10, 300, 330), TileId.RedFlower, TileId.Grass);
         public static Resource YellowFlower = new PlantableResource("Daffodil", 0 + 4 * 32, Engine.Gfx.Color.Get(-1, 10, 550, 330), TileId.YellowFlower, TileId.Grass);
-        
+        public static Resource BlueFlower = new PlantableResource("Salvia", 0 + 4 * 32, Engine.Gfx.Color.Get(-1, 10, 75, 330), TileId.BlueFlower, TileId.Grass);
+
         //Other shit
         public static Resource Acorn = new PlantableResource("Acorn", 3 + 4 * 32, Engine.Gfx.Color.Get(-1, 100, 531, 320), TileId.TreeSapling, TileId.Grass);
         public static Resource Dirt = new PlantableResource("Dirt", 2 + 4 * 32, Engine.Gfx.Color.Get(-1, 100, 322, 432), TileId.Dirt, TileId.Hole, TileId.Water, TileId.Lava);

@@ -7,7 +7,6 @@ namespace MiniRealms.Screens.OptionItems
     {
         public class Difficulty
         {
-
             public Difficulty(string v1, int v2, int v3, int densenty, int bossMobSpawnRate)
             {
                 BossMobSpawnRate = bossMobSpawnRate;
@@ -29,14 +28,14 @@ namespace MiniRealms.Screens.OptionItems
             new Difficulty("Easy", 0, 5000, 8, 50),
             new Difficulty("Medium", 1, 10000, 7, 30),
             new Difficulty("Hard", 2, 15000, 6, 10),
-            new Difficulty("Nightmare", 3, 20000, 5, 5)
-
+            new Difficulty("Nightmare", 3, 20000, 5, 5),
+            new Difficulty("Ultra Nightmare", 4, 50000, 4, 2)
         };
 
         private int _selected;
 
         public override bool Enabled { get; set; } = true;
-        public override string Text { get; set; } = "Difficulty: ";
+        public sealed override string Text { get; set; }
         public override string SelectedText => $"< {Text} >";
 
         public DifficultyOption()

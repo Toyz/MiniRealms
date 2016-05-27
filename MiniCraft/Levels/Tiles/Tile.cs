@@ -20,6 +20,7 @@ namespace MiniRealms.Levels.Tiles
         public static Tile Flower;
         public static Tile RedFlower;
         public static Tile YellowFlower;
+        public static Tile BlueFlower;
 
         public static Tile Tree;
         public static Tile Dirt;
@@ -50,6 +51,7 @@ namespace MiniRealms.Levels.Tiles
             Flower = new FlowerTile(TileId.Flower, Resource.Flower);
             RedFlower = new FlowerTile(TileId.RedFlower, Resource.RedFlower);
             YellowFlower = new FlowerTile(TileId.YellowFlower, Resource.YellowFlower);
+            BlueFlower = new FlowerTile(TileId.BlueFlower, Resource.BlueFlower);
             Tree = new TreeTile(TileId.Tree);
             Dirt = new DirtTile(TileId.Dirt);
             Sand = new SandTile(TileId.Sand);

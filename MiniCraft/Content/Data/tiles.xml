@@ -49,6 +49,14 @@
       </Value>
     </Entry>
     <Entry>
+      <Key>BlueFlower</Key>
+      <Value>
+        <ID>33</ID>
+        <Color>-1473299194</Color>
+        <Rotation>0</Rotation>
+      </Value>
+    </Entry>
+    <Entry>
       <Key>Dirt</Key>
       <Value>
         <ID>0</ID>

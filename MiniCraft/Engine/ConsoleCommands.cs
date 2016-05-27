@@ -77,6 +77,12 @@ namespace MiniRealms.Engine
                     }
                 },
                 {
+                    TileId.BlueFlower, new List<Sprite>
+                    {
+                        new Sprite(1 + 1*32, Gfx.Color.Get(10, 141, 75, 440), 0)
+                    }
+                },
+                {
                     TileId.Dirt, new List<Sprite>
                     {
                         new Sprite(0, -1, 0),
@@ -154,7 +160,7 @@ namespace MiniRealms.Engine
                 }
             };
 
-            FileStream ms = new FileStream("tiles.xml", FileMode.CreateNew);
+            FileStream ms = new FileStream(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "tiles.xml"), FileMode.Create);
             XmlSerializer xs = new XmlSerializer(tileDict.GetType());
             xs.Serialize(ms, tileDict);
             ms.Close();
