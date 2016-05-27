@@ -25,7 +25,7 @@ namespace MiniRealms.Screens.MainScreens
 
             ScoreBoardManager.Load();
             _score = ScoreBoardManager.Scores.Score;
-            _bottomLabel = new Label(Game.UiManager) {Text = "(Arrow keys,X and C)", Color = Color.DarkGrey};
+            _bottomLabel = new Label(Game.UiManager) {Text = "(Arrow keys,X and C)", Color = Color.Get(-100, 222, 222, 222)};
             _bottomLabel.X = -(_bottomLabel.Text.Length * 8);
 
             _bottomLabel.Y = GameConts.Height - 8;
