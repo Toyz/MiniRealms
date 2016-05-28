@@ -10,8 +10,7 @@ namespace MiniRealms.Levels.Tiles
     {
         private readonly Resource _drop;
 
-        public FlowerTile(TileId id, Resource drop)
-            : base(id, SpriteSheet.GetSprites(TileId.Grass))
+        public FlowerTile(TileId id, Resource drop) : base(id, SpriteSheet.GetSprites(TileId.Grass))
         {
             _drop = drop;
             Tiles[(byte)id] = this;

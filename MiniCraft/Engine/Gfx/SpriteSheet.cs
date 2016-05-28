@@ -36,11 +36,11 @@ namespace MiniRealms.Engine.Gfx
             _tiles = (XmlDictionary<TileId, List<Sprite>>) xs.Deserialize(ms);
         }
 
-        public static List<Sprite> GetSprites(TileId tile)
+        public static Sprite[] GetSprites(TileId tile)
         {
-            if (!_tiles.ContainsKey(tile)) return new List<Sprite>();
+            if (!_tiles.ContainsKey(tile)) return new Sprite[0];
 
-            return _tiles[tile];
+            return _tiles[tile].ToArray();
         }
 
     }

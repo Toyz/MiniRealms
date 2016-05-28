@@ -89,7 +89,7 @@ namespace MiniRealms.Levels.Tiles
             if (Tiles[Id] != null) throw new InvalidOperationException("Duplicate tile ids!");
             Tiles[Id] = this;
 
-            Sprites = SpriteSheet.GetSprites(tileId).ToArray();
+            Sprites = SpriteSheet.GetSprites(tileId);
 //            Debug.WriteLine($"{tileId}, Spirts Count {Sprites.Count}");
         }
 

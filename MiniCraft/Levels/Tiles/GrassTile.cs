@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using MiniRealms.Engine;
+﻿using MiniRealms.Engine;
 using MiniRealms.Engine.Audio.Sounds;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
@@ -12,18 +11,17 @@ namespace MiniRealms.Levels.Tiles
     {
         private readonly Sprite[] _sprites;
 
-        public GrassTile(TileId id)
-            : base(id)
+        public GrassTile(TileId id) : base(id)
         {
             ConnectsToGrass = true;
             _sprites = Sprites;
         }
 
-        public GrassTile(TileId id, List<Sprite> ParentSprits) : base(id)
+        protected GrassTile(TileId id, Sprite[] parentSprits) : base(id)
         {
             ConnectsToGrass = true;
 
-            _sprites = ParentSprits.ToArray();
+            _sprites = parentSprits;
         }
 
         public override void Render(Screen screen, Level level, int x, int y)

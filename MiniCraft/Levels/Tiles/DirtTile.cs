@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using MiniRealms.Engine;
+﻿using MiniRealms.Engine;
 using MiniRealms.Engine.Audio.Sounds;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
@@ -18,9 +17,9 @@ namespace MiniRealms.Levels.Tiles
             _sprites = Sprites;
         }
 
-        protected DirtTile(TileId id, List<Sprite> parentSprits) : base(id)
+        protected DirtTile(TileId id, Sprite[] parentSprits) : base(id)
         {
-            _sprites = parentSprits.ToArray();
+            _sprites = parentSprits;
         }
 
 
