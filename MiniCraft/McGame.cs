@@ -255,7 +255,7 @@ namespace MiniRealms
                         _playerDeadTime++;
                         if (_playerDeadTime > 60)
                         {
-                            SetMenu(new GameOverMenu("Game Over :: Stats", "Goto Main Menu 'C'"));
+                            SetMenu(new GameOverMenu("Game Over :: Stats", "Goto Main Menu 'C'", false));
                         }
                     }
                     else
@@ -270,7 +270,7 @@ namespace MiniRealms
                     {
                         if (--_wonTimer == 0)
                         {
-                            SetMenu(new GameOverMenu("You Won :: Stats", "Goto Main Menu 'C'"));
+                            SetMenu(new GameOverMenu("You Won :: Stats", "Goto Main Menu 'C'", true));
                         }
                     }
                     Level.Tick();

@@ -27,9 +27,9 @@ namespace MiniRealms.Engine.ScoreSystem
             }
         }
 
-        public static void AddItem(DateTime dt, int score, int ac, string diff)
+        public static void AddItem(DateTime dt, int score, int ac, string diff, bool youWon)
         {
-            Scores.Score.Add(new Score(dt, score, ac, diff));
+            Scores.Score.Add(new Score(dt, score, ac, diff, youWon));
 
             Scores.Score = Scores.Score.OrderByDescending(x => x.TimeTookMs)/*.ThenBy(x => x.AcScore)*/.ToList();
 

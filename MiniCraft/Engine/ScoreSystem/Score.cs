@@ -10,13 +10,15 @@ namespace MiniRealms.Engine.ScoreSystem
         public int TimeTookMs;
         public int AcScore;
         public string Difficulty;
+        public bool YouWon;
 
-        public Score(DateTime dt, int timems, int acScore, string difficulty)
+        public Score(DateTime dt, int timems, int acScore, string difficulty, bool youWon)
         {
             FinishDateTime = dt;
             TimeTookMs = timems;
             AcScore = acScore;
             Difficulty = difficulty;
+            YouWon = youWon;
         }
 
     }

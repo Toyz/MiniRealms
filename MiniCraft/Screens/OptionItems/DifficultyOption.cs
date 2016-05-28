@@ -7,13 +7,14 @@ namespace MiniRealms.Screens.OptionItems
     {
         public class Difficulty
         {
-            public Difficulty(string v1, int v2, int v3, int densenty, int bossMobSpawnRate)
+            public Difficulty(string v1, string shortName, int v2, int v3, int densenty, int bossMobSpawnRate)
             {
                 BossMobSpawnRate = bossMobSpawnRate;
                 Name = v1;
                 BaseLevel = v2;
                 SpawnAmount = v3;
                 Density = densenty;
+                ShortName = shortName;
             }
 
             public string Name { get; }
@@ -21,15 +22,16 @@ namespace MiniRealms.Screens.OptionItems
             public int SpawnAmount { get; }
             public int BossMobSpawnRate { get; }
             public int Density { get; }
+            public string ShortName { get; }
         }
 
         private readonly List<Difficulty> _modes = new List<Difficulty>
         {
-            new Difficulty("Easy", 0, 5000, 8, 50),
-            new Difficulty("Medium", 1, 10000, 7, 30),
-            new Difficulty("Hard", 2, 15000, 6, 10),
-            new Difficulty("Nightmare", 3, 20000, 5, 5),
-            new Difficulty("Ultra Nightmare", 4, 50000, 4, 2)
+            new Difficulty("Easy", "Easy", 0, 5000, 8, 50),
+            new Difficulty("Normal", "Normal", 1, 10000, 7, 30),
+            new Difficulty("Hard", "Hard", 2, 15000, 6, 10),
+            new Difficulty("Nightmare", "NM", 3, 20000, 5, 5),
+            new Difficulty("Ultra Nightmare", "UNM", 4, 50000, 4, 2)
         };
 
         private int _selected;

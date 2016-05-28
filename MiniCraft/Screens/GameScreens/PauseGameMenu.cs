@@ -42,13 +42,13 @@ namespace MiniRealms.Screens.GameScreens
             seconds %= 60;
 
             var ts =
-                $"{(hours > 0 ? hours + "h" + (minutes < 10 ? "0" : "") + minutes + "m" : minutes + "m " + (seconds < 10 ? "0" : "") + seconds + "s")}";
+                $"{(hours > 0 ? hours + ":" + (minutes < 10 ? "0" : "") + minutes + ":" : minutes + ":" + (seconds < 10 ? "0" : "") + seconds)}";
 
             _lines = new List<string>
             {
                 Utils.SpacesCenter(ts, width, 0, 1),
                 $"Score:{Utils.SpacesPushleft(Game.Player.Score.ToString(), width, 6)}",
-                $"Mode:{Utils.SpacesPushleft(McGame.Difficulty.Name, width, 5)}",
+                $"Mode:{Utils.SpacesPushleft(McGame.Difficulty.ShortName, width, 5)}",
                 $"Size:{Utils.SpacesPushleft($"{GameConts.Instance.MaxWidth}x{GameConts.Instance.MaxHeight}", width, 5)}"
             };
 

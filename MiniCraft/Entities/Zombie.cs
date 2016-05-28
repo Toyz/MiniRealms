@@ -24,9 +24,9 @@ namespace MiniRealms.Entities
 
             X = Random.NextInt(64 * 16);
             Y = Random.NextInt(64 * 16);
-            int hp_level = _lvl - McGame.Difficulty.BaseLevel;
+            int hpLevel = _lvl - McGame.Difficulty.BaseLevel;
 
-            Health = MaxHealth = hp_level * hp_level * 10;
+            Health = MaxHealth = hpLevel * hpLevel * 10;
             _shirtColor = Random.Next(1, 555) + 1;
             _glowColor = Random.NextInt(McGame.Difficulty.BossMobSpawnRate + 1) >= McGame.Difficulty.BossMobSpawnRate ? Random.Next(10, 555) - 1 : 10;
 
@@ -35,7 +35,7 @@ namespace MiniRealms.Entities
             if (_glowColor != _defaultGlowColor)
             {
                 MaxHealth = Random.Next(10, 50);
-                Health = MaxHealth = hp_level * hp_level * 10 * MaxHealth;
+                Health = MaxHealth = hpLevel * hpLevel * 10 + MaxHealth;
 
                 _dmg = lvl + Random.NextInt(3);
 

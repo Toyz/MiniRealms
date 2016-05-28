@@ -98,18 +98,18 @@ namespace MiniRealms.Screens.MainScreens
                     seconds %= 60;
 
                     var ts = hours > 0
-                        ? hours + "h" + (minutes < 10 ? "0" : "") + minutes + "m"
-                        : minutes + "m " + (seconds < 10 ? "0" : "") + seconds + "s";
+                        ? hours + ":" + (minutes < 10 ? "0" : "") + minutes + ":"
+                        : minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
 
 
                     var l = new List<string>
                     {
-                        Utils.SpacesCenter(ts, 21, 0, -2),
-                        $"Score:{Utils.SpacesPushleft(s.AcScore.ToString(), 21, 6)}",
-                        $"Mode:{Utils.SpacesPushleft(s.Difficulty, 21, 5)}",
+                        $"You Won:{Utils.SpacesPushleft($"{(s.YouWon ? "Completed" : "Failed")}", 21, 8)}",
+                        $"Mode:{Utils.SpacesPushleft($"{s.Difficulty} - {ts}", 21, 5)}",
+                        $"Score:{Utils.SpacesPushleft(s.AcScore.ToString(), 21, 6)}"
                     };
 
-                    RenderLeftMenuItem(15, (GameConts.Height / 4) + i * 38, 21, l.Count, l.ToArray(), Color.Get(5, 333, 333, 333), screen);
+                    RenderLeftMenuItem(10, (GameConts.Height / 4) + i * 42, 21, l.Count, l.ToArray(), Color.Get(5, 333, 333, 333), screen);
                 }
             }
             else

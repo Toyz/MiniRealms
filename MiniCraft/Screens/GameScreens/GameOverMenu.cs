@@ -12,19 +12,21 @@ namespace MiniRealms.Screens.GameScreens
     {
         private readonly string _title;
         private readonly string _body;
+        private readonly bool _youWon;
         private int _inputDelay = 60;
 
-        public GameOverMenu(string title, string body)
+        public GameOverMenu(string title, string body, bool youWon)
         {
             _title = title;
             _body = body;
+            _youWon = youWon;
         }
 
         public override void Init(McGame game, InputHandler input)
         {
             base.Init(game, input);
 
-            ScoreBoardManager.AddItem(DateTime.Now, game.GameTime, Game.Player.Score, McGame.Difficulty.Name);
+            ScoreBoardManager.AddItem(DateTime.Now, game.GameTime, Game.Player.Score, McGame.Difficulty.ShortName, _youWon);
         }
 
         public override void Tick()
