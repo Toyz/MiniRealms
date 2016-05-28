@@ -9,7 +9,6 @@ namespace MiniRealms.Engine.Gfx
 {
     public class SpriteSheet
     {
-        private Texture2D _image;
         public readonly int Width;
         public readonly int Height;
         public readonly int[] Pixels;
@@ -44,9 +43,5 @@ namespace MiniRealms.Engine.Gfx
             return _tiles[tile];
         }
 
-        public void Unload()
-        {
-            _image = null;
-        }
     }
 }
