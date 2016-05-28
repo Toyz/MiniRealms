@@ -354,7 +354,7 @@ namespace MiniRealms
                 for (var x = 0; x < Screen.W; x++)
                 {
                     var cc = Screen.GetPixel(x + y*Screen.W);
-                    if (cc < 255) _pixels[x + y* GameConts.Width] = _colors[cc];
+                    if (cc < 255) _pixels[x + y* Screen.W] = _colors[cc];
                 }
             }
             _image.SetData(_pixels);
@@ -471,19 +471,19 @@ namespace MiniRealms
 
             Levels = new Level[5];
             LoadingText = "Creating Level 1";
-            Levels[4] = new Level(lw, lh, 1, 1,null);
+            Levels[4] = new Level(lw, lh, 1,null);
 
             LoadingText = "Creating Level 2";
-            Levels[3] = new Level(lw, lh, 0, 0, Levels[4]);
+            Levels[3] = new Level(lw, lh, 0, Levels[4]);
 
             LoadingText = "Creating Level 3";
-            Levels[2] = new Level(lw, lh, -1, -1, Levels[3]);
+            Levels[2] = new Level(lw, lh, -1, Levels[3]);
 
             LoadingText = "Creating Level 4";
-            Levels[1] = new Level(lw, lh, -2, -2, Levels[2]);
+            Levels[1] = new Level(lw, lh, -2, Levels[2]);
 
             LoadingText = "Creating Level 5";
-            Levels[0] = new Level(lw, lh, -3, -3, Levels[1]);
+            Levels[0] = new Level(lw, lh, -3, Levels[1]);
 
             Level = Levels[CurrentLevel];
 

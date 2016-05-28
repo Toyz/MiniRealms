@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using MiniRealms.Engine;
 using MiniRealms.Entities;
 using MiniRealms.Levels;
 using MiniRealms.Levels.Tiles;
@@ -10,7 +9,7 @@ namespace MiniRealms.Items.Resources
 
     public class Resource
     {
-        public static List<Resource> AllResources = new List<Resource>();
+        public static readonly List<Resource> AllResources = new List<Resource>();
 
         public static Resource Wood = new Resource("Wood", 1 + 4 * 32, Engine.Gfx.Color.Get(-1, 200, 531, 430));
         public static Resource Stick = new Resource("Stick", 5 + 5 * 32, Engine.Gfx.Color.Get(-1, 200, 531, 430));
@@ -51,14 +50,14 @@ namespace MiniRealms.Items.Resources
         public int Sprite { get; }
         public int Color { get; }
 
-        public Resource(string name, int sprite, int color)
+        protected Resource(string name, int sprite, int color)
         {
             if (name.Length > 8) throw new Exception($"{nameof(name)} cannot be longer than 8 characters!");
             Name = name;
             Sprite = sprite;
             Color = color;
 
-            Extensions.Add(AllResources, this);
+            AllResources.Add(this);
         }
 
         public virtual bool InteractOn(Tile tile, Level level, int xt, int yt, Player player, int attackDir) => false;

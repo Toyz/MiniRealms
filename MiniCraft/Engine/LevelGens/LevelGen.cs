@@ -217,11 +217,11 @@ namespace MiniRealms.Engine.LevelGens
              * for (int i = 0; i < w * h / 2800; i++) { int xs = random.nextInt(w); int ys = random.nextInt(h); for (int k = 0; k < 10; k++) { int x = xs + random.nextInt(21) - 10; int y = ys + random.nextInt(21) - 10; for (int j = 0; j < 100; j++) { int xo = x + random.nextInt(5) - random.nextInt(5); int yo = y + random.nextInt(5) - random.nextInt(5); for (int yy = yo - 1; yy <= yo + 1; yy++) for (int xx = xo - 1; xx <= xo + 1; xx++) if (xx >= 0 && yy >= 0 && xx < w && yy < h) { if (map[xx + yy * w] == Tile.grass.id) { map[xx + yy * w] = Tile.dirt.id; } } } } }
              */
 
-            for (int i = 0; i < w * h / 400; i++)
+            for (int i = 0; i < w * h / 200; i++)
             {
                 int x = Random.NextInt(w);
                 int y = Random.NextInt(h);
-                for (int j = 0; j < 200; j++)
+                for (int j = 0; j < 100; j++)
                 {
                     int xx = x + Random.NextInt(15) - Random.NextInt(15);
                     int yy = y + Random.NextInt(15) - Random.NextInt(15);
@@ -247,15 +247,15 @@ namespace MiniRealms.Engine.LevelGens
                         case 6:
                             map[xx + yy * w] = Tile.BlueFlower.Id;
                             break;
-                        case 3:
+                        //case 3:
                         case 2:
                             map[xx + yy * w] = Tile.YellowFlower.Id;
                             break;
-                        case 5:
+                        //case 5:
                         case 1:
                             map[xx + yy * w] = Tile.RedFlower.Id;
                             break;
-                        case 4:
+                        //case 4:
                         case 0:
                             map[xx + yy * w] = Tile.Flower.Id;
                             break;
@@ -312,8 +312,8 @@ namespace MiniRealms.Engine.LevelGens
             LevelGen nnoise2 = new LevelGen(w, h, 16);
             LevelGen nnoise3 = new LevelGen(w, h, 16);
 
-            //LevelGen wnoise1 = new LevelGen(w, h, 16);
-            //LevelGen wnoise2 = new LevelGen(w, h, 16);
+            LevelGen wnoise1 = new LevelGen(w, h, 16);
+            LevelGen wnoise2 = new LevelGen(w, h, 16);
             LevelGen wnoise3 = new LevelGen(w, h, 16);
 
             LevelGen noise1 = new LevelGen(w, h, 32);
@@ -330,11 +330,13 @@ namespace MiniRealms.Engine.LevelGens
                     double val = Math.Abs(noise1._values[i] - noise2._values[i]) * 3 - 2;
 
                     double mval = Math.Abs(mnoise1._values[i] - mnoise2._values[i]);
-                    mval = Math.Abs(mval - mnoise3._values[i]) * 3 - 2;
+                    mval = Math.Abs(mval - mnoise3._values[i]) * 4 - 2;
 
                     double nval = Math.Abs(nnoise1._values[i] - nnoise2._values[i]);
-                    nval = Math.Abs(nval - nnoise3._values[i]) * 3 - 2;
+                    nval = Math.Abs(nval - nnoise3._values[i]) * 4 - 2;
 
+                    //double wval = Math.Abs(wnoise1._values[i] - wnoise2._values[i]);
+                    //wval = Math.Abs(wval - wnoise3._values[i]) * 5 - 2;
                     var wval = Math.Abs(nval - wnoise3._values[i]) * 3 - 2;
 
                     double xd = x / (w - 1.0) * 2 - 1;

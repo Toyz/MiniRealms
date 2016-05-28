@@ -10,7 +10,6 @@ namespace MiniRealms.Levels
 {
     public sealed class Level
     {
-        public int Index { get; }
         private readonly Random _random = new Random((int) LevelGen.Seed);
 
         public readonly int W;
@@ -20,16 +19,14 @@ namespace MiniRealms.Levels
         private byte[] Data { get; }
         private readonly List<Entity>[] _entitiesInTiles;
 
-        //private readonly int _grassColor = 141;
         public int DirtColor { get; }
-        //private readonly int _sandColor = 550;
 
-        public int Depth;
+        public readonly int Depth;
         public int MonsterDensity = 8;
 
 
         private readonly List<Entity> _entities = new List<Entity>();
-        private static readonly SpriteSorter _spriteSorter = new SpriteSorter();
+        private static readonly SpriteSorter SpriteSortAndRender = new SpriteSorter();
         private class SpriteSorter : IComparer<Entity>
         {
             public int Compare(Entity e0, Entity e1)
@@ -40,9 +37,8 @@ namespace MiniRealms.Levels
             }
         }
 
-        public Level(int w, int h, int level, int index, Level parentLevel)
+        public Level(int w, int h, int level, Level parentLevel)
         {
-            Index = index;
             DirtColor = 322;
             unchecked
             {
@@ -150,8 +146,8 @@ namespace MiniRealms.Levels
         {
             int xo = xScroll >> 4;
             int yo = yScroll >> 4;
-            int w = (screen.W + 15) >> 4;
-            int h = (screen.H + 15) >> 4;
+            int w = (screen.W + 5) >> 4;
+            int h = (screen.H + 5) >> 4;
 
             screen.SetOffset(xScroll, yScroll);
             for (int y = yo; y <= h + yo; y++)
@@ -202,13 +198,9 @@ namespace MiniRealms.Levels
             screen.SetOffset(0, 0);
         }
 
-        // private void renderLight(Screen screen, int x, int y, int r) {
-        // screen.renderLight(x, y, r);
-        // }
-
         private static void SortAndRender(Screen screen, List<Entity> list)
         {
-            list.Sort(_spriteSorter);
+            list.Sort(SpriteSortAndRender);
             for (int i = 0; i < list.Size(); i++)
             {
                 list.Get(i).Render(screen);

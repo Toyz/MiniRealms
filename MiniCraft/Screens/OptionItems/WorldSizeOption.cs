@@ -11,7 +11,7 @@ namespace MiniRealms.Screens.OptionItems
             new Point(128, 128),
             new Point(256, 256),
             new Point(512, 512),
-            new Point(1024, 1024)
+            //new Point(1024, 1024)
         };
 
         public int Selected;
