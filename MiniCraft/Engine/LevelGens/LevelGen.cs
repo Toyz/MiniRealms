@@ -312,8 +312,8 @@ namespace MiniRealms.Engine.LevelGens
             LevelGen nnoise2 = new LevelGen(w, h, 16);
             LevelGen nnoise3 = new LevelGen(w, h, 16);
 
-            LevelGen wnoise1 = new LevelGen(w, h, 16);
-            LevelGen wnoise2 = new LevelGen(w, h, 16);
+            //var wnoise1 = new LevelGen(w, h, 16);
+            //var wnoise2 = new LevelGen(w, h, 16);
             LevelGen wnoise3 = new LevelGen(w, h, 16);
 
             LevelGen noise1 = new LevelGen(w, h, 32);
@@ -330,14 +330,14 @@ namespace MiniRealms.Engine.LevelGens
                     double val = Math.Abs(noise1._values[i] - noise2._values[i]) * 3 - 2;
 
                     double mval = Math.Abs(mnoise1._values[i] - mnoise2._values[i]);
-                    mval = Math.Abs(mval - mnoise3._values[i]) * 4 - 2;
+                    mval = Math.Abs(mval - mnoise3._values[i]) * 3 - 2;
 
                     double nval = Math.Abs(nnoise1._values[i] - nnoise2._values[i]);
-                    nval = Math.Abs(nval - nnoise3._values[i]) * 4 - 2;
+                    nval = Math.Abs(nval - nnoise3._values[i]) * 3 - 2;
 
                     //double wval = Math.Abs(wnoise1._values[i] - wnoise2._values[i]);
                     //wval = Math.Abs(wval - wnoise3._values[i]) * 5 - 2;
-                    var wval = Math.Abs(nval - wnoise3._values[i]) * 3 - 2;
+                    var wval = Math.Abs(nval - wnoise3._values[i]) * 4 - 2;
 
                     double xd = x / (w - 1.0) * 2 - 1;
                     double yd = y / (h - 1.0) * 2 - 1;

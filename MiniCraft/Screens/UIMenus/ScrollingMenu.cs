@@ -29,8 +29,10 @@ namespace MiniRealms.Screens.UIMenus
         {
         }
 
-        protected void RenderScrollingListTable(List<Option> options, Location renderLocation = Location.Center)
+        protected void RenderScrollingListTable(List<Option> options, Location renderLocation = Location.Center, int selectedAt = 0)
         {
+            _selected = selectedAt;
+            _selectedItem = selectedAt;
             _renderLocation = renderLocation;
             _options = options;
             _visible = _options.Page(1, MaxToShow).ToList();
