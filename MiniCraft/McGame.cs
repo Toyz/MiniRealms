@@ -122,6 +122,12 @@ namespace MiniRealms
             CurrentLevel = 3;
         }
 
+        protected override void OnExiting(Object sender, EventArgs args)
+        {
+            GameSongManager.StopCurrentPlaying();
+            base.OnExiting(sender, args);
+        }
+
         protected override void LoadContent()
         {
             Form myGameForm = (Form)Control.FromHandle(Window.Handle);

@@ -12,6 +12,8 @@ namespace MiniRealms.Engine.Audio.Music
         private static Dictionary<string, GameSong> AllSongs { get; set; }
         private static int _currentSong;
         private static Random _randomNumber;
+        private static bool _canKeepPlaying = true;
+        private static GameSong _currentPlayingSong;
 
         public static void Initialize(ContentManager content)
         {
@@ -53,6 +55,7 @@ namespace MiniRealms.Engine.Audio.Music
 
         public static void PlayNextSong()
         {
+            if (!_canKeepPlaying) return;
             if (MediaPlayer.State == MediaState.Playing) return;
             if(!GameConts.Instance.RandomMusicCycle)
             {
@@ -69,6 +72,7 @@ namespace MiniRealms.Engine.Audio.Music
 
             var key = AllSongs.Keys.ElementAt(_currentSong);
 
+            _currentPlayingSong = AllSongs[key];
             AllSongs[key].Play();
         }  
 
@@ -77,6 +81,12 @@ namespace MiniRealms.Engine.Audio.Music
             if (!AllSongs.ContainsKey(key)) throw new IndexOutOfRangeException($"Sound \"{key}\" doesn't exist");
 
             return AllSongs[key];
+        }
+
+        public static void StopCurrentPlaying()
+        {
+            _currentPlayingSong.Stop();
+            _canKeepPlaying = false;
         }
     }
 }
