@@ -217,13 +217,13 @@ namespace MiniRealms.Engine
         {
             if (strings.Length < 1 || strings[0] == "list-sounds")
             {
-                return $"All Sounds: {string.Join(", ", SoundEffectManager.AllSounds.Keys)}";
+                return $"All Sounds: {string.Join(", ", GameEffectManager.AllSounds.Keys)}";
             }
 
             strings[0] = strings[0].ToLower();
 
-            if (!SoundEffectManager.AllSounds.ContainsKey(strings[0])) return "SoundEffect does not exist";
-            SoundEffectManager.AllSounds[strings[0]].Play();
+            if (!GameEffectManager.AllSounds.ContainsKey(strings[0])) return "GameEffect does not exist";
+            GameEffectManager.AllSounds[strings[0]].Play();
             return $"Playing sound {strings[0]}";
         }
 

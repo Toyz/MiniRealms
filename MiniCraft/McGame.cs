@@ -165,8 +165,8 @@ namespace MiniRealms
             Screen = new Screen(GameConts.Width, GameConts.Height, new SpriteSheet(spriteSheet));
             _lightScreen = new Screen(GameConts.Width, GameConts.Height, new SpriteSheet(spriteSheet));
 
-            SoundEffectManager.Initialize(Content);
-            SoundEffectManager.SetMasterVolume(GameConts.Instance.SoundEffectVolume);
+            GameEffectManager.Initialize(Content);
+            GameEffectManager.SetMasterVolume(GameConts.Instance.SoundEffectVolume);
 
             GameSongManager.Initialize(Content);
             GameSongManager.SetMasterVolume(GameConts.Instance.MusicVolume);

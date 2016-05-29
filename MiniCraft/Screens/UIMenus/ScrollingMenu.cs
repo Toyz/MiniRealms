@@ -45,7 +45,7 @@ namespace MiniRealms.Screens.UIMenus
 
             if (Input.Up.Clicked)
             {
-                SoundEffectManager.Play("menu_move");
+                GameEffectManager.Play("menu_move");
                 _selected--;
                 _selectedItem--;
 
@@ -72,7 +72,7 @@ namespace MiniRealms.Screens.UIMenus
 
             if (Input.Down.Clicked)
             {
-                SoundEffectManager.Play("menu_move");
+                GameEffectManager.Play("menu_move");
                 _selected++;
                 _selectedItem++;
 

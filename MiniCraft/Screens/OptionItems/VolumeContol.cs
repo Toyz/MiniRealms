@@ -44,7 +44,7 @@ namespace MiniRealms.Screens.OptionItems
 
         protected internal override void HandleInput(InputHandler input)
         {
-            float volume = SoundEffectManager.GetMasterVolume();
+            float volume = GameEffectManager.GetMasterVolume();
 
             if (_type == SoundType.Music)
             {
@@ -75,7 +75,7 @@ namespace MiniRealms.Screens.OptionItems
                 {
                     case SoundType.Effects:
                         GameConts.Instance.SoundEffectVolume = volume;
-                        SoundEffectManager.SetMasterVolume(volume);
+                        GameEffectManager.SetMasterVolume(volume);
                         break;
                     case SoundType.Music:
                         GameConts.Instance.MusicVolume = volume;

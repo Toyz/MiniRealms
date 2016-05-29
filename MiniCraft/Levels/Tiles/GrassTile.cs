@@ -90,7 +90,7 @@ namespace MiniRealms.Levels.Tiles
             if (tool.ObjectType == ToolType.Shovel && player.PayStamina(4 - tool.Level))
             {
                 level.SetTile(xt, yt, Dirt, 0);
-                SoundEffectManager.Play("monsterhurt");
+                GameEffectManager.Play("monsterhurt");
                 if (Random.NextInt(5) == 0)
                 {
                     level.Add(new ItemEntity(new ResourceItem(Resource.Seeds), xt*16 + Random.NextInt(10) + 3,
@@ -100,7 +100,7 @@ namespace MiniRealms.Levels.Tiles
             }
             if (tool.ObjectType != ToolType.Hoe) return false;
             if (!player.PayStamina(4 - tool.Level)) return false;
-            SoundEffectManager.Play("monsterhurt");
+            GameEffectManager.Play("monsterhurt");
             if (Random.NextInt(5) == 0)
             {
                 level.Add(new ItemEntity(new ResourceItem(Resource.Seeds), xt * 16 + Random.NextInt(10) + 3, yt * 16 + Random.NextInt(10) + 3));

@@ -5,19 +5,19 @@ using Microsoft.Xna.Framework.Content;
 
 namespace MiniRealms.Engine.Audio.Sounds
 {
-    public static class SoundEffectManager
+    public static class GameEffectManager
     {
-        public static Dictionary<string, SoundEffect> AllSounds { get; private set; }
+        public static Dictionary<string, GameEffect> AllSounds { get; private set; }
 
         public static void Initialize(ContentManager content)
         {
-            AllSounds = new Dictionary<string, SoundEffect>();
+            AllSounds = new Dictionary<string, GameEffect>();
 
             foreach (var fileName in Directory.EnumerateFiles(Path.Combine(content.RootDirectory, "Sounds"), "*.xnb"))
             {
                 var file = Path.GetFileNameWithoutExtension(fileName);
 
-                if (file != null) AllSounds.Add(file, new SoundEffect(content, file));
+                if (file != null) AllSounds.Add(file, new GameEffect(content, file));
             }
         }
 
@@ -41,12 +41,12 @@ namespace MiniRealms.Engine.Audio.Sounds
             Get(key).Stop();
         }
 
-        public static void Registry(string name, SoundEffect soundEffect)
+        public static void Registry(string name, GameEffect gameEffect)
         {
-            AllSounds.Add(name, soundEffect);
+            AllSounds.Add(name, gameEffect);
         }
 
-        private static SoundEffect Get(string key)
+        private static GameEffect Get(string key)
         {
             if (!AllSounds.ContainsKey(key)) throw new IndexOutOfRangeException($"Sound \"{key}\" doesn't exist");
 

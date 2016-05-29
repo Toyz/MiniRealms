@@ -3,19 +3,19 @@ using Microsoft.Xna.Framework.Content;
 
 namespace MiniRealms.Engine.Audio.Sounds
 {
-    public class SoundEffect
+    public class GameEffect
     {
         //actual sound object
         private Microsoft.Xna.Framework.Audio.SoundEffect _soundEffect;
         private SoundEffectInstance _soundEffectInstance;
 
-        public SoundEffect(ContentManager content, string fileName, bool isPhysicalPath = false)
+        public GameEffect(ContentManager content, string fileName, bool isPhysicalPath = false)
         {
             _soundEffect = isPhysicalPath ? content.Load<Microsoft.Xna.Framework.Audio.SoundEffect>(fileName) : content.Load<Microsoft.Xna.Framework.Audio.SoundEffect>("Sounds/" + fileName);
             _soundEffectInstance = _soundEffect.CreateInstance();
         }
 
-        public SoundEffect(byte[] file, int sampleRate)
+        public GameEffect(byte[] file, int sampleRate)
         {
             _soundEffect = new Microsoft.Xna.Framework.Audio.SoundEffect(file, sampleRate, AudioChannels.Stereo);
             _soundEffectInstance = _soundEffect.CreateInstance();

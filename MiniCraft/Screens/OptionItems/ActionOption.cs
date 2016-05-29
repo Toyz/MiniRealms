@@ -19,7 +19,7 @@ namespace MiniRealms.Screens.OptionItems
             if (!input.Attack.Clicked && !input.Menu.Clicked) return;
             if (!Enabled) return;
             if(ClickSound)
-                SoundEffectManager.Play("test");
+                GameEffectManager.Play("test");
             _function?.Invoke();
         }
 
