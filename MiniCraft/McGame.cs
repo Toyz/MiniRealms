@@ -7,6 +7,7 @@ using GameConsole;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MiniRealms.Engine;
+using MiniRealms.Engine.Audio.Music;
 using MiniRealms.Engine.Audio.Sounds;
 using MiniRealms.Engine.Compents;
 using MiniRealms.Engine.Gfx;
@@ -168,8 +169,10 @@ namespace MiniRealms
             _lightScreen = new Screen(GameConts.Width, GameConts.Height, new SpriteSheet(spriteSheet));
 
             SoundEffectManager.Initialize(Content);
-            SoundEffectManager.SetMasterVolume(GameConts.Instance.Volume);
+            SoundEffectManager.SetMasterVolume(GameConts.Instance.SoundEffectVolume);
 
+            GameSongManager.Initialize(Content);
+            GameSongManager.SetMasterVolume(GameConts.Instance.MusicVolume);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             _pixels = new Microsoft.Xna.Framework.Color[GameConts.Width  * GameConts.Height];
@@ -179,6 +182,8 @@ namespace MiniRealms
 
             ResetGame();
             SetMenu(new TitleMenu());
+
+            //GameSongManager.Play("arpanauts");
         }
 
         /// <summary>
@@ -189,6 +194,8 @@ namespace MiniRealms
         protected override void Update(GameTime gameTime)
         {
             if (!_running) return;
+            GameSongManager.PlayNextSong();
+
             //assuming 60 updates from monogame
             Tick();
 

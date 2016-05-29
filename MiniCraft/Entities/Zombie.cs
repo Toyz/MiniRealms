@@ -128,19 +128,26 @@ namespace MiniRealms.Entities
         {
             base.Die();
 
-            int count = Random.NextInt(2) + 1;
-            for (int i = 0; i < count; i++)
+            int count = Random.Next(3);
+            if (count > 0)
             {
-                Level.Add(new ItemEntity(new ResourceItem(Resource.Cloth), X + Random.NextInt(11) - 5, Y + Random.NextInt(11) - 5));
+                for (int i = 0; i < count; i++)
+                {
+                    Level.Add(new ItemEntity(new ResourceItem(Resource.Cloth), X + Random.NextInt(11) - 5,
+                        Y + Random.NextInt(11) - 5));
+                }
             }
 
             if (_isBossMob)
             {
-                count = Random.NextInt(2) + 1;
-                for (int i = 0; i < count; i++)
+                count = Random.Next(3);
+                if (count > 0)
                 {
-                    Level.Add(new ItemEntity(new ResourceItem(Resource.Gem), X + Random.NextInt(11) - 5,
-                        Y + Random.NextInt(11) - 5));
+                    for (int i = 0; i < count; i++)
+                    {
+                        Level.Add(new ItemEntity(new ResourceItem(Resource.Gem), X + Random.NextInt(11) - 5,
+                            Y + Random.NextInt(11) - 5));
+                    }
                 }
             }
 

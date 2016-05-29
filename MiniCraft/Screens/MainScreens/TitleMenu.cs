@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using MiniRealms.Engine;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Engine.ScoreSystem;
@@ -14,6 +15,8 @@ namespace MiniRealms.Screens.MainScreens
     {
         private List<Score> _score;
         private Label _bottomLabel;
+        private static string[] _credits;
+        private int _currentCredit = 1;
 
         public TitleMenu() : base(null)
         {
@@ -23,9 +26,13 @@ namespace MiniRealms.Screens.MainScreens
         {
             base.Init(game, input);
 
+            if(_credits == null)
+                _credits = File.Exists(Path.Combine(Game.Content.RootDirectory, "credits.txt")) ? 
+                    File.ReadAllLines(Path.Combine(Game.Content.RootDirectory, "credits.txt")) : new[] {"Credits are missing why?"};
+
             ScoreBoardManager.Load();
             _score = ScoreBoardManager.Scores.Score;
-            _bottomLabel = new Label(Game.UiManager) {Text = "(Arrow keys,X and C)", Color = Color.Get(-100, 222, 222, 222)};
+            _bottomLabel = new Label(Game.UiManager) {Text = _credits[0], Color = Color.Get(-100, 222, 222, 222)};
             _bottomLabel.X = -(_bottomLabel.Text.Length * 8);
             _bottomLabel.Y = GameConts.Height - 8;
 
@@ -35,8 +42,8 @@ namespace MiniRealms.Screens.MainScreens
             {
                 new ChangeMenuOption("New Game", new NewGameMenu(this), Game),
                 new ChangeMenuOption("How to play", new InstructionsMenu(this), Game),
-#if DEBUG
                 new LabelOption("Mods") {Enabled = false},
+#if DEBUG
                 new ChangeMenuOption("Debug", new DebugMenu(this), Game),
 #endif
                 new ChangeMenuOption("Options", new OptionsMenu(this), Game),
@@ -56,6 +63,14 @@ namespace MiniRealms.Screens.MainScreens
                 _bottomLabel.X += 1;
                 if (_bottomLabel.X > GameConts.Width + _bottomLabel.Text.Length)
                 {
+                    _currentCredit++;
+
+                    if (_currentCredit > (_credits.Length - 1))
+                    {
+                        _currentCredit = 0;
+                    }
+
+                    _bottomLabel.Text = _credits[_currentCredit];
                     _bottomLabel.X = -(_bottomLabel.Text.Length * 8);
                 }
             }
@@ -102,14 +117,14 @@ namespace MiniRealms.Screens.MainScreens
                         : minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
 
 
-                    var l = new List<string>
+                    var l = new string[]
                     {
                         $"You Won:{Utils.SpacesPushleft($"{(s.YouWon ? "Completed" : "Failed")}", 21, 8)}",
                         $"Mode:{Utils.SpacesPushleft($"{s.Difficulty} - {ts}", 21, 5)}",
                         $"Score:{Utils.SpacesPushleft(s.AcScore.ToString(), 21, 6)}"
                     };
 
-                    RenderLeftMenuItem(10, (GameConts.Height / 4) + i * 42, 21, l.Count, l.ToArray(), Color.Get(5, 333, 333, 333), screen);
+                    RenderLeftMenuItem(10, (GameConts.Height / 4) + i * 38, 21, l.Length, l, Color.Get(5, 333, 333, 333), screen);
                 }
             }
             else

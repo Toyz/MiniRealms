@@ -54,7 +54,6 @@ namespace MiniRealms.Screens.GameScreens
 
             _titleLabel = new Label(Game.UiManager, "Game is Paused", (GameConts.ScreenMiddleWidth - ("Game is Paused".Length * 8 / 2)), 15, Color.White);
             Game.UiManager.Add(_titleLabel);
-
         }
 
         public override void Tick()

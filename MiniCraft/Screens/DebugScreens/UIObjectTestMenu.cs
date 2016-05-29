@@ -19,9 +19,9 @@ namespace MiniRealms.Screens.DebugScreens
         {
             base.Init(game, input);
 
-            string text = "Ui Object Testing"; 
+            string text = "UI Object Testing"; 
 
-            _titleLabel = new Label(Game.UiManager, text, /*(GameConts.ScreenMiddleWidth - (text.Length * 8 / 2))*/ -text.Length, 20, Color.White);
+            _titleLabel = new Label(Game.UiManager, text, -text.Length, 20, Color.White);
             _progBar = new ProgressBar(Game.UiManager)
             {
                 X = 10,

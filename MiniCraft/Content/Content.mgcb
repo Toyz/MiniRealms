@@ -112,3 +112,66 @@
 #begin Data/tiles.xml
 /copy:Data/tiles.xml
 
+#begin Music/01 A Night Of Dizzy Spells.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/01 A Night Of Dizzy Spells.mp3
+
+#begin Music/02 Underclocked (underunderclocked mix).mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/02 Underclocked (underunderclocked mix).mp3
+
+#begin Music/03 Chibi Ninja.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/03 Chibi Ninja.mp3
+
+#begin Music/04 All of Us.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/04 All of Us.mp3
+
+#begin Music/05 Come and Find Me.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/05 Come and Find Me.mp3
+
+#begin Music/06 Searching.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/06 Searching.mp3
+
+#begin Music/07 We're the Resistors.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/07 We're the Resistors.mp3
+
+#begin Music/08 Ascending.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/08 Ascending.mp3
+
+#begin Music/09 Come and Find Me - B mix.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/09 Come and Find Me - B mix.mp3
+
+#begin Music/10 Arpanauts.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/10 Arpanauts.mp3
+
+#begin credits.txt
+/copy:credits.txt
+

@@ -54,7 +54,7 @@ namespace MiniRealms.Entities.Particles
         public override void Render(Screen screen)
         {
             //		Font.draw(msg, screen, x - msg.length() * 4, y, Color.get(-1, 0, 0, 0));
-            Font.Draw(_msg, screen, X - _msg.Length() * 4 + 1, Y - (int)(_zz) + 1, Color.Get(-1, 0, 0, 0));
+            Font.Draw(_msg, screen, X - _msg.Length() * 5 + 1, Y - (int)(_zz) + 1, Color.Get(-1, 0, 0, 0));
             Font.Draw(_msg, screen, X - _msg.Length() * 4, Y - (int)(_zz), _col);
         }
 

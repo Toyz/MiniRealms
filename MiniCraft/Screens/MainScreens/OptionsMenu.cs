@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using MiniRealms.Engine.Audio.Music;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Engine.UI.Objects;
 using MiniRealms.Screens.Interfaces;
@@ -13,6 +14,8 @@ namespace MiniRealms.Screens.MainScreens
         private static List<Option> _options;
         private ActionOption _fullScreenOption;
         private ActionOption _boardLessOption;
+        private ActionOption _randomMucisCycle;
+
         private Label _titleLabel;
 
         public OptionsMenu(Menu parent, string backTitle = "Main Menu") : base(parent)
@@ -27,10 +30,13 @@ namespace MiniRealms.Screens.MainScreens
 
             _fullScreenOption = new ActionOption($"Full Screen: {(game.Gdm.IsFullScreen ? "Yes" : "No")}", FullScreenActionToggle);
             _boardLessOption = new ActionOption($"Borderless: {(game.Window.IsBorderless ? "Yes" : "No")}", SetWindowBorderlessToggle);
+            _randomMucisCycle = new ActionOption($"Random Music Order: {(GameConts.Instance.RandomMusicCycle ? "Yes" : "No")}", SetRandomMusicCycle);
 
             _options = new List<Option>
             {
-                new VolumeContol(),
+                new VolumeContol(VolumeContol.SoundType.Effects, "Effects Volume: "),
+                new VolumeContol(VolumeContol.SoundType.Music, "Music Volume: "),
+                _randomMucisCycle,
                 _fullScreenOption,
                 _boardLessOption,
                 new ChangeMenuOption(_backTitle, Parent, game)
@@ -40,6 +46,13 @@ namespace MiniRealms.Screens.MainScreens
             Game.UiManager.Add(_titleLabel);
 
             RenderScrollingListTable(_options);
+        }
+
+        private void SetRandomMusicCycle()
+        {
+            GameConts.Instance.RandomMusicCycle = !GameConts.Instance.RandomMusicCycle;
+            _randomMucisCycle.Text = $"Random Music Order: {(GameConts.Instance.RandomMusicCycle ? "Yes" : "No")}";
+            GameConts.Instance.Save();
         }
 
         private void SetWindowBorderlessToggle()

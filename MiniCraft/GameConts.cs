@@ -21,14 +21,22 @@ namespace MiniRealms
         [DefaultValue(3), XmlElement("GameScale")]
         public int Scale { get; set; } = 3;
 
-        [DefaultValue(0.50f), XmlElement("Volume")]
-        public float Volume { get; set; } = 0.50f;
+        [DefaultValue(0.50f), XmlElement("SFX")]
+        public float SoundEffectVolume { get; set; } = 0.50f;
+
+        [DefaultValue(0.50f), XmlElement("GameSong")]
+        public float MusicVolume { get; set; } = 0.50f;
+
+        [DefaultValue(false), XmlElement("RandomMusic")]
+        public bool RandomMusicCycle { get; set; }
 
         [DefaultValue(false), XmlElement("Borderless")]
         public bool Borderless { get; set; }
 
         [DefaultValue(false), XmlElement("Fullscreen")]
         public bool FullScreen { get; set; }
+
+
 
         [NonSerialized] [XmlIgnore] public int MaxHeight = 256;
 

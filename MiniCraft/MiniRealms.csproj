@@ -48,6 +48,8 @@
     <Compile Include="Crafts\Recipe.cs" />
     <Compile Include="Crafts\ResourceRecipe.cs" />
     <Compile Include="Crafts\ToolRecipe.cs" />
+    <Compile Include="Engine\Audio\Music\GameSong.cs" />
+    <Compile Include="Engine\Audio\Music\GameSongManager.cs" />
     <Compile Include="Engine\Audio\Sounds\SoundEffectManager.cs" />
     <Compile Include="Engine\BinaryHelpers.cs" />
     <Compile Include="Engine\Compents\FpsCounterComponent.cs" />

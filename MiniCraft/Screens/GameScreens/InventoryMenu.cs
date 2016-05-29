@@ -52,7 +52,7 @@ namespace MiniRealms.Screens.GameScreens
                 Font.Draw(amount.ToString("N0"), screen, 16*8, 7*8 + 2, Color.White);
             }
 
-            Font.Draw(i.GetName(), screen, 16 * 8, 3 * 8, Color.White);
+            //Font.Draw(i.GetName(), screen, 16 * 8, 3 * 8, Color.White);
 
             RenderItemList(screen, 1, 2, 14, 11, _player.Inventory.Items, _selected);
         }
