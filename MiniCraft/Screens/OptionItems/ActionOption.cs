@@ -9,8 +9,6 @@ namespace MiniRealms.Screens.OptionItems
 
         public override bool Enabled { get; set; } = true;
 
-        public bool ClickSound { private get; set; } = true;
-
         public ActionOption(string label, Action function) : base(label)
         {
             _function = function;

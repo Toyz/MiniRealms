@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using MiniRealms.Engine.Audio.Music;
 using MiniRealms.Engine.Audio.Sounds;
 using MiniRealms.Screens.Interfaces;
@@ -93,7 +92,6 @@ namespace MiniRealms.Screens.OptionItems
 
         protected internal override void HandleRender()
         {
-            Debug.WriteLine(_type + " - " + _volumeLabel);
         }
     }
 }

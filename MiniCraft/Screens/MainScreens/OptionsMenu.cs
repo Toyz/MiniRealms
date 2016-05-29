@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using MiniRealms.Engine.Audio.Music;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Engine.UI.Objects;
 using MiniRealms.Screens.Interfaces;
@@ -17,6 +16,7 @@ namespace MiniRealms.Screens.MainScreens
         private ActionOption _randomMucisCycle;
 
         private Label _titleLabel;
+        private List<Option> _soundOptions;
 
         public OptionsMenu(Menu parent, string backTitle = "Main Menu") : base(parent)
         {
@@ -28,24 +28,35 @@ namespace MiniRealms.Screens.MainScreens
         {
             base.Init(game, input);
 
-            _fullScreenOption = new ActionOption($"Full Screen: {(game.Gdm.IsFullScreen ? "Yes" : "No")}", FullScreenActionToggle);
-            _boardLessOption = new ActionOption($"Borderless: {(game.Window.IsBorderless ? "Yes" : "No")}", SetWindowBorderlessToggle);
-            _randomMucisCycle = new ActionOption($"Random Music Order: {(GameConts.Instance.RandomMusicCycle ? "Yes" : "No")}", SetRandomMusicCycle);
-
-            _options = new List<Option>
-            {
-                new VolumeContol(VolumeContol.SoundType.Effects, "Effects Volume: "),
-                new VolumeContol(VolumeContol.SoundType.Music, "Music Volume: "),
-                _randomMucisCycle,
-                _fullScreenOption,
-                _boardLessOption,
-                new ChangeMenuOption(_backTitle, Parent, game)
-            };
+            ConfigMenuOptions();
 
             _titleLabel = new Label(Game.UiManager, "Options", (GameConts.ScreenMiddleWidth - ("Options".Length * 8 / 2)), 15, Color.White);
             Game.UiManager.Add(_titleLabel);
 
             RenderScrollingListTable(_options);
+        }
+
+        private void ConfigMenuOptions()
+        {
+            _fullScreenOption = new ActionOption($"Full Screen: {(Game.Gdm.IsFullScreen ? "Yes" : "No")}", FullScreenActionToggle);
+            _boardLessOption = new ActionOption($"Borderless: {(Game.Window.IsBorderless ? "Yes" : "No")}", SetWindowBorderlessToggle);
+            _randomMucisCycle = new ActionOption($"Random Music Order: {(GameConts.Instance.RandomMusicCycle ? "Yes" : "No")}", SetRandomMusicCycle);
+
+            _soundOptions = new List<Option>
+            {
+                new VolumeContol(VolumeContol.SoundType.Effects, "Effects Volume: "),
+                new VolumeContol(VolumeContol.SoundType.Music, "Music Volume: "),
+                _randomMucisCycle,
+                new ActionOption("Back to Options", () =>  RenderScrollingListTable(_options)),
+            };
+
+            _options = new List<Option>
+            {
+                new ActionOption("Audio Options", () =>  RenderScrollingListTable(_soundOptions)),
+                _fullScreenOption,
+                _boardLessOption,
+                new ChangeMenuOption(_backTitle, Parent, Game)
+            };
         }
 
         private void SetRandomMusicCycle()

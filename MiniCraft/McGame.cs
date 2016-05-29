@@ -65,7 +65,6 @@ namespace MiniRealms
         public FpsCounterComponent FpsCounterComponent { get; }
         public readonly GraphicsDeviceManager Gdm;
         public UiManager UiManager;
-        public static McGame Instance { get; private set; }
 
         public McGame()
         {
@@ -74,8 +73,6 @@ namespace MiniRealms
                 PreferredBackBufferHeight = GameConts.Height* GameConts.Instance.Scale,
                 PreferredBackBufferWidth = GameConts.Width * GameConts.Instance.Scale
             };
-
-            Instance = this;
 
             Cc = new ConsoleCommands(this);
 
@@ -98,9 +95,9 @@ namespace MiniRealms
 
         private void ClosingFunction(object sender, CancelEventArgs e)
         {
-            if (Menu != null) return;
+            //if (Menu != null) return;
             e.Cancel = true;
-            SetMenu(new AlertMenu(Menu, new[] {"Awwww", "Are you closing me?", " ", "No progress is saved" }, Exit));
+            SetMenu(new AlertMenu(Menu, new[] {"Giving up already?", "No progress is saved" }, Exit));
         }
 
         private bool HasFocus() => IsActive;
@@ -421,7 +418,7 @@ namespace MiniRealms
                 }
                 Player.ActiveItem?.RenderInventory(Screen, GameConts.ScreenMiddleWidth - 40, Screen.H - 18);
 
-                if (_playerDeadTime < 60)
+                /*if (_playerDeadTime < 60)
                 {
                     int seconds = GameTime/60;
                     int minutes = seconds/60;
@@ -437,7 +434,7 @@ namespace MiniRealms
 
                     Font.Draw(timeString, Screen, xx, 1, Color.White);
 
-                }
+                }*/
 
                 Font.Draw(GameConts.Version, Screen, (GameConts.Width - GameConts.Version.Length * 8) / 2, 1, Color.White);
             }

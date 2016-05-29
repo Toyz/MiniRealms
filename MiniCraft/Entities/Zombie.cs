@@ -128,14 +128,11 @@ namespace MiniRealms.Entities
         {
             base.Die();
 
-            int count = Random.Next(3);
-            if (count > 0)
+            int count = Random.Next(3) + 1;
+            for (int i = 0; i < count; i++)
             {
-                for (int i = 0; i < count; i++)
-                {
-                    Level.Add(new ItemEntity(new ResourceItem(Resource.Cloth), X + Random.NextInt(11) - 5,
-                        Y + Random.NextInt(11) - 5));
-                }
+                Level.Add(new ItemEntity(new ResourceItem(Resource.Cloth), X + Random.NextInt(11) - 5,
+                    Y + Random.NextInt(11) - 5));
             }
 
             if (_isBossMob)
@@ -153,7 +150,7 @@ namespace MiniRealms.Entities
 
             if (Level.Player != null)
             {
-                Level.Player.Score += 50 * _lvl;
+                Level.Player.Score += 50*_lvl;
             }
 
         }

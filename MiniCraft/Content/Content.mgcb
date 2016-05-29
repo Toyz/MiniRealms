@@ -83,6 +83,7 @@
 /importer:EffectImporter
 /processor:EffectProcessor
 /processorParam:DebugMode=Auto
+/processorParam:Defines=
 /build:qc_background.fx
 
 #begin qc_console.spritefont
