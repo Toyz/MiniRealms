@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 
 namespace MiniRealms.Engine.Audio.Sounds
@@ -23,12 +24,12 @@ namespace MiniRealms.Engine.Audio.Sounds
 
         public static float GetMasterVolume()
         {
-            return Microsoft.Xna.Framework.Audio.SoundEffect.MasterVolume;
+            return SoundEffect.MasterVolume;
         }
 
         public static void SetMasterVolume(float volume)
         {
-            Microsoft.Xna.Framework.Audio.SoundEffect.MasterVolume = volume;
+            SoundEffect.MasterVolume = volume;
         }
 
         public static void Play(string key)

@@ -6,18 +6,18 @@ namespace MiniRealms.Engine.Audio.Sounds
     public class GameEffect
     {
         //actual sound object
-        private Microsoft.Xna.Framework.Audio.SoundEffect _soundEffect;
+        private SoundEffect _soundEffect;
         private SoundEffectInstance _soundEffectInstance;
 
         public GameEffect(ContentManager content, string fileName, bool isPhysicalPath = false)
         {
-            _soundEffect = isPhysicalPath ? content.Load<Microsoft.Xna.Framework.Audio.SoundEffect>(fileName) : content.Load<Microsoft.Xna.Framework.Audio.SoundEffect>("Sounds/" + fileName);
+            _soundEffect = isPhysicalPath ? content.Load<SoundEffect>(fileName) : content.Load<SoundEffect>("Sounds/" + fileName);
             _soundEffectInstance = _soundEffect.CreateInstance();
         }
 
         public GameEffect(byte[] file, int sampleRate)
         {
-            _soundEffect = new Microsoft.Xna.Framework.Audio.SoundEffect(file, sampleRate, AudioChannels.Stereo);
+            _soundEffect = new SoundEffect(file, sampleRate, AudioChannels.Stereo);
             _soundEffectInstance = _soundEffect.CreateInstance();
         }
 

@@ -10,8 +10,7 @@ namespace MiniRealms.Engine.Audio.Music
     public static class GameSongManager
     {
         private static Dictionary<string, GameSong> AllSongs { get; set; }
-        private static bool PlaySong = true;
-        private static int currentSong;
+        private static int _currentSong;
         private static Random _randomNumber;
 
         public static void Initialize(ContentManager content)
@@ -54,27 +53,23 @@ namespace MiniRealms.Engine.Audio.Music
 
         public static void PlayNextSong()
         {
-            if (MediaPlayer.State != MediaState.Playing)
+            if (MediaPlayer.State == MediaState.Playing) return;
+            if(!GameConts.Instance.RandomMusicCycle)
             {
-                PlaySong = false;
-
-                if(!GameConts.Instance.RandomMusicCycle)
+                _currentSong++;
+                if (_currentSong > AllSongs.Count - 1)
                 {
-                    currentSong++;
-                    if (currentSong > AllSongs.Count - 1)
-                    {
-                        currentSong = 0;
-                    }
+                    _currentSong = 0;
                 }
-                else
-                {
-                    currentSong = _randomNumber.Next(AllSongs.Count);
-                }
-
-                var key = AllSongs.Keys.ElementAt(currentSong);
-
-                AllSongs[key].Play();
             }
+            else
+            {
+                _currentSong = _randomNumber.Next(AllSongs.Count);
+            }
+
+            var key = AllSongs.Keys.ElementAt(_currentSong);
+
+            AllSongs[key].Play();
         }  
 
         private static GameSong Get(string key)
