@@ -16,7 +16,7 @@ namespace MiniRealms.Screens.MainScreens
         private List<Score> _score;
         private Label _bottomLabel;
         private static string[] _credits;
-        private int _currentCredit = 1;
+        private int _currentCredit;
 
         public TitleMenu() : base(null)
         {
@@ -32,7 +32,7 @@ namespace MiniRealms.Screens.MainScreens
 
             ScoreBoardManager.Load();
             _score = ScoreBoardManager.Scores.Score;
-            _bottomLabel = new Label(Game.UiManager) {Text = _credits[0], Color = Color.Get(-100, 222, 222, 222)};
+            _bottomLabel = new Label(Game.UiManager) {Text = "", Color = Color.Get(-100, 222, 222, 222)};
             _bottomLabel.X = -(_bottomLabel.Text.Length * 8);
             _bottomLabel.Y = GameConts.Height - 8;
 
