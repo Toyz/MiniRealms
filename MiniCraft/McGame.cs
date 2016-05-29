@@ -34,7 +34,6 @@ namespace MiniRealms
 
         private Texture2D _image;
         private Microsoft.Xna.Framework.Color[] _pixels;
-        private bool _running;
 
         private Microsoft.Xna.Framework.Color[] _colors;
         public int CurrentLevel = 3;
@@ -85,12 +84,16 @@ namespace MiniRealms
             IsMouseVisible = true;
             Content.RootDirectory = "Content";
 
-            Window.Title = $"{GameConts.Name} -- {GameConts.Version}";
+            Window.Title = $"{GameConts.Name} :: {GameConts.Version}";
 
             GameConts.Instance.Load();
 
             Window.IsBorderless = GameConts.Instance.Borderless;
             Gdm.IsFullScreen = GameConts.Instance.FullScreen;
+
+            IsFixedTimeStep = false;
+            Gdm.SynchronizeWithVerticalRetrace = true;
+            Gdm.ApplyChanges();
         }
 
         private void ClosingFunction(object sender, CancelEventArgs e)
@@ -109,12 +112,6 @@ namespace MiniRealms
             menu?.Init(this, _input);
         }
 
-        protected override void OnExiting(object sender, EventArgs args)
-        {
-            _running = false;
-            base.OnExiting(sender, args);
-        }
-
         public void ResetGame()
         {
             _playerDeadTime = 0;
@@ -130,8 +127,6 @@ namespace MiniRealms
             Form myGameForm = (Form)Control.FromHandle(Window.Handle);
             myGameForm.Closing += ClosingFunction;
             myGameForm.StartPosition = FormStartPosition.CenterScreen;
-
-            _running = true;
 
             var pp = 0;
             _colors = new Microsoft.Xna.Framework.Color[256];
@@ -190,7 +185,6 @@ namespace MiniRealms
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (!_running) return;
             GameSongManager.PlayNextSong();
 
             //assuming 60 updates from monogame

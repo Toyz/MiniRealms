@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.IO;
 using System.Xml.Serialization;
 using Microsoft.Xna.Framework.Graphics;
-using static System.IO.Path;
 
 namespace MiniRealms
 {
@@ -59,27 +58,27 @@ namespace MiniRealms
         [NonSerialized] [XmlIgnore] public static int ScreenThirdHeight = Height/2;
 
         [NonSerialized] [XmlIgnore] private static readonly string Settings =
-            Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), Name, "settings.conf");
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), Name, "settings.conf");
 
         [NonSerialized]
         [XmlIgnore]
         public static readonly string ScoreLocation =
-            Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), Name, "scores.dat");
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), Name, "scores.dat");
 
         public void Save()
         {
-            if (!Directory.Exists(GetDirectoryName(Settings)))
+            if (!Directory.Exists(Path.GetDirectoryName(Settings)))
             {
-                Directory.CreateDirectory(GetDirectoryName(Settings));
+                Directory.CreateDirectory(Path.GetDirectoryName(Settings));
             }
             File.WriteAllText(Settings, Engine.XmlHelpers.Serialize(Instance));
         }
 
         public void Load()
         {
-            if (!Directory.Exists(GetDirectoryName(Settings)))
+            if (!Directory.Exists(Path.GetDirectoryName(Settings)))
             {
-                Directory.CreateDirectory(GetDirectoryName(Settings));
+                Directory.CreateDirectory(Path.GetDirectoryName(Settings));
             }
             if (File.Exists(Settings))
                 _instance = (GameConts) Engine.XmlHelpers.Deserialize(File.ReadAllText(Settings), typeof(GameConts));

@@ -17,7 +17,7 @@ namespace MiniRealms.Screens.OptionItems
         public int Selected;
 
         public override bool Enabled { get; set; } = true;
-        public override string Text { get; set; } = "World Size: ";
+        public sealed override string Text { get; set; }
         public override string SelectedText => $"< {Text} >";
 
         public WorldSizeOption()
