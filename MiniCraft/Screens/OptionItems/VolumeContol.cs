@@ -7,13 +7,13 @@ namespace MiniRealms.Screens.OptionItems
 {
     public class VolumeContol : Option
     {
-        private readonly SoundType _type;
-
         public enum SoundType
         {
             Effects,
             Music
         }
+
+        private readonly SoundType _type;
 
         private float _current;
         public override bool Enabled { get; set; } = true;
@@ -54,7 +54,7 @@ namespace MiniRealms.Screens.OptionItems
             _current = volume;
             if (input.Right.Clicked)
             {
-                volume += 0.10f;
+                volume += 0.05f;
                 if (volume > 1.0f)
                 {
                     volume = 1.0f;
@@ -62,7 +62,7 @@ namespace MiniRealms.Screens.OptionItems
             }
             else if (input.Left.Clicked)
             {
-                volume -= 0.10f;
+                volume -= 0.05f;
                 if (volume < 0.0f)
                 {
                     volume = 0.0f;
