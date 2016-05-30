@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
 using MiniRealms.Items;
@@ -10,6 +9,8 @@ namespace MiniRealms.Levels.Tiles
     public class Tile
     {
         public static int TickCount = 0;
+        public virtual int TileColor { get; set; }
+
         protected Random Random = new Random();
 
         public static Tile[] Tiles = new Tile[256];
@@ -42,6 +43,8 @@ namespace MiniRealms.Levels.Tiles
         public static Tile GemOre;
         public static Tile CloudCactus;
         public static Tile TorchTile;
+        public static Tile SkyTree { get; set; }
+        public static Tile DarkOakTree { get; set; }
 
         static Tile()
         {
@@ -52,7 +55,9 @@ namespace MiniRealms.Levels.Tiles
             RedFlower = new FlowerTile(TileId.RedFlower, Resource.RedFlower);
             YellowFlower = new FlowerTile(TileId.YellowFlower, Resource.YellowFlower);
             BlueFlower = new FlowerTile(TileId.BlueFlower, Resource.BlueFlower);
-            Tree = new TreeTile(TileId.Tree);
+            Tree = new TreeTile(TileId.Tree, Color.Get(10, 40, 151, 141), Color.Get(10, 40, 430, 141), Color.Get(10, 40, 320, 141));
+            DarkOakTree = new TreeTile(TileId.OakTree, Color.Get(10, 31, 151, 141), Color.Get(10, 31, 430, 141), Color.Get(10, 31, 320, 141));
+            SkyTree = new TreeTile(TileId.SkyTree, Color.Get(10, 24, 151, 141), Color.Get(10, 24, 430, 141), Color.Get(10, 24, 320, 141));
             Dirt = new DirtTile(TileId.Dirt);
             Sand = new SandTile(TileId.Sand);
             Cactus = new CactusTile(TileId.Cactus);
@@ -81,7 +86,7 @@ namespace MiniRealms.Levels.Tiles
         public bool ConnectsToSand = false;
         public bool ConnectsToLava = false;
         public bool ConnectsToWater = false;
-        public readonly Sprite[] Sprites;
+        public Sprite[] Sprites;
 
         public Tile(TileId tileId)
         {

@@ -105,6 +105,8 @@ namespace MiniRealms.Engine.LevelGens
                 if (count[Tile.Sand.Id & 0xff] < 100) continue;
                 if (count[Tile.Grass.Id & 0xff] < 100) continue;
                 if (count[Tile.Tree.Id & 0xff] < 100) continue;
+                if (count[Tile.DarkOakTree.Id & 0xff] < 100) continue;
+                if (count[Tile.SkyTree.Id & 0xff] < 15) continue;
                 if (count[Tile.StairsDown.Id & 0xff] < 2) continue;
 
                 return result;
@@ -226,7 +228,30 @@ namespace MiniRealms.Engine.LevelGens
                     int xx = x + Random.NextInt(15) - Random.NextInt(15);
                     int yy = y + Random.NextInt(15) - Random.NextInt(15);
                     if (xx < 0 || yy < 0 || xx >= w || yy >= h || map[xx + yy*w] != Tile.Grass.Id) continue;
-                    map[xx + yy*w] = Tile.Tree.Id;
+                    var r = Random.Next(10);
+                    if (r <= 5)
+                    {
+                       map[xx + yy * w] = Tile.Tree.Id;
+                    }else if (r <= 7)
+                    {
+                        map[xx + yy * w] = Tile.DarkOakTree.Id;
+                    }else if (r == 9)
+                    {
+                        map[xx + yy * w] = Tile.SkyTree.Id;
+                    }
+                    /*switch (r)
+                    {
+                        case 0:
+                            map[xx + yy * w] = Tile.Tree.Id;
+                            break;
+                        case 1:
+                            map[xx + yy * w] = Tile.DarkOakTree.Id;
+                            break;
+                        case 4:
+                            map[xx + yy * w] = Tile.SkyTree.Id;
+                            break;
+
+                    }*/
                 }
             }
 

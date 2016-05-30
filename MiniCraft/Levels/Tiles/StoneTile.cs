@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using MiniRealms.Engine.Gfx;
+﻿using MiniRealms.Engine.Gfx;
 using MiniRealms.Entities;
 
 namespace MiniRealms.Levels.Tiles

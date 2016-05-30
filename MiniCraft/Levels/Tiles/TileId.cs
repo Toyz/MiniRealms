@@ -28,6 +28,8 @@ namespace MiniRealms.Levels.Tiles
         RedFlower,
         YellowFlower,
         Torch,
-        BlueFlower
+        BlueFlower,
+        OakTree,
+        SkyTree
     }
 }

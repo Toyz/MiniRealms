@@ -8,28 +8,39 @@ using MiniRealms.Items.Resources;
 namespace MiniRealms.Levels.Tiles
 {
 
-    public class TreeTile : Tile
+    public sealed class TreeTile : Tile
     {
-        public TreeTile(TileId id)
+        private readonly int _color;
+        private readonly int _barkColor1;
+        private readonly int _barkColor2;
+
+        public TreeTile(TileId id, int color, int barkColor1, int barkColor2)
             : base(id)
         {
+            Sprites = SpriteSheet.GetSprites(TileId.Tree);
+
+            _color = color;
+            _barkColor1 = barkColor1;
+            _barkColor2 = barkColor2;
+
             ConnectsToGrass = true;
+            TileColor = color + barkColor1 + barkColor2;
         }
 
         public override void Render(Screen screen, Level level, int x, int y)
         {
-            int col = Color.Get(10, 30, 151, 141);
-            int barkCol1 = Color.Get(10, 30, 430, 141);
-            int barkCol2 = Color.Get(10, 30, 320, 141);
+            int col = _color;//Color.Get(10, 40, 151, 141);
+            int barkCol1 = _barkColor1;//Color.Get(10, 40, 430, 141);
+            int barkCol2 = _barkColor2;//Color.Get(10, 40, 320, 141);
 
-            bool u = level.GetTile(x, y - 1) == this;
-            bool l = level.GetTile(x - 1, y) == this;
-            bool r = level.GetTile(x + 1, y) == this;
-            bool d = level.GetTile(x, y + 1) == this;
-            bool ul = level.GetTile(x - 1, y - 1) == this;
-            bool ur = level.GetTile(x + 1, y - 1) == this;
-            bool dl = level.GetTile(x - 1, y + 1) == this;
-            bool dr = level.GetTile(x + 1, y + 1) == this;
+            bool u = level.GetTile(x, y - 1).Id == Id;
+            bool l = level.GetTile(x - 1, y).Id == Id;
+            bool r = level.GetTile(x + 1, y).Id == Id;
+            bool d = level.GetTile(x, y + 1).Id == Id;
+            bool ul = level.GetTile(x - 1, y - 1).Id == Id;
+            bool ur = level.GetTile(x + 1, y - 1).Id == Id;
+            bool dl = level.GetTile(x - 1, y + 1).Id == Id;
+            bool dr = level.GetTile(x + 1, y + 1).Id == Id;
 
             if (u && ul && l)
             {
@@ -127,6 +138,16 @@ namespace MiniRealms.Levels.Tiles
                 {
                     level.Add(new ItemEntity(new ResourceItem(Resource.Acorn), x*16 + Random.NextInt(10) + 3,
                         y*16 + Random.NextInt(10) + 3));
+                }
+
+                if (Id == (byte)TileId.SkyTree)
+                {
+                    count = Random.NextInt(5);
+                    if (count == 4)
+                    {
+                        level.Add(new ItemEntity(new ResourceItem(Resource.Gem), x*16 + Random.NextInt(10) + 3,
+                                y*16 + Random.NextInt(10) + 3));
+                    }
                 }
                 level.SetTile(x, y, Grass, 0);
             }

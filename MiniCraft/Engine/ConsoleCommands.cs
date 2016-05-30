@@ -103,6 +103,17 @@ namespace MiniRealms.Engine
                     }
                 },
                 {
+                    TileId.OakTree, new List<Sprite>
+                    {
+                        new Sprite(10 + 0 * 32, -1, 0), //0
+                        new Sprite(10 + 1 * 32, -1, 0), //1
+                        new Sprite(10 + 2 * 32, -1, 0), //2
+                        new Sprite(10 + 3 * 32, -1, 0), //3
+                        new Sprite(9 + 0 * 32, -1, 0), //4
+                        new Sprite(9 + 1 * 32, -1, 0) //5
+                    }
+                },
+                {
                     TileId.Farmland, new List<Sprite>
                     {
                         new Sprite(2+32, -1, 1),

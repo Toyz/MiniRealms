@@ -47,7 +47,7 @@ namespace MiniRealms.Levels.Tiles
                 {
                     if (player.PayStamina(6 - tool.Level))
                     {
-                        Hurt(level, xt, yt, 1);
+                        Hurt(level, xt, yt, Random.NextInt(10) + (tool.Level));
                         return true;
                     }
                 }
@@ -55,7 +55,7 @@ namespace MiniRealms.Levels.Tiles
             return false;
         }
 
-        public void Hurt(Level level, int x, int y, int dmg)
+        private void Hurt(Level level, int x, int y, int dmg)
         {
             int damage = level.GetData(x, y) + 1;
             level.Add(new SmashParticle(x * 16 + 8, y * 16 + 8));
@@ -81,7 +81,7 @@ namespace MiniRealms.Levels.Tiles
 
         public override void BumpedInto(Level level, int x, int y, Entity entity)
         {
-            entity.Hurt(this, x, y, 3);
+            entity.Hurt(this, x, y, 1);
         }
     }
 }

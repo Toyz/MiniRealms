@@ -28,34 +28,35 @@ namespace MiniRealms.Crafts
             Extensions.Add(WorkbenchRecipes, new FurnitureRecipe<Chest>().AddCost(Resource.Wood, 20));
             Extensions.Add(WorkbenchRecipes, new FurnitureRecipe<Anvil>().AddCost(Resource.IronIngot, 5));
 
-            Extensions.Add(WorkbenchRecipes, new ToolRecipe(ToolType.Sword, 0).AddCost(Resource.Wood, 5));
-            Extensions.Add(WorkbenchRecipes, new ToolRecipe(ToolType.Axe, 0).AddCost(Resource.Wood, 5));
-            Extensions.Add(WorkbenchRecipes, new ToolRecipe(ToolType.Hoe, 0).AddCost(Resource.Wood, 5));
-            Extensions.Add(WorkbenchRecipes, new ToolRecipe(ToolType.Pickaxe, 0).AddCost(Resource.Wood, 5));
-            Extensions.Add(WorkbenchRecipes, new ToolRecipe(ToolType.Shovel, 0).AddCost(Resource.Wood, 5));
-            Extensions.Add(WorkbenchRecipes, new ToolRecipe(ToolType.Sword, 1).AddCost(Resource.Wood, 5).AddCost(Resource.Stone, 5));
-            Extensions.Add(WorkbenchRecipes, new ToolRecipe(ToolType.Axe, 1).AddCost(Resource.Wood, 5).AddCost(Resource.Stone, 5));
-            Extensions.Add(WorkbenchRecipes, new ToolRecipe(ToolType.Hoe, 1).AddCost(Resource.Wood, 5).AddCost(Resource.Stone, 5));
-            Extensions.Add(WorkbenchRecipes, new ToolRecipe(ToolType.Pickaxe, 1).AddCost(Resource.Wood, 5).AddCost(Resource.Stone, 5));
-            Extensions.Add(WorkbenchRecipes, new ToolRecipe(ToolType.Shovel, 1).AddCost(Resource.Wood, 5).AddCost(Resource.Stone, 5));
+            Extensions.Add(WorkbenchRecipes, new ToolRecipe(ToolType.Sword, 0).AddCost(Resource.Wood, 2).AddCost(Resource.Stick, 1));
+            Extensions.Add(WorkbenchRecipes, new ToolRecipe(ToolType.Axe, 0).AddCost(Resource.Wood, 3).AddCost(Resource.Stick, 2));
+            Extensions.Add(WorkbenchRecipes, new ToolRecipe(ToolType.Hoe, 0).AddCost(Resource.Wood, 2).AddCost(Resource.Stick, 2));
+            Extensions.Add(WorkbenchRecipes, new ToolRecipe(ToolType.Pickaxe, 0).AddCost(Resource.Wood, 3).AddCost(Resource.Stick, 2));
+            Extensions.Add(WorkbenchRecipes, new ToolRecipe(ToolType.Shovel, 0).AddCost(Resource.Wood, 1).AddCost(Resource.Stick, 3));
 
-            Extensions.Add(AnvilRecipes, new ToolRecipe(ToolType.Sword, 2).AddCost(Resource.Wood, 5).AddCost(Resource.IronIngot, 5));
-            Extensions.Add(AnvilRecipes, new ToolRecipe(ToolType.Axe, 2).AddCost(Resource.Wood, 5).AddCost(Resource.IronIngot, 5));
-            Extensions.Add(AnvilRecipes, new ToolRecipe(ToolType.Hoe, 2).AddCost(Resource.Wood, 5).AddCost(Resource.IronIngot, 5));
-            Extensions.Add(AnvilRecipes, new ToolRecipe(ToolType.Pickaxe, 2).AddCost(Resource.Wood, 5).AddCost(Resource.IronIngot, 5));
-            Extensions.Add(AnvilRecipes, new ToolRecipe(ToolType.Shovel, 2).AddCost(Resource.Wood, 5).AddCost(Resource.IronIngot, 5));
+            Extensions.Add(WorkbenchRecipes, new ToolRecipe(ToolType.Sword, 1).AddCost(Resource.Stick, 1).AddCost(Resource.Stone, 2));
+            Extensions.Add(WorkbenchRecipes, new ToolRecipe(ToolType.Axe, 1).AddCost(Resource.Stick, 2).AddCost(Resource.Stone, 3));
+            Extensions.Add(WorkbenchRecipes, new ToolRecipe(ToolType.Hoe, 1).AddCost(Resource.Stick, 2).AddCost(Resource.Stone, 2));
+            Extensions.Add(WorkbenchRecipes, new ToolRecipe(ToolType.Pickaxe, 1).AddCost(Resource.Stick, 2).AddCost(Resource.Stone, 3));
+            Extensions.Add(WorkbenchRecipes, new ToolRecipe(ToolType.Shovel, 1).AddCost(Resource.Stick, 2).AddCost(Resource.Stone, 1));
 
-            Extensions.Add(AnvilRecipes, new ToolRecipe(ToolType.Sword, 3).AddCost(Resource.Wood, 5).AddCost(Resource.GoldIngot, 5));
-            Extensions.Add(AnvilRecipes, new ToolRecipe(ToolType.Axe, 3).AddCost(Resource.Wood, 5).AddCost(Resource.GoldIngot, 5));
-            Extensions.Add(AnvilRecipes, new ToolRecipe(ToolType.Hoe, 3).AddCost(Resource.Wood, 5).AddCost(Resource.GoldIngot, 5));
-            Extensions.Add(AnvilRecipes, new ToolRecipe(ToolType.Pickaxe, 3).AddCost(Resource.Wood, 5).AddCost(Resource.GoldIngot, 5));
-            Extensions.Add(AnvilRecipes, new ToolRecipe(ToolType.Shovel, 3).AddCost(Resource.Wood, 5).AddCost(Resource.GoldIngot, 5));
+            Extensions.Add(AnvilRecipes, new ToolRecipe(ToolType.Sword, 2).AddCost(Resource.Stick, 1).AddCost(Resource.IronIngot, 2));
+            Extensions.Add(AnvilRecipes, new ToolRecipe(ToolType.Axe, 2).AddCost(Resource.Stick, 2).AddCost(Resource.IronIngot, 3));
+            Extensions.Add(AnvilRecipes, new ToolRecipe(ToolType.Hoe, 2).AddCost(Resource.Stick, 2).AddCost(Resource.IronIngot, 2));
+            Extensions.Add(AnvilRecipes, new ToolRecipe(ToolType.Pickaxe, 2).AddCost(Resource.Stick, 2).AddCost(Resource.IronIngot, 3));
+            Extensions.Add(AnvilRecipes, new ToolRecipe(ToolType.Shovel, 2).AddCost(Resource.Stick, 2).AddCost(Resource.IronIngot, 1));
 
-            Extensions.Add(AnvilRecipes, new ToolRecipe(ToolType.Sword, 4).AddCost(Resource.Wood, 5).AddCost(Resource.Gem, 50));
-            Extensions.Add(AnvilRecipes, new ToolRecipe(ToolType.Axe, 4).AddCost(Resource.Wood, 5).AddCost(Resource.Gem, 50));
-            Extensions.Add(AnvilRecipes, new ToolRecipe(ToolType.Hoe, 4).AddCost(Resource.Wood, 5).AddCost(Resource.Gem, 50));
-            Extensions.Add(AnvilRecipes, new ToolRecipe(ToolType.Pickaxe, 4).AddCost(Resource.Wood, 5).AddCost(Resource.Gem, 50));
-            Extensions.Add(AnvilRecipes, new ToolRecipe(ToolType.Shovel, 4).AddCost(Resource.Wood, 5).AddCost(Resource.Gem, 50));
+            Extensions.Add(AnvilRecipes, new ToolRecipe(ToolType.Sword, 3).AddCost(Resource.Stick, 2).AddCost(Resource.GoldIngot, 2));
+            Extensions.Add(AnvilRecipes, new ToolRecipe(ToolType.Axe, 3).AddCost(Resource.Stick, 2).AddCost(Resource.GoldIngot, 3));
+            Extensions.Add(AnvilRecipes, new ToolRecipe(ToolType.Hoe, 3).AddCost(Resource.Stick, 2).AddCost(Resource.GoldIngot, 2));
+            Extensions.Add(AnvilRecipes, new ToolRecipe(ToolType.Pickaxe, 3).AddCost(Resource.Stick, 2).AddCost(Resource.GoldIngot, 3));
+            Extensions.Add(AnvilRecipes, new ToolRecipe(ToolType.Shovel, 3).AddCost(Resource.Stick, 2).AddCost(Resource.GoldIngot, 2));
+
+            Extensions.Add(AnvilRecipes, new ToolRecipe(ToolType.Sword, 4).AddCost(Resource.Stick, 10).AddCost(Resource.Gem, 20));
+            Extensions.Add(AnvilRecipes, new ToolRecipe(ToolType.Axe, 4).AddCost(Resource.Stick, 20).AddCost(Resource.Gem, 30));
+            Extensions.Add(AnvilRecipes, new ToolRecipe(ToolType.Hoe, 4).AddCost(Resource.Stick, 20).AddCost(Resource.Gem, 20));
+            Extensions.Add(AnvilRecipes, new ToolRecipe(ToolType.Pickaxe, 4).AddCost(Resource.Stick, 20).AddCost(Resource.Gem, 30));
+            Extensions.Add(AnvilRecipes, new ToolRecipe(ToolType.Shovel, 4).AddCost(Resource.Stick, 20).AddCost(Resource.Gem, 20));
 
             Extensions.Add(FurnaceRecipes, new ResourceRecipe(Resource.IronIngot).AddCost(Resource.IronOre, 4).AddCost(Resource.Coal, 1));
             Extensions.Add(FurnaceRecipes, new ResourceRecipe(Resource.GoldIngot).AddCost(Resource.GoldOre, 4).AddCost(Resource.Coal, 1));

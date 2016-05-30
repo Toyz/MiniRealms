@@ -269,7 +269,7 @@ namespace MiniRealms.Levels
         {
             for (int i = 0; i < count; i++)
             {
-                Mob mob;
+                Mob mob = null;
 
                 int minLevel = 1;
                 int maxLevel = 1;
@@ -285,7 +285,7 @@ namespace MiniRealms.Levels
                 int lvl = _random.NextInt(maxLevel - minLevel + 1) + minLevel;
                 lvl += baseLevel;
 
-                int spawner = _random.NextInt(5);
+                int spawner = _random.NextInt(3);
 
                 if (spawner <= 1)
                 {
@@ -294,10 +294,6 @@ namespace MiniRealms.Levels
                 else if (spawner <= 3)
                 {
                     mob = new Zombie(lvl);
-                }
-                else
-                {
-                    mob = new Creeper(lvl);
                 }
 
                 if (mob.FindStartPos(this))

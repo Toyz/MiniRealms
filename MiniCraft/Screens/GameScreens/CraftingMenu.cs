@@ -63,6 +63,7 @@ namespace MiniRealms.Screens.GameScreens
                     r.DeductCost(_player);
                     r.Craft(_player);
                     GameEffectManager.Play("craft");
+                    _recipes.Sort(new RecipeSorter());
                 }
                 for (int i = 0; i < _recipes.Size(); i++)
                 {

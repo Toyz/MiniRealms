@@ -113,6 +113,39 @@
       </Value>
     </Entry>
     <Entry>
+      <Key>OakTree</Key>
+      <Value>
+        <ID>10</ID>
+        <Color>-1</Color>
+        <Rotation>0</Rotation>
+      </Value>
+      <Value>
+        <ID>42</ID>
+        <Color>-1</Color>
+        <Rotation>0</Rotation>
+      </Value>
+      <Value>
+        <ID>74</ID>
+        <Color>-1</Color>
+        <Rotation>0</Rotation>
+      </Value>
+      <Value>
+        <ID>106</ID>
+        <Color>-1</Color>
+        <Rotation>0</Rotation>
+      </Value>
+      <Value>
+        <ID>9</ID>
+        <Color>-1</Color>
+        <Rotation>0</Rotation>
+      </Value>
+      <Value>
+        <ID>41</ID>
+        <Color>-1</Color>
+        <Rotation>0</Rotation>
+      </Value>
+    </Entry>
+    <Entry>
       <Key>Farmland</Key>
       <Value>
         <ID>34</ID>
