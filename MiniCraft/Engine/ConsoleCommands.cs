@@ -347,18 +347,11 @@ namespace MiniRealms.Engine
                         Y = _game.Player.Y + 5
                     });
                     return "Summoned a slime";
-                case "creeper":
-                    _game.Levels?[_game.CurrentLevel].Add(new Creeper(1)
-                    {
-                        X = _game.Player.X + 5,
-                        Y = _game.Player.Y + 5
-                    });
-                    return "Summoned a Creeper";
             }
             return "Invalid mod type";
         }
 
-        public string GiveItemCommand(string[] strings)
+        private string GiveItemCommand(string[] strings)
         {
             if (_game.Player == null)
             {

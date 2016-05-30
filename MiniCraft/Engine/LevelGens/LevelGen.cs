@@ -239,19 +239,6 @@ namespace MiniRealms.Engine.LevelGens
                     {
                         map[xx + yy * w] = Tile.SkyTree.Id;
                     }
-                    /*switch (r)
-                    {
-                        case 0:
-                            map[xx + yy * w] = Tile.Tree.Id;
-                            break;
-                        case 1:
-                            map[xx + yy * w] = Tile.DarkOakTree.Id;
-                            break;
-                        case 4:
-                            map[xx + yy * w] = Tile.SkyTree.Id;
-                            break;
-
-                    }*/
                 }
             }
 
