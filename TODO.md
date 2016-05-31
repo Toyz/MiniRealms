@@ -1,0 +1,3 @@
+- Saving and loading
+- Possible player customization
+- Simple modding API
