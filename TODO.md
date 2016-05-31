@@ -1,3 +1,4 @@
 - Saving and loading
 - Possible player customization
 - Simple modding API
+- Clean up some of the engine code to make it easier to understand and use EX the color systems
