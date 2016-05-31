@@ -203,7 +203,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\bin\" />
-    <Folder Include="Content\Data\Scripts\" />
     <Folder Include="Content\obj\" />
   </ItemGroup>
   <ItemGroup>

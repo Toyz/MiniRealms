@@ -9,7 +9,7 @@ namespace MiniRealms.Levels.Tiles
 {
     public class GrassTile : Tile
     {
-        private readonly Sprite[] _sprites;
+        protected Sprite[] _sprites;
 
         public GrassTile(TileId id) : base(id)
         {
